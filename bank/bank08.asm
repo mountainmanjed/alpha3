@@ -680,7 +680,7 @@ loc_080798:
 	bsr.w loc_080c6c
 	tst.b ($3a,a6)
 	beq.b loc_0807ce
-	move.w #$9280,($20,a5);Counter Hit Flash
+	move.w #whiteflash,(palrampointer,a5);Counter Hit Flash
 	jsr loc_0035f2
 
 loc_0807ce:
@@ -949,9 +949,9 @@ loc_080a8a:
 	beq.w loc_080aa8
 	subq.b #1,($3a,a6)
 	bne.b loc_080aa6
-	cmpi.w #$9280,($20,a5)
+	cmpi.w #whiteflash,(palrampointer,a5)
 	bne.b loc_080aa6
-	move.w #$90c0,($20,a5)
+	move.w #Mainpalette,(palrampointer,a5)
 
 loc_080aa6:
 	rts
@@ -966,9 +966,9 @@ loc_080aae:
 	beq.b loc_080ac8
 	subq.b #1,($3a,a6)
 	bne.b loc_080ac8
-	cmpi.w #$9280,($20,a5)
+	cmpi.w #whiteflash,(palrampointer,a5)
 	bne.b loc_080ac8
-	move.w #$90c0,($20,a5)
+	move.w #Mainpalette,(palrampointer,a5)
 
 loc_080ac8:
 	jmp loc_01b4d0
@@ -5856,7 +5856,7 @@ loc_08473e:
 	addq.b #5,d0
 	bset.b d0,($13,a5)
 	moveq #2,d0
-	tst.w ($90,a5)
+	tst.w (Region,a5)
 	beq.b loc_08476c
 	moveq #4,d0
 
@@ -6059,7 +6059,7 @@ loc_084932:
 ;==============================================================================
 loc_084934:
 	lsl.w #5,d0
-	lea.l Mainpalette,a1
+	lea.l MainpaletteDirect,a1
 	lea.l (a1,d0.w),a1
 	ext.w d1
 	addi.w #$125,d1
@@ -6904,7 +6904,7 @@ loc_0851c0:
 	ext.w d0
 	add.w d0,d0
 	addi.w #$e,d0
-	cmpi.w #$8,($90,a5)
+	cmpi.w #$8,(Region,a5)
 	bne.b loc_0851fa
 	addq.w #1,d0
 
@@ -8140,7 +8140,7 @@ loc_08603c:
 	move.b d1,($3c,a6)
 	lsl.w #3,d1
 	moveq #1,d0
-	tst.w ($90,a5)
+	tst.w (Region,a5)
 	beq.b loc_08605e
 	addq.b #1,d0
 
@@ -8208,7 +8208,7 @@ loc_0860de:
 	moveq #$11,d0
 
 loc_08610e:
-	tst.w ($90,a5)
+	tst.w (Region,a5)
 	beq.b loc_086116
 	addq.w #1,d0
 
@@ -8755,7 +8755,7 @@ loc_086674:
 	moveq #$14,d0
 	add.b ($101,a4),d0
 	lsl.w #5,d0
-	lea.l Mainpalette,a1
+	lea.l MainpaletteDirect,a1
 	lea.l (a1,d0.w),a1
 	moveq #0,d7
 	jsr loc_01b7c0
@@ -9205,7 +9205,7 @@ loc_086a96:
 	move.w ($42,a6),($10,a6)
 	add.w d0,d0
 	addi.w #$d,d0
-	tst.w ($90,a5)
+	tst.w (Region,a5)
 	beq.b loc_086b0c
 	addq.w #1,d0
 
@@ -9611,7 +9611,7 @@ loc_086ea4:
 	move.w loc_086eea+6(pc,d1.w),($4c,a6)
 	move.w ($46,a6),($14,a6)
 	add.w d0,d0
-	tst.w ($90,a5)
+	tst.w (Region,a5)
 	beq.b loc_086ed8
 	addq.w #1,d0
 
@@ -9685,7 +9685,7 @@ loc_086f60:
 	moveq #0,d0
 	move.b ($101,a4),d0
 	add.w d0,d0
-	tst.w ($90,a5)
+	tst.w (Region,a5)
 	beq.b loc_086f76
 	addq.w #1,d0
 
@@ -9968,7 +9968,7 @@ loc_08723c:
 	moveq #$14,d0
 	add.b ($101,a4),d0
 	lsl.w #5,d0
-	lea.l Mainpalette,a1
+	lea.l MainpaletteDirect,a1
 	lea.l (a1,d0.w),a1
 	moveq #0,d7
 	jsr loc_01b7c0
@@ -10028,7 +10028,7 @@ loc_0872c0:
 	lea.l (a0,d1.w),a0
 	andi.w #$1f,d3
 	lsl.w #5,d3
-	lea.l Mainpalette,a1
+	lea.l MainpaletteDirect,a1
 	lea.l (a1,d3.w),a1
 	moveq #0,d7
 	jmp loc_01b7c0
@@ -14004,7 +14004,7 @@ loc_08b41c:
 	ext.w d0
 	add.w d0,d0
 	addi.w #$e,d0
-	cmpi.w #8,($90,a5)
+	cmpi.w #8,(Region,a5)
 	bne.b loc_08b47a
 	addq.w #$1,d0
 
@@ -14298,7 +14298,7 @@ loc_08b7ca:
 
 loc_08b7d6:
 	ext.w d0
-	tst.w ($90,a5)
+	tst.w (Region,a5)
 	beq.b loc_08b7e2
 	addi.w #$20,d0
 
@@ -14757,7 +14757,7 @@ loc_08bd36:
 	add.b ($128,a4),d0
 	lsl.w #8,d0
 	lea.l (a0,d0.w),a0
-	movea.l #Mainpalette,a1
+	movea.l #MainpaletteDirect,a1
 	moveq #7,d7
 	jsr loc_01b7c0
 
@@ -16384,7 +16384,7 @@ loc_08e03e:
 	move.w loc_08e072+6(pc,d0.w),($48,a6)
 	move.w ($42,a6),($10,a6)
 	moveq #2,d0
-	tst.w ($90,a5)
+	tst.w (Region,a5)
 	beq.b loc_08e068
 	addq.w #1,d0
 
@@ -16644,7 +16644,7 @@ loc_08e276:
 	move.w #$e5a6,($44,a6)
 	move.w #$1a5,($4c,a6)
 	move.w ($46,a6),($14,a6)
-	tst.w ($90,a5)
+	tst.w (Region,a5)
 	beq.b loc_08e2d8
 	addq.b #2,d0
 
@@ -17123,7 +17123,7 @@ loc_08e774:
 	cmp.b ($3b,a6),d5
 	bcc.b loc_08e79a
 	add.w d1,d1
-	tst.w ($90,a5)
+	tst.w (Region,a5)
 	beq.b loc_08e794
 	addi.w #$40,d1
 
@@ -17330,14 +17330,14 @@ loc_08e9f0:
 	move.w d0,d1
 	add.w d0,d0
 	addi.w #$30,d0
-	tst.w ($90,a5)
+	tst.w (Region,a5)
 	beq.b loc_08ea12
 	addi.w #$40,d0
 
 loc_08ea12:
 	move.w loc_08ea40(pc,d0.w),($78,a6)
 	move.w #$b0,d0
-	tst.w ($90,a5)
+	tst.w (Region,a5)
 	beq.b loc_08ea24
 	addq.w #4,d0
 
@@ -17603,7 +17603,7 @@ loc_08ed2e:
 	addq.w #2,(4,a2)
 	lea.l loc_35cc34,a0
 	lea.l (a0,d0.w),a0
-	lea.l Mainpalette,a1
+	lea.l MainpaletteDirect,a1
 	lea.l (a1,d1.w),a1
 	moveq #0,d7
 	jmp loc_01b7c0

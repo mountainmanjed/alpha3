@@ -1,3 +1,22 @@
+;Graphics
+Cps0BackG0Direct = $900000
+Cps1BackG0Direct = $904000
+Cps2BackG0Direct = $908000
+MainpaletteDirect = $90c000
+Cps0PaletteDirect = $90c400
+Cps1PaletteDirect = $90c800
+Cps2PaletteDirect = $90cc00
+; = $90d000
+
+RasterBankDirect = $90e000
+Cps0BackG1Direct = $910000
+Cps1BackG1Direct = $914000
+Cps2BackG1Direct = $918000
+; $91c000
+; $920000
+; $924000
+WhiteFlashDirect = $928000
+Palettebank3Direct = $92c000
 
 
 ;A5 Offsets
@@ -16,6 +35,8 @@ gfxram16x16 = $1a
 gfxram32x32 = $1c
 rasterram = $1e
 palrampointer = $20
+;$22
+;$24
 ;$26
 ;$28
 ;$2a
@@ -23,6 +44,7 @@ palrampointer = $20
 
 ;$4e
 
+Region = 0x90
 RngByte0 = $ae
 RngByte1 = $af
 
@@ -92,3 +114,4 @@ unk_ff3c0c = $ff3c0c
 ;unk_ff3c14 = $ff3c14
 ;unk_ff3c18 = $ff3c18
 ;ff3d18
+

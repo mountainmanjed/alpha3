@@ -71,7 +71,7 @@ loc_002610:
 
 loc_00261c:
 	lea loc_002f68(pc),a0
-	move.w ($90,a5),d6
+	move.w (Region,a5),d6
 	lsl.w #4,d6
 	lea (a0,d6.w),a0
 	moveq #$1f,d6
@@ -700,7 +700,7 @@ loc_002dda:
 
 loc_002df0:
 	lea.l loc_002f68(pc),a1
-	move.w ($90,a5),d6
+	move.w (Region,a5),d6
 	lsl.w #4,d6
 	lea.l (a1,d6.w),a1
 	moveq #$1f,d6

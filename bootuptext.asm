@@ -1,32 +1,31 @@
 loc_01cdd2:
-	dc.w loc_01cea2-loc_01cdd2
-	dc.w loc_01ced7-loc_01cdd2
-	dc.w loc_01cf09-loc_01cdd2
-	dc.w loc_01cf45-loc_01cdd2
-	dc.w loc_01cf7f-loc_01cdd2
-	dc.w loc_01cfb2-loc_01cdd2
-	dc.w loc_01cfe6-loc_01cdd2
-	dc.w loc_01d01e-loc_01cdd2
+	dc.w Boot_Text_Japan-loc_01cdd2
+	dc.w Boot_Text_USA-loc_01cdd2
+	dc.w Boot_Text_CentSouthAmerica-loc_01cdd2
+	dc.w Boot_Text_Oceania-loc_01cdd2
+	dc.w Boot_Text_Asia-loc_01cdd2
+	dc.w Boot_Text_Europe-loc_01cdd2
+	dc.w Boot_Text_Brazil-loc_01cdd2
 
-	dc.w loc_01d14c-loc_01cdd2
-	dc.w loc_01d2a0-loc_01cdd2
-	dc.w loc_01d441-loc_01cdd2
-	dc.w loc_01d584-loc_01cdd2
-	dc.w loc_01d6cf-loc_01cdd2
-	dc.w loc_01d812-loc_01cdd2
-	dc.w loc_01d95d-loc_01cdd2
-	dc.w loc_01d96a-loc_01cdd2
+	dc.w Japan_Warning-loc_01cdd2
+	dc.w Canada_USA_Warning-loc_01cdd2
+	dc.w CentSouth_America_Warning-loc_01cdd2
+	dc.w Oceania_Warning-loc_01cdd2
+	dc.w Asia_Warning-loc_01cdd2
+	dc.w Europe_Warning-loc_01cdd2
+	dc.w Brazil_Warning-loc_01cdd2
 
-	dc.w loc_01d99d-loc_01cdd2;20
-	dc.w loc_01d9ac-loc_01cdd2
-	dc.w loc_01d9be-loc_01cdd2
-	dc.w loc_01d9d0-loc_01cdd2
-	dc.w loc_01d9e2-loc_01cdd2
-	dc.w loc_01d9f4-loc_01cdd2
-	dc.w loc_01da06-loc_01cdd2
-	dc.w loc_01da18-loc_01cdd2
-
-	dc.w loc_01da2a-loc_01cdd2;30
+	dc.w Free_Play_Text-loc_01cdd2
+	dc.w TwoCreditsStart_Text-loc_01cdd2
+	dc.w One_Credit_Text-loc_01cdd2;20
+	dc.w Two_Credit_Text-loc_01cdd2
+	dc.w Three_Credit_Text-loc_01cdd2
+	dc.w Four_Credit_Text-loc_01cdd2
+	dc.w Five_Credit_Text-loc_01cdd2
+	dc.w Six_Credit_Text-loc_01cdd2
+	dc.w Seven_Credit_Text-loc_01cdd2
+	dc.w Eight_Credit_Text-loc_01cdd2
+	dc.w Nine_Credit_Text-loc_01cdd2;30
 	dc.w loc_01da3c-loc_01cdd2
 	dc.w loc_01da45-loc_01cdd2
 	dc.w loc_01da4f-loc_01cdd2
@@ -116,7 +115,13 @@ loc_01cdd2:
 	dc.w loc_01ded9-loc_01cdd2;1107
 	dc.w loc_01ded9-loc_01cdd2;1107
 
-loc_01cea2:;00
+;================================================
+;	dc.b X_location,Y_Postion_times_4,Palette
+;	dc.b "text here",$7f to start a new section
+;	dc.b X_location,Y_Postion_times_4,Palette
+;	dc.b "demo text",00 to end
+
+Boot_Text_Japan:;00
 	dc.b $0d,$24,$01
 	dc.b 'STREET FIGHTER ZERO 3',$7f
 	dc.b $12,$30,$01
@@ -124,7 +129,7 @@ loc_01cea2:;00
 	dc.b $13,$3c,$01
 	dc.b 'J A P A N',$00
 
-loc_01ced7:;02
+Boot_Text_USA:;02
 	dc.b $0d,$24,$01
 	dc.b 'STREET FIGHTER ALPHA 3',$7f
 	dc.b $12,$30,$01
@@ -132,7 +137,7 @@ loc_01ced7:;02
 	dc.b $15,$3c,$01
 	dc.b 'U S A',$00
 
-loc_01cf09:;04
+Boot_Text_CentSouthAmerica:;04
 	dc.b $0d,$24,$01
 	dc.b 'STREET FIGHTER ALPHA 3',$7f
 	dc.b $12,$30,$01
@@ -140,7 +145,7 @@ loc_01cf09:;04
 	dc.b $10,$3c,$01
 	dc.b 'H I S P A N I C',$00
 
-loc_01cf45:;06
+Boot_Text_Oceania:;06
 	dc.b $0d,$24,$01
 	dc.b 'STREET FIGHTER ALPHA 3',$7f
 	dc.b $12,$30,$01
@@ -148,7 +153,7 @@ loc_01cf45:;06
 	dc.b $11,$3c,$01
 	dc.b 'O C E A N I A',$00
 
-loc_01cf7f:;08
+Boot_Text_Asia:;08
 	dc.b $0d,$24,$01
 	dc.b 'STREET FIGHTER ZERO 3',$7f
 	dc.b $12,$30,$01
@@ -156,7 +161,7 @@ loc_01cf7f:;08
 	dc.b $14,$3c,$01
 	dc.b 'A S I A',$00
 
-loc_01cfb2:;0a
+Boot_Text_Europe:;0a
 	dc.b $0d,$24,$01
 	dc.b 'STREET FIGHTER ALPHA 3',$7f
 	dc.b $12,$30,$01
@@ -164,7 +169,7 @@ loc_01cfb2:;0a
 	dc.b $14,$3c,$01
 	dc.b 'E U R O',$00
 
-loc_01cfe6:;0c
+Boot_Text_Brazil:;0c
 	dc.b $0d,$24,$01
 	dc.b 'STREET FIGHTER ALPHA 3',$7f
 	dc.b $12,$30,$01
@@ -173,7 +178,7 @@ loc_01cfe6:;0c
 	dc.b 'B R A Z I L',$00
 
 ;Warnings
-loc_01d01e:;00
+Japan_Warning:;00
 	dc.b $14,$10,$01
 	dc.b 'WARNING',$7f
 	dc.b $04,$20,$01
@@ -193,7 +198,7 @@ loc_01d01e:;00
 	dc.b $03,$58,$01
 	dc.b 'of the law.',$00
 
-loc_01d14c:;02
+Canada_USA_Warning:;02
 	dc.b $14,$10,$01
 	dc.b 'WARNING',$7f
 	dc.b $04,$20,$01
@@ -215,7 +220,7 @@ loc_01d14c:;02
 	dc.b $03,$60,$01
 	dc.b 'of the law.',$00
 
-loc_01d2a0:;04
+CentSouth_America_Warning:;04
 	dc.b $14,$10,$01
 	dc.b 'WARNING',$7f
 	dc.b $04,$20,$01
@@ -241,7 +246,7 @@ loc_01d2a0:;04
 	dc.b $03,$70,$01
 	dc.b 'of the law.',$00
 
-loc_01d441:;06
+Oceania_Warning:;06
 	dc.b $14,$10,$01
 	dc.b 'WARNING',$7f
 	dc.b $04,$20,$01
@@ -263,7 +268,7 @@ loc_01d441:;06
 	dc.b $03,$60,$01
 	dc.b 'of the law.',$00
 
-loc_01d584:;08
+Asia_Warning:;08
 	dc.b $14,$10,$01
 	dc.b 'WARNING',$7f
 	dc.b $04,$20,$01
@@ -285,7 +290,7 @@ loc_01d584:;08
 	dc.b $03,$60,$01
 	dc.b 'of the law.',$00
 
-loc_01d6cf:;0a
+Europe_Warning:;0a
 	dc.b $14,$10,$01
 	dc.b 'WARNING',$7f
 	dc.b $04,$20,$01
@@ -307,7 +312,7 @@ loc_01d6cf:;0a
 	dc.b $03,$60,$01
 	dc.b 'of the law.',$00
 
-loc_01d812:;0c
+Brazil_Warning:;0c
 	dc.b $14,$10,$01
 	dc.b 'WARNING',$7f
 	dc.b $04,$20,$01
@@ -329,49 +334,51 @@ loc_01d812:;0c
 	dc.b $03,$60,$01
 	dc.b 'of the law.',$00
 
-loc_01d95d:
+
+;Coin Text
+Free_Play_Text:
 	dc.b $13,$64,$1f
 	dc.b 'FREE PLAY',00
 
-loc_01d96a:
+TwoCreditsStart_Text:
 	dc.b $11,$64,$1f
 	dc.b 'INSERT 2 COINS',$7f
 	dc.b $09,$6c,$1f
 	dc.b 'CONTINUE REQUIRES ONLY 1 COIN',$00
 
-loc_01d99d:
+One_Credit_Text:
 	dc.b $12,$64,$1f
 	dc.b 'INSERT COIN',$00
 
-loc_01d9ac:
+Two_Credit_Text:
 	dc.b $11,$64,$1f
 	dc.b 'INSERT 2 COINS',$00
 
-loc_01d9be:
+Three_Credit_Text:
 	dc.b $11,$64,$1f
 	dc.b 'INSERT 3 COINS',$00
 
-loc_01d9d0:
+Four_Credit_Text:
 	dc.b $11,$64,$1f
 	dc.b 'INSERT 4 COINS',$00
 
-loc_01d9e2:
+Five_Credit_Text:
 	dc.b $11,$64,$1f
 	dc.b 'INSERT 5 COINS',$00
 
-loc_01d9f4:
+Six_Credit_Text:
 	dc.b $11,$64,$1f
 	dc.b 'INSERT 6 COINS',$00
 
-loc_01da06:
+Seven_Credit_Text:
 	dc.b $11,$64,$1f
 	dc.b 'INSERT 7 COINS',$00
 
-loc_01da18:
+Eight_Credit_Text:
 	dc.b $11,$64,$1f
 	dc.b 'INSERT 8 COINS',$00
 
-loc_01da2a:
+Nine_Credit_Text:
 	dc.b $11,$64,$1f
 	dc.b 'INSERT 9 COINS',$00
 
@@ -650,8 +657,10 @@ loc_01ded9:
 
 ;/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\
 loc_01deda:
-	dc.w loc_01defa-loc_01deda
-	dc.w loc_01df16-loc_01deda
+	dc.w CapcomWebsite-loc_01deda
+	dc.w Zero3Email-loc_01deda
+
+;Junk
 	dc.w loc_01df34-loc_01deda
 	dc.w loc_01df34-loc_01deda
 	dc.w loc_01df34-loc_01deda
@@ -668,10 +677,10 @@ loc_01deda:
 	dc.w loc_01df34-loc_01deda
 	dc.w loc_01df34-loc_01deda
 
-loc_01defa:
+CapcomWebsite:
 	dc.b $0c,$70,$1f
 	dc.b 'http://www.capcom.co.jp/',$00
 
-loc_01df16:
+Zero3Email:
 	dc.b $0b,$70,$1f
 	dc.b 'mailto:zero3@ capcom.co.jp',00

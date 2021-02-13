@@ -3869,7 +3869,7 @@ loc_07f4ca:
 	addi.w #$40,d0
 
 loc_07f4e6:
-	tst.w ($90,a5)
+	tst.w (Region,a5)
 	beq.b loc_07f4f0
 	addi.w #$20,d0
 

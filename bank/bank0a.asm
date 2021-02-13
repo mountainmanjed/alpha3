@@ -62,7 +62,7 @@ loc_0a0254:
 	move.l d0,($14,a6)
 	move.l #$18000,($4c,a6)
 	moveq #0,d0
-	tst.w ($90,a5)
+	tst.w (Region,a5)
 	beq.b loc_0a029e
 	addq.w #1,d0
 
@@ -322,7 +322,7 @@ loc_0a04ea:
 	move.w #$140,d1
 	add.w (a0,d0.w),d1
 	lea.l (a0,d1.w),a0
-	lea.l MainPalette,a1
+	lea.l MainpaletteDirect,a1
 	moveq #4,d7
 	jmp loc_01b7ce
 
@@ -793,7 +793,7 @@ loc_0a099c:
 	move.w #0,($10,a6)
 	move.w ($46,a6),($14,a6)
 	moveq #4,d0
-	tst.w ($90,a5)
+	tst.w (Region,a5)
 	beq.b loc_0a0a0a
 	addq.b #1,d0
 
@@ -1082,7 +1082,7 @@ loc_0a0caa:
 	move.b d1,(9,a6)
 	move.w d1,($c,a6)
 	move.w d1,($e,a6)
-	move.w #$2000,($1a,a5)
+	move.w #$2000,(gfxram16x16,a5)
 	move.w #$e000,($18,a6)
 	move.w d1,($26,a6)
 	move.w #$c0,($10,a6)
@@ -2984,7 +2984,7 @@ loc_0a2258:
 	bne.b loc_0a2286
 	tst.w d1
 	bne.b loc_0a2286
-	tst.w ($90,a5)
+	tst.w (Region,a5)
 	beq.b loc_0a2286
 	moveq #1,d0
 
@@ -7555,7 +7555,7 @@ loc_0a5c14:
 	movea.l (4,a0),a2
 	moveq #0,d0
 	moveq #0,d1
-	move.w ($20,a5),d1
+	move.w (palrampointer,a5),d1
 	cmpi.w #$9220,d1
 	beq.w loc_0a5c8e
 	cmpi.w #$9240,d1
@@ -9203,7 +9203,7 @@ loc_0a6c4c:
 ;+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-
 loc_0a6c4e:
 	moveq #0,d0
-	move.w ($20,a5),d0
+	move.w (palrampointer,a5),d0
 	lsl.l #8,d0
 	movea.l d0,a1
 	move.w #$f000,d0
@@ -9277,7 +9277,7 @@ loc_0a6cf6:
 	move.b ($70,a6),d0
 	moveq #8,d1
 	moveq #0,d2
-	move.w ($20,a5),d2
+	move.w (palrampointer,a5),d2
 	lsl.l #8,d2
 	movea.l d2,a0
 	movea.l a0,a1
@@ -9336,7 +9336,7 @@ loc_0a6d82:
 	cmp.w ($1c8,a5),d0
 	ble.w loc_0a7150
 	moveq #0,d0
-	move.w ($20,a5),d0
+	move.w (palrampointer,a5),d0
 	lsl.l #8,d0
 	movea.l d0,a0
 	move.w #$f000,d0
@@ -9356,7 +9356,7 @@ loc_0a6dbc:
 	cmp.w ($1c8,a5),d0
 	ble.w loc_0a7150
 	moveq #0,d0
-	move.w ($20,a5),d0
+	move.w (palrampointer,a5),d0
 	lsl.l #8,d0
 	movea.l d0,a0
 	move.w #$1000,d0
@@ -9586,7 +9586,7 @@ loc_0a7008:
 	tst.b ($bb,a5)
 	beq.b loc_0a7070
 	moveq #0,d0
-	move.w ($20,a5),d0
+	move.w (palrampointer,a5),d0
 	lsl.l #8,d0
 	movea.l d0,a0
 	moveq #0,d0
@@ -9680,7 +9680,7 @@ loc_0a70e4:
 	move.b ($70,a6),d0
 	moveq #0,d1
 	moveq #0,d2
-	move.w ($20,a5),d2
+	move.w (palrampointer,a5),d2
 	lsl.l #8,d2
 	movea.l d2,a0
 	movea.l a0,a1
@@ -13601,7 +13601,7 @@ loc_0a96fa:
 	move.b ($7e,a6),d2
 	jsr loc_082f20
 	moveq #0,d0
-	move.w ($20,a5),d0
+	move.w (palrampointer,a5),d0
 	lsl.l #8,d0
 	movea.l d0,a0
 	movea.l a0,a1
@@ -13625,7 +13625,7 @@ loc_0a9746:
 	bne.b loc_0a977e
 	addq.b #2,(5,a6)
 	moveq #0,d0
-	move.w ($20,a5),d0
+	move.w (palrampointer,a5),d0
 	lsl.l #8,d0
 	movea.l d0,a0
 	movea.l a0,a1
@@ -14377,7 +14377,7 @@ loc_0a9ea2:
 	move.b ($7e,a6),d2
 	jsr loc_082f20
 	moveq #0,d0
-	move.w ($20,a5),d0
+	move.w (palrampointer,a5),d0
 	lsl.l #8,d0
 	movea.l d0,a0
 	movea.l a0,a1
@@ -14401,7 +14401,7 @@ loc_0a9eee:
 	bne.b loc_0a9f26
 	addq.b #2,(5,a6)
 	moveq #0,d0
-	move.w ($20,a5),d0
+	move.w (palrampointer,a5),d0
 	lsl.l #8,d0
 	movea.l d0,a0
 	movea.l a0,a1
@@ -14843,7 +14843,7 @@ loc_0aa340:
 
 loc_0aa344:
 	moveq #0,d1
-	move.w ($20,a5),d1
+	move.w (palrampointer,a5),d1
 	lsl.l #8,d1
 	movea.l d1,a0
 	lea.l ($fe0,a0),a0
@@ -15700,7 +15700,7 @@ loc_0aacce:
 	move.b #0,($e,a6)
 	move.w #$2000,($1a,a6)
 	moveq #$e,d0
-	cmpi.w #8,($90,a5)
+	cmpi.w #8,(Region,a5)
 	bne.b loc_0aacf4
 	moveq #$f,d0
 
@@ -16224,7 +16224,7 @@ loc_0ab30a:
 	lea.l (a0,d2.w),a0
 	lea.l ($140,a0),a0
 	moveq #0,d2
-	move.w ($20,a5),d2
+	move.w (palrampointer,a5),d2
 	lsl.l #8,d2
 	movea.l d2,a1
 	moveq #0,d2
@@ -17261,7 +17261,7 @@ loc_0abe48:
 loc_0abe4e:
 	move.w #$f,d7
 	moveq #0,d1
-	move.w ($20,a5),d1
+	move.w (palrampointer,a5),d1
 	lsl.l #8,d1
 	movea.l d1,a0
 	lea.l ($200,a0),a1
@@ -17317,7 +17317,7 @@ loc_0abea6:
 	add.w d4,($58,a6)
 	move.b ($58,a6),($5a,a6)
 	moveq #0,d1
-	move.w ($20,a5),d1
+	move.w (palrampointer,a5),d1
 	lsl.l #8,d1
 	movea.l d1,a0
 	lea.l ($200,a0),a1
@@ -17392,7 +17392,7 @@ loc_0abf4a:
 ;-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 loc_0abf4c:
 	moveq #0,d1
-	move.w ($20,a5),d1
+	move.w (palrampointer,a5),d1
 	lsl.l #8,d1
 	movea.l d1,a1
 	lea.l ($200,a1),a1
@@ -18982,8 +18982,8 @@ loc_0ad056:
 	move.w #$300,($28,a5)
 	move.w #0,($2a,a5)
 	move.w #$700,($2c,a5)
-	move.l #MainPalette,($e0,a5)
-	move.w #$92a0,($20,a5)
+	move.l #MainpaletteDirect,($e0,a5)
+	move.w #$92a0,(palrampointer,a5)
 	move.w #$92a0,($48,a5)
 	move.w #$1e0e,($32,a5)
 	move.w #$4261,($3a,a5)
@@ -19011,7 +19011,7 @@ loc_0ad0e0:
 	moveq #1,d0
 	jsr loc_095ba2
 	move.w #$f0,($e,a5)
-	move.w #$90c0,($20,a5)
+	move.w #Mainpalette,(palrampointer,a5)
 	bsr.w loc_0ad48e
 	bsr.w loc_0ad49e
 	lea.l $900864,a1
@@ -19098,7 +19098,7 @@ loc_0ad1da:
 	subq.w #1,($e,a5)
 	bpl.b loc_0ad1ea
 	addq.w #2,(8,a5)
-	move.w #$92a0,($20,a5)
+	move.w #$92a0,(palrampointer,a5)
 
 loc_0ad1ea:
 	rts
@@ -19147,7 +19147,7 @@ loc_0ad232:
 loc_0ad242:
 	addq.w #2,($c,a5)
 	move.w #$168,($e,a5)
-	move.w #$90c0,($20,a5)
+	move.w #Mainpalette,(palrampointer,a5)
 	bsr.w loc_0ad49e
 	bsr.w loc_0ad48e
 	bsr.w loc_0ad4be
@@ -19203,7 +19203,7 @@ loc_0ad2da:
 	move.w #$2461,($3a,a5)
 	clr.b ($124,a5)
 	bsr.w loc_0ad4e8
-	move.w #$92a0,($20,a5)
+	move.w #$92a0,(palrampointer,a5)
 	moveq #2,d0
 	jsr loc_0039e0
 	jmp loc_017366
@@ -19232,7 +19232,7 @@ loc_0ad34a:
 	movea.l #$90c3a0,a1
 	moveq #0,d7
 	jsr loc_01b7c0
-	move.w #$90c0,($20,a5)
+	move.w #Mainpalette,(palrampointer,a5)
 	jmp loc_01738a
 
 ;+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-
@@ -19241,7 +19241,7 @@ loc_0ad382:
 	bpl.w loc_0ad434
 	addq.w #2,($c,a5)
 	move.w #$1e,($e,a5)
-	move.w #$92a0,($20,a5)
+	move.w #$92a0,(palrampointer,a5)
 	jmp loc_017366
 
 ;+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-
@@ -19249,7 +19249,7 @@ loc_0ad3a0:
 	subq.w #1,($e,a5)
 	bpl.w loc_0ad434
 	addq.w #2,($c,a5)
-	move.w #$90c0,($20,a5)
+	move.w #Mainpalette,(palrampointer,a5)
 	move.w #$b4,($e,a5)
 	move.w #$40,($26,a5)
 	move.w #$100,($28,a5)
@@ -19338,14 +19338,14 @@ loc_0ad48e:
 loc_0ad49e:
 	moveq #$f,d0
 	moveq #0,d1
-	lea.l Cps0BackG0,a1
+	lea.l Cps0BackG0Direct,a1
 	jmp loc_01ba92
 
 ;-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 loc_0ad4ae:
 	moveq #$f,d0
 	moveq #0,d1
-	lea.l Cps0BackG0,a1
+	lea.l Cps0BackG0Direct,a1
 	jmp loc_01babc
 
 ;-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
@@ -19469,7 +19469,7 @@ loc_0ad5a4:
 	lsl.w #4,d0
 	move.w d0,($40,a6)
 	move.b (3,a6),d0
-	cmpi.w #8,($90,a5)
+	cmpi.w #8,(Region,a5)
 	bne.b loc_0ad5d2
 	cmpi.b #8,($e,a6)
 	bne.b loc_0ad5d2
@@ -19477,7 +19477,7 @@ loc_0ad5a4:
 
 loc_0ad5d2:
 	jsr loc_0ad566
-	cmpi.w #8,($90,a5)
+	cmpi.w #8,(Region,a5)
 	bne.b loc_0ad5ee
 	cmpi.b #8,($e,a6)
 	beq.b loc_0ad5ee
@@ -19927,7 +19927,7 @@ loc_0ad8e6:
 	move.w ($26,a6),($12,a6)
 	cmpi.b #5,(3,a6)
 	bne.b loc_0ad924
-	cmpi.w #8,($90,a5)
+	cmpi.w #8,(Region,a5)
 	bne.b loc_0ad924
 	addq.b #1,($3a,a6)
 
@@ -20318,7 +20318,7 @@ loc_0add74:
 	move.l loc_0addba+4(pc,d0.w),($40,a6)
 	tst.b ($3c,a6)
 	beq.b loc_0adda8
-	cmpi.w #8,($90,a5)
+	cmpi.w #8,(Region,a5)
 	bne.b loc_0adda8
 	addi.w #$100,($14,a6)
 
@@ -20514,7 +20514,7 @@ loc_0adf40:
 	move.l a0,($1c,a6)
 	move.l (a0),($32,a6)
 	move.w #0,d1
-	move.w ($1c,a5),d1
+	move.w (gfxram32x32,a5),d1
 	lsl.l #8,d1
 	move.w ($2a,a5),d0
 	andi.l #$380,d0
@@ -20617,7 +20617,7 @@ loc_0ae034:
 	move.w ($3a,a6),d0
 	lsr.w #3,d0
 	move.w d0,($3a,a6)
-	cmpi.w #8,($90,a5)
+	cmpi.w #8,(Region,a5)
 	bne.b loc_0ae074
 	move.b #4,(4,a6)
 
@@ -20627,7 +20627,7 @@ loc_0ae074:
 
 loc_0ae07e:
 	move.b #4,(4,a6)
-	tst.w ($90,a5)
+	tst.w (Region,a5)
 	beq.b loc_0ae098
 	move.b (3,a6),d0
 	lea.l loc_0ae156(pc),a0
@@ -20808,7 +20808,7 @@ loc_0ae200:
 	addq.b #2,(4,a6)
 	move.b #1,($f,a6)
 	clr.w ($c,a6)
-	tst.w ($90,a5)
+	tst.w (Region,a5)
 	beq.b loc_0ae224
 	moveq #5,d0
 	jsr loc_0ad566
@@ -20853,7 +20853,7 @@ loc_0ae24e:
 	clr.b (1,a4)
 	lea.l (2,a4),a4
 	dbra d7,loc_0ae24e
-	cmpi.w #8,($90,a5)
+	cmpi.w #8,(Region,a5)
 	bne.b loc_0ae27e
 	moveq #8,d0
 	lea.l loc_0ae3de(pc),a0
@@ -21245,7 +21245,7 @@ loc_0ae734:
 	move.b #1,($f,a6)
 	clr.w ($c,a6)
 	move.b (3,a6),d0
-	cmpi.w #0,($90,a5)
+	cmpi.w #0,(Region,a5)
 	beq.b loc_0ae750
 	addq.b #1,d0
 
@@ -22170,7 +22170,7 @@ loc_0af032:
 
 loc_0af036:
 	lea.l ($60,a6),a0
-	lea.l Cps0Palette,a1
+	lea.l CPS0PaletteDirect,a1
 	moveq #$c,d7
 
 loc_0af042:
@@ -22611,7 +22611,7 @@ loc_0af57c:
 	lea.l loc_363ef4,a0
 	add.w ($20,a0),d0
 	lea.l (a0,d0.w),a0
-	lea.l Cps2Palette,a1
+	lea.l Cps2PaletteDirect,a1
 	lea.l (a1,d1.w),a1
 	moveq #0,d7
 	jmp loc_01b7c0
@@ -22636,7 +22636,7 @@ loc_0af600:
 	lsr.w #2,d0
 	move.w loc_0af646(pc,d0.w),d0
 	lea.l loc_0af646(pc,d0.w),a2
-	lea.l MainPalette,a3
+	lea.l MainpaletteDirect,a3
 	moveq #2,d5
 
 loc_0af612:
@@ -23175,7 +23175,7 @@ loc_0afb8c:
 	bne.b loc_0afbe8
 	addq.b #2,(4,a6)
 	st.b (1,a6)
-	cmpi.w #8,($90,a5)
+	cmpi.w #8,(Region,a5)
 	bne.b loc_0afbae
 	addi.w #$100,($14,a6)
 
@@ -23782,7 +23782,7 @@ loc_0b0270:
 	move.w loc_0b02c8(pc,d0.w),($14,a6)
 	move.w loc_0b02c8+2(pc,d0.w),($48,a6)
 	moveq #$d,d0
-	tst.w ($90,a5)
+	tst.w (Region,a5)
 	beq.b loc_0b02bc
 	addq.w #1,d0
 

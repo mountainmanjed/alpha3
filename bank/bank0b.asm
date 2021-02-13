@@ -256,7 +256,7 @@ loc_0b05ca:
 	move.b loc_0b05f6(pc,d0.w),d1
 	lsl.w #3,d1
 	moveq #$f,d0
-	tst.w ($90,a5)
+	tst.w (Region,a5)
 	beq.b loc_0b05ec
 	addq.w #2,d0
 
@@ -3283,7 +3283,7 @@ loc_0b28d8:
 loc_0b28ea:
 	move.b ($34,a4),d0
 	andi.w #$ff,d1
-	tst.w ($90,a5)
+	tst.w (Region,a5)
 	beq.b loc_0b28fc
 	addi.w #$30,d1
 
@@ -3400,7 +3400,7 @@ loc_0b2a02:
 	lea.l (a0,d1.w),a0
 	move.b ($d,a6),d0
 	lsl.w #5,d0
-	lea.l Mainpalette,a1
+	lea.l MainpaletteDirect,a1
 	lea.l (a1,d0.w),a1
 	moveq #2,d7
 	jmp loc_01b7c0
@@ -4519,7 +4519,7 @@ loc_0b3dbc:
 	move.w d0,d1
 	move.w #$60e,(a0)
 	move.w #$116,(2,a0)
-	tst.w ($90,a5)
+	tst.w (Region,a5)
 	beq.b loc_0b3e16
 	move.w #$334,(a0)
 	move.w #$116,(2,a0)
@@ -5296,7 +5296,7 @@ loc_0b46ba:
 ;-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 loc_0b4700:
 	movea.l #loc_0b49a2,a2
-	tst.w ($90,a5)
+	tst.w (Region,a5)
 	beq.b loc_0b4712
 	movea.l #loc_0b49e2,a2
 
@@ -8450,7 +8450,7 @@ loc_0b941c:
 loc_0b9442:
 	lea.l ($56,a6),a1
 	lea.l loc_0b97ec(pc),a0
-	tst.w ($90,a5)
+	tst.w (Region,a5)
 	beq.b loc_0b9454
 	lea.l ($40,a0),a0
 
@@ -8476,7 +8476,7 @@ loc_0b946c:
 loc_0b9488:
 	add.w d2,d2
 	lea.l loc_0b986c(pc),a2
-	tst.w ($90,a5)
+	tst.w (Region,a5)
 	beq.b loc_0b9498
 	lea.l ($40,a2),a2
 
@@ -8487,7 +8487,7 @@ loc_0b9498:
 
 loc_0b94a0:
 	lea.l loc_0b97ec(pc),a0
-	tst.w ($90,a5)
+	tst.w (Region,a5)
 	beq.b loc_0b94ae
 	lea.l ($40,a0),a0
 
@@ -8511,7 +8511,7 @@ loc_0b94c4:
 loc_0b94de:
 	add.w d2,d2
 	lea.l loc_0b98ec(pc),a2
-	tst.w ($90,a5)
+	tst.w (Region,a5)
 	beq.b loc_0b94ee
 	lea.l ($40,a2),a2
 
@@ -8533,7 +8533,7 @@ loc_0b9500:
 loc_0b9506:
 	lea.l ($56,a6),a1
 	lea.l loc_0b97ec(pc),a0
-	tst.w ($90,a5)
+	tst.w (Region,a5)
 	beq.b loc_0b9518
 	lea.l ($40,a0),a0
 
@@ -8544,7 +8544,7 @@ loc_0b9518:
 	move.b ($102,a3),d2
 	add.w d2,d2
 	lea.l loc_0b986c(pc),a2
-	tst.w ($90,a5)
+	tst.w (Region,a5)
 	beq.b loc_0b9534
 	lea.l ($40,a0),a2
 
@@ -8557,7 +8557,7 @@ loc_0b9534:
 loc_0b953e:
 	lea.l ($56,a6),a1
 	lea.l loc_0b97ec(pc),a0
-	tst.w ($90,a5)
+	tst.w (Region,a5)
 	beq.b loc_0b9550
 	lea.l ($40,a0),a0
 
@@ -8569,7 +8569,7 @@ loc_0b9550:
 	move.b ($102,a3),d2
 	add.w d2,d2
 	lea.l loc_0b98ec(pc),a2
-	tst.w ($90,a5)
+	tst.w (Region,a5)
 	beq.b loc_0b9570
 	lea.l ($40,a2),a2
 
@@ -8740,7 +8740,7 @@ loc_0b96f4:
 
 ;-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 loc_0b9704:
-	tst.w ($90,a5)
+	tst.w (Region,a5)
 	beq.w loc_0b9714
 	lea.l ($40,a0),a0
 	lea.l ($40,a0),a2

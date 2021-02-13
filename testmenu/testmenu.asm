@@ -50,7 +50,7 @@ loc_00de16:
 	addq.w #2,(0,a5)
 	jsr loc_01b0e6
 	bsr.w loc_010cc2
-	move.w #$90c0,($20,a5)
+	move.w #Mainpalette,(palrampointer,a5)
 	move.w #$90c0,($48,a5)
 	move.b #$10,(a6)
 	move.b #$10,(1,a6)
@@ -62,7 +62,7 @@ loc_00de16:
 	move.w d0,($2a,a5)
 	move.w #$700,($2c,a5)
 	moveq #0,d0
-	tst.w ($90,a5)
+	tst.w (Region,a5)
 	bne.b loc_00de6a
 	jsr loc_0168cc
 	bra.b loc_00de70
@@ -73,7 +73,7 @@ loc_00de6a:
 loc_00de70:
 	jsr loc_001b8e
 	beq.b loc_00de9c
-	tst.w ($90,a5)
+	tst.w (Region,a5)
 	bne.b loc_00de8e
 	lea.l $904264,a1
 	moveq #$1d,d1
@@ -150,7 +150,7 @@ loc_00df0a:
 ;=============================================================================
 loc_00df1c:
 	move.l #$200000,d1
-	tst.w ($90,a5)
+	tst.w (Region,a5)
 	bne.b loc_00df2e
 	move.l #$6c200000,d1
 
@@ -165,7 +165,7 @@ loc_00df36:
 	move.w (4,a5),d0
 	lsl.w #2,d0
 	move.l #$3e001f,d1
-	tst.w ($90,a5)
+	tst.w (Region,a5)
 	bne.b loc_00df68
 	lea.l $90418c,a1
 	move.w (4,a5),d0
@@ -382,9 +382,9 @@ loc_00e14c:
 	andi.b #$cc,($6b,a5)
 	moveq #3,d0
 	jsr loc_01557c
-	cmpi.w #4,($90,a5)
+	cmpi.w #4,(Region,a5)
 	beq.b loc_00e184
-	cmpi.w #$c,($90,a5)
+	cmpi.w #$c,(Region,a5)
 	bne.b loc_00e192
 
 loc_00e184:
@@ -421,9 +421,9 @@ loc_00e1cc:
 	bset.b #0,($6b,a5)
 
 loc_00e1da:
-	cmpi.w #4,($90,a5)
+	cmpi.w #4,(Region,a5)
 	beq.b loc_00e1ea
-	cmpi.w #$c,($90,a5)
+	cmpi.w #$c,(Region,a5)
 	bne.b loc_00e1fc
 
 loc_00e1ea:
@@ -1170,9 +1170,9 @@ loc_00ea5e:
 	addq.w #2,($8,a5)
 	jsr loc_01b0e6
 	moveq #$b,d0
-	cmpi.w #4,($90,a5)
+	cmpi.w #4,(Region,a5)
 	beq.b loc_00ea7c
-	cmpi.w #$c,($90,a5)
+	cmpi.w #$c,(Region,a5)
 	beq.b loc_00ea7c
 	addq.w #2,d0
 
@@ -1188,9 +1188,9 @@ loc_00ea84:
 	jsr loc_002e5e
 
 loc_00ea98:
-	cmpi.w #4,($90,a5)
+	cmpi.w #4,(Region,a5)
 	beq.b loc_00eaa8
-	cmpi.w #$c,($90,a5)
+	cmpi.w #$c,(Region,a5)
 	bne.b loc_00eae2
 
 loc_00eaa8:
@@ -1272,7 +1272,7 @@ loc_00ebb4:
 	jsr loc_01b0e6
 	move.b #$10,(a6)
 	move.b #$10,(1,a6)
-	tst.w ($90,a5)
+	tst.w (Region,a5)
 	bne.b loc_00ebd8
 	moveq #1,d0
 	jsr loc_0168cc
@@ -1285,7 +1285,7 @@ loc_00ebd8:
 loc_00ebe0:
 	jsr loc_001bc2
 	beq.b loc_00ec0c
-	tst.w ($90,a5)
+	tst.w (Region,a5)
 	bne.b loc_00ebfe
 	lea.l $904254,a1
 	moveq #$1d,d1
@@ -1360,7 +1360,7 @@ loc_00ec8e:
 	bne.b loc_00ecd4
 	jsr loc_001b12
 	move.b ($98,a5),(-$5f5a,a5)
-	tst.w ($90,a5)
+	tst.w (Region,a5)
 	bne.b loc_00ecc6
 	lea.l $904254,a1
 	moveq #$1f,d1
@@ -1393,7 +1393,7 @@ loc_00ece2:
 ;------------------------------------------------------------------------------
 loc_00ecea:
 	move.l #$200000,d1
-	tst.w ($90,a5)
+	tst.w (Region,a5)
 	bne.b loc_00ecfc
 	move.l #$6c200000,d1
 
@@ -1408,7 +1408,7 @@ loc_00ed04:
 	move.w ($c,a5),d0
 	lsl.w #2,d0
 	move.l #$3e001f,d1
-	tst.w ($90,a5)
+	tst.w (Region,a5)
 	bne.b loc_00ed36
 	lea.l $90418c,a1
 	move.w ($c,a5),d0
@@ -1429,7 +1429,7 @@ loc_00ed36:
 ;------------------------------------------------------------------------------
 loc_00ed42:
 	move.w ($c,a5),d0
-	tst.w ($90,a5)
+	tst.w (Region,a5)
 	bne.w loc_00ede0
 	lsl.w #4,d0
 	lea.l loc_00ed60(pc,d0.w),a0
@@ -1480,7 +1480,7 @@ loc_00ee82:
 	jsr loc_01b0e6
 	move.b #$10,(a6)
 	move.b #$10,($1,a6)
-	tst.w ($90,a5)
+	tst.w (Region,a5)
 	bne.b loc_00eea6
 	moveq #2,d0
 	jsr loc_0168cc
@@ -1488,12 +1488,12 @@ loc_00ee82:
 
 loc_00eea6:
 	moveq #$13,d0
-	cmpi.w #4,($90,a5)
+	cmpi.w #4,(Region,a5)
 	beq.b loc_00eec4
-	cmpi.w #$c,($90,a5)
+	cmpi.w #$c,(Region,a5)
 	beq.b loc_00eec4
 	moveq #$12,d0
-	cmpi.w #8,($90,a5)
+	cmpi.w #8,(Region,a5)
 	beq.b loc_00eec4
 	moveq #$10,d0
 
@@ -1508,14 +1508,14 @@ loc_00eeca:
 	bsr.w loc_00fe94
 	bsr.w loc_00ff3e
 	bsr.w loc_00ffea
-	cmpi.w #8,($90,a5)
+	cmpi.w #8,(Region,a5)
 	bne.b loc_00eef2
 	bsr.w loc_010040
 
 loc_00eef2:
-	cmpi.w #4,($90,a5)
+	cmpi.w #4,(Region,a5)
 	beq.b loc_00ef02
-	cmpi.w #$c,($90,a5)
+	cmpi.w #$c,(Region,a5)
 	bne.b loc_00ef0e
 
 loc_00ef02:
@@ -1527,12 +1527,12 @@ loc_00ef0e:
 	moveq #$1b,d1
 	bsr.w loc_00f1fc
 	moveq #$14,d7
-	cmpi.w #4,($90,a5)
+	cmpi.w #4,(Region,a5)
 	beq.b loc_00ef32
-	cmpi.w #$c,($90,a5)
+	cmpi.w #$c,(Region,a5)
 	beq.b loc_00ef32
 	moveq #$10,d7
-	cmpi.w #8,($90,a5)
+	cmpi.w #8,(Region,a5)
 	beq.b loc_00ef32
 	moveq #$e,d7
 
@@ -1543,12 +1543,12 @@ loc_00ef32:
 loc_00ef36:
 	bsr.w loc_010b64
 	moveq #$14,d7
-	cmpi.w #4,($90,a5)
+	cmpi.w #4,(Region,a5)
 	beq.b loc_00ef58
-	cmpi.w #$c,($90,a5)
+	cmpi.w #$c,(Region,a5)
 	beq.b loc_00ef58
 	moveq #$10,d7
-	cmpi.w #8,($90,a5)
+	cmpi.w #8,(Region,a5)
 	beq.b loc_00ef58
 	moveq #$e,d7
 
@@ -1575,9 +1575,9 @@ loc_00ef8e:
 	move.w #0,($14,a5)
 
 loc_00ef94:
-	cmpi.w #4,($90,a5)
+	cmpi.w #4,(Region,a5)
 	beq.b loc_00efa4
-	cmpi.w #$c,($90,a5)
+	cmpi.w #$c,(Region,a5)
 	bne.b loc_00efc0
 
 loc_00efa4:
@@ -1611,9 +1611,9 @@ loc_00efea:
 	move.w #4,($14,a5)
 
 loc_00eff0:
-	cmpi.w #4,($90,a5)
+	cmpi.w #4,(Region,a5)
 	beq.b loc_00f000
-	cmpi.w #$c,($90,a5)
+	cmpi.w #$c,(Region,a5)
 	bne.b loc_00f01c
 
 loc_00f000:
@@ -1639,11 +1639,11 @@ loc_00f02a:
 
 loc_00f02e:
 	move.w ($14,a5),d0
-	cmpi.w #4,($90,a5)
+	cmpi.w #4,(Region,a5)
 	beq.b loc_00f05a
-	cmpi.w #8,($90,a5)
+	cmpi.w #8,(Region,a5)
 	beq.b loc_00f052
-	cmpi.w #$c,($90,a5)
+	cmpi.w #$c,(Region,a5)
 	beq.b loc_00f05a
 	move.w loc_00f062(pc,d0.w),d1
 	jmp loc_00f062(pc,d1.w)
@@ -1711,7 +1711,7 @@ loc_00f0aa:
 	jsr loc_01b0e6
 	move.b #$10,(a6)
 	move.b #$10,(1,a6)
-	tst.w ($90,a5)
+	tst.w (Region,a5)
 	bne.b loc_00f0ce
 	moveq #3,d0
 	jsr loc_0168cc
@@ -1818,7 +1818,7 @@ loc_00f1c0:
 	move.w ($14,a5),d0
 	lsl.w #2,d0
 	move.l #$3e001f,d1
-	tst.w ($90,a5)
+	tst.w (Region,a5)
 	bne.b loc_00f1f0
 	lea.l $90400c,a1
 	move.w ($14,a5),d0
@@ -1840,7 +1840,7 @@ loc_00f1f0:
 loc_00f1fc:
 	move.w ($14,a5),d0
 	move.w d0,d2
-	tst.w ($90,a5)
+	tst.w (Region,a5)
 	bne.b loc_00f22c
 	lsl.w #4,d0
 	lsl.w #3,d2
@@ -1861,12 +1861,12 @@ loc_00f22c:
 	lsl.w #3,d2
 	add.w d2,d0
 	lea.l loc_00f27c(pc),a0
-	cmpi.w #4,($90,a5)
+	cmpi.w #4,(Region,a5)
 	beq.b loc_00f256
-	cmpi.w #$c,($90,a5)
+	cmpi.w #$c,(Region,a5)
 	beq.b loc_00f256
 	lea.l loc_00f31c(pc),a0
-	cmpi.w #$8,($90,a5)
+	cmpi.w #$8,(Region,a5)
 	beq.b loc_00f256
 	lea.l loc_00f36c(pc),a0
 
@@ -1972,10 +1972,10 @@ loc_00f7b6:
 	beq.w loc_00f86c
 	moveq #9,d1
 	moveq #1,d3
-	cmpi.w #4,($90,a5)
+	cmpi.w #4,(Region,a5)
 	beq.b loc_00f7da
 	moveq #2,d3
-	cmpi.w #$c,($90,a5)
+	cmpi.w #$c,(Region,a5)
 	beq.b loc_00f7da
 	moveq #$12,d1
 
@@ -1990,9 +1990,9 @@ loc_00f7da:
 	bra.b loc_00f804
 
 loc_00f7ee:
-	cmpi.w #4,($90,a5)
+	cmpi.w #4,(Region,a5)
 	beq.b loc_00f7fe
-	cmpi.w #$c,($90,a5)
+	cmpi.w #$c,(Region,a5)
 	bne.b loc_00f804
 
 loc_00f7fe:
@@ -2017,9 +2017,9 @@ loc_00f812:
 	bra.b loc_00f838
 
 loc_00f822:
-	cmpi.w #4,($90,a5)
+	cmpi.w #4,(Region,a5)
 	beq.b loc_00f832
-	cmpi.w #$c,($90,a5)
+	cmpi.w #$c,(Region,a5)
 	bne.b loc_00f838
 
 loc_00f832:
@@ -2064,7 +2064,7 @@ loc_00f86e:
 
 loc_00f87e:
 	lsl.w #5,d0
-	tst.w ($90,a5)
+	tst.w (Region,a5)
 	beq.b loc_00f896
 	lea.l loc_00f8aa(pc,d0.w),a0
 	lea.l $900918,a1
@@ -2180,7 +2180,7 @@ loc_00fd84:
 	moveq #$1d,d1
 
 loc_00fd94:
-	tst.w ($90,a5)
+	tst.w (Region,a5)
 	beq.b loc_00fda4
 	lea.l $900920,a1
 	bra.w loc_0108a2
@@ -2218,7 +2218,7 @@ loc_00fdda:
 
 loc_00fdea:
 	lsr.w #4,d0
-	tst.w ($90,a5)
+	tst.w (Region,a5)
 	beq.b loc_00fe02
 	lea.l loc_00fe12(pc,d0.w),a0
 	lea.l $900928,a1
@@ -2259,7 +2259,7 @@ loc_00fe46:
 	moveq #$1d,d1
 
 loc_00fe56:
-	tst.w ($90,a5)
+	tst.w (Region,a5)
 	beq.b loc_00fe66
 	lea.l $900930,a1
 	bra.w loc_0108a2
@@ -2296,7 +2296,7 @@ loc_00fe94:
 
 loc_00fea4:
 	lsl.w #4,d0
-	tst.w ($90,a5)
+	tst.w (Region,a5)
 	beq.b loc_00febc
 	lea.l loc_00fecc(pc,d0.w),a0
 	lea.l $900938,a1
@@ -2357,7 +2357,7 @@ loc_00ff3e:
 
 loc_00ff4e:
 	lsl.w #4,d0
-	tst.w ($90,a5)
+	tst.w (Region,a5)
 	beq.b loc_00ff66
 	lea.l loc_00ff76(pc,d0.w),a0
 	lea.l $900940,a1
@@ -2402,7 +2402,7 @@ loc_00ffea:
 	moveq #$1d,d1
 
 loc_00fffa:
-	tst.w ($90,a5)
+	tst.w (Region,a5)
 	beq.b loc_01000a
 	lea.l $900948,a1
 	bra.w loc_0108a2
@@ -2635,7 +2635,7 @@ loc_010284:
 
 loc_010294:
 	lsl.w #3,d0
-	tst.w ($90,a5)
+	tst.w (Region,a5)
 	beq.b loc_0102ac
 	lea.l loc_0102be(pc,d0.w),a0
 	lea.l $900998,a1
@@ -2712,7 +2712,7 @@ loc_010428:
 
 loc_010438:
 	lsl.b #3,d0
-	tst.w ($90,a5)
+	tst.w (Region,a5)
 	beq.b loc_010450
 	lea.l loc_010462(pc,d0.w),a0
 	lea.l $9009a0,a1
@@ -2773,7 +2773,7 @@ loc_0104ee:
 
 loc_0104fe
 	lsl.b #3,d0
-	tst.w ($90,a5)
+	tst.w (Region,a5)
 	beq.b loc_010516
 	lea.l loc_010528(pc,d0.w),a0
 	lea.l $9009a8,a1
@@ -2839,7 +2839,7 @@ loc_0105ba:
 
 loc_0105ca:
 	lsl.b #4,d0
-	tst.w ($90,a5)
+	tst.w (Region,a5)
 	beq.b loc_0105e2
 	lea.l loc_0105f2(pc,d0.w),a0
 	lea.l $9009b0,a1
@@ -2905,7 +2905,7 @@ loc_0106c4:
 
 loc_0106d4:
 	lsl.b #3,d0
-	tst.w ($90,a5)
+	tst.w (Region,a5)
 	beq.b loc_01074a
 	bra.b loc_01072a
 
@@ -2947,7 +2947,7 @@ loc_010710:
 
 loc_010720:
 	lsl.b #3,d0
-	tst.w ($90,a5)
+	tst.w (Region,a5)
 	beq.b loc_01075a
 	bra.b loc_01073a
 
@@ -3029,7 +3029,7 @@ loc_0107e8:
 
 loc_0107f8:
 	lsl.b #3,d0
-	tst.w ($90,a5)
+	tst.w (Region,a5)
 	beq.b loc_010810
 	lea.l loc_010820(pc,d0.w),a0
 	lea.l $9009c8,a1
@@ -3072,7 +3072,7 @@ loc_01085a:
 	moveq #$1d,d1
 
 loc_01086a:
-	tst.w ($90,a5)
+	tst.w (Region,a5)
 	beq.b loc_01087a
 	lea.l $9009d0,a1
 	bra.w loc_0108a2
@@ -3199,12 +3199,12 @@ loc_010944:
 	lea.l $70a000,a1
 	moveq #2,d6
 	bsr.w loc_010aa0
-	eori.w #1,$8040e0
+	eori.w #1,OBJram_Bank0
 	lea.l $708000,a0
 	lea.l $70a000,a1
 	moveq #2,d6
 	bsr.w loc_010aa0
-	eori.w #1,$8040e0
+	eori.w #1,OBJram_Bank0
 	lea.l $900f2c,a2
 	tst.b ($15,a5)
 	bne.b loc_0109c0

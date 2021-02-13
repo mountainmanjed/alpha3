@@ -51,7 +51,7 @@ loc_043200:
 loc_043220:
 	cmpi.b #6,d0
 	bne.b loc_04322e
-	tst.w ($90,a5)
+	tst.w (Region,a5)
 	beq.b loc_04322e
 	moveq #4,d0
 

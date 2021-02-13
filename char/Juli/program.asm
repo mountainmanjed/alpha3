@@ -4950,7 +4950,7 @@ loc_06ef7a:
 	movem.l d0-d1,(moveinpslot4,a6)
 	movem.l d0-d1,(moveinpslot5,a6)
 	movem.l d0-d1,(moveinpslot6,a6)
-	movem.l d0-d1,(moveinpslotplmovestate,a6)
+	movem.l d0-d1,(moveinpslot7,a6)
 	movem.l d0-d1,(moveinpslot8,a6)
 	movem.l d0-d1,(moveinpslot9,a6)
 	movem.l d0-d1,($1d0,a6)

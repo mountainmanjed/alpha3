@@ -1,5 +1,6 @@
+;Shared memory with Z80 at 0xc000
 Soundram = $618000
-;$619fff
+Sound_END = $619fff
 
 NetworkRam = $660000
 
@@ -13,27 +14,25 @@ QsoundVolume = $804030
 Epprom = $804040
 
 DebugDip = $8040b0
-OBJrambank = $8040e0
+OBJram_Bank0 = $8040e0
+OBJram_Bank1 = $8040e1
 
-;$804100
-;$804140
+cps0_gpuregistera = 0x804100
+cps0_gpuregisterb = 0x804102
+cps1_gpuregister = 0x804104
+cps2_gpuregister = 0x804106
+raster_gpuregister = 0x804108
+palette_gpuregister = 0x80410a
+;0x80410c;4a
+;0x80410e;4c
+;0x804110;4e
+;0x804112;50
+;0x804114;52
+;0x804116;54
+;0x804118;56
 
-;Graphics
-Cps0BackG0 = $900000
-Cps1BackG0 = $904000
-Cps2BackG0 = $908000
-Mainpalette = $90c000
-Cps0Palette = $90c400
-Cps1Palette = $90c800
-Cps2Palette = $90cc00
-; = $90d000
+;0x804122;
+;0x804140;
+;0x804166;
+;0x804170;
 
-RasterBank = $90e000
-Cps0BackG1 = $910000
-Cps1BackG1 = $914000
-Cps2BackG1 = $918000
-; $91c000
-; $920000
-; $924000
-WhiteFlash = $928000
-Palettebank3 = $92c000

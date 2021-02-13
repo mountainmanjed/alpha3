@@ -3445,7 +3445,7 @@ loc_092792:
 	lsl.w #2,d1
 	movea.l (a0,d1.w),a0
 	lea.l (a0,d2.w),a0
-	lea.l Mainpalette,a1
+	lea.l MainpaletteDirect,a1
 	lea.l (a1,d3.w),a1
 	jmp loc_01fd9e
 
@@ -5638,7 +5638,7 @@ loc_09420e:
 	move.b ($f,a0),d0
 	move.b loc_094280(pc,d0.w),d0
 	addi.w #$c,d0
-	cmpi.w #8,($90,a5)
+	cmpi.w #8,(Region,a5)
 	bne.b loc_094262
 	addq.w #1,d0
 
@@ -6146,7 +6146,7 @@ loc_0947ba:
 	add.w d1,d0
 	lsl.w #5,d0
 	lea.l (a0,d0.w),a0
-	lea.l Mainpalette,a1
+	lea.l MainpaletteDirect,a1
 	moveq #0,d0
 	move.b ($d,a6),d0
 	lsl.w #5,d0
@@ -6159,7 +6159,7 @@ loc_094800:
 	move.b ($d,a6),d0
 	ext.w d0
 	lsl.w #5,d0
-	movea.l #Mainpalette,a1
+	movea.l #MainpaletteDirect,a1
 	lea.l (a1,d0.w),a1
 	moveq #0,d0
 	movea.l (-$5c48,a5),a0
@@ -7884,7 +7884,7 @@ loc_095bec:
 	move.w #$20,($10,a4)
 	move.w #$c0,($14,a4)
 	move.w #$11f,($c,a4)
-	tst.w ($90,a5)
+	tst.w (Region,a5)
 	bne.b loc_095c68
 	jsr loc_01c2c8
 	beq.b loc_095c68
@@ -8003,7 +8003,7 @@ loc_095c6a:
 	move.w #$f0,($48,a4)
 	move.w #$c8,($4c,a4)
 	move.b #$32,($3a,a4)
-	tst.w ($90,a5)
+	tst.w (Region,a5)
 	bne.w loc_095f46
 
 	jsr loc_01c2c8
@@ -8219,7 +8219,7 @@ loc_0961c0:
 	movea.l #loc_32c094,a0
 	moveq #$18,d0
 	adda.w (a0,d0.w),a0
-	movea.l #Mainpalette,a1
+	movea.l #MainpaletteDirect,a1
 	moveq #4,d7
 	jmp loc_01b7c0
 
@@ -11400,7 +11400,7 @@ loc_0985b0:
 ;------------------------------------------------------------------------------
 loc_0985b6:
 	moveq #0,d0
-	tst.b ($90,a5)
+	tst.b (Region,a5)
 	beq.b loc_0985c0
 	addq.w #1,d0
 
@@ -11425,7 +11425,7 @@ loc_0985dc:
 ;------------------------------------------------------------------------------
 loc_0985e2:
 	moveq #4,d0
-	tst.b ($90,a5)
+	tst.b (Region,a5)
 	beq.b loc_0985ec
 	addq.w #1,d0
 
