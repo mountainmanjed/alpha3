@@ -1,5 +1,6 @@
 ;Shared memory with Z80 at 0xc000
 Soundram = $618000
+Sound_Test_end = $619ff9
 Sound_END = $619fff
 
 NetworkRam = $660000

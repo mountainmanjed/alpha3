@@ -675,7 +675,7 @@ loc_0009c4:
 	move.w #$1b02,$804166
 	move.w #$3f,$804170
 	move.w #Mainpalette,palette_gpuregister
-	lea loc_000ecc(pc),a2
+	lea Mes_workram(pc),a2
 	lea loc_0009f0(pc),a5
 	bra.w loc_000d28
 
@@ -683,17 +683,17 @@ loc_0009f0:
 	lea $ff0000,a0
 	lea (a0),a1
 	adda.l #$fffe,a1
-	lea loc_000ed4(pc),a2
+	lea Mes_workram_ng(pc),a2
 	lea loc_000a0a(pc),a6
 	bra.w loc_000cb6
 
 loc_000a0a:
-	lea loc_000ede(pc),a2
+	lea Mes_workram_ok(pc),a2
 	lea loc_000a16(pc),a5
 	bra.w loc_000d28
 
 loc_000a16:
-	lea loc_000ee8(pc),a2
+	lea Mes_cps0ram(pc),a2
 	lea loc_000a22(pc),a5
 	bra.w loc_000d28
 
@@ -701,17 +701,17 @@ loc_000a22:
 	lea $900000,a0
 	lea (a0),a1
 	adda.l #$fffe,a1
-	lea loc_000ef0(pc),a2
+	lea Mes_cps0ram_ng(pc),a2
 	lea loc_000a3c(pc),a6
 	bra.w loc_000cb6
 
 loc_000a3c:
-	lea loc_000efa(pc),a2
+	lea Mes_cps0ram_ok(pc),a2
 	lea loc_000a48(pc),a5
 	bra.w loc_000d28
 
 loc_000a48:
-	lea loc_000f04(pc),a2
+	lea Mes_cps1ram(pc),a2
 	lea loc_000a54(pc),a5
 	bra.w loc_000d28
 
@@ -719,17 +719,17 @@ loc_000a54:
 	lea $910000,a0
 	lea (a0),a1
 	adda.l #$fffe,a1
-	lea loc_000f0c(pc),a2
+	lea Mes_cps1ram_ng(pc),a2
 	lea loc_000a6e(pc),a6
 	bra.w loc_000cb6
 
 loc_000a6e:
-	lea loc_000f16(pc),a2
+	lea Mes_cps1ram_ok(pc),a2
 	lea loc_000a7a(pc),a5
 	bra.w loc_000d28
 
 loc_000a7a:
-	lea loc_000f20(pc),a2
+	lea Mes_cps2ram(pc),a2
 	lea loc_000a86(pc),a5
 	bra.w loc_000d28
 
@@ -737,51 +737,51 @@ loc_000a86:
 	lea $920000,a0
 	lea (a0),a1
 	adda.l #$fffe,a1
-	lea loc_000f28(pc),a2
+	lea Mes_cps2ram_ng(pc),a2
 	lea loc_000aa0(pc),a6
 	bra.w loc_000cb6
 
 loc_000aa0:
-	lea loc_000f32(pc),a2
+	lea Mes_cps2ram_ok(pc),a2
 	lea loc_000aac(pc),a5
 	bra.w loc_000d28
 
 loc_000aac:
-	lea loc_000f3c(pc),a2
+	lea Mes_objram(pc),a2
 	lea loc_000ab8(pc),a5
 	bra.w loc_000d28
 
 loc_000ab8:
-	lea $708000,a0
+	lea ObjectRam,a0
 	lea (a0),a1
 	adda.l #$1ffe,a1
-	lea loc_000f46(pc),a2
+	lea Mes_objram_ng(pc),a2
 	lea loc_000ad2(pc),a6
 	bra.w loc_000cb6
 
 loc_000ad2:
-	lea loc_000f50(pc),a2
+	lea Mes_objram_ok(pc),a2
 	lea loc_000ade(pc),a5
 	bra.w loc_000d28
 
 loc_000ade:
 	move.w #$f08,$804040
-	lea loc_000f5a(pc),a2
+	lea Mes_QSRam(pc),a2
 	lea loc_000af2(pc),a5
 	bra.w loc_000d28
 
 loc_000af2:
 	WATCHDOG
-	cmpi.b #$77,$619fff
+	cmpi.b #$77,Sound_END
 	bne.b loc_000af2
-	lea $618000,a0
+	lea Soundram,a0
 	lea ($1ffe,a0),a1
-	lea loc_000f65(pc),a2
+	lea Mes_QSRam_NG(pc),a2
 	lea loc_000b18(pc),a6
 	bra.w loc_000ce0
 
 loc_000b18:
-	lea loc_000f6f(pc),a2
+	lea Mes_QSRam_OK(pc),a2
 	lea loc_000b24(pc),a5
 	bra.w loc_000d28
 
@@ -803,7 +803,7 @@ loc_000b3c:
 
 loc_000b44:
 	lea loc_000b4c(pc),a4
-	bra.w loc_000e16
+	bra.w QSRam_FF_Fill
 
 loc_000b4c:
 	lea loc_000b54(pc),a4
@@ -1020,7 +1020,7 @@ loc_000dc6:
 loc_000dd6:
 	moveq #0,d0
 	move.w #0,OBJram_Bank0
-	lea $708000,a0
+	lea ObjectRam,a0
 	move.w #$7ff,d7
 
 loc_000dea:
@@ -1028,7 +1028,7 @@ loc_000dea:
 	move.l d0,(a0)+
 	dbra d7,loc_000dea
 	move.w #1,OBJram_Bank0
-	lea $708000,a0
+	lea ObjectRam,a0
 	move.w #$7ff,d7
 
 loc_000e08:
@@ -1038,16 +1038,16 @@ loc_000e08:
 	jmp (a4)
 
 ;==============================================================================
-loc_000e16:
-	lea $618000,a0
-	lea $619ff9,a1
+QSRam_FF_Fill:
+	lea Soundram,a0
+	lea Sound_Test_end,a1
 	moveq #-1,d0
 
-loc_000e24:
+QSRam_FF_Fill_Repeat:
 	WATCHDOG
 	move.w d0,(a0)+
 	cmpa.l a1,a0
-	bls.b loc_000e24
+	bls.b QSRam_FF_Fill_Repeat
 	jmp (a4)
 
 ;==============================================================================
@@ -1111,75 +1111,75 @@ loc_000ea0:
 	jmp (a2)
 
 ;/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\
-loc_000ecc:
+Mes_workram:
 	dc.b $11,$30,$00
 	dc.b 'WORK',$00
 
-loc_000ed4:
+Mes_workram_ng:
 	dc.b $1a,$30,$00
 	dc.b 'RAM NG',$00
 
-loc_000ede:
+Mes_workram_ok:
 	dc.b $1a,$30,$00
 	dc.b 'RAM OK',$00
 
-loc_000ee8:
+Mes_cps0ram:
 	dc.b $11,$38,$00
 	dc.b 'CPS0',$00
 
-loc_000ef0:
+Mes_cps0ram_ng:
 	dc.b $1a,$38,$00
 	dc.b 'RAM NG',$00
 
-loc_000efa:
+Mes_cps0ram_ok:
 	dc.b $1a,$38,$00
 	dc.b 'RAM OK',$00
 
-loc_000f04:
+Mes_cps1ram:
 	dc.b $11,$40,$00
 	dc.b 'CPS1',$00
 
-loc_000f0c:
+Mes_cps1ram_ng:
 	dc.b $1a,$40,$00
 	dc.b 'RAM NG',$00
 
-loc_000f16:
+Mes_cps1ram_ok:
 	dc.b $1a,$40,$00
 	dc.b 'RAM OK',$00
 
-loc_000f20:
+Mes_cps2ram:
 	dc.b $11,$48,$00
 	dc.b 'CPS2',$00
 
-loc_000f28:
+Mes_cps2ram_ng:
 	dc.b $1a,$48,$00
 	dc.b 'RAM NG',$00
 
-loc_000f32:
+Mes_cps2ram_ok:
 	dc.b $1a,$48,$00
 	dc.b 'RAM OK',$00
 
-loc_000f3c:
+Mes_objram:
 	dc.b $11,$50,$00
 	dc.b 'OBJECT',$00
 
-loc_000f46:
+Mes_objram_ng:
 	dc.b $1a,$50,$00
 	dc.b 'RAM NG',$00
 
-loc_000f50:
+Mes_objram_ok:
 	dc.b $1a,$50,$00
 	dc.b 'RAM OK',$00
 
-loc_000f5a:
+Mes_QSRam:
 	dc.b $11,$58,$00
 	dc.b 'Q SOUND',$00
 
-loc_000f65:
+Mes_QSRam_NG:
 	dc.b $1a,$58,$00
 	dc.b 'RAM NG',$00
 
-loc_000f6f:
+Mes_QSRam_OK:
 	dc.b $1a,$58,$00
 	dc.b 'RAM OK',$00
 	even
@@ -16983,7 +16983,7 @@ loc_020c4a:
 	moveq #0,d1
 	moveq #0,d2
 	moveq #0,d3
-	lea.l $708000,a2
+	lea.l ObjectRam,a2
 	movem.l d0-d3,(a2)
 	movem.l d0-d3,($10,a2)
 	lea.l ($20,a2),a2
@@ -17031,7 +17031,7 @@ loc_020d02:
 	moveq #0,d1
 	moveq #0,d2
 	moveq #0,d3
-	lea.l $708000,a2
+	lea.l ObjectRam,a2
 	movem.l d0-d3,(a2)
 	movem.l d0-d3,($10,a2)
 	lea.l ($20,a2),a2
