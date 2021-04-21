@@ -37,7 +37,7 @@ EnglishWinQuotes:
 	dc.w DictWinquotePNT-EnglishWinQuotes;Juni
 
 
-;/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\
+;VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV
 ;Ryu Winquotes
 RyuWinquotePNT:
 	dc.w Ryuwinqoute0-RyuWinquotePNT
@@ -83,7 +83,7 @@ Ryuwinqoute7:
 	dc.b $19,"suffer, is by not fighting!",$00
 	even
 
-;/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\
+;VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV
 KenWinquotePNT:
 	dc.w KenWinquote0-KenWinquotePNT
 	dc.w KenWinquote1-KenWinquotePNT
@@ -128,7 +128,7 @@ KenWinquote7:
 	dc.b $16,"your ego on the battlefield!",$00
 	even
 
-;/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\
+;VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV
 AkumaWinquotePNT:
 	dc.w AkumaWinquote0-AkumaWinquotePNT
 	dc.w AkumaWinquote1-AkumaWinquotePNT
@@ -173,7 +173,7 @@ AkumaWinquote7:
 	dc.b $1d,"demonstrate your weakness?",$00
 	even
 
-;/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\
+;VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV
 CharlieWinquotePNT:
 	dc.w CharlieWinquote0-CharlieWinquotePNT
 	dc.w CharlieWinquote1-CharlieWinquotePNT
@@ -218,7 +218,7 @@ CharlieWinquote7:
 	dc.b $0b,"winning a rematch are below 5%.",$00
 	even
 
-;/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\
+;VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV
 ChunWinquotePNT:
 	dc.w ChunWinquote0-ChunWinquotePNT
 	dc.w ChunWinquote1-ChunWinquotePNT
@@ -263,7 +263,7 @@ ChunWinquote7:
 	dc.b $40,"in your defense?",$00
 	even
 
-;/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\
+;VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV
 AdonWinquotePNT:
 	dc.w AdonWinquote0-AdonWinquotePNT
 	dc.w AdonWinquote1-AdonWinquotePNT
@@ -308,7 +308,7 @@ AdonWinquote7:
 	dc.b $19,"I'm sorry I left you alive!",$00
 	even
 
-;/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\
+;VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV
 SodomWinquotePNT:
 	dc.w SodomWinquote0-SodomWinquotePNT
 	dc.w SodomWinquote1-SodomWinquotePNT
@@ -353,7 +353,7 @@ SodomWinquote7:
 	dc.b $08,"I don't hate you!  I like you!!!",$00
 	even
 
-;/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\
+;VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV
 GuyWinquotePNT:
 	dc.w GuyWinquote0-GuyWinquotePNT
 	dc.w GuyWinquote1-GuyWinquotePNT
@@ -398,7 +398,7 @@ GuyWinquote7:
 	dc.b $08,"possesses some worthy qualities.",$00
 	even
 
-;/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\
+;VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV
 BirdieWinquotePNT:
 	dc.w BirdieWinquote0-BirdieWinquotePNT
 	dc.w BirdieWinquote1-BirdieWinquotePNT
@@ -443,7 +443,7 @@ BirdieWinquote7:
 	dc.b $0b,"can't hear you from down there!",$00
 
 
-;/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\
+;VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV
 RoseWinquotePNT:
 	dc.w RoseWinquote0-RoseWinquotePNT
 	dc.w RoseWinquote1-RoseWinquotePNT
@@ -488,7 +488,7 @@ RoseWinquote7:
 	dc.b $08,"Even if I must sacrifice myself!",00
 	even
 
-;/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\
+;VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV
 DictWinquotePNT:
 	dc.w DictWinquote0-DictWinquotePNT
 	dc.w DictWinquote1-DictWinquotePNT
@@ -533,7 +533,7 @@ DictWinquote7:
 	dc.b $16,"energy that is Psycho Power!",$00
 	even
 
-;/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\
+;VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV
 SagatWinquotePNT:
 	dc.w SagatWinquote0-SagatWinquotePNT
 	dc.w SagatWinquote1-SagatWinquotePNT
@@ -577,7 +577,7 @@ SagatWinquote7:
 	dc.b $08,"Your flesh is soft. My fists are",$00
 	dc.b $0b,"invincible. Realize your agony.",$00
 
-;/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\
+;VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV
 DanWinquotePNT:
 	dc.w DanWinquote0-DanWinquotePNT
 	dc.w DanWinquote1-DanWinquotePNT
@@ -622,7 +622,7 @@ DanWinquote7:
 	dc.b $08,"I wanna be the king of fighters!",$00
 	even
 
-;/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\
+;VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV
 SakuraWinquotePNT:
 	dc.w SakuraWinquote0-SakuraWinquotePNT
 	dc.w SakuraWinquote1-SakuraWinquotePNT
@@ -667,7 +667,7 @@ SakuraWinquote7:
 	dc.b $0f,"you again! But only this time!",$00
 	even
 
-;/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\
+;VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV
 RolentoWinquotePNT:
 	dc.w RolentoWinquote0-RolentoWinquotePNT
 	dc.w RolentoWinquote1-RolentoWinquotePNT
@@ -712,7 +712,7 @@ RolentoWinquote7:
 	dc.b $08,"need of supplementary training!!",$00
 	even
 
-;/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\
+;VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV
 DhalsimWinquotePNT:
 	dc.w DhalsimWinquote0-DhalsimWinquotePNT
 	dc.w DhalsimWinquote1-DhalsimWinquotePNT
@@ -757,7 +757,7 @@ DhalsimWinquote7:
 	dc.b $08,"formidable weapon than the body!",$00
 	even
 
-;/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\
+;VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV
 ZangiefWinquotePNT:
 	dc.w ZangiefWinquote0-ZangiefWinquotePNT
 	dc.w ZangiefWinquote1-ZangiefWinquotePNT
@@ -803,7 +803,7 @@ ZangiefWinquote7:
 	dc.b $0f,"might not have been paralyzed!",$00
 	even
 
-;/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\
+;VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV
 GenWinquotePNT:
 	dc.w GenWinquote0-GenWinquotePNT
 	dc.w GenWinquote1-GenWinquotePNT
@@ -848,7 +848,7 @@ GenWinquote7:
 	dc.b $12,"to retire me. What a shame...",00
 	even
 
-;/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\
+;VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV
 CammyWinquotePNT:
 	dc.w CammyWinquote0-CammyWinquotePNT
 	dc.w CammyWinquote1-CammyWinquotePNT
@@ -893,7 +893,7 @@ CammyWinquote7:
 	dc.b $2e,"for the next command!",00
 	even
 
-;/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\
+;VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV
 HondaWinquotePNT:
 	dc.w HondaWinquote0-HondaWinquotePNT
 	dc.w HondaWinquote1-HondaWinquotePNT
@@ -938,7 +938,7 @@ HondaWinquote7:
 	dc.b $0b,"the world is much, much bigger!",00
 	even
 
-;/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\
+;VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV
 BlankaWinquotePNT:
 	dc.w BlankaWinquote0-BlankaWinquotePNT
 	dc.w BlankaWinquote1-BlankaWinquotePNT
@@ -983,7 +983,7 @@ BlankaWinquote7:
 	dc.b $43,"(Are you okay?)",00
 	even
 
-;/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\
+;VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV
 RMikaWinquotePNT:
 	dc.w RMikaWinquote0-RMikaWinquotePNT
 	dc.w RMikaWinquote1-RMikaWinquotePNT
@@ -1028,7 +1028,7 @@ RMikaWinquote7:
 	dc.b $2b,"I was just warming up!",00
 	even
 
-;/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\
+;VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV
 CodyWinquotePNT:
 	dc.w CodyWinquote0-CodyWinquotePNT
 	dc.w CodyWinquote1-CodyWinquotePNT
@@ -1073,7 +1073,7 @@ CodyWinquote7:
 	dc.b $08,"beast, or car! I'll take you on!",00
 	even
 
-;/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\
+;VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV
 ClawWinquotePNT:
 	dc.w ClawWinquote0-ClawWinquotePNT
 	dc.w ClawWinquote1-ClawWinquotePNT
@@ -1118,7 +1118,7 @@ ClawWinquote7:
 	dc.b $2e,"is over now... Adios!",00
 	even
 
-;/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\
+;VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV
 KarinWinquotePNT:
 	dc.w KarinWinquote0-KarinWinquotePNT
 	dc.w KarinWinquote1-KarinWinquotePNT

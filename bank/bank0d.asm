@@ -1,15 +1,15 @@
 
-;/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\
+;VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV
 	include "EngTextdata/EndingText.asm"
 
-;/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\
+;VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV
 loc_0dc9d4:
 	dc.b $00,$04,$00,$00
 	dc.b $47,"WIN THE CARD!!",00
 	dc.b $70
 	even
 
-;/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\
+;VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV
 loc_0dc9ea:
 	dc.w loc_0dca2a-loc_0dc9ea
 	dc.w loc_0dca2a-loc_0dc9ea
@@ -51,7 +51,7 @@ loc_0dc9ea:
 	dc.w loc_0dca2a-loc_0dc9ea
 	dc.w loc_0dca2a-loc_0dc9ea
 
-;/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\
+;VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV
 loc_0dca2a:
 	dc.w $0000,$0000,$0000,$0000,$0000,$0000
 	dc.w $0000,$0000,$0000,$0000,$0000,$0000
@@ -64,7 +64,7 @@ loc_0dca5a:
 	dc.w $07ff,$0534,$0020,$07b6,$0124,$0000
 	dc.w $07ff,$0534,$0020,$07ff,$0124,$0000
 
-;/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\
+;VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV
 loc_0dca72:
 	dc.w loc_0dcab2-loc_0dca72
 	dc.w loc_0dcac6-loc_0dca72
@@ -103,7 +103,7 @@ loc_0dca72:
 	dc.w loc_0dcace-loc_0dca72
 
 
-;/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\
+;VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV
 loc_0dcab2:
 	dc.b $01,$04,$00,$00
 
@@ -129,14 +129,14 @@ loc_0dcace:
 	dc.b $00,$00,$00,$00
 
 
-;/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\
+;VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV
 loc_0dcad2:
 	dc.w $0018,$0018,$0018,$0020,$0018,$0020,$0020,$0018
 	dc.w $0020,$0018,$0020,$0020,$0018,$0018,$0018,$0018
 	dc.w $0018,$0018,$0018,$0018,$0018,$0018,$0018,$0018
 	dc.w $0018,$0018,$0018,$0018,$0018,$0018,$0018,$0018
 
-;/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\
+;VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV
 loc_0dcb12:
 	dc.l loc_0359e6,loc_0375f0,loc_03a2dc,loc_03bd1e
 	dc.l loc_03da4c,loc_03f246,loc_0411f2,loc_043128
@@ -147,7 +147,7 @@ loc_0dcb12:
 	dc.l loc_05f7a0,loc_061a1e,loc_064ddc,loc_06769e
 	dc.l loc_069a7e,loc_06b6de,loc_06f0da,loc_072b1e
 
-;/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\
+;VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV
 ;Jump Table for programming of normals
 loc_0dcb92:
 	dc.l loc_034394,loc_035cf8,loc_0378de,loc_03a38e
@@ -159,7 +159,7 @@ loc_0dcb92:
 	dc.l loc_05de4c,loc_05ff52,loc_061f20,loc_0653d8
 	dc.l loc_06795e,loc_069e56,loc_06b87c,loc_06f2b8
 
-;/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\
+;VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV
 ;AI Special Moves Programming
 loc_0dcc12:
 	dc.l loc_034b52,loc_0363ae,loc_0382b8,loc_03aaaa
@@ -171,7 +171,7 @@ loc_0dcc12:
 	dc.l loc_05e4c8,loc_0604f0,loc_0627aa,loc_065cf2
 	dc.l loc_068124,loc_06a4a8,loc_06c0d8,loc_06fb1e
 
-;/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\
+;VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV
 ;Player Special moves
 loc_0dcc92:
 	dc.l loc_034b52,loc_0363ae,loc_0382e4,loc_03aaca
@@ -183,7 +183,7 @@ loc_0dcc92:
 	dc.l loc_05e4c8,loc_0604f0,loc_0627aa,loc_065cc6
 	dc.l loc_068124,loc_06a4a8,loc_06c0d8,loc_06fb1e
 
-;/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\
+;VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV
 ;Throw Table 1
 loc_0dcd12:
 	dc.l loc_03580c,loc_0371a8,loc_039ef4,loc_03b764
@@ -195,7 +195,7 @@ loc_0dcd12:
 	dc.l loc_05f53a,loc_06150a,loc_064502,loc_06717e
 	dc.l loc_06986e,loc_06b29c,loc_06e7f4,loc_072252
 
-;/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\
+;VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV
 ;Throw Table 2
 loc_0dcd92:
 	dc.l loc_03580c,loc_0371a8,loc_039ef4,loc_03b764
@@ -207,7 +207,7 @@ loc_0dcd92:
 	dc.l loc_05f53a,loc_06150a,loc_064502,loc_06717e
 	dc.l loc_06986e,loc_06b29c,loc_06e7f4,loc_072252
 
-;/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\
+;VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV
 ;Winposes
 loc_0dce12:
 	dc.l loc_033fea,loc_035b00,loc_03a0fc,loc_03bace
@@ -219,7 +219,7 @@ loc_0dce12:
 	dc.l loc_05ddb2,loc_05f82a,loc_061aa4,loc_064f6a
 	dc.l loc_067760,loc_069b00,loc_06ed34,loc_072792
 
-;/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\
+;VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV
 ;Timer Over Animations
 loc_0dce92:
 	dc.l loc_029db6,loc_029db6,loc_03a1ce,loc_029db6
@@ -231,7 +231,7 @@ loc_0dce92:
 	dc.l loc_029db6,loc_029db6,loc_029db6,loc_029db6
 	dc.l loc_0678d4,loc_029db6,loc_029db6,loc_029db6
 
-;/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\
+;VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV
 ;Intro 1
 loc_0dcf12:
 	dc.l loc_0341ec,loc_035a74,loc_0376a0,loc_03bb96
@@ -243,7 +243,7 @@ loc_0dcf12:
 	dc.l loc_05ef22,loc_05f9de,loc_061e38,loc_065204
 	dc.l loc_067946,loc_069bea,loc_06b7ea,loc_06f1e6
 
-;/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\
+;VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV
 ;Air Normal Jump Table
 loc_0dcf92:
 	dc.l loc_034664,loc_035f08,loc_037bc6,loc_03a6a2
@@ -255,7 +255,7 @@ loc_0dcf92:
 	dc.l loc_05e110,loc_06010a,loc_0623b6,loc_06577c
 	dc.l loc_067c80,loc_069ff6,loc_06b9ec,loc_06f428
 
-;/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\
+;VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV
 loc_0dd012:
 	dc.l loc_100240,loc_102ff8,loc_104a9e,loc_1060b8
 	dc.l loc_108458,loc_10b7f8,loc_10d698,loc_10fe42
@@ -266,7 +266,7 @@ loc_0dd012:
 	dc.l loc_13322a,loc_1357ea,loc_137646,loc_13be4a
 	dc.l loc_13e17a,loc_141acc,loc_12ed0e,loc_12ed0e
 
-;/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\
+;VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV
 loc_0dd092:
 	dc.l loc_100074,loc_102e3c,loc_1048ba,loc_105ef4
 	dc.l loc_1082dc,loc_10b6d0,loc_10d57c,loc_10fc82
@@ -277,7 +277,7 @@ loc_0dd092:
 	dc.l loc_1330da,loc_135652,loc_13755e,loc_13bcb2
 	dc.l loc_13e086,loc_141980,loc_12eaba,loc_12eaba
 
-;/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\
+;VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV
 loc_0dd112:
 	dc.l loc_100000,loc_102da0,loc_104812,loc_105e78
 	dc.l loc_108248,loc_10b658,loc_10d4f4,loc_10fbfa
@@ -288,7 +288,7 @@ loc_0dd112:
 	dc.l loc_133042,loc_1355b2,loc_1374c2,loc_13bc16
 	dc.l loc_13dffa,loc_141904,loc_12ea16,loc_12ea16
 
-;/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\
+;VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV
 ;Intro?
 loc_0dd192:
 	dc.l loc_03598c,loc_03750e,loc_037676,loc_03a36e
@@ -300,7 +300,7 @@ loc_0dd192:
 	dc.l loc_05f786,loc_06194a,loc_06499e,loc_06762e
 	dc.l loc_0699cc,loc_06b64a,loc_06b760,loc_06f15c
 
-;/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\
+;VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV
 ;Throw Opponent Movement
 loc_0dd212:
 	dc.l loc_10138e,loc_10138e,loc_10138e,loc_10721e
@@ -312,7 +312,7 @@ loc_0dd212:
 	dc.l loc_1346b0,loc_136938,loc_138584,loc_13d0e0
 	dc.l loc_140262,loc_142d2a,loc_130cdc,loc_130cdc
 
-;/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\
+;VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV
 ;Special Move Input Table
 loc_0dd292:
 	dc.l loc_0346cc,loc_035f78,loc_037cba,loc_03a6e4
@@ -325,7 +325,7 @@ loc_0dd292:
 	dc.l loc_067cc2,loc_06a038,loc_06ba32,loc_06f46e
 
 
-;/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\
+;VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV
 ;A-ism Alpha Counter Jump Table
 loc_0dd312:
 	dc.l loc_03482a,loc_03611a,loc_037fb4,loc_03a94a
@@ -337,7 +337,7 @@ loc_0dd312:
 	dc.l loc_05e318,loc_0603d2,loc_06258a,loc_065940
 	dc.l loc_067f90,loc_06a386,loc_06bf62,loc_06f99c
 
-;/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\
+;VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV
 ;V-ism Alpha Counter Jump Table
 loc_0dd392:
 	dc.l loc_034870,loc_036160,loc_037f70,loc_03a9ba
@@ -349,7 +349,7 @@ loc_0dd392:
 	dc.l loc_05e364,loc_06041a,loc_0625d2,loc_065982
 	dc.l loc_067fd8,loc_06a3d2,loc_06bfaa,loc_06f9e4
 
-;/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\
+;VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV
 ;dd412
 CharAniPNTtable:
 	dc.l loc_1461e8,loc_152da4,loc_15c5cc,loc_167cb0
@@ -361,7 +361,7 @@ CharAniPNTtable:
 	dc.l loc_24be0a,loc_254b3c,loc_262344,loc_270f16
 	dc.l loc_27dc4a,loc_28a274,loc_298f0c,loc_2a8270
 
-;/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\
+;VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV
 AismWalkSpeed:
 	dc.l $fffd0000,$00020000;Ryu
 	dc.l $fffd0000,$00020000;Ken
@@ -396,7 +396,7 @@ AismWalkSpeed:
 	dc.l $fffc9000,$00027000;Juli
 	dc.l $fffc9000,$00027000;Juni
 
-;/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\
+;VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV
 VismWalkSpeed:
 	dc.l $fffce000,$00022000;Ryu
 	dc.l $fffce000,$00022000;Ken
@@ -431,7 +431,7 @@ VismWalkSpeed:
 	dc.l $fffc7000,$00029000;Juli
 	dc.l $fffc7000,$00029000;Juni
 
-;/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\
+;VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV
 XismWalkSpeed:
 	dc.l $fffcf000,$00021000;Ryu
 	dc.l $fffcf000,$00021000;Ken
@@ -466,7 +466,7 @@ XismWalkSpeed:
 	dc.l $fffc8000,$00028000;Juli
 	dc.l $fffc8000,$00028000;Juni
 
-;/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\
+;VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV
 ;Aism Jump Data
 loc_0dd792:
 ;Ryu
@@ -662,7 +662,7 @@ loc_0dd792:
 	dc.l $00040000,$00079000,$fffffb00,$ffffb000
 
 
-;/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\
+;VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV
 ;Vism Jump Data
 loc_0ddf92:
 ;Ryu
@@ -857,7 +857,7 @@ loc_0ddf92:
 	dc.l $fffc8000,$00075000,$00000500,$ffffb000
 	dc.l $00040000,$00079000,$fffffb00,$ffffb000
 
-;/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\
+;VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV
 ;Xism Jump Data
 loc_0de792:
 ;Ryu
@@ -1052,7 +1052,7 @@ loc_0de792:
 	dc.l $fffc8000,$00075000,$00000500,$ffffb000
 	dc.l $00040000,$00079000,$fffffb00,$ffffb000
 
-;/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\
+;VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV
 loc_0def92:
 ;Ryu
 	dc.b $00,$00,$00,$00,$00,$00,$00,$00
@@ -1246,7 +1246,7 @@ loc_0def92:
 	dc.b $02,$02,$02,$02,$03,$03,$03,$03
 	dc.b $03,$03,$03,$03,$03,$04,$04,$04
 
-;/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\
+;VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV
 loc_0df392:
 	dc.l loc_2d3cea,loc_2d463e,loc_2d51bc,loc_2d5c58
 	dc.l loc_2d793a,loc_2d85f2,loc_2d9102,loc_2da562
@@ -1257,7 +1257,7 @@ loc_0df392:
 	dc.l loc_2e2cae,loc_2e355a,loc_2e423a,loc_2e46f0
 	dc.l loc_2e48f2,loc_2e4c3e,loc_2e4e34,loc_2e5060
 
-;/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\
+;VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV
 ;AI Move Checks
 loc_0df412:
 	dc.l loc_034aae,loc_036308,loc_0381a0,loc_03aa0c
@@ -1269,7 +1269,7 @@ loc_0df412:
 	dc.l loc_05e47a,loc_060482,loc_062754,loc_065c0e
 	dc.l loc_068040,loc_06a454,loc_06bfea,loc_06fa24
 
-;/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\
+;VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV
 loc_0df492:
 	dc.l loc_2ba5b6,loc_2bba6e,loc_2bc25c,loc_2bd64c
 	dc.l loc_2be30a,loc_2c1152,loc_2c23e2,loc_2c5914
@@ -1280,7 +1280,7 @@ loc_0df492:
 	dc.l loc_2d046c,loc_2d0878,loc_2d0e88,loc_2d1540
 	dc.l loc_2d1b52,loc_2d229a,loc_2d25c8,loc_2d285c
 
-;/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\
+;VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV
 loc_0df512:
 	dc.l loc_2ba6b0,loc_2bbbf4,loc_2bc316,loc_2bd720
 	dc.l loc_2be42c,loc_2c123a,loc_2c25c8,loc_2c5a1c
@@ -1291,7 +1291,7 @@ loc_0df512:
 	dc.l loc_2d059c,loc_2d09e2,loc_2d0f64,loc_2d1640
 	dc.l loc_2d1c6e,loc_2d2394,loc_2d26c2,loc_2d29ae
 
-;/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\
+;VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV
 loc_0df592:
 	dc.l loc_2d2a56,loc_2d3d2a,loc_2d467e,loc_2d51fc
 	dc.l loc_2d5c98,loc_2d797a,loc_2d8632,loc_2d9142
@@ -1302,7 +1302,7 @@ loc_0df592:
 	dc.l loc_2e273a,loc_2e2cee,loc_2e359a,loc_2e427a
 	dc.l loc_2e4730,loc_2e4932,loc_2e4c7e,loc_2e4e74
 
-;/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\
+;VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV
 loc_0df612:
 	dc.l loc_2d3b30,loc_2d44a0,loc_2d4f9c,loc_2d5abe
 	dc.l loc_2d76f8,loc_2d8432,loc_2d8ee8,loc_2da390
@@ -1313,7 +1313,7 @@ loc_0df612:
 	dc.l loc_2e2b06,loc_2e339c,loc_2e4098,loc_2e457a
 	dc.l loc_2e4898,loc_2e4ad2,loc_2e4de6,loc_2e4fdc
 
-;/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\
+;VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV
 loc_0df692:
 	dc.l loc_102b86,loc_102b86,loc_102b86,loc_108006
 	dc.l loc_10b368,loc_10d2ce,loc_10f9c6,loc_1126d0
@@ -1324,7 +1324,7 @@ loc_0df692:
 	dc.l loc_135328,loc_137218,loc_13b984,loc_13dd58
 	dc.l loc_141552,loc_1442fa,loc_132d74,loc_132d74
 
-;/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\
+;VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV
 loc_0df712:
 	dc.l loc_102ba0,loc_102ba0,loc_102ba0,loc_108020
 	dc.l loc_10b384,loc_10d2e8,loc_10f9ea,loc_1126ec
@@ -1335,7 +1335,7 @@ loc_0df712:
 	dc.l loc_135342,loc_137232,loc_13b99e,loc_13dd72
 	dc.l loc_14156c,loc_144316,loc_132d92,loc_132d92
 
-;/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\
+;VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV
 loc_0df792:
 	dc.l loc_102c80,loc_102c80,loc_102c80,loc_108100
 	dc.l loc_10b474,loc_10d3c8,loc_10faca,loc_1127dc
@@ -1346,7 +1346,7 @@ loc_0df792:
 	dc.l loc_135422,loc_137312,loc_13ba9e,loc_13de52
 	dc.l loc_14164c,loc_144406,loc_132e92,loc_132e92
 
-;/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\
+;VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV
 loc_0df812:
 	dc.l loc_102c90,loc_10472e,loc_105dbc,loc_108110
 	dc.l loc_10b484,loc_10d3d8,loc_10fada,loc_1127ec
@@ -1357,7 +1357,7 @@ loc_0df812:
 	dc.l loc_135432,loc_137322,loc_13baae,loc_13de62
 	dc.l loc_14165c,loc_144416,loc_132ea2,loc_132ea2
 
-;/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\
+;VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV
 loc_0df892:
 	dc.l loc_102d20,loc_102d20,loc_102d20,loc_1081b0
 	dc.l loc_10b554,loc_10d488,loc_10fbba,loc_1128a4
@@ -1368,7 +1368,7 @@ loc_0df892:
 	dc.l loc_135542,loc_137422,loc_13bbb6,loc_13dfaa
 	dc.l loc_14186c,loc_144516,loc_132fa2,loc_132fa2
 
-;/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\
+;VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV
 loc_0df912:
 	dc.b $28,$28,$22,$28,$28,$28,$2e,$28
 	dc.b $30,$28,$28,$28,$28,$28,$28,$28
@@ -1450,7 +1450,7 @@ loc_0df9b2:
 	dc.b $0c,$0c,$0c,$0c,$0c,$0c,$0c,$0c
 	dc.b $0c,$0c,$0c,$0c,$0c,$0c,$0c,$0c
 
-;/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\
+;VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV
 loc_0dfa52:
 	dc.w loc_0dfa92-loc_0dfa52
 	dc.w loc_0dfa9a-loc_0dfa52
@@ -1569,7 +1569,7 @@ loc_0dfb6c:
 loc_0dfb78:
 	dc.w $ffff
 
-;/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\
+;VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV
 loc_0dfb7a:
 	dc.w loc_0dfbba-loc_0dfb7a
 	dc.w loc_0dfbc2-loc_0dfb7a
@@ -1688,6 +1688,6 @@ loc_0dfc66:
 loc_0dfc6e:
 	dc.w $ffff,$0000
 
-;/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\
+;VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV
 endofcryptroms: ;dfc72
 	dcb.b $100000-endofcryptroms,$ff

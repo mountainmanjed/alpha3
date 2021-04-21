@@ -2,11 +2,11 @@
 ;Attack Damage Table
 	include "char/Damagetable.asm"
 
-;/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\
+;VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV
 loc_0c4b3a:
 	dcb.b $400,$00
 
-;/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\
+;VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV
 loc_0c4f3a:
 	dc.b $00,$00,$00,$00,$00,$00,$00,$00
 	dc.b $00,$00,$00,$00,$00,$00,$00,$00
@@ -265,7 +265,7 @@ loc_0c4f3a:
 	dc.b $fc,$fc,$fc,$fd,$fd,$fd,$fe,$fe
 	dc.b $fe,$ff,$ff,$ff,$00,$00,$00,$01
 
-;/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\
+;VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV
 loc_0c573a:
 	dc.b $06,$06,$06,$06,$06,$06,$06,$06
 	dc.b $06,$06,$06,$06,$06,$06,$06,$06
@@ -396,7 +396,7 @@ loc_0c573a:
 	dc.b $06,$06,$06,$06,$06,$06,$06,$06
 	dc.b $07,$07,$07,$07,$08,$08,$08,$08
 
-;/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\
+;VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV
 loc_0c5b3a:
 	dc.b $02,$02,$02,$02,$02,$02,$02,$02
 	dc.b $02,$02,$02,$02,$02,$02,$02,$02
@@ -527,7 +527,7 @@ loc_0c5b3a:
 	dc.b $03,$03,$03,$03,$03,$03,$03,$03
 	dc.b $04,$04,$04,$04,$04,$04,$04,$04
 
-;/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\
+;VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV
 loc_0c5f3a:
 	dc.b $30,$30,$30,$30,$30,$30,$30,$30
 	dc.b $30,$30,$30,$30,$30,$30,$30,$30
@@ -558,7 +558,7 @@ loc_0c5fba:
 	dc.b $02,$02,$03,$01,$03,$03,$02,$00
 	dc.b $03,$00,$03,$02,$03,$03,$02,$02
 
-;/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\
+;VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV
 loc_0c5fda:
 	dc.b $00,$00,$00,$00,$00,$00,$00,$00
 	dc.b $01,$01,$01,$01,$01,$01,$01,$01
@@ -577,11 +577,11 @@ loc_0c5fda:
 	dc.b $00,$00,$00,$00,$00,$00,$ff,$ff
 	dc.b $ff,$ff,$ff,$fe,$fe,$fe,$fe,$fe
 
-;/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\
+;VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV
 loc_0c605a:
 	incbin "bins/c605adata.bin"
 
-;/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\
+;VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV
 loc_0c70da:
 	dc.b $00,$00,$00,$00,$00,$00,$00,$00
 	dc.b $00,$00,$00,$00,$00,$00,$00,$00
@@ -808,7 +808,7 @@ loc_0c70da:
 	dc.b $2d,$2e,$2e,$2f,$2f,$2f,$30,$30
 	dc.b $31,$31,$31,$32,$32,$33,$33,$33
 
-;/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\
+;VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV
 loc_0c77da:
 	dc.b $00,$00,$01,$01,$02,$02,$03,$03
 	dc.b $03,$04,$04,$05,$05,$06,$06,$06
@@ -939,7 +939,7 @@ loc_0c77da:
 	dc.b $4a,$4a,$4b,$4c,$4c,$4d,$4e,$4e
 	dc.b $4f,$4f,$50,$51,$51,$52,$53,$53
 
-;/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\
+;VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV
 loc_0c7bda:
 	dc.b $00,$01,$01,$02,$03,$04,$04,$05
 	dc.b $06,$06,$07,$08,$08,$09,$0a,$0a
@@ -974,7 +974,7 @@ loc_0c7bda:
 	dc.b $51,$51,$52,$53,$54,$54,$55,$56
 	dc.b $56,$57,$58,$59,$59,$5a,$5b,$5b
 
-;/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\
+;VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV
 loc_0c7cda:
 	dc.b $00,$01,$02,$02,$03,$04,$05,$05
 	dc.b $06,$07,$08,$08,$09,$0a,$0b,$0b
@@ -1121,7 +1121,7 @@ loc_0c7cda:
 	dc.b $70,$71,$72,$73,$74,$75,$76,$77
 	dc.b $78,$79,$7a,$7b,$7c,$7d,$7e,$7f
 
-;/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\
+;VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV
 loc_0c815a:
 	dc.b $06,$06,$06,$07,$08,$08,$0a,$0c
 	dc.b $0e,$10,$11,$12,$13,$14,$15,$15
@@ -1188,7 +1188,7 @@ loc_0c815a:
 	dc.b $1e,$1e,$1e,$1e,$1e,$1e,$1e,$1e
 	dc.b $1e,$1e,$1e,$1e,$1e,$1e,$1e,$1e
 
-;/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\
+;VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV
 loc_0c835a:
 	dc.l $0000000f,$0000000f,$0000001f,$0000003f
 	dc.l $0000007f,$000000ff,$000001ff,$000003ff
@@ -1199,7 +1199,7 @@ loc_0c835a:
 	dc.l $003fffff,$00ffffff,$00ffffff,$01ffffff
 	dc.l $01ffffff,$03ffffff,$07ffffff,$0fffffff
 
-;/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\
+;VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV
 loc_0c83da:
 	dc.l $0000000f,$0000000f,$0000001f,$0000003f
 	dc.l $0000007f,$000000ff,$000001ff,$000003ff
@@ -1210,7 +1210,7 @@ loc_0c83da:
 	dc.l $003fffff,$00ffffff,$00ffffff,$01ffffff
 	dc.l $01ffffff,$03ffffff,$07ffffff,$0fffffff
 
-;/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\
+;VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV
 loc_0c845a:
 	dc.l $00000007,$0000001f,$0000007f,$000001ff
 	dc.l $000007ff,$00001fff,$00007fff,$0000ffff
@@ -1469,7 +1469,7 @@ loc_0c845a:
 	dc.l $00ffffff,$01ffffff,$03ffffff,$07ffffff
 	dc.l $0fffffff,$1fffffff,$3fffffff,$7fffffff
 
-;/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\
+;VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV
 loc_0c945a:
 	dc.l $0000000f,$0000000f,$0000000f,$0000001f
 	dc.l $0000001f,$0000003f,$0000003f,$0000007f
@@ -1480,7 +1480,7 @@ loc_0c945a:
 	dc.l $0007ffff,$000fffff,$003fffff,$007fffff
 	dc.l $01ffffff,$03ffffff,$07ffffff,$0fffffff
 
-;/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\
+;VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV
 loc_0c94da:
 	dc.l $00000000,$00000001,$00000001,$00000003
 	dc.l $00000003,$00000007,$00000007,$0000000f
@@ -1491,7 +1491,7 @@ loc_0c94da:
 	dc.l $0001ffff,$0001ffff,$0003ffff,$0003ffff
 	dc.l $0007ffff,$0007ffff,$000fffff,$000fffff
 
-;/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\
+;VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV
 loc_0c955a:
 	dc.l $00000000,$00000001,$00000003,$00000003
 	dc.l $00000007,$00000007,$0000000f,$0000000f
@@ -1502,7 +1502,7 @@ loc_0c955a:
 	dc.l $007fffff,$00ffffff,$03ffffff,$0fffffff
 	dc.l $1fffffff,$3fffffff,$7fffffff,$ffffffff
 
-;/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\
+;VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV
 loc_0c95da:
 	dc.l $00000000,$00000000,$00000000,$00000000
 	dc.l $00000000,$00000000,$00000000,$00000000
@@ -1513,7 +1513,7 @@ loc_0c95da:
 	dc.l $00003fff,$00007fff,$0000ffff,$0000ffff
 	dc.l $0000ffff,$0000ffff,$0000ffff,$01ffffff
 
-;/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\
+;VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV
 loc_0c965a:
 	dc.l $00000003,$00000007,$0000000f,$0000001f
 	dc.l $0000003f,$0000007f,$000000ff,$000003ff
@@ -1524,7 +1524,7 @@ loc_0c965a:
 	dc.l $7fffffff,$ffffffff,$ffffffff,$ffffffff
 	dc.l $ffffffff,$ffffffff,$ffffffff,$ffffffff
 
-;/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\
+;VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV
 loc_0c96da:
 	dc.l $00000000,$00000001,$00000001,$00000003
 	dc.l $00000003,$00000003,$00000007,$00000007
@@ -1543,7 +1543,7 @@ loc_0c96da:
 	dc.l $07ffffff,$0fffffff,$1fffffff,$3fffffff
 	dc.l $7fffffff,$7fffffff,$7fffffff,$ffffffff
 
-;/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\
+;VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV
 loc_0c97da:
 	dc.l $00000000,$00000000,$00000000,$00000000
 	dc.l $00000000,$00000000,$00000000,$00000000
@@ -1554,7 +1554,7 @@ loc_0c97da:
 	dc.l $00000007,$00000007,$00000007,$00000007
 	dc.l $00000007,$00000007,$00000007,$00000007
 
-;/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\
+;VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV
 	include "EngTextdata/Winquotes.asm"
 	include "EngTextdata/CharIntro.asm"
 	include "EngTextdata/RivalText.asm"

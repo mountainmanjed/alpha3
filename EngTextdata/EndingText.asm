@@ -612,7 +612,7 @@ loc_0d5c4c:
 	dc.w loc_0dc968-loc_0d5c4c
 	dc.w loc_0dc99c-loc_0d5c4c
 
-;/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\
+;VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV
 loc_0d6112:
 	dc.b $20,"The man Rose mentioned...",00
 	dc.b $40,"Is this the man?",00
@@ -1578,7 +1578,7 @@ loc_0d8a8e:
 	dc.b $12,"Nothing can stop my ambition!",00
 	dc.b $70
 
-;/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\
+;VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV
 ;Sagat Ending
 loc_0d8aae:
 	dc.b $0b,"As long as Ryu's power and body",00
@@ -1700,7 +1700,7 @@ loc_0d8fde:
 	dc.b $0f,"I'll be waiting! I won't allow",00
 	dc.b $0f,"anyone to interfere next time!",00
 
-;/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\
+;VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV
 ;Dan Ending
 loc_0d901e:
 	dc.b $0b,"I don't care if you're Bison or",00

@@ -1,22 +1,22 @@
 ;Graphics
-Cps0BackG0Direct = $900000
-Cps1BackG0Direct = $904000
-Cps2BackG0Direct = $908000
-MainpaletteDirect = $90c000
-Cps0PaletteDirect = $90c400
-Cps1PaletteDirect = $90c800
-Cps2PaletteDirect = $90cc00
+Cps0BackG0 = 0x900000
+Cps1BackG0 = 0x904000
+Cps2BackG0 = 0x908000
+MainpaletteDirect = 0x90c000
+Cps0PaletteDirect = 0x90c400
+Cps1PaletteDirect = 0x90c800
+Cps2PaletteDirect = 0x90cc00
 ; = $90d000
 
-RasterBankDirect = $90e000
-Cps0BackG1Direct = $910000
-Cps1BackG1Direct = $914000
-Cps2BackG1Direct = $918000
+RasterBankDirect = 0x90e000
+Cps0BackG1Direct = 0x910000
+Cps1BackG1Direct = 0x914000
+Cps2BackG1Direct = 0x918000
 ; $91c000
 ; $920000
 ; $924000
-WhiteFlashDirect = $928000
-Palettebank3Direct = $92c000
+WhiteFlashDirect = 0x928000
+Palettebank3 = 0x92c000
 
 
 ;A5 Offsets

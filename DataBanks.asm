@@ -1,6 +1,6 @@
 
 
-;/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\
+;VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV
 ;Data Tables
 	include 'Char/Ryu/table.asm'
 	include 'Char/Ken/table.asm'
@@ -16,7 +16,7 @@
 	include 'Char/Sagat/table.asm'
 	include 'Char/Dan/table.asm'
 
-;-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+;-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 ;A2 roster
 	include 'Char/Sakura/table.asm'
 	include 'Char/Rolento/table.asm'
@@ -34,7 +34,7 @@
 	include 'Char/Claw/table.asm'
 	include 'Char/Karin/table.asm'
 
-;/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\
+;VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV
 ;Animation Tables
 	include 'Char/Ryu/animation.asm'
 	include 'Char/Ken/animation.asm'
@@ -50,7 +50,7 @@
 	include 'Char/Sagat/animation.asm'
 	include 'Char/Dan/animation.asm'
 
-;-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+;-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 ;A2 roster
 	include 'Char/Sakura/animation.asm'
 	include 'Char/Rolento/animation.asm'

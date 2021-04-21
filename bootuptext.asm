@@ -655,7 +655,7 @@ loc_01dec1:
 loc_01ded9:
 	dc.b $00
 
-;/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\
+;VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV
 loc_01deda:
 	dc.w CapcomWebsite-loc_01deda
 	dc.w Zero3Email-loc_01deda

@@ -103,7 +103,7 @@ loc_0cc7e0:
 	dc.w loc_0cdd95-loc_0cc7e0
 	dc.w loc_0cddd8-loc_0cc7e0
 
-;/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\
+;VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV
 loc_0cc896:
 	dc.b $0b,"Ryu is a man following the path",$00
 	dc.b $08,"to become a true martial artist.",$00
@@ -116,7 +116,7 @@ loc_0cc919:
 	dc.b $08,"He continues his journey to find",00
 	dc.b $08,"the answers, and new challenges.",00
 
-;/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\
+;VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV
 loc_0cc95d:
 	dc.b $35,"Ryu's eternal rival",00
 	dc.b $47,"Ken Masters...",00
@@ -133,7 +133,7 @@ loc_0cca02:
 	dc.b $19,"Now he sets out to find the",00
 	dc.b $0f,"answer just beyond his fist...",00
 
-;/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\
+;VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV
 loc_0cca3f:
 	dc.b $5c,"Akuma...",00
 	dc.b $0b,"The supreme master of the fist.",00
@@ -146,7 +146,7 @@ loc_0ccaac:
 	dc.b $19,"He searches for challengers",00
 	dc.b $0f,"with enough potential to kill.",00
 
-;/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\
+;VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV
 loc_0ccae9:
 	dc.b $12,"Charlie is a First Lieutenant",00
 	dc.b $1d,"of the American Air Force.",00
@@ -164,7 +164,7 @@ loc_0ccba6:
 	dc.b $0b,"and punish the man responsible!",00
 
 
-;/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\
+;VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV
 loc_0ccbe7:
 	dc.b $12,"Chun-Li is the ICPO's special",00
 	dc.b $0b,"detective assigned to Shadaloo.",00
@@ -181,7 +181,7 @@ loc_0ccca7:
 	dc.b $0b,"Now they take separate paths as",00
 	dc.b $12,"they attempt to find M.Bison.",00
 
-;/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\
+;VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV
 loc_0ccce7:
 	dc.b $0b,'He is Adon, the self proclaimed',00
 	dc.b $35,'"God of Muay Thai".',00
@@ -194,7 +194,7 @@ loc_0ccd60:
 	dc.b $0b,'Can Muay Thai stand against the',00
 	dc.b $16,'power of the "Raging Demon"?',00
 
-;/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\
+;VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV
 loc_0ccd9f:
 	dc.b $08,"The Kabuki Fighter, Sodom, seeks",00
 	dc.b $19,'to achieve true "Japanism."',00
@@ -207,7 +207,7 @@ loc_0cce16:
 	dc.b $20,"He now wanders the world,",00
 	dc.b $16,'in search of his "brothers."',00
 
-;/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\
+;VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV
 loc_0cce4f:
 	dc.b $08,"He is the ninja who lives in the",00
 	dc.b $5c,"present.",00
@@ -224,7 +224,7 @@ loc_0cceff:
 	dc.b $0b,"These are the words Master Zeku",00
 	dc.b $24,"left. What do they mean?",00
 
-;/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\
+;VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV
 loc_0ccf3a:
 	dc.b $0b,"Birdie is a member of Shadaloo.",00
 	dc.b $70
@@ -241,7 +241,7 @@ loc_0ccfcf:
 	dc.b $12,"Soon, he found the keyword...",00
 	dc.b $35,'"Psycho Drive....."',00
 
-;/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\
+;VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV
 loc_0cd003:
 	dc.b $0f,"Rose is a mysterious woman who",00
 	dc.b $0b,'wields the mystic "Soul Power."',00
@@ -258,7 +258,7 @@ loc_0cd0b8:
 	dc.b $19,"What fate awaits her in the",00
 	dc.b $5f,"end...?",00
 
-;/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\
+;VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV
 loc_0cd0de:
 	dc.b $1d,"Bison is the leader of the",00
 	dc.b $0b,'secret organization "Shadaloo."',00
@@ -275,7 +275,7 @@ loc_0cd198:
 	dc.b $24,"A new body that only the",00
 	dc.b $08,"strongest of warriors possess...",00
 
-;/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\
+;VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV
 loc_0cd1d4:
 	dc.b $0f,'Sagat is known as the "Emperor',00
 	dc.b $47,'of Muay Thai."',00
@@ -293,7 +293,7 @@ loc_0cd284:
 	dc.b $0b,"the power of hatred is limited.",00
 
 
-;/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\
+;VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV
 loc_0cd2c6:
 	dc.b $08,"Dan finally defeated the man who",00
 	dc.b $32,"killed his father...",00
@@ -307,7 +307,7 @@ loc_0cd33f:
 	dc.b $0b,"until he achieves perfection...",00
 
 
-;/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\
+;VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV
 loc_0cd380:
 	dc.b $12,"Sakura is a young girl who is",00
 	dc.b $0f,"fascinated by street fighting.",00
@@ -324,7 +324,7 @@ loc_0cd435:
 	dc.b $08,"She sets off on a journey of new",00
 	dc.b $1d,"meetings and old reunions.",00
 
-;/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\
+;VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV
 loc_0cd473:
 	dc.b $0f,"Rolento's goal is to build the",00
 	dc.b $0f,"most powerful military nation.",00
@@ -341,7 +341,7 @@ loc_0cd536:
 	dc.b $24,"Will Rolento fulfill his",00
 	dc.b $2e,"idealistic ambitions?",00
 
-;/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\
+;VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV
 loc_0cd567:
 	dc.b $08,"The yoga master, Dhalsim, fights",00
 	dc.b $08,"for his family and for the poor.",00
@@ -354,7 +354,7 @@ loc_0cd5e3:
 	dc.b $12,"That one day he will renounce",00
 	dc.b $2b,"the root of his power.",00
 
-;/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\
+;VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV
 loc_0cd61a:
 	dc.b $19,'Known as the "Red Cyclone,"',00
 	dc.b $08,"he is the Russian hero, Zangief.",00
@@ -367,7 +367,7 @@ loc_0cd68c:
 	dc.b $1d,"A power that threatens the",$00
 	dc.b $24,"security of his country.",$00
 
-;/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\
+;VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV
 loc_0cd6c2:
 	dc.b $0b,"Gen is a wily assassin who uses",00
 	dc.b $0f,"legendary fighting techniques.",00
@@ -384,7 +384,7 @@ loc_0cd781:
 	dc.b $0b,"And so he searches for a worthy",00
 	dc.b $63,"foe...",00
 
-;/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\
+;VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV
 loc_0cd7aa:
 	dc.b $08,"Enhanced by biotechnology, Cammy",00
 	dc.b $19,"is an assassin of Shadaloo.",00
@@ -401,7 +401,7 @@ loc_0cd865:
 	dc.b $16,"She has no idea what destiny",00
 	dc.b $32,"lies ahead of her...",00
 
-;/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\
+;VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV
 loc_0cd899:
 	dc.b $12,"Edmond Honda is the strongest",00
 	dc.b $0b,'Sumo Grandmaster, or "Rikishi."',00
@@ -418,7 +418,7 @@ loc_0cd95d:
 	dc.b $08,"In the hopes of finding stronger",00
 	dc.b $0b,"opponents, he begins a journey.",00
 
-;/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\
+;VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV
 loc_0cd9a0:
 	dc.b $08,"Blanka lived as he pleased, deep",00
 	dc.b $08,"within the jungle of the Amazon.",00
@@ -431,7 +431,7 @@ loc_0cda21:
 	dc.b $0b,"Curious and excited, Blanka now",00
 	dc.b $08,"ventures into the outside world.",00
 
-;/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\
+;VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV
 loc_0cda64:
 	dc.b $12,"Rainbow Mika is ready to make",00
 	dc.b $16,"her debut as a pro wrestler.",00
@@ -448,7 +448,7 @@ loc_0cdb1d:
 	dc.b $16,"Mika takes her first step to",00
 	dc.b $16,'becoming "Star of the Ring!"',00
 
-;/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\
+;VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV
 loc_0cdb59:
 	dc.b $0f,"Cody used to be a hero, famous",00
 	dc.b $2b,"for saving Metro City.",00
@@ -465,7 +465,7 @@ loc_0cdc17:
 	dc.b $0b,"Wandering outside, he now seeks",00
 	dc.b $08,"something that will satisfy him.",00
 
-;/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\
+;VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV
 loc_0cdc5a:
 	dc.b $19,"Vega is a masked noble with",00
 	dc.b $19,"blood red eyes of insanity.",00
@@ -478,7 +478,7 @@ loc_0cdcd5:
 	dc.b $08,"he must find a girl named Cammy,",00
 	dc.b $0f,"and report on her experiences.",00
 
-;/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\
+;VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV
 loc_0cdd17:
 	dc.b $20,"Karin Kanzuki is the only",00
 	dc.b $0b,"daughter of a corporate family.",00

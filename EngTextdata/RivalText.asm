@@ -599,7 +599,7 @@ loc_0cde08:
     dc.w loc_0d5c04-loc_0cde08
     dc.w loc_0d5c20-loc_0cde08
 
-;/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\
+;VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV
 loc_0ce2b4:
 	dc.b $08,"Ryu... You are not strong enough",00
 	dc.b $08,"to win the battle with that man.",00
@@ -636,7 +636,7 @@ loc_0ce47d:
 	dc.b $19,"Ryu... It's time! Fight me!",00
 	dc.b $70
 
-;/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\
+;VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV
 loc_0ce49b:
 	dc.b $0b,"Now you will finally see that I",00
 	dc.b $1d,"am the strongest! Not you!",00
@@ -658,7 +658,7 @@ loc_0ce55a:
 	dc.b $35,"Who... are... You?!",00
 
 
-;/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\
+;VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV
 loc_0ce573:
 	dc.b $19,"Huh ha ha ha ha ha!  You're",00
 	dc.b $0f,"as strong as I had hoped, Ryu!",00
@@ -683,7 +683,7 @@ loc_0ce665:
 	dc.b $12,"...by my Psycho Power! I will",00
 	dc.b $24,"reveal your dark nature!",00
 
-;/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\
+;VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV
 loc_0ce69e:
 	dc.b $0b,"You seem troubled, Mr. Masters.",00
 	dc.b $70
@@ -724,7 +724,7 @@ loc_0ce869:
 	dc.b $0f,"You go, girl! I hope your next",00
 	dc.b $39,"fight is exciting.",00
 
-;/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\
+;VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV
 loc_0ce89d:
 	dc.b $1d,"Ken! Please fight with me!",00
 	dc.b $70
@@ -745,7 +745,7 @@ loc_0ce95c:
 	dc.b $12,"Both of us... you and myself!",00
 	dc.b $70
 
-;/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\
+;VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV
 loc_0ce97c:
 	dc.b $39,"Thanks a lot, Ken!",00
 	dc.b $70
@@ -771,7 +771,7 @@ loc_0cea68:
 	dc.b $51,"Thanks kid!",00
 
 
-;/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\
+;VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV
 loc_0cea86:
 	dc.b $12,"Ken Masters... the US martial",00
 	dc.b $08,"arts champion and Ryu's rival...",00
@@ -793,7 +793,7 @@ loc_0ceb50:
 	dc.b $70
 
 
-;/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\
+;VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV
 loc_0ceb71:
 	dc.b $24,'"The master of fists..."',00
 	dc.b $39,"You must be Akuma!",00
@@ -810,7 +810,7 @@ loc_0cec10:
 	dc.b $4a,"Don't talk...",00
 	dc.b $4e,"Just fight!!",00
 
-;/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\
+;VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV
 loc_0cec2d:
 	dc.b $1d,"My name is Guy... I am the",00
 	dc.b $0f,"successor of the Bushin style.",00
@@ -827,7 +827,7 @@ loc_0cecd8:
 	dc.b $0b,"...Your reason will fall before",00
 	dc.b $2e,"the might of my fist.",00
 
-;/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\
+;VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV
 loc_0ced10:
 	dc.b $20,"So you are Akuma; the one",00
 	dc.b $0f,'shrouded with "evil intent..."',00
@@ -845,7 +845,7 @@ loc_0cedcb:
 	dc.b $27,"solely upon your fists'",00
 
 
-;/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\
+;VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV
 loc_0cee02:
 	dc.b $20,"Target in sight. Ready to",00
 	dc.b $16,"execute primary combat mode!",00
@@ -863,7 +863,7 @@ loc_0cee6d:
 	dc.b $08,"That little girl couldn't be...!",00
 
 
-;/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\
+;VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV
 loc_0ceeac:
 	dc.b $16,"Calm down now! It's over...!",00
 	dc.b $27,"You've lost the battle!",00
@@ -884,7 +884,7 @@ loc_0cef67:
 	dc.b $0b,"Shadaloo is inhumane! I'll make",00
 	dc.b $0f,"them suffer for their cruelty!",00
 
-;/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\
+;VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV
 loc_0cefa8:
 	dc.b $1d,"Is it you who are so eager",00
 	dc.b $2e,"to destroy Shadaloo?!",00
@@ -902,7 +902,7 @@ loc_0cf058:
 	dc.b $47,"of Shadaloo...",00
 
 
-;/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\
+;VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV
 loc_0cf086:
 	dc.b $0b,"If you don't get out of my way,",00
 	dc.b $12,"I'll make sure you regret it!",00
@@ -931,7 +931,7 @@ loc_0cf1cc:
 	dc.b $12,"Your sins and atrocities will",00
 	dc.b $0f,"now be judged... and punished!",00
 
-;/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\
+;VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV
 loc_0cf20b:
 	dc.b $08,"Excuse me... May I have a moment",00
 	dc.b $20,"of your time, Mr. Birdie?",00
@@ -960,7 +960,7 @@ loc_0cf356:
 	dc.b $55,"Blast it!!",00
 	dc.b $70
 
-;/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\
+;VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV
 loc_0cf363:
 	dc.b $12,"I'll never talk! Now bug off!",00
 	dc.b $0f,"I have business in Thailand...",00
@@ -974,7 +974,7 @@ loc_0cf3ad:
 	dc.b $58,"kind sir!",00
 
 
-;/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\
+;VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV
 loc_0cf3d8:
 	dc.b $63,"....?!",00
 	dc.b $4a,"Who are you?!",00
@@ -1028,7 +1028,7 @@ loc_0cf60f:
 	dc.b $0f,"the right to be my guinea pig!",00
 
 
-;/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\
+;VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV
 loc_0cf64f:
 	dc.b $0f,"You are the worthy first pupil",00
 	dc.b $2e,"of Sagat, aren't you?",00
@@ -1086,7 +1086,7 @@ loc_0cf946:
 	dc.b $19,'interested in "that power".',00
 
 
-;/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\
+;VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV
 loc_0cf97f:
 	dc.b $19,"You want the secrets of the",00
 	dc.b $24,'"Raging Demon" ...Right?',00
@@ -1119,7 +1119,7 @@ loc_0cfb02:
 	dc.b $16,"...and I will eliminate you!",00
 	dc.b $70
 
-;/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\
+;VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV
 loc_0cfb21:
 	dc.b $24,"I never imagined my plan",00
 	dc.b $1d,"would end in such failure!",00
@@ -1160,7 +1160,7 @@ loc_0cfce1:
 	dc.b $0b,"Then, everything will be mine!!",00
 	dc.b $70
 
-;/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\
+;VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV
 loc_0cfd03:
 	dc.b $12,"There seems to be no point in",00
 	dc.b $12,"talking to you. Get ready...!",00
@@ -1185,7 +1185,7 @@ loc_0cfe13:
 	dc.b $08,"I see. Worthless trash came here",00
 	dc.b $0f,"to spew more garbage. Show me.",00
 
-;/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\
+;VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV
 loc_0cfe55:
 	dc.b $08,"Are you the legitimate successor",00
 	dc.b $2e,"of Bushin Style; Guy?",00
@@ -1910,7 +1910,7 @@ loc_0d238c:
 	dc.b $2b,"..... My ideals do not",00
 	dc.b $2e,"contradict that goal!",00
 
-;/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\
+;VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV
 loc_0d23bb:
 	dc.b $4a,"What?! Cody!!",00
 	dc.b $2b,"WHAT HAPPENED TO YOU?!",00
@@ -1935,7 +1935,7 @@ loc_0d24d5:
 	dc.b $12,"Now I'll show you! Prepare to",00
 	dc.b $4e,"be punished!",00
 
-;/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\
+;VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV
 loc_0d2502:
 	dc.b $20,"...After all, you are not",00
 	dc.b $55,"a warrior!",00
@@ -1957,7 +1957,7 @@ loc_0d25e6:
 	dc.b $0f,"lack of soldiers with weapons.",00
 
 
-;/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\
+;VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV
 loc_0d2628:
 	dc.b $12,"You must be Bison, the leader",00
 	dc.b $4a,"of Shadaloo!!",00
@@ -1998,7 +1998,7 @@ loc_0d280d:
 	dc.b $08,"You're dreaming if you think you",00
 	dc.b $0f,"will survive after defying me!",00
 
-;/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\
+;VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV
 loc_0d284f:
 	dc.b $0b,"Wait, young lady. You shouldn't",00
 	dc.b $12,"live your life so carelessly.",00
