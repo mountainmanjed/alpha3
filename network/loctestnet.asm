@@ -1,5 +1,5 @@
 ;==============================================
-loc_002578:
+Loc_Test_Network:
 	tst.b ($86,a5)
 	beq.b loc_002582
 	bsr.b loc_002584
@@ -20,6 +20,7 @@ loc_002584:
 	bsr.w loc_002924
 	bra.w loc_0029b8
 
+;==============================================
 loc_0025a8:
 	bsr.w loc_002a92
 	bsr.w loc_002adc
@@ -29,7 +30,7 @@ loc_0025a8:
 	bsr.w loc_002c38
 	bra.w loc_002c74
 
-
+;==============================================
 loc_0025c4:
 	lea $661140,a0
 	lea $662140,a1
@@ -75,7 +76,7 @@ loc_00261c:
 	lsl.w #4,d6
 	lea (a0,d6.w),a0
 	moveq #$1f,d6
- 
+
 loc_00262c:
 	move.w (a1)+,d0
 	cmp.b (a0)+,d0
@@ -112,8 +113,14 @@ loc_002680:
 
 ;VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV
 loc_002682:
-	dc.w $0050,$0624,$0624,$003c
-	dc.w $0624,$0010,$0026,$0624
+	dc.w loc_0026d2-loc_002682
+	dc.w loc_002ca6-loc_002682
+	dc.w loc_002ca6-loc_002682
+	dc.w loc_0026be-loc_002682
+	dc.w loc_002ca6-loc_002682
+	dc.w loc_002692-loc_002682
+	dc.w loc_0026a8-loc_002682
+	dc.w loc_002ca6-loc_002682
 
 ;==============================================
 loc_002692:
@@ -129,6 +136,8 @@ loc_0026a8:
 loc_0026be:
 	move.l $663020,$661020
 	move.l $663024,$661024
+
+loc_0026d2:
 	rts
 
 ;==============================================
@@ -154,7 +163,14 @@ loc_002714:
 
 ;VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV
 loc_002716:
-	dc.w $0050,$05be,$05be,$003c,$05be,$0010,$0026,$05be
+	dc.w loc_002766-loc_002716
+	dc.w loc_002cd4-loc_002716
+	dc.w loc_002cd4-loc_002716
+	dc.w loc_002752-loc_002716
+	dc.w loc_002cd4-loc_002716
+	dc.w loc_002726-loc_002716
+	dc.w loc_00273c-loc_002716
+	dc.w loc_002cd4-loc_002716
 
 ;==============================================
 loc_002726:
@@ -170,6 +186,8 @@ loc_00273c:
 loc_002752:
 	move.l $663028,$661028
 	move.l $66302c,$66102c
+
+loc_002766:
 	rts
 
 ;==============================================
@@ -195,7 +213,14 @@ loc_0027a8:
 
 ;VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV
 loc_0027aa:
-	dc.w $0050,$0558,$0558,$003c,$0558,$0010,$0026,$0558
+	dc.w loc_0027fa-loc_0027aa
+	dc.w loc_002d02-loc_0027aa
+	dc.w loc_002d02-loc_0027aa
+	dc.w loc_0027e6-loc_0027aa
+	dc.w loc_002d02-loc_0027aa
+	dc.w loc_0027ba-loc_0027aa
+	dc.w loc_0027d0-loc_0027aa
+	dc.w loc_002d02-loc_0027aa
 
 ;==============================================
 loc_0027ba:
@@ -211,6 +236,8 @@ loc_0027d0:
 loc_0027e6:
 	move.l $663030,$661030
 	move.l $663034,$661034
+
+loc_0027fa:
 	rts
 
 ;==============================================
@@ -236,7 +263,14 @@ loc_00283c:
 
 ;VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV
 loc_00283e:
-	dc.w $0050,$04f2,$04f2,$003c,$04f2,$0010,$0026,$04f2
+	dc.w loc_00288e-loc_00283e
+	dc.w loc_002d30-loc_00283e
+	dc.w loc_002d30-loc_00283e
+	dc.w loc_00287a-loc_00283e
+	dc.w loc_002d30-loc_00283e
+	dc.w loc_00284e-loc_00283e
+	dc.w loc_002864-loc_00283e
+	dc.w loc_002d30-loc_00283e
 
 ;==============================================
 loc_00284e:
@@ -252,6 +286,8 @@ loc_002864:
 loc_00287a:
 	move.l $663038,$661038
 	move.l $66303c,$66103c
+
+loc_00288e:
 	rts
 
 ;==============================================
@@ -277,7 +313,14 @@ loc_0028d0:
 
 ;VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV
 loc_0028d2:
-	dc.w $0050,$048c,$048c,$003c,$048c,$0010,$0026,$048c
+	dc.w loc_002922-loc_0028d2
+	dc.w loc_002d5e-loc_0028d2
+	dc.w loc_002d5e-loc_0028d2
+	dc.w loc_00290e-loc_0028d2
+	dc.w loc_002d5e-loc_0028d2
+	dc.w loc_0028e2-loc_0028d2
+	dc.w loc_0028f8-loc_0028d2
+	dc.w loc_002d5e-loc_0028d2
 
 ;==============================================
 loc_0028e2:
@@ -293,6 +336,8 @@ loc_0028f8:
 loc_00290e:
 	move.l $663040,$661040
 	move.l $663044,$661044
+
+loc_002922:
 	rts
 
 ;==============================================
@@ -318,7 +363,14 @@ loc_002964:
 
 ;VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV
 loc_002966:
-	dc.w $0050,$0426,$0426,$003c,$0426,$0010,$0026,$0426
+	dc.w loc_0029b6-loc_002966
+	dc.w loc_002d8c-loc_002966
+	dc.w loc_002d8c-loc_002966
+	dc.w loc_0029a2-loc_002966
+	dc.w loc_002d8c-loc_002966
+	dc.w loc_002976-loc_002966
+	dc.w loc_00298c-loc_002966
+	dc.w loc_002d8c-loc_002966
 
 ;==============================================
 loc_002976:
@@ -334,6 +386,8 @@ loc_00298c:
 loc_0029a2:
 	move.l $663048,$661048
 	move.l $66304c,$66104c
+
+loc_0029b6:
 	rts
 
 ;==============================================
@@ -359,7 +413,14 @@ loc_0029f6:
 
 ;VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV
 loc_0029f8:
-	dc.w $0032,$03c2,$03c2,$0028,$03c2,$0010,$001c,$03c2
+	dc.w loc_002a2a-loc_0029f8
+	dc.w loc_002dba-loc_0029f8
+	dc.w loc_002dba-loc_0029f8
+	dc.w loc_002a20-loc_0029f8
+	dc.w loc_002dba-loc_0029f8
+	dc.w loc_002a08-loc_0029f8
+	dc.w loc_002a14-loc_0029f8
+	dc.w loc_002dba-loc_0029f8
 
 ;==============================================
 loc_002a08:
@@ -372,6 +433,8 @@ loc_002a14:
 
 loc_002a20:
 	move.l $663200,$661200
+
+loc_002a2a:
 	rts
 
 ;==============================================
@@ -399,10 +462,10 @@ loc_002a44:
 loc_002a4c:
 	cmpi.w #$e,d3
 	beq.b loc_002a56
-	dbra d6,loc_002a2e                      
+	dbra d6,loc_002a2e
 
 loc_002a56:
-	rts                          
+	rts
 
 ;==============================================
 loc_002a58:
@@ -417,7 +480,7 @@ loc_002a58:
 	addq.l #1,d1
 	movep.l d1,(1,a0)
 	lea $663020,a0
-	movep.l (1,a0),d1                  
+	movep.l (1,a0),d1
 	addq.l #1,d1
 	movep.l d1,(1,a0)
 	bsr.w loc_002640
@@ -445,8 +508,8 @@ loc_002aa2:
 	lea $663028,a0
 	movep.l (1,a0),d1
 	addq.l #1,d1
-	movep.l d1,(1,a0)                  
-	bsr.w loc_0026d4 
+	movep.l d1,(1,a0)
+	bsr.w loc_0026d4
 
 loc_002adc:
 	lea $661028,a0
@@ -467,7 +530,7 @@ loc_002aec:
 	lea $662030,a0
 	movep.l (1,a0),d0
 	addq.l #1,d0
-	movep.l d0,(1,a0)                  
+	movep.l d0,(1,a0)
 	lea $663030,a0
 	movep.l (1,a0),d0
 	addq.l #1,d0
@@ -477,10 +540,10 @@ loc_002aec:
 loc_002b26:
 	lea.l $661030,a0
 	movep.l (1,a0),d0
-	move.l d0,(-$7276,a5)               
+	move.l d0,(-$7276,a5)
 
 loc_002b34:
-	rts                                  
+	rts
 
 ;==============================================
 loc_002b36:
@@ -583,7 +646,7 @@ loc_002c48:
 	movep.w d0,(1,a0)
 	lea.l $662200,a0
 	movep.w d0,(1,a0)
-	lea.l $663200,a0 
+	lea.l $663200,a0
 	movep.w d0,(1,a0)
 	bsr.w loc_0029b8
 

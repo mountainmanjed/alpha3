@@ -4552,7 +4552,7 @@ loc_0b3e16:
 
 loc_0b3e42:
 	move.w #$af5,d7
-	jsr loc_01b352
+	jsr Hex_to_Decimal
 	lea.l ($116,a6),a0
 	move.w (-$5d28,a5),d0
 	move.w d0,d1
@@ -8433,7 +8433,7 @@ loc_0b9400:
 	move.w #$2615,d7
 
 loc_0b941c:
-	jsr loc_01b352
+	jsr Hex_to_Decimal
 	lea.l ($66,a6),a0
 	move.w (-$5d28,a5),d0
 	move.w d0,d1

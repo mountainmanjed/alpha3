@@ -10978,7 +10978,7 @@ loc_09807e:
 	move.w (-$485e,a5),d0
  
 loc_098102:
-	jsr loc_01b352
+	jsr Hex_to_Decimal
 	move.w (-$5d28,a5),d0
 	moveq #3,d2
 

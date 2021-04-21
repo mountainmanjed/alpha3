@@ -22,7 +22,7 @@ loc_00dd7e:
 	move.l d0,($14,a5)
 	move.w d0,(stageid,a5)
 	move.b d0,($8e,a5)
-	move.b d0,($a8,a5)
+	move.b d0,(Active_Player,a5)
 	move.b d0,($aa,a5)
 	bsr.w loc_010ea4
 	andi.b #$cc,($6b,a5)
@@ -1257,8 +1257,8 @@ loc_00eb00:
 	move.w ($92,a5),(-$5f54,a5)
 	move.b ($a0,a5),(-$5f4e,a5)
 	move.b ($a1,a5),(-$5f4d,a5)
-	move.b ($a2,a5),(-$5f4c,a5)
-	move.b ($a3,a5),(-$5f4b,a5)
+	move.b (Timer_Speed,a5),(-$5f4c,a5)
+	move.b (Game_Turbo,a5),(-$5f4b,a5)
 	move.b ($de,a5),(-$5f4a,a5)
 	move.b ($df,a5),(-$5f49,a5)
 	move.b ($a5,a5),(-$5f48,a5)
@@ -2744,7 +2744,7 @@ loc_0104c2:
 	bsr.w loc_010894
 	andi.w #3,d0
 	beq.b loc_0104ec
-	move.b ($a2,a5),d2
+	move.b (Timer_Speed,a5),d2
 	btst #1,d0
 	beq.b loc_0104d8
 	subq.b #1,d2
@@ -2756,7 +2756,7 @@ loc_0104d8:
 
 loc_0104e0:
 	andi.b #3,d2
-	move.b d2,($a2,a5)
+	move.b d2,(Timer_Speed,a5)
 	bra.w loc_0104ee
 
 loc_0104ec:
@@ -2766,7 +2766,7 @@ loc_0104ec:
 loc_0104ee:
 	moveq #$1e,d1
 	moveq #0,d0
-	move.b ($a2,a5),d0
+	move.b (Timer_Speed,a5),d0
 	cmp.b (-$5f4c,a5),d0
 	beq.b loc_0104fe
 	moveq #$1d,d1
@@ -2805,7 +2805,7 @@ loc_010588:
 	bsr.w loc_010894
 	andi.w #3,d0
 	beq.b loc_0105b8
-	move.b ($a3,a5),d2
+	move.b (Game_Turbo,a5),d2
 	moveq #4,d1
 	btst #1,d0
 	beq.b loc_0105a4
@@ -2822,7 +2822,7 @@ loc_0105a4:
 	moveq #0,d2
 
 loc_0105b2:
-	move.b d2,($a3,a5)
+	move.b d2,(Game_Turbo,a5)
 	bra.b loc_0105ba
 
 loc_0105b8:
@@ -2832,7 +2832,7 @@ loc_0105b8:
 loc_0105ba:
 	moveq #$1e,d1
 	moveq #0,d0
-	move.b ($a3,a5),d0
+	move.b (Game_Turbo,a5),d0
 	cmp.b (-$5f4b,a5),d0
 	beq.b loc_0105ca
 	moveq #$1d,d1

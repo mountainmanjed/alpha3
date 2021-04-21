@@ -7217,7 +7217,7 @@ loc_085496:
 	move.w ($13a,a5),d0
 	bne.b loc_085576
 	move.w #$8400,d0
-	btst #0,($a8,a5)
+	btst #0,(Active_Player,a5)
 	bne.b loc_085576
 	move.w #$8800,d0
 
@@ -8342,7 +8342,7 @@ loc_0861da:
 
 loc_08626a:
 	moveq #0,d0
-	move.b ($a3,a5),d0
+	move.b (Game_Turbo,a5),d0
 	subq.b #3,d0
 	add.b d0,d0
 	add.b ($a,a6),d0

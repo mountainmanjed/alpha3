@@ -1897,7 +1897,7 @@ loc_0a14d6:
 	moveq #0,d0
 	tst.b ($bf,a5)
 	bne.b loc_0a14e4
-	move.b (unlocks,a5),d0
+	move.b (game_unlock,a5),d0
 	lsl.w #2,d0
 
 loc_0a14e4:
@@ -19293,7 +19293,7 @@ loc_0ad434:
 loc_0ad436:
 	move.b ($60,a5),d1
 	moveq #1,d0
-	cmpi.b #1,($a8,a5)
+	cmpi.b #1,(Active_Player,a5)
 	beq.b loc_0ad446
 	moveq #2,d0
 

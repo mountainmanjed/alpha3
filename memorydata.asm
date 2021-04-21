@@ -43,19 +43,24 @@ palrampointer = $20
 ;$2c
 
 ;$4e
-
+;0x86 ;deals with linking
 Region = 0x90
+Timer_Speed = 0xa2
+Game_Turbo = 0xa3
+Active_Player = 0xa8
 RngByte0 = $ae
 RngByte1 = $af
 
 ;$b4
 ;$b5
 
-unlocks = $ee
+game_unlock = $ee
 
-stageid = $100
+stageid = 0x100
 ;$107
-
+;$109
+clock_frames = 0x10a
+Dev_Turbo = 0x116
 ;$125
 ;$12b
 ;$134

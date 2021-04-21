@@ -8,11 +8,11 @@ NetworkRam = $660000
 ObjectRam0 = $700000
 ObjectRam = $708000
 
-CPSinput00 = $804000
-CPSinput01 = $804010
-CPSinput02 = $804020
-QsoundVolume = $804030
-Epprom = $804040
+CPSinput00 = 0x804000
+CPSinput01 = 0x804010
+CPSinput02 = 0x804020
+QsoundVolume = 0x804030
+Epprom = 0x804040
 
 DebugDip = $8040b0
 OBJram_Bank0 = $8040e0

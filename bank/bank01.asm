@@ -5674,55 +5674,55 @@ loc_01b224:
 
 ;==============================================
 loc_01b23a:
-	bsr.w loc_01b352
+	bsr.w Hex_to_Decimal
 	move.l (-$5d2a,a5),d0
 	bra.w loc_01b2a6
 
 ;==============================================
 loc_01b246:
-	bsr.w loc_01b352
+	bsr.w Hex_to_Decimal
 	move.l (-$5d2a,a5),d0
 	bra.w loc_01b2aa
 
 ;==============================================
 loc_01b252:
-	bsr.w loc_01b352
+	bsr.w Hex_to_Decimal
 	move.l (-$5d2a,a5),d0
 	bra.w loc_01b2b0
 
 ;==============================================
 loc_01b25e:
-	bsr.w loc_01b352
+	bsr.w Hex_to_Decimal
 	move.l (-$5d2a,a5),d0
 	bra.w loc_01b2b6
 
 ;==============================================
 loc_01b26a:
-	bsr.w loc_01b352
+	bsr.w Hex_to_Decimal
 	move.w (-$5d28,a5),d0
 	bra.w loc_01b2d8
 
 ;==============================================
 loc_01b276:
-	bsr.w loc_01b352
+	bsr.w Hex_to_Decimal
 	move.w (-$5d28,a5),d0
 	bra.w loc_01b2e2
 
 ;==============================================
 loc_01b282:
-	bsr.w loc_01b352
+	bsr.w Hex_to_Decimal
 	move.w (-$5d28,a5),d0
 	bra.w loc_01b2ea
 
 ;==============================================
 loc_01b28e:
-	bsr.w loc_01b352
+	bsr.w Hex_to_Decimal
 	move.w (-$5d28,a5),d0
 	bra.w loc_01b300
 
 ;==============================================
 loc_01b29a:
-	bsr.w loc_01b352
+	bsr.w Hex_to_Decimal
 	move.l (-$5d2a,a5),d0
 	bra.w loc_01b312
 
@@ -5822,7 +5822,7 @@ loc_01b32a:
 ;==============================================
 ;HextoDecimal
 ;==============================================
-loc_01b352:
+Hex_to_Decimal:
 	moveq #0,d2
 	move.l d2,(-$5d2e,a5)
 	move.l d2,(-$5d2a,a5)
@@ -8303,14 +8303,14 @@ loc_01cd00:
 ;==============================================
 loc_01cd2e:
 	move.l d2,d4
-	jsr loc_01b352
+	jsr Hex_to_Decimal
 	move.l d4,d2
 	move.w (-$5d28,a5),d0
 	bra.b loc_01cd54
 
 loc_01cd3e:
 	move.l d2,d4
-	jsr loc_01b352
+	jsr Hex_to_Decimal
 	move.l d4,d2
 	move.w (-$5d28,a5),d0
 	bra.b loc_01cd62
@@ -8585,7 +8585,7 @@ loc_01e1b2:
 	move.b d0,($3e,a6)
 	move.b d0,($5e,a6)
 	andi.b #3,($15b,a6)
-	cmpi.b #3,($a3,a5)
+	cmpi.b #3,(Game_Turbo,a5)
 	bcc.w loc_01e1de
 	bset.b #2,($15b,a6)
 
@@ -8814,7 +8814,7 @@ loc_01e4d4:
 	addq.w #2,(4,a5)
 	tst.b ($bf,a5)
 	bne.b loc_01e50e
-	cmpi.b #4,(unlocks,a5)
+	cmpi.b #4,(game_unlock,a5)
 	bcs.b loc_01e50e
 	tst.b ($168,a5)
 	bne.b loc_01e50e
@@ -9058,7 +9058,7 @@ loc_01e784:
 	move.b d0,($160,a6)
 	tst.b ($bf,a5)
 	bne.b loc_01e7c4
-	cmpi.b #4,(unlocks,a5)
+	cmpi.b #4,(game_unlock,a5)
 	bcs.b loc_01e7b0
 	tst.b ($168,a5)
 	beq.b loc_01e7b0
@@ -9069,7 +9069,7 @@ loc_01e784:
 	bra.b loc_01e7f6
 
 loc_01e7b0:
-	cmpi.b #2,(unlocks,a5)
+	cmpi.b #2,(game_unlock,a5)
 	bcs.b loc_01e7c4
 	tst.b ($15e,a6)
 	beq.b loc_01e7c4
@@ -9159,7 +9159,7 @@ loc_01e898:
 	andi.w #$3f,d0
 	tst.b ($bf,a5)
 	bne.b loc_01e8be
-	cmpi.b #1,(unlocks,a5)
+	cmpi.b #1,(game_unlock,a5)
 	bcs.b loc_01e8be
 	addi.w #$40,d0
 
@@ -9186,7 +9186,7 @@ loc_01e8c4:
 loc_01e944:
 	tst.b ($bf,a5)
 	bne.b loc_01e976
-	cmpi.b #1,(unlocks,a5)
+	cmpi.b #1,(game_unlock,a5)
 	bcs.b loc_01e976
 	move.w ($10,a6),d0
 	cmp.w ($14,a6),d0
@@ -9319,7 +9319,7 @@ loc_01ea44:
 	beq.w loc_01eac6
 	tst.b ($bf,a5)
 	bne.b loc_01ea7a
-	cmpi.b #4,(unlocks,a5)
+	cmpi.b #4,(game_unlock,a5)
 	bcs.b loc_01ea7a
 	tst.b ($168,a5)
 	beq.b loc_01ea7a
@@ -9472,9 +9472,9 @@ loc_01ebc0:
 	addq.b #2,(5,a6)
 	moveq #0,d0
 	move.b ($13,a5),d0
-	add.b ($a3,a5),d0
-	lea.l loc_00ac12,a0
-	move.b (a0,d0.w),($116,a5)
+	add.b (Game_Turbo,a5),d0
+	lea.l Turbo_Options,a0
+	move.b (a0,d0.w),(Dev_Turbo,a5)
 	bset.b #2,($3c,a6)
 	move.w #$20,($3a,a6)
 	rts
