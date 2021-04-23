@@ -5541,12 +5541,12 @@ loc_01b096:
 	moveq #0,d1
 	lsr.b #1,d0
 	roxr.w #1,d1
-	or.w ($58,a5),d1
+	or.w (INP_P1,a5),d1
 	move.w d1,($51a,a5)
 	moveq #0,d2
 	lsr.b #1,d0
 	roxr.w #1,d2
-	or.w ($5c,a5),d2
+	or.w (INP_P2,a5),d2
 	move.w d2,($91a,a5)
 	rts
 
@@ -8585,7 +8585,7 @@ loc_01e1b2:
 	move.b d0,($3e,a6)
 	move.b d0,($5e,a6)
 	andi.b #3,($15b,a6)
-	cmpi.b #3,(Game_Turbo,a5)
+	cmpi.b #3,(Dip_Game_Turbo,a5)
 	bcc.w loc_01e1de
 	bset.b #2,($15b,a6)
 
@@ -9472,7 +9472,7 @@ loc_01ebc0:
 	addq.b #2,(5,a6)
 	moveq #0,d0
 	move.b ($13,a5),d0
-	add.b (Game_Turbo,a5),d0
+	add.b (Dip_Game_Turbo,a5),d0
 	lea.l Turbo_Options,a0
 	move.b (a0,d0.w),(Dev_Turbo,a5)
 	bset.b #2,($3c,a6)

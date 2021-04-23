@@ -2909,9 +2909,9 @@ loc_09213e:
 loc_092140:
 	tst.b ($16,a5)
 	bmi.w loc_092254
-	move.w ($5e,a5),d0
+	move.w (INP_P2_repeat,a5),d0
 	not.w d0
-	and.w ($5c,a5),d0
+	and.w (INP_P2,a5),d0
 	btst #8,d0
 	beq.b loc_09216a
 	jsr loc_01b6b6

@@ -268,10 +268,10 @@ loc_00e004:
 	roxl.b #1,d0
 	bsr.w loc_00e12c
 	lea.l $9007b4,a0
-	move.w ($58,a5),d7
+	move.w (INP_P1,a5),d7
 	bsr.b loc_00e092
 	lea.l $900fb4,a0
-	move.w ($5c,a5),d7
+	move.w (INP_P2,a5),d7
 	bsr.b loc_00e092
 	bsr.w loc_010eec
 	moveq #0,d7
@@ -399,12 +399,12 @@ loc_00e192:
 
 ;==============================================
 loc_00e19a:
-	move.w ($5a,a5),d1
-	move.w ($5e,a5),d2
+	move.w (INP_P1_repeat,a5),d1
+	move.w (INP_P2_repeat,a5),d2
 	not.w d1
 	not.w d2
-	and.w ($58,a5),d1
-	and.w ($5c,a5),d2
+	and.w (INP_P1,a5),d1
+	and.w (INP_P2,a5),d2
 	bclr.b #0,($6b,a5)
 	btst #8,d1
 	beq.b loc_00e1c0
@@ -416,7 +416,7 @@ loc_00e1c0:
 	bchg.b #5,($6b,a5)
 
 loc_00e1cc:
-	btst.b #1,($58,a5)
+	btst.b #1,(INP_P1,a5)
 	beq.b loc_00e1da
 	bset.b #0,($6b,a5)
 
@@ -509,7 +509,7 @@ loc_00e2c2:
 	btst #$a,d0
 	bne.w loc_00e36a
 	move.b ($60,a5),d0
-	and.b ($58,a5),d0
+	and.b (INP_P1,a5),d0
 	btst #0,d0
 	beq.b loc_00e2fe
 	jsr loc_0031ba
@@ -1194,8 +1194,8 @@ loc_00ea98:
 	bne.b loc_00eae2
 
 loc_00eaa8:
-	move.w ($58,a5),d0
-	move.w ($5a,a5),d1
+	move.w (INP_P1,a5),d0
+	move.w (INP_P1_repeat,a5),d1
 	not.w d1
 	and.w d0,d1
 	andi.w #$2600,d1
@@ -1241,29 +1241,29 @@ loc_00eb00:
 	move.l d0,($c,a5)
 	move.l d0,($10,a5)
 	move.l d0,($14,a5)
-	move.b ($97,a5),(-$5f5d,a5)
-	move.b ($97,a5),(-$5f5c,a5)
-	move.b ($98,a5),(-$5f5b,a5)
-	move.b ($98,a5),(-$5f5a,a5)
+	move.b (Dip_Coin_Mode,a5),(-$5f5d,a5)
+	move.b (Dip_Coin_Mode,a5),(-$5f5c,a5)
+	move.b (Dip_Continue,a5),(-$5f5b,a5)
+	move.b (Dip_Continue,a5),(-$5f5a,a5)
 	move.b ($96,a5),(-$5f59,a5)
-	move.b ($99,a5),(-$5f58,a5)
-	move.b ($9a,a5),(-$5f57,a5)
-	move.b ($9b,a5),(-$5f56,a5)
+	move.b (Dip_Demo_Sound,a5),(-$5f58,a5)
+	move.b (Dip_Sound_Mode,a5),(-$5f57,a5)
+	move.b (Dip_Chutes,a5),(-$5f56,a5)
 	move.b ($bb,a5),(-$5f55,a5)
 	move.b ($bc,a5),(-$5f52,a5)
 	move.b ($ce,a5),(-$5f51,a5)
 	move.b ($d2,a5),(-$5f50,a5)
 	move.b ($d3,a5),(-$5f4f,a5)
 	move.w ($92,a5),(-$5f54,a5)
-	move.b ($a0,a5),(-$5f4e,a5)
-	move.b ($a1,a5),(-$5f4d,a5)
-	move.b (Timer_Speed,a5),(-$5f4c,a5)
-	move.b (Game_Turbo,a5),(-$5f4b,a5)
-	move.b ($de,a5),(-$5f4a,a5)
-	move.b ($df,a5),(-$5f49,a5)
-	move.b ($a5,a5),(-$5f48,a5)
-	move.b ($a4,a5),(-$5f47,a5)
-	move.b ($a4,a5),(-$5f46,a5)
+	move.b (Dip_Difficulty,a5),(-$5f4e,a5)
+	move.b (Dip_Damage,a5),(-$5f4d,a5)
+	move.b (Dip_Timer_Speed,a5),(-$5f4c,a5)
+	move.b (Dip_Game_Turbo,a5),(-$5f4b,a5)
+	move.b (Dip_1PRounds,a5),(-$5f4a,a5)
+	move.b (Dip_2PRounds,a5),(-$5f49,a5)
+	move.b (Dip_EventMode,a5),(-$5f48,a5)
+	move.b (Dip_Join_in,a5),(-$5f47,a5)
+	move.b (Dip_Join_in,a5),(-$5f46,a5)
 	bra.w loc_010cc2
 
 ;==============================================
@@ -1359,7 +1359,7 @@ loc_00ec8e:
 	cmpi.w #$300,d0
 	bne.b loc_00ecd4
 	jsr loc_001b12
-	move.b ($98,a5),(-$5f5a,a5)
+	move.b (Dip_Continue,a5),(-$5f5a,a5)
 	tst.w (Region,a5)
 	bne.b loc_00ecc6
 	lea.l $904254,a1
@@ -1566,9 +1566,9 @@ loc_00ef58:
 loc_00ef78:
 	cmpi.w #2,($14,a5)
 	bne.b loc_00ef94
-	tst.b ($a5,a5)
+	tst.b (Dip_EventMode,a5)
 	bne.b loc_00ef8e
-	cmpi.b #$11,($97,a5)
+	cmpi.b #$11,(Dip_Coin_Mode,a5)
 	bne.b loc_00ef94
 
 loc_00ef8e:
@@ -1602,9 +1602,9 @@ loc_00efc0:
 loc_00efd4:
 	cmpi.w #2,($14,a5)
 	bne.b loc_00eff0
-	tst.b ($a5,a5)
+	tst.b (Dip_EventMode,a5)
 	bne.b loc_00efea
-	cmpi.b #$11,($97,a5)
+	cmpi.b #$11,(Dip_Coin_Mode,a5)
 	bne.b loc_00eff0
 
 loc_00efea:
@@ -1752,7 +1752,7 @@ loc_00f102:
 loc_00f126:
 	cmpi.w #$e,($14,a5)
 	bne.b loc_00f13a
-	tst.b ($a5,a5)
+	tst.b (Dip_EventMode,a5)
 	beq.b loc_00f13a
 	move.w #$c,($14,a5)
 
@@ -1767,7 +1767,7 @@ loc_00f13a:
 loc_00f14e:
 	cmpi.w #$e,($14,a5)
 	bne.b loc_00f162
-	tst.b ($a5,a5)
+	tst.b (Dip_EventMode,a5)
 	beq.b loc_00f162
 	move.w #$10,($14,a5)
 
@@ -1981,7 +1981,7 @@ loc_00f7b6:
 
 loc_00f7da:
 	moveq #0,d2
-	move.b ($97,a5),d2
+	move.b (Dip_Coin_Mode,a5),d2
 	btst #1,d0
 	beq.b loc_00f812
 	subq.b #1,d2
@@ -2001,7 +2001,7 @@ loc_00f7fe:
 	move.b d3,d2
 
 loc_00f804:
-	tst.b ($a5,a5)
+	tst.b (Dip_EventMode,a5)
 	beq.b loc_00f812
 	cmpi.b #$11,d2
 	bne.b loc_00f812
@@ -2028,7 +2028,7 @@ loc_00f832:
 	move.b d1,d2
 
 loc_00f838:
-	tst.b ($a5,a5)
+	tst.b (Dip_EventMode,a5)
 	beq.b loc_00f846
 	cmpi.b #$11,d2
 	bne.b loc_00f846
@@ -2036,7 +2036,7 @@ loc_00f838:
 
 loc_00f846:
 	moveq #0,d0
-	tst.b ($a5,a5)
+	tst.b (Dip_EventMode,a5)
 	bne.b loc_00f85a
 	moveq #1,d0
 	cmpi.b #$11,d2
@@ -2044,9 +2044,9 @@ loc_00f846:
 	move.b (-$5f5a,a5),d0
 
 loc_00f85a:
-	move.b d2,($97,a5)
+	move.b d2,(Dip_Coin_Mode,a5)
 	move.b d2,(-$5f5c,a5)
-	move.b d0,($98,a5)
+	move.b d0,(Dip_Continue,a5)
 	bsr.b loc_00f86e
 	bra.w loc_00fd84
 
@@ -2057,7 +2057,7 @@ loc_00f86c:
 loc_00f86e:
 	moveq #$1e,d1
 	moveq #0,d0
-	move.b ($97,a5),d0
+	move.b (Dip_Coin_Mode,a5),d0
 	cmp.b (-$5f5d,a5),d0
 	beq.b loc_00f87e
 	moveq #$1d,d1
@@ -2163,8 +2163,8 @@ loc_00fd6a:
 	bsr.w loc_010894
 	andi.w #3,d0
 	beq.b loc_00fd82
-	eori.b #1,($98,a5)
-	move.b ($98,a5),(-$5f5a,a5)
+	eori.b #1,(Dip_Continue,a5)
+	move.b (Dip_Continue,a5),(-$5f5a,a5)
 	bra.b loc_00fd84
 
 loc_00fd82:
@@ -2174,7 +2174,7 @@ loc_00fd82:
 loc_00fd84:
 	moveq #$1e,d1
 	moveq #0,d0
-	move.b ($98,a5),d0
+	move.b (Dip_Continue,a5),d0
 	cmp.b (-$5f5b,a5),d0
 	beq.b loc_00fd94
 	moveq #$1d,d1
@@ -2244,7 +2244,7 @@ loc_00fe32:
 	bsr.w loc_010894
 	andi.w #3,d0
 	beq.b loc_00fe44
-	eori.b #1,($99,a5)
+	eori.b #1,(Dip_Demo_Sound,a5)
 	bra.b loc_00fe46
 
 loc_00fe44:
@@ -2253,7 +2253,7 @@ loc_00fe44:
 loc_00fe46:
 	moveq #$1e,d1
 	moveq #0,d0
-	move.b ($99,a5),d0
+	move.b (Dip_Demo_Sound,a5),d0
 	cmp.b (-$5f58,a5),d0
 	beq.b loc_00fe56
 	moveq #$1d,d1
@@ -2280,7 +2280,7 @@ loc_00fe80:
 	bsr.w loc_010894
 	andi.w #3,d0
 	beq.b loc_00fe92
-	eori.b #1,($9a,a5)
+	eori.b #1,(Dip_Sound_Mode,a5)
 	bra.b loc_00fe94
 
 loc_00fe92:
@@ -2289,7 +2289,7 @@ loc_00fe92:
 loc_00fe94:
 	moveq #$1e,d1
 	moveq #0,d0
-	move.b ($9a,a5),d0
+	move.b (Dip_Sound_Mode,a5),d0
 	cmp.b (-$5f57,a5),d0
 	beq.b loc_00fea4
 	moveq #$1d,d1
@@ -2324,7 +2324,7 @@ loc_00ff0c:
 	andi.w #3,d0
 	beq.b loc_00ff3c
 	moveq #2,d1
-	move.b ($9b,a5),d2
+	move.b (Dip_Chutes,a5),d2
 	btst #1,d0
 	beq.b loc_00ff28
 	subq.b #1,d2
@@ -2340,7 +2340,7 @@ loc_00ff28:
 	moveq #0,d2
 
 loc_00ff36:
-	move.b d2,($9b,a5)
+	move.b d2,(Dip_Chutes,a5)
 	bra.b loc_00ff3e
 
 loc_00ff3c:
@@ -2350,7 +2350,7 @@ loc_00ff3c:
 loc_00ff3e:
 	moveq #$1e,d1
 	moveq #0,d0
-	move.b ($9b,a5),d0
+	move.b (Dip_Chutes,a5),d0
 	cmp.b (-$5f56,a5),d0
 	beq.b loc_00ff4e
 	moveq #$1d,d1
@@ -2606,7 +2606,7 @@ loc_01025a:
 	bsr.w loc_010894
 	andi.w #3,d0
 	beq.b loc_010282
-	move.b ($a0,a5),d2
+	move.b (Dip_Difficulty,a5),d2
 	btst #1,d0
 	beq.b loc_010270
 	subq.b #1,d2
@@ -2618,7 +2618,7 @@ loc_010270:
 
 loc_010278:
 	andi.b #7,d2
-	move.b d2,($a0,a5)
+	move.b d2,(Dip_Difficulty,a5)
 	bra.b loc_010284
 
 loc_010282:
@@ -2628,7 +2628,7 @@ loc_010282:
 loc_010284:
 	moveq #$1e,d1
 	moveq #0,d0
-	move.b ($a0,a5),d0
+	move.b (Dip_Difficulty,a5),d0
 	cmp.b (-$5f4e,a5),d0
 	beq.b loc_010294
 	moveq #$1d,d1
@@ -2683,7 +2683,7 @@ loc_0103fe:
 	bsr.w loc_010894
 	andi.w #3,d0
 	beq.b loc_010426
-	move.b ($a1,a5),d2
+	move.b (Dip_Damage,a5),d2
 	btst #1,d0
 	beq.b loc_010414
 	subq.b #1,d2
@@ -2695,7 +2695,7 @@ loc_010414:
 
 loc_01041c:
 	andi.b #3,d2
-	move.b d2,($a1,a5)
+	move.b d2,(Dip_Damage,a5)
 	bra.b loc_010428
 
 loc_010426:
@@ -2705,7 +2705,7 @@ loc_010426:
 loc_010428:
 	moveq #$1e,d1
 	moveq #0,d0
-	move.b ($a1,a5),d0
+	move.b (Dip_Damage,a5),d0
 	cmp.b (-$5f4d,a5),d0
 	beq.b loc_010438
 	moveq #$1d,d1
@@ -2744,7 +2744,7 @@ loc_0104c2:
 	bsr.w loc_010894
 	andi.w #3,d0
 	beq.b loc_0104ec
-	move.b (Timer_Speed,a5),d2
+	move.b (Dip_Timer_Speed,a5),d2
 	btst #1,d0
 	beq.b loc_0104d8
 	subq.b #1,d2
@@ -2756,7 +2756,7 @@ loc_0104d8:
 
 loc_0104e0:
 	andi.b #3,d2
-	move.b d2,(Timer_Speed,a5)
+	move.b d2,(Dip_Timer_Speed,a5)
 	bra.w loc_0104ee
 
 loc_0104ec:
@@ -2766,7 +2766,7 @@ loc_0104ec:
 loc_0104ee:
 	moveq #$1e,d1
 	moveq #0,d0
-	move.b (Timer_Speed,a5),d0
+	move.b (Dip_Timer_Speed,a5),d0
 	cmp.b (-$5f4c,a5),d0
 	beq.b loc_0104fe
 	moveq #$1d,d1
@@ -2805,7 +2805,7 @@ loc_010588:
 	bsr.w loc_010894
 	andi.w #3,d0
 	beq.b loc_0105b8
-	move.b (Game_Turbo,a5),d2
+	move.b (Dip_Game_Turbo,a5),d2
 	moveq #4,d1
 	btst #1,d0
 	beq.b loc_0105a4
@@ -2822,7 +2822,7 @@ loc_0105a4:
 	moveq #0,d2
 
 loc_0105b2:
-	move.b d2,(Game_Turbo,a5)
+	move.b d2,(Dip_Game_Turbo,a5)
 	bra.b loc_0105ba
 
 loc_0105b8:
@@ -2832,7 +2832,7 @@ loc_0105b8:
 loc_0105ba:
 	moveq #$1e,d1
 	moveq #0,d0
-	move.b (Game_Turbo,a5),d0
+	move.b (Dip_Game_Turbo,a5),d0
 	cmp.b (-$5f4b,a5),d0
 	beq.b loc_0105ca
 	moveq #$1d,d1
@@ -2872,7 +2872,7 @@ loc_010692:
 	bsr.w loc_010894
 	andi.w #3,d0
 	beq.b loc_0106c2
-	move.b ($de,a5),d2
+	move.b (Dip_1PRounds,a5),d2
 	btst #1,d0
 	beq.b loc_0106ac
 	subq.b #1,d2
@@ -2888,7 +2888,7 @@ loc_0106ac:
 	moveq #0,d2
 
 loc_0106bc:
-	move.b d2,($de,a5)
+	move.b d2,(Dip_1PRounds,a5)
 	bra.b loc_0106c4
 
 loc_0106c2:
@@ -2898,7 +2898,7 @@ loc_0106c2:
 loc_0106c4:
 	moveq #$1e,d1
 	moveq #0,d0
-	move.b ($de,a5),d0
+	move.b (Dip_1PRounds,a5),d0
 	cmp.b (-$5f4a,a5),d0
 	beq.b loc_0106d4
 	moveq #$1d,d1
@@ -2914,7 +2914,7 @@ loc_0106de:
 	bsr.w loc_010894
 	andi.w #3,d0
 	beq.b loc_01070e
-	move.b ($df,a5),d2
+	move.b (Dip_2PRounds,a5),d2
 	btst #1,d0
 	beq.b loc_0106f8
 	subq.b #1,d2
@@ -2930,7 +2930,7 @@ loc_0106f8:
 	moveq #0,d2
 
 loc_010708:
-	move.b d2,($df,a5)
+	move.b d2,(Dip_2PRounds,a5)
 	bra.b loc_010710
 
 loc_01070e:
@@ -2940,7 +2940,7 @@ loc_01070e:
 loc_010710:
 	moveq #$1e,d1
 	moveq #0,d0
-	move.b ($df,a5),d0
+	move.b (Dip_2PRounds,a5),d0
 	cmp.b (-$5f49,a5),d0
 	beq.b loc_010720
 	moveq #$1d,d1
@@ -2992,7 +2992,7 @@ loc_0107a2:
 	andi.w #3,d0
 	beq.b loc_0107e6
 	move.b (-$5f5c,a5),d0
-	eori.b #1,($a5,a5)
+	eori.b #1,(Dip_EventMode,a5)
 	beq.b loc_0107c6
 	moveq #0,d1
 	moveq #0,d2
@@ -3009,9 +3009,9 @@ loc_0107c6:
 	moveq #1,d1
 
 loc_0107d6:
-	move.b d0,($97,a5)
-	move.b d1,($98,a5)
-	move.b d2,($a4,a5)
+	move.b d0,(Dip_Coin_Mode,a5)
+	move.b d1,(Dip_Continue,a5)
+	move.b d2,(Dip_Join_in,a5)
 	bsr.b loc_0107e8
 	bra.b loc_01085a
 
@@ -3022,7 +3022,7 @@ loc_0107e6
 loc_0107e8:
 	moveq #$1e,d1
 	moveq #0,d0
-	move.b ($a5,a5),d0
+	move.b (Dip_EventMode,a5),d0
 	cmp.b (-$5f48,a5),d0
 	beq.b loc_0107f8
 	moveq #$1d,d1
@@ -3055,8 +3055,8 @@ loc_010840:
 	bsr.w loc_010894
 	andi.w #3,d0
 	beq.b loc_010858
-	eori.b #1,($a4,a5)
-	move.b ($a4,a5),(-$5f46,a5)
+	eori.b #1,(Dip_Join_in,a5)
+	move.b (Dip_Join_in,a5),(-$5f46,a5)
 	bra.b loc_01085a
 
 loc_010858:
@@ -3066,7 +3066,7 @@ loc_010858:
 loc_01085a:
 	moveq #$1e,d1
 	moveq #0,d0
-	move.b ($a4,a5),d0
+	move.b (Dip_Join_in,a5),d0
 	cmp.b (-$5f47,a5),d0
 	beq.b loc_01086a
 	moveq #$1d,d1
@@ -3372,7 +3372,7 @@ loc_010b54:
 
 ;==============================================
 loc_010b64:
-	move.w ($58,a5),d1
+	move.w (INP_P1,a5),d1
 	move.w d1,d2
 	move.w d1,d3
 	andi.w #$c,d2
@@ -3405,15 +3405,15 @@ loc_010b98:
 	or.w d2,d1
 	or.w d3,d1
 	move.w d1,(4,a6)
-	move.w ($5a,a5),d1
+	move.w (INP_P1_repeat,a5),d1
 	not.w d1
-	and.w ($58,a5),d1
+	and.w (INP_P1,a5),d1
 	move.w d1,(6,a6)
 	rts
 
 ;==============================================
 loc_010bb4:
-	move.w ($5c,a5),d1
+	move.w (INP_P2,a5),d1
 	move.w d1,d2
 	move.w d1,d3
 	andi.w #$c,d2
@@ -3446,16 +3446,16 @@ loc_010bec:
 	or.w d2,d1
 	or.w d3,d1
 	move.w d1,(8,a6)
-	move.w ($5e,a5),d1
+	move.w (INP_P2_repeat,a5),d1
 	not.w d1
-	and.w ($5c,a5),d1
+	and.w (INP_P2,a5),d1
 	move.w d1,($a,a6)
 	rts
 
 ;==============================================
 loc_010c08:
 	move.b ($60,a5),d0
-	and.b ($58,a5),d0
+	and.b (INP_P1,a5),d0
 	btst #0,d0
 	beq.b loc_010c70
 	bsr.w loc_010f22
@@ -3498,7 +3498,7 @@ loc_010c76:
 ;==============================================
 loc_010c7a:
 	move.b ($60,a5),d0
-	and.b ($58,a5),d0
+	and.b (INP_P1,a5),d0
 	btst #0,d0
 	beq.b loc_010ca4
 
@@ -3626,13 +3626,13 @@ loc_010ea4:
 
 ;==============================================
 loc_010eec:
-	move.w ($5a,a5),d0
+	move.w (INP_P1_repeat,a5),d0
 	not.w d0
-	and.w ($58,a5),d0
+	and.w (INP_P1,a5),d0
 	swap d0
-	move.w ($5e,a5),d0
+	move.w (INP_P2_repeat,a5),d0
 	not.w d0
-	and.w ($5c,a5),d0
+	and.w (INP_P2,a5),d0
 	andi.l #$770f770f,d0
 	beq.b loc_010f20
 	move.w (-$5f04,a5),d1

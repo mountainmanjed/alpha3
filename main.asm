@@ -188,9 +188,9 @@ loc_0002ca:
 	bsr.w loc_000560
 	moveq #$10,d1
 	move.l (-$7ff0,a5),d2
-	move.w ($5a,a5),d3
+	move.w (INP_P1_repeat,a5),d3
 	not.w d3
-	and.w ($58,a5),d3
+	and.w (INP_P1,a5),d3
 	btst #9,d3
 	bne.w loc_000324
 	btst #8,d0
@@ -424,13 +424,13 @@ loc_00054e:
 
 ;==============================================
 loc_000560:
-	move.w ($5a,a5),d0
+	move.w (INP_P1_repeat,a5),d0
 	beq.b loc_000580
 	cmpi.b #$20,(-$7fec,a5)
 	blt.b loc_000586
 	bsr.b loc_00058a
 	andi.w #$1400,d0
-	move.w ($58,a5),d1
+	move.w (INP_P1,a5),d1
 	andi.w #$ebfe,d1
 	or.w d1,d0
 	rts
@@ -443,7 +443,7 @@ loc_000586:
 
 loc_00058a:
 	not.w d0
-	and.w ($58,a5),d0 
+	and.w (INP_P1,a5),d0 
 	rts
 
 ;==============================================
@@ -1438,9 +1438,9 @@ loc_0012c8:
 	move.l d1,d7
 	tst.b ($bf,a5)
 	bne.b loc_001300
-	move.w ($5a,a5),d0
+	move.w (INP_P1_repeat,a5),d0
 	not.w d0
-	and.w ($58,a5),d0
+	and.w (INP_P1,a5),d0
 	andi.w #$7708,d0
 	cmpi.w #$7708,d0
 	bne.b loc_001300
@@ -1632,8 +1632,8 @@ loc_001466:
 	move.b $804021,d0
 	not.b d0
 	move.b d0,($64,a5)
-	move.w ($58,a5),($5a,a5)
-	move.w ($5c,a5),($5e,a5)
+	move.w (INP_P1,a5),(INP_P1_repeat,a5)
+	move.w (INP_P2,a5),(INP_P2_repeat,a5)
 	move.b $804011,d3
 	not.b d3
 	move.b d3,d4
@@ -1650,7 +1650,7 @@ loc_001466:
 	lsr.b #4,d1
 	or.b d3,d1
 	move.b d0,($59,a5)
-	move.b d1,($58,a5)
+	move.b d1,(INP_P1,a5)
 	move.b CPSinput00,d0
 	not.b d0
 	move.b d0,d1
@@ -1659,7 +1659,7 @@ loc_001466:
 	lsr.b #4,d1
 	or.b d4,d1
 	move.b d0,($5d,a5)
-	move.b d1,($5c,a5)
+	move.b d1,(INP_P2,a5)
 	move.b ($1c4,a5),($1c5,a5)
 	move.b CPSinput01,($1c4,a5)
 	bsr.w loc_001516
@@ -2044,12 +2044,12 @@ loc_0018c0:
 loc_0018d8:
 	WATCHDOG
 	moveq #0,d0
-	move.b d0,($98,a5)
+	move.b d0,(Dip_Continue,a5)
 	move.b d0,($9c,a5)
 	move.b d0,($9d,a5)
 	lea (-$7394,a5),a4;Epprom
 	move.b (a4),d0
-	move.b d0,($97,a5)
+	move.b d0,(Dip_Coin_Mode,a5)
 	cmpi.b #$12,d0
 	beq.b loc_001908
 	cmpi.b #$11,d0
@@ -2066,22 +2066,22 @@ loc_001908:
 
 loc_00191a:
 	move.w #$101,d0
-	move.b d0,($98,a5)
+	move.b d0,(Dip_Continue,a5)
 	move.b d0,($9d,a5)
 	move.w d0,($72,a5)
 	move.w d0,($7a,a5)
 	bra.b loc_001936
 
 loc_001930:
-	move.b (1,a4),($98,a5)
+	move.b (1,a4),(Dip_Continue,a5)
 
 loc_001936:
 	move.b (2,a4),($96,a5)
-	move.b (3,a4),($99,a5)
-	move.b (4,a4),($9a,a5)
+	move.b (3,a4),(Dip_Demo_Sound,a5)
+	move.b (4,a4),(Dip_Sound_Mode,a5)
 	moveq #0,d0
 	move.b (5,a4),d0
-	move.b d0,($9b,a5)
+	move.b d0,(Dip_Chutes,a5)
 	bsr.w loc_0024f0
 	move.b (6,a4),($bb,a5)
 	move.b (7,a4),($bc,a5)
@@ -2095,18 +2095,18 @@ loc_001936:
 	move.b d0,($d2,a5)
 	move.b d1,($d3,a5)
 	bsr.w loc_002508
-	move.b ($10,a4),($a0,a5)
-	move.b ($11,a4),($a1,a5)
-	move.b ($12,a4),(Timer_Speed,a5)
-	move.b ($13,a4),(Game_Turbo,a5)
-	move.b ($14,a4),($de,a5)
-	move.b ($15,a4),($df,a5)
-	move.b ($16,a4),($a5,a5)
+	move.b ($10,a4),(Dip_Difficulty,a5)
+	move.b ($11,a4),(Dip_Damage,a5)
+	move.b ($12,a4),(Dip_Timer_Speed,a5)
+	move.b ($13,a4),(Dip_Game_Turbo,a5)
+	move.b ($14,a4),(Dip_1PRounds,a5)
+	move.b ($15,a4),(Dip_2PRounds,a5)
+	move.b ($16,a4),(Dip_EventMode,a5)
 	beq.b loc_0019ba
-	clr.b ($98,a5)
+	clr.b (Dip_Continue,a5)
 
 loc_0019ba:
-	move.b ($17,a4),($a4,a5)
+	move.b ($17,a4),(Dip_Join_in,a5)
 	move.l ($60,a4),($c0,a5)
 	move.l ($64,a4),($c4,a5)
 	move.l ($68,a4),($c8,a5)
@@ -2123,48 +2123,48 @@ loc_0019e8:
 	movem.l ($20,a0),d0-d3
 	moveq #0,d4
 	lea (-$7394,a5),a4
-	move.b ($97,a5),(a4)
-	move.b ($98,a5),($1,a4)
+	move.b (Dip_Coin_Mode,a5),(a4)
+	move.b (Dip_Continue,a5),($1,a4)
 	move.b ($96,a5),($2,a4)
-	move.b ($99,a5),($3,a4)
-	move.b ($9a,a5),($4,a4)
-	move.b ($9b,a5),($5,a4)
+	move.b (Dip_Demo_Sound,a5),($3,a4)
+	move.b (Dip_Sound_Mode,a5),($4,a4)
+	move.b (Dip_Chutes,a5),($5,a4)
 	move.b ($bb,a5),($6,a4)
 	move.b ($bc,a5),($7,a4)
 	move.b ($93,a5),($8,a4)
 	move.b ($ce,a5),($9,a4)
 	move.b ($d2,a5),($a,a4)
 	move.b ($d3,a5),($b,a4)
-	move.b ($a0,a5),($10,a4)
-	move.b ($a1,a5),($11,a4)
-	move.b (Timer_Speed,a5),($12,a4)
-	move.b (Game_Turbo,a5),($13,a4)
-	move.b ($de,a5),($14,a4)
-	move.b ($df,a5),($15,a4)
-	move.b ($a5,a5),($16,a4)
-	move.b ($a4,a5),($17,a4)
+	move.b (Dip_Difficulty,a5),($10,a4)
+	move.b (Dip_Damage,a5),($11,a4)
+	move.b (Dip_Timer_Speed,a5),($12,a4)
+	move.b (Dip_Game_Turbo,a5),($13,a4)
+	move.b (Dip_1PRounds,a5),($14,a4)
+	move.b (Dip_2PRounds,a5),($15,a4)
+	move.b (Dip_EventMode,a5),($16,a4)
+	move.b (Dip_Join_in,a5),($17,a4)
 	movem.l d0-d3,($20,a4)
 	lea ($30,a4),a4
-	move.b ($97,a5),(a4)
-	move.b ($98,a5),($1,a4)
+	move.b (Dip_Coin_Mode,a5),(a4)
+	move.b (Dip_Continue,a5),($1,a4)
 	move.b ($96,a5),($2,a4)
-	move.b ($99,a5),($3,a4)
-	move.b ($9a,a5),($4,a4)
-	move.b ($9b,a5),($5,a4)
+	move.b (Dip_Demo_Sound,a5),($3,a4)
+	move.b (Dip_Sound_Mode,a5),($4,a4)
+	move.b (Dip_Chutes,a5),($5,a4)
 	move.b ($bb,a5),($6,a4)
 	move.b ($bc,a5),($7,a4)
 	move.b ($93,a5),($8,a4)
 	move.b ($ce,a5),($9,a4)
 	move.b ($d2,a5),($a,a4)
 	move.b ($d3,a5),($b,a4)
-	move.b ($a0,a5),($10,a4)
-	move.b ($a1,a5),($11,a4)
-	move.b (Timer_Speed,a5),($12,a4)
-	move.b (Game_Turbo,a5),($13,a4)
-	move.b ($de,a5),($14,a4)
-	move.b ($df,a5),($15,a4)
-	move.b ($a5,a5),($16,a4)
-	move.b ($a4,a5),($17,a4)
+	move.b (Dip_Difficulty,a5),($10,a4)
+	move.b (Dip_Damage,a5),($11,a4)
+	move.b (Dip_Timer_Speed,a5),($12,a4)
+	move.b (Dip_Game_Turbo,a5),($13,a4)
+	move.b (Dip_1PRounds,a5),($14,a4)
+	move.b (Dip_2PRounds,a5),($15,a4)
+	move.b (Dip_EventMode,a5),($16,a4)
+	move.b (Dip_Join_in,a5),($17,a4)
 	movem.l d0-d3,($20,a4)
 	move.w #$2f,(-$7290,a5)
 	move.w #0,(-$728c,a5)
@@ -2174,26 +2174,26 @@ loc_0019e8:
 
 loc_001b12:
 	bsr.w loc_00234c
-	move.b (a0),($97,a5)
-	move.b (1,a0),($98,a5)
+	move.b (a0),(Dip_Coin_Mode,a5)
+	move.b (1,a0),(Dip_Continue,a5)
 	move.b (2,a0),($96,a5)
-	move.b (3,a0),($99,a5)
-	move.b (4,a0),($9a,a5)
-	move.b (5,a0),($9b,a5)
+	move.b (3,a0),(Dip_Demo_Sound,a5)
+	move.b (4,a0),(Dip_Sound_Mode,a5)
+	move.b (5,a0),(Dip_Chutes,a5)
 	move.b (6,a0),($bb,a5)
 	move.b (7,a0),($bc,a5)
 	move.b (8,a0),($93,a5)
 	move.b (9,a0),($ce,a5)
 	move.b ($a,a0),($d2,a5)
 	move.b ($b,a0),($d3,a5)
-	move.b ($10,a0),($a0,a5)
-	move.b ($11,a0),($a1,a5)
-	move.b ($12,a0),(Timer_Speed,a5)
-	move.b ($13,a0),(Game_Turbo,a5)
-	move.b ($14,a0),($de,a5)
-	move.b ($15,a0),($df,a5)
-	move.b ($16,a0),($a5,a5)
-	move.b ($17,a0),($a4,a5)
+	move.b ($10,a0),(Dip_Difficulty,a5)
+	move.b ($11,a0),(Dip_Damage,a5)
+	move.b ($12,a0),(Dip_Timer_Speed,a5)
+	move.b ($13,a0),(Dip_Game_Turbo,a5)
+	move.b ($14,a0),(Dip_1PRounds,a5)
+	move.b ($15,a0),(Dip_2PRounds,a5)
+	move.b ($16,a0),(Dip_EventMode,a5)
+	move.b ($17,a0),(Dip_Join_in,a5)
 	rts
 
 ;==============================================
@@ -2226,11 +2226,11 @@ loc_001bc0:
 loc_001bc2:
 	bsr.w loc_00234c
 	move.b (a0),d0
-	cmp.b ($97,a5),d0
+	cmp.b (Dip_Coin_Mode,a5),d0
 	bne.w loc_001ca2
 
 	move.b (1,a0),d0
-	cmp.b ($98,a5),d0
+	cmp.b (Dip_Continue,a5),d0
 	bne.w loc_001ca2
 
 	move.b (2,a0),d0
@@ -2238,15 +2238,15 @@ loc_001bc2:
 	bne.w loc_001ca2
 
 	move.b (3,a0),d0
-	cmp.b ($99,a5),d0
+	cmp.b (Dip_Demo_Sound,a5),d0
 	bne.w loc_001ca2
 
 	move.b (4,a0),d0
-	cmp.b ($9a,a5),d0
+	cmp.b (Dip_Sound_Mode,a5),d0
 	bne.w loc_001ca2
 
 	move.b (5,a0),d0
-	cmp.b ($9b,a5),d0
+	cmp.b (Dip_Chutes,a5),d0
 	bne.w loc_001ca2
 
 	move.b (6,a0),d0
@@ -2274,35 +2274,35 @@ loc_001bc2:
 	bne.b loc_001ca2
 
 	move.b ($10,a0),d0
-	cmp.b ($a0,a5),d0
+	cmp.b (Dip_Difficulty,a5),d0
 	bne.b loc_001ca2
 
 	move.b ($11,a0),d0
-	cmp.b ($a1,a5),d0
+	cmp.b (Dip_Damage,a5),d0
 	bne.b loc_001ca2
 
 	move.b ($12,a0),d0
-	cmp.b (Timer_Speed,a5),d0
+	cmp.b (Dip_Timer_Speed,a5),d0
 	bne.b loc_001ca2
 
 	move.b ($13,a0),d0
-	cmp.b (Game_Turbo,a5),d0
+	cmp.b (Dip_Game_Turbo,a5),d0
 	bne.b loc_001ca2
 
 	move.b ($14,a0),d0
-	cmp.b ($de,a5),d0
+	cmp.b (Dip_1PRounds,a5),d0
 	bne.b loc_001ca2
 
 	move.b ($15,a0),d0
-	cmp.b ($df,a5),d0
+	cmp.b (Dip_2PRounds,a5),d0
 	bne.b loc_001ca2
 
 	move.b ($16,a0),d0
-	cmp.b ($a5,a5),d0
+	cmp.b (Dip_EventMode,a5),d0
 	bne.b loc_001ca2
 
 	move.b ($17,a0),d0
-	cmp.b ($a4,a5),d0
+	cmp.b (Dip_Join_in,a5),d0
 	bne.b loc_001ca2
 	moveq #0,d0
 
@@ -3254,7 +3254,7 @@ loc_0030ae:
 ;==============================================
 loc_0030c4:
 	moveq #0,d0
-	tst.b ($9a,a5)
+	tst.b (Dip_Sound_Mode,a5)
 	beq.b loc_0030ce
 	moveq #-1,d0
 
@@ -3289,7 +3289,7 @@ loc_003166:
 
 ;==============================================
 loc_003168:
-	tst.b ($99,a5)
+	tst.b (Dip_Demo_Sound,a5)
 	bne.b loc_003174
 	tst.b ($83,a5)
 	bne.b loc_00319c
@@ -4166,7 +4166,7 @@ loc_003b16:
 	move.l #$7fff,d3
 	tst.b ($a6,a5)
 	bne.b loc_003b34
-	tst.b ($99,a5)
+	tst.b (Dip_Demo_Sound,a5)
 	bne.b loc_003b32
 	tst.b ($83,a5)
 	bne.b loc_003b34
@@ -4595,7 +4595,7 @@ BootFontPalettes:
 
 ;==============================================
 loc_00402c:
-	move.w ($58,a5),d0
+	move.w (INP_P1,a5),d0
 	btst #8,d0
 	rts
 
@@ -4991,7 +4991,7 @@ loc_004462:
 	bne.w loc_0044ee
 
 loc_004478:
-	btst.b #0,($58,a5)
+	btst.b #0,(INP_P1,a5)
 	beq.w loc_0044e6
 	lea ($79c2,a5),a4
 	move.w #$20c0,d1
@@ -5103,7 +5103,7 @@ loc_0045ac:
 	and.b ($60,a5),d0
 	andi.b #3,d0
 	beq.b loc_0045e8
-	tst.b ($a4,a5)
+	tst.b (Dip_Join_in,a5)
 	bne.b loc_0045d4
 	tst.b (Active_Player,a5)
 	bne.w loc_0045e8
@@ -5112,7 +5112,7 @@ loc_0045ac:
 	move.b #2,d0
 
 loc_0045d4:
-	tst.b ($a5,a5)
+	tst.b (Dip_EventMode,a5)
 	beq.b loc_0045dc
 	moveq #3,d0
 
@@ -5282,7 +5282,7 @@ loc_0047f8
 	bra.b loc_00482e
 
 loc_0047fa:
-	tst.b ($a4,a5)
+	tst.b (Dip_Join_in,a5)
 	bne.b loc_004806
 	tst.b (Active_Player,a5)
 	bne.b loc_00482c
@@ -5296,7 +5296,7 @@ loc_004806:
 	bcs.b loc_00482c
 	move.b d2,(6,a6)
 	bset.b d1,(Active_Player,a5)
-	tst.b ($a5,a5)
+	tst.b (Dip_EventMode,a5)
 	beq.b loc_00482c
 	move.b #3,(Active_Player,a5)
 
@@ -9423,7 +9423,7 @@ loc_007bb2:
 	or.b ($14a,a5),d1
 	or.b ($106,a5),d1
 	bne.w loc_007f32
-	tst.b ($a4,a5)
+	tst.b (Dip_Join_in,a5)
 	beq.w loc_00843c
 	move.b ($105,a6),d0
 	move.w loc_007bd6(pc,d0.w),d1
@@ -9584,7 +9584,7 @@ loc_007d3e:
 	or.b ($8f,a5),d1
 	or.b ($8c,a5),d1
 	bne.w loc_007f32
-	tst.b ($a4,a5)
+	tst.b (Dip_Join_in,a5)
 	beq.w loc_00843c
 	lea ($70,a5),a4
 	moveq #0,d0
@@ -9861,9 +9861,9 @@ loc_00808a:
 	bne.b loc_0080ae
 	cmpi.b #3,(game_unlock,a5)
 	bcs.b loc_0080c2
-	tst.b ($de,a5)
+	tst.b (Dip_1PRounds,a5)
 	beq.b loc_0080c2
-	tst.b ($df,a5)
+	tst.b (Dip_2PRounds,a5)
 	beq.b loc_0080c2
 	move.b #1,($15a,a6)
 	bra.w loc_0080c2
@@ -10828,8 +10828,8 @@ loc_008c4e:
 	move.b CPSinput02,d1
 	not.b d1
 	move.b d1,($60,a5)
-	move.w ($58,a5),($5a,a5)
-	move.w ($5c,a5),($5e,a5)
+	move.w (INP_P1,a5),(INP_P1_repeat,a5)
+	move.w (INP_P2,a5),(INP_P2_repeat,a5)
 	move.b $804011,d3
 	not.b d3
 	move.b d3,d4
@@ -10846,7 +10846,7 @@ loc_008c4e:
 	lsr.b #4,d1
 	or.b d3,d1
 	move.b d0,($59,a5)
-	move.b d1,($58,a5)
+	move.b d1,(INP_P1,a5)
 	move.b CPSinput00,d0
 	not.b d0
 	move.b d0,d1
@@ -10855,7 +10855,7 @@ loc_008c4e:
 	lsr.b #4,d1
 	or.b d4,d1
 	move.b d0,($5d,a5)
-	move.b d1,($5c,a5)
+	move.b d1,(INP_P2,a5)
 	rts
 
 ;==============================================
@@ -10908,11 +10908,11 @@ loc_008d5c:
 	move.w #$92a0,(palrampointer,a5)
 	move.w #$92a0,($48,a5)
 	move.l #$90c000,($e0,a5)
-	move.b ($a0,a5),($be,a5)
-	move.b ($de,a5),d0
+	move.b (Dip_Difficulty,a5),($be,a5)
+	move.b (Dip_1PRounds,a5),d0
 	addq.b #1,d0
 	move.b d0,($108,a5)
-	move.b ($98,a5),($11f,a5)
+	move.b (Dip_Continue,a5),($11f,a5)
 	move.w #9,($14c,a5)
 	tst.b ($bf,a5)
 	beq.b loc_008d98
@@ -10943,11 +10943,11 @@ loc_008d98:
 	moveq #0,d1
 	lea.l (p1memory,a5),a6
 	moveq #0,d0
-	move.w ($58,a5),d2
+	move.w (INP_P1,a5),d2
 	bsr.w loc_008e9c
 	lea.l (p2memory,a5),a6
 	moveq #1,d0
-	move.w ($5c,a5),d2
+	move.w (INP_P2,a5),d2
 	bsr.w loc_008e9c
 	btst.b #0,(Active_Player,a5)
 	beq.b Set_CharSelect_P2
@@ -10980,7 +10980,7 @@ Set_CharSelect_P2:
 
 Char_PlayersSet:
 	moveq #0,d0
-	move.b (Game_Turbo,a5),d0
+	move.b (Dip_Game_Turbo,a5),d0
 	lea.l Turbo_Options(pc),a0
 	move.b (a0,d0.w),(Dev_Turbo,a5)
 	bsr.w loc_008f38
@@ -11165,10 +11165,10 @@ loc_008ff6:
 
 loc_0090a0:
 	move.l #$90c000,($e0,a5)
-	move.b ($de,a5),d0
+	move.b (Dip_1PRounds,a5),d0
 	addq.b #1,d0
 	move.b d0,($108,a5)
-	move.b ($98,a5),($11f,a5)
+	move.b (Dip_Continue,a5),($11f,a5)
 	move.w ($174,a5),(stageid,a5)
 	move.w #9,($14c,a5)
 	tst.b ($bf,a5)
@@ -11185,7 +11185,7 @@ loc_0090d0:
 	lea.l (p2memory,a5),a1
 	cmpi.b #3,($ac,a5)
 	bne.b loc_00911a
-	move.b ($df,a5),d0
+	move.b (Dip_2PRounds,a5),d0
 	addq.b #1,d0
 	move.b d0,($108,a5)
 	move.l #$ff,d0
@@ -12469,7 +12469,7 @@ loc_009f40:
 loc_009f58:
 	tst.b ($14a,a5)
 	bne.w loc_009fda
-	tst.b ($a5,a5)
+	tst.b (Dip_EventMode,a5)
 	bne.w loc_009faa
 	movea.w ($13a,a5),a0
 	movea.w ($13c,a5),a1
@@ -12652,7 +12652,7 @@ loc_00a12e:
 	bne.b loc_00a14e
 	tst.b ($14a,a5)
 	bne.b loc_00a14e
-	tst.b ($a5,a5)
+	tst.b (Dip_EventMode,a5)
 	bne.b loc_00a14e
 	tst.b ($b8,a5)
 	bne.b loc_00a14e
@@ -12997,7 +12997,7 @@ loc_00a4dc:
 	movea.w ($13a,a5),a0
 	movea.w ($13c,a5),a1
 	bsr.w loc_00ab80
-	tst.b ($a5,a5)
+	tst.b (Dip_EventMode,a5)
 	bne.w loc_00a522
 	cmpi.w #6,($138,a5)
 	beq.w loc_00a5a6
@@ -13345,7 +13345,7 @@ loc_00a8cc:
 
 ;==============================================
 Set_TimerSpeed:
-	move.b (Timer_Speed,a5),d1
+	move.b (Dip_Timer_Speed,a5),d1
 	ext.w d1
 	move.b Clock_frame_counts(pc,d1.w),(Clock_frames,a5)
 	rts
@@ -13474,7 +13474,7 @@ loc_00a9c2:
 	st.b ($bd,a5)
 	move.b #1,($8f,a5)
 	st.b ($130,a5)
-	move.b ($98,a5),($11f,a5)
+	move.b (Dip_Continue,a5),($11f,a5)
 	move.w #9,($14c,a5)
 	move.w #8,($114,a5)
 	moveq #0,d1
@@ -14020,9 +14020,9 @@ loc_00afbe:
 	bsr.b loc_00afe6
 
 loc_00afc4:
-	move.w ($5a,a5),d1
+	move.w (INP_P1_repeat,a5),d1
 	not.w d1
-	and.w ($58,a5),d1
+	and.w (INP_P1,a5),d1
 	andi.w #$7700,d1
 	or.w d1,d0
 	move.b ($61,a5),d1
@@ -14033,9 +14033,9 @@ loc_00afc4:
 	rts
 
 loc_00afe6:
-	move.w ($5e,a5),d1
+	move.w (INP_P2_repeat,a5),d1
 	not.w d1
-	and.w ($5c,a5),d1
+	and.w (INP_P2,a5),d1
 	andi.w #$7700,d1
 	or.w d1,d0
 	move.b ($61,a5),d1
@@ -21870,7 +21870,7 @@ loc_02438e:
 ;==============================================
 loc_024390:
 	moveq #0,d0
-	move.b ($a1,a5),d0
+	move.b (Dip_Damage,a5),d0
 	add.w d0,d0
 	move.w loc_0243a0(pc,d0.w),d1
 	jmp loc_0243a0(pc,d1.w)

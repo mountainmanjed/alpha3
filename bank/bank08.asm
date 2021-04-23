@@ -8342,7 +8342,7 @@ loc_0861da:
 
 loc_08626a:
 	moveq #0,d0
-	move.b (Game_Turbo,a5),d0
+	move.b (Dip_Game_Turbo,a5),d0
 	subq.b #3,d0
 	add.b d0,d0
 	add.b ($a,a6),d0

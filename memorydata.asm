@@ -43,19 +43,61 @@ palrampointer = $20
 ;$2c
 
 ;$4e
+
+;==============================================
+;Main Control Inputs
+;==============================================
+INP_P1 = 0x58
+INP_P1_repeat = 0x5a
+INP_P2 = 0x5c
+INP_P2_repeat = 0x5e
+
+;==============================================
+;
+;==============================================
 ;0x86 ;deals with linking
 Region = 0x90
-Timer_Speed = 0xa2
-Game_Turbo = 0xa3
+
+
+;==============================================
+;Game Dips
+;==============================================
+Dip_Monitor_Flip = 0x96
+Dip_Coin_Mode = 0x97
+Dip_Continue = 0x98
+Dip_Demo_Sound = 0x99
+Dip_Sound_Mode = 0x9a
+Dip_Chutes= 0x9b
+
+Dip_Difficulty = 0xa0
+Dip_Damage = 0xa1
+Dip_Timer_Speed = 0xa2
+Dip_Game_Turbo = 0xa3
+Dip_Join_in = 0xa4
+Dip_EventMode = 0xa5
+
+;==============================================
+;
+;==============================================
 Active_Player = 0xa8
-RngByte0 = $ae
-RngByte1 = $af
+RngByte0 = 0xae
+RngByte1 = 0xaf
 
 ;$b4
 ;$b5
+Dip_Regulation = 0xbb
 
-game_unlock = $ee
+;==============================================
+;Game Dips Extra
+;==============================================
+Dip_1PRounds = 0xde
+Dip_2PRounds = 0xdf
 
+game_unlock = 0xee
+
+;==============================================
+;Game Data
+;==============================================
 stageid = 0x100
 ;$107
 ;$109
@@ -120,3 +162,16 @@ unk_ff3c0c = $ff3c0c
 ;unk_ff3c18 = $ff3c18
 ;ff3d18
 
+;==============================================
+;Player Memory Offset
+;==============================================
+PL_Enable = 0x00
+PL_Render = 0x01
+PL_Flip = 0x0b
+PL_X = 0x10
+PL_Y = 0x14
+PL_charid = 0x102
+;PL_Anim_Pnt =
+;
+;
+;
