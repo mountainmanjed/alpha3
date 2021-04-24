@@ -1,111 +1,121 @@
-;= $00 ;byte
-;= $01 ;byte
+PL_Enable = 0x00 ;byte
+PL_Render = 0x01 ;byte
 
-;= $06 ;byte
-plmovestate = $07 ;byte
-;= $08
+;= 0x06 ;byte
+PL_Move_state = 0x07 ;byte
+;= 0x08
 
-;= $0a ;byte
-plflip = $0b ;byte
-;= $0c ;word
-;= $0e
+;= 0x0a ;byte
+PL_Flip = 0x0b ;byte
+;= 0x0c ;word
+;= 0x0e
 
-;= $10
-;= $14
+PL_X = 0x10
+PL_Y = 0x14
 
-spritebank = $1a ;word
+PL_spritebank = 0x1a ;word
+PL_Anim_Pnt = 0x1c
 
-;= $30
-;= $31
-;= $32
-;= $33
-;= $34
-;= $35 cancels?
-;= $36
-;= $37
-;= $38
-;= $39
-;= $3a
-;= $3b
-;= $3c
-;= $3d
-;= $3e
-;= $3f
+;= 0x30
+;= 0x31
+pl_cell_frame_count = 0x32
+pl_anim_flags = 0x33
+pl_renda_flag = 0x34 ;?
+;= 0x36
+;= 0x37
+;= 0x38
+;= 0x39
+;= 0x3a
+;= 0x3b
+;= 0x3c
+;= 0x3d
+;= 0x3e
+;= 0x3f
 
-plxvelocity = $40
-plyvelocity = $44
-plxdrag = $48
-plydrag = $4c
+pl_x_velocity = 0x40
+pl_y_velocity = 0x44
+pl_x_drag = 0x48
+pl_y_drag = 0x4c
 
-plhlth = $50;word
+PL_HP = 0x50;word
+PL_HP_copy = 0x52;word
 
-plhlthcpy = $52;word
+; 0x64
 
-; $64
+;NeutralState? = 0x80
+PL_Attacktype = 0x81 ;0 = Punches , 2 = Kicks
+PL_ButtonStrength = 0x82 ;0 = L,2 = M,4 = H
+PL_Directioninput = 0x83 ;1 = Back, 2 = Forward , 4 = Down , 8 = up
+; = 0x84
+; = 0x85
 
-;NeutralState? = $80
-Attacktype = $81 ;0 = Punches , 2 = Kicks
-ButtonStrength = $82 ;0 = L,2 = M,4 = H
-Directioninput = $83 ;1 = Back, 2 = Forward , 4 = Down , 8 = up
-; = $84
-; = $85
+pl_col_head_pnt = 0x90
+pl_col_body_pnt = 0x94
+pl_col_legs_pnt = 0x98
+pl_col_push_pnt = 0x9c
+pl_col_attk_pnt = 0xa0
+; = 0xa4
+; = 0xa8 ; byte
+; = 0xa9 ; byte
+pl_move_id = 0xaa ; byte
+; = 0xab ; byte
+; = 0xac
 
-; = $a8 ; byte
-; = $a9 ; byte
-plmoveid = $aa ; byte
-; = $ab ; byte
-; = $ac
+;= 0xb9 ;byte
+;= 0xba ;word
+pl_taunt_count = 0xbc
 
-;= $b9 ;byte
-;= $ba ;word
-pltaunt = $bc
+PL_charid = 0x102
 
-charid = $102
+; = 0x11a
+PL_meter = 0x11e
 
-; = $11a
-plmeter = $11e
+;0x123 ;byte
+;0x124 ;byte
+PL_cpucontrol = 0x125
 
-;$123 ;byte
-;$124 ;byte
-cpucontrol = $125
+PL_Palnum = 0x128
 
-ism_choice = $132
+PL_ism_choice = 0x132
 
-moveinpslot0 = $180
-moveinpslot1 = $188
-moveinpslot2 = $190
-moveinpslot3 = $198
-moveinpslot4 = $1a0
-moveinpslot5 = $1a8
-moveinpslot6 = $1b0
-moveinpslot7 = $1b8
-moveinpslot8 = $1c0
-moveinpslot9 = $1c8
+; = 0x15c
+; = 0x161
 
-;$1d0
-;$1d1
-;$1d2
+pl_inp_slot_0 = 0x180
+pl_inp_slot_1 = 0x188
+pl_inp_slot_2 = 0x190
+pl_inp_slot_3 = 0x198
+pl_inp_slot_4 = 0x1a0
+pl_inp_slot_5 = 0x1a8
+pl_inp_slot_6 = 0x1b0
+pl_inp_slot_7 = 0x1b8
+pl_inp_slot_8 = 0x1c0
+pl_inp_slot_9 = 0x1c8
 
-rolentowire = $1e4 ;word
-codyknife = $1e4 ;byte needs to be negative
-rosegthrow = $1e4 ; addr.w
+;0x1d0
+;0x1d1
+;0x1d2
 
-;??= $214
+rolentowire = 0x1e4 ;word
+codyknife = 0x1e4 ;byte needs to be negative
+rosegthrow = 0x1e4 ; addr.w
 
-distanceaway = $21c
+;??= 0x214
 
-reversalwindow = $256
+pl_dist_away = 0x21c
 
-sidecheck = $2c9
-plstun = $2cc
+PL_Reversal_Window = 0x256
 
-WalkSpeedPNT = $2d0
-JumpDataPNT = $2d4
+pl_sidecheck = 0x2c9
+PL_Stun = 0x2cc
 
-moveinpslota = $300
-moveinpslotb = $308
+Pl_WalkSpeed_pnt = 0x2d0
+Pl_JumpData_pnt = 0x2d4
 
-;= $32c ;byte
+pl_inp_slot_a = 0x300
+pl_inp_slot_b = 0x308
+
+;= 0x32c ;byte
 
 ;371
 ;378

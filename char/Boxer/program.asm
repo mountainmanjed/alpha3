@@ -418,7 +418,7 @@ loc_059cce:
 	jsr loc_02a710
 	tst.b ($3c,a6)
 	bne.b loc_059d08
-	tst.b (ism_choice,a6)
+	tst.b (PL_ism_choice,a6)
 	bpl.b loc_059d08
 	tst.b ($81,a6)
 	bne.b loc_059d08
@@ -551,7 +551,7 @@ loc_059e54:
 ;Aism Alpha Counter Write
 ;##############################################
 loc_059e5e:
-	tst.b (ism_choice,a6)
+	tst.b (PL_ism_choice,a6)
 	bne.w loc_059eac
 	move.l #$02000e0a,(4,a6)
 	move.b #8,($aa,a6)
@@ -605,7 +605,7 @@ loc_059f0e:
 
 ;----------------------------------------------
 loc_059f38:
-	tst.b (ism_choice,a6)
+	tst.b (PL_ism_choice,a6)
 	bmi.w loc_059d76
 	jsr loc_02ed00
 	beq.w loc_059d76
@@ -617,7 +617,7 @@ loc_059f38:
 
 ;----------------------------------------------
 loc_059f6a:
-	tst.b (ism_choice,a6)
+	tst.b (PL_ism_choice,a6)
 	bmi.w loc_059d84
 	jsr loc_02ed00
 	beq.w loc_059d84
@@ -629,12 +629,12 @@ loc_059f6a:
 
 ;----------------------------------------------
 loc_059f9c:
-	tst.b (ism_choice,a6)
+	tst.b (PL_ism_choice,a6)
 	bmi.w loc_059d4c
 	jsr ReversalCheck
 	beq.w loc_059d4c
 	move.l #$02000e00,(4,a6)
-	move.b #$8,(plmoveid,a6)
+	move.b #$8,(pl_move_id,a6)
 	move.b ($2c9,a6),($b,a6)
 	move.b #1,($a9,a6)
 	jmp loc_02f728
@@ -665,7 +665,7 @@ loc_059ffe:
 
 ;----------------------------------------------
 loc_05a02e:
-	tst.b (ism_choice,a6)
+	tst.b (PL_ism_choice,a6)
 	bpl.w loc_059d22
 	cmpi.w #$30,($11e,a6)
 	bcs.w loc_059d22
@@ -686,7 +686,7 @@ loc_05a074:
 
 ;----------------------------------------------
 loc_05a080:
-	tst.b (ism_choice,a6)
+	tst.b (PL_ism_choice,a6)
 	bne.w loc_059d30
 	cmpi.w #$90,($11e,a6)
 	bcs.w loc_059d30
@@ -702,7 +702,7 @@ loc_05a080:
 
 ;----------------------------------------------
 loc_05a0c4:
-	tst.b (ism_choice,a6)
+	tst.b (PL_ism_choice,a6)
 	bne.w loc_059d3e
 	cmpi.w #$30,($11e,a6)
 	bcs.w loc_059d3e
@@ -744,7 +744,7 @@ loc_05a124:
 
 ;----------------------------------------------
 loc_05a128:
-	tst.b (ism_choice,a6)
+	tst.b (PL_ism_choice,a6)
 	bne.w loc_05a15c
 	cmpi.w #$90,($11e,a6)
 	bcs.w loc_05a15c
@@ -1356,7 +1356,7 @@ loc_05a75c:
 	move.l loc_05a7b6(pc,d0.w),($40,a6)
 	move.l loc_05a7b6+4(pc,d0.w),($48,a6)
 	move.b #$c,($3a,a6)
-	tst.b (ism_choice,a6)
+	tst.b (PL_ism_choice,a6)
 	bmi.b loc_05a794
 	moveq #$56,d0
 	bsr.w loc_05a884

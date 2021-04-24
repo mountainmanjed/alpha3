@@ -8997,7 +8997,7 @@ loc_01e6be:
 	move.w d3,d1
 	lsl.w #3,d1
 	add.w d2,d1
-	move.b loc_01e724(pc,d1.w),d1
+	move.b Char_ID_SEL_TBL(pc,d1.w),d1
 	cmpi.b #$3f,d1
 	beq.b loc_01e69e
 	move.b d1,d0
@@ -9015,9 +9015,9 @@ loc_01e6be:
 	bsr.w loc_01e898
 
 loc_01e700:
-	move.b d0,($102,a6)
-	move.w d2,($10,a6)
-	move.w d3,($14,a6)
+	move.b d0,(PL_charid,a6)
+	move.w d2,(PL_X,a6)
+	move.w d3,(PL_Y,a6)
 	moveq #0,d1
 	cmp.b ($160,a6),d0
 	bne.b loc_01e71e
@@ -9026,14 +9026,14 @@ loc_01e700:
 	move.b ($162,a6),d1
 
 loc_01e71e:
-	move.b d1,($132,a6)
+	move.b d1,(PL_ism_choice,a6)
 
 loc_01e722:
 	rts
 
 ;VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV
 ;Character Select IDtable
-loc_01e724:
+Char_ID_SEL_TBL:
 	dc.b $ff,$ff,$ff,$0a,$ff,$ff,$ff,$ff
 	dc.b $ff,$a0,$03,$04,$0b,$62,$ff,$ff
 	dc.b $ff,$0c,$07,$1a,$08,$02,$ff,$ff
@@ -9048,7 +9048,7 @@ loc_01e764:
 	addq.b #2,(5,a6)
 	bset.b #0,($3c,a6)
 	bsr.w loc_01e97c
-	move.b ($102,a6),d0
+	move.b (PL_charid,a6),d0
 	cmp.b ($160,a6),d0
 	beq.b loc_01e784
 	clr.l ($140,a6)
@@ -9065,16 +9065,16 @@ loc_01e784:
 	move.w d1,($378,a6)
 	btst.b #1,($3c,a4)
 	beq.b loc_01e7b0
-	move.b ($132,a4),($132,a6)
-	bra.b loc_01e7f6
+	move.b (PL_ism_choice,a4),(PL_ism_choice,a6)
+	bra.b Palette_Set_Classic_mode
 
 loc_01e7b0:
 	cmpi.b #2,(game_unlock,a5)
 	bcs.b loc_01e7c4
 	tst.b ($15e,a6)
 	beq.b loc_01e7c4
-	st.b ($132,a6)
-	bra.b loc_01e7f6
+	st.b (PL_ism_choice,a6)
+	bra.b Palette_Set_Classic_mode
 
 loc_01e7c4:
 	tst.b ($3f,a6)
@@ -9084,16 +9084,17 @@ loc_01e7c4:
 	tst.b ($5e,a6)
 	bne.b loc_01e83a
 	tst.b ($15c,a6)
-	bne.b loc_01e7f6
+	bne.b Palette_Set_Classic_mode
+;
 	move.b ($81,a5),d0
 	andi.w #$f,d0
 	move.b ($3f,a6),d3
 	andi.w #1,d3
 	lsl.w #4,d3
 	add.w d3,d0
-	move.b loc_01e842(pc,d0.w),($132,a6)
+	move.b loc_01e842(pc,d0.w),(PL_ism_choice,a6)
 
-loc_01e7f6:
+Palette_Set_Classic_mode:
 	moveq #0,d0
 	andi.w #$700,d1
 	bne.b loc_01e800
@@ -9102,22 +9103,22 @@ loc_01e7f6:
 loc_01e800:
 	btst.b #1,($3c,a4)
 	beq.b loc_01e826
-	move.b ($102,a4),d1
-	cmp.b ($102,a6),d1
+	move.b (PL_charid,a4),d1
+	cmp.b (PL_charid,a6),d1
 	bne.b loc_01e826
-	move.b ($132,a4),d1
-	cmp.b ($132,a6),d1
+	move.b (PL_ism_choice,a4),d1
+	cmp.b (PL_ism_choice,a6),d1
 	bne.b loc_01e826
-	cmp.b ($128,a4),d0
+	cmp.b (PL_Palnum,a4),d0
 	bne.b loc_01e826
 	eori.b #1,d0
 
 
 loc_01e826:
-	move.b d0,($128,a6)
+	move.b d0,(PL_Palnum,a6)
 	move.b d0,($161,a6)
 	bset.b #1,($3c,a6)
-	move.b ($132,a6),($162,a6)
+	move.b (PL_ism_choice,a6),($162,a6)
 
 loc_01e83a:
 	move.w #$20,($3a,a6)
@@ -9125,8 +9126,14 @@ loc_01e83a:
 
 ;VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV
 loc_01e842:
-	dc.b $ff,$ff,$00,$00,$01,$01,$01,$ff,$ff,$ff,$00,$00,$00,$01,$01,$01
-	dc.b $ff,$ff,$ff,$00,$00,$01,$01,$ff,$ff,$ff,$00,$00,$00,$01,$01,$01
+	dc.b $ff,$ff,$00,$00
+	dc.b $01,$01,$01,$ff
+	dc.b $ff,$ff,$00,$00
+	dc.b $00,$01,$01,$01
+	dc.b $ff,$ff,$ff,$00
+	dc.b $00,$01,$01,$ff
+	dc.b $ff,$ff,$00,$00
+	dc.b $00,$01,$01,$01
 
 ;==============================================
 loc_01e862:
@@ -9152,7 +9159,7 @@ loc_01e896:
 
 ;==============================================
 loc_01e898:
-	move.b ($102,a6),d0
+	move.b (PL_charid,a6),d0
 	tst.b ($15c,a6)
 	bne.b loc_01e8c2
 	jsr RNGFunction
@@ -9171,16 +9178,38 @@ loc_01e8c2:
 
 ;VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV
 loc_01e8c4:
-	dc.w $0001,$0203,$0405,$0607,$0809,$0a0b,$0c0d,$0e0f
-	dc.w $1011,$1618,$191a,$1b1c,$1d00,$0102,$0304,$0506
-	dc.w $0708,$090a,$0b0c,$0d0e,$0f10,$1116,$1819,$1a1b
-	dc.w $1c1d,$1618,$191a,$1b1c,$1d03,$0405,$0607,$0809
-
-;1e904
-	dc.w $0001,$0203,$0405,$0607,$0809,$0a0b,$0c0d,$0e0f
-	dc.w $1011,$1516,$1819,$1a1b,$1c1d,$1e1f,$0001,$0203
-	dc.w $0405,$0607,$0809,$0a0b,$0c0d,$0e0f,$1011,$1516
-	dc.w $1819,$1a1b,$1c1d,$1e1f,$1a16,$1819,$1a1b,$1c1d
+	dc.b $00,$01,$02,$03
+	dc.b $04,$05,$06,$07
+	dc.b $08,$09,$0a,$0b
+	dc.b $0c,$0d,$0e,$0f
+	dc.b $10,$11,$16,$18
+	dc.b $19,$1a,$1b,$1c
+	dc.b $1d,$00,$01,$02
+	dc.b $03,$04,$05,$06
+	dc.b $07,$08,$09,$0a
+	dc.b $0b,$0c,$0d,$0e
+	dc.b $0f,$10,$11,$16
+	dc.b $18,$19,$1a,$1b
+	dc.b $1c,$1d,$16,$18
+	dc.b $19,$1a,$1b,$1c
+	dc.b $1d,$03,$04,$05
+	dc.b $06,$07,$08,$09
+	dc.b $00,$01,$02,$03
+	dc.b $04,$05,$06,$07
+	dc.b $08,$09,$0a,$0b
+	dc.b $0c,$0d,$0e,$0f
+	dc.b $10,$11,$15,$16
+	dc.b $18,$19,$1a,$1b
+	dc.b $1c,$1d,$1e,$1f
+	dc.b $00,$01,$02,$03
+	dc.b $04,$05,$06,$07
+	dc.b $08,$09,$0a,$0b
+	dc.b $0c,$0d,$0e,$0f
+	dc.b $10,$11,$15,$16
+	dc.b $18,$19,$1a,$1b
+	dc.b $1c,$1d,$1e,$1f
+	dc.b $1a,$16,$18,$19
+	dc.b $1a,$1b,$1c,$1d
 
 ;==============================================
 loc_01e944:
@@ -9326,7 +9355,7 @@ loc_01ea44:
 	btst.b #1,($3c,a4)
 	beq.b loc_01ea7a
 	move.w ($378,a6),d1
-	move.b ($132,a4),($132,a6)
+	move.b (PL_ism_choice,a4),(PL_ism_choice,a6)
 	bra.w loc_01eac6
 
 loc_01ea7a:
@@ -9345,7 +9374,7 @@ loc_01ea9a:
 	rts
 
 loc_01ea9c:
-	move.b ($132,a6),d1
+	move.b (PL_ism_choice,a6),d1
 	btst #3,d0
 	beq.b loc_01eab0
 	subq.b #1,d1
@@ -9362,7 +9391,7 @@ loc_01eab0:
 	moveq #-1,d1
 
 loc_01eac0:
-	move.b d1,($132,a6)
+	move.b d1,(PL_ism_choice,a6)
 	rts
 
 loc_01eac6:
@@ -9378,8 +9407,8 @@ loc_01ead4:
 	move.b ($102,a4),d1
 	cmp.b ($102,a6),d1
 	bne.b loc_01eafa
-	move.b ($132,a4),d1
-	cmp.b ($132,a6),d1
+	move.b (PL_ism_choice,a4),d1
+	cmp.b (PL_ism_choice,a6),d1
 	bne.b loc_01eafa
 	cmp.b ($128,a4),d0
 	bne.b loc_01eafa
@@ -9388,7 +9417,7 @@ loc_01ead4:
 loc_01eafa:
 	move.b d0,($128,a6)
 	move.b d0,($161,a6)
-	move.b ($132,a6),($162,a6)
+	move.b (PL_ism_choice,a6),($162,a6)
 	bset.b #1,($3c,a6)
 	move.w #$20,($3a,a6)
 	rts
@@ -9502,12 +9531,12 @@ loc_01ebfe:
 	moveq #0,d0
 
 ;Versus Stage Select
-	move.b (charid,a6),d0
+	move.b (PL_charid,a6),d0
 	add.w d0,d0
 	move.w d0,(stageid,a5)
 
-	move.b (charid,a6),d0
-	move.b (ism_choice,a6),d1
+	move.b (PL_charid,a6),d0
+	move.b (PL_ism_choice,a6),d1
 	jmp loc_002c84
 
 loc_01ec30:

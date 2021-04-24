@@ -6,43 +6,43 @@ MainpaletteDirect = 0x90c000
 Cps0PaletteDirect = 0x90c400
 Cps1PaletteDirect = 0x90c800
 Cps2PaletteDirect = 0x90cc00
-; = $90d000
+; = 0x90d000
 
 RasterBankDirect = 0x90e000
 Cps0BackG1Direct = 0x910000
 Cps1BackG1Direct = 0x914000
 Cps2BackG1Direct = 0x918000
-; $91c000
-; $920000
-; $924000
+; 0x91c000
+; 0x920000
+; 0x924000
 WhiteFlashDirect = 0x928000
 Palettebank3 = 0x92c000
 
 
 ;A5 Offsets
-;2
-;4
-;6
-;8
-;$a
-;$c
-;$e
-;$10
-;$12
+;0x2
+;0x4
+;0x6
+;0x8
+;0xa
+;0xc
+;0xe
+;0x10
+;0x12
 
-gfxram8x8 = $18
-gfxram16x16 = $1a
-gfxram32x32 = $1c
-rasterram = $1e
-palrampointer = $20
-;$22
-;$24
-;$26
-;$28
-;$2a
-;$2c
+gfxram8x8 = 0x18
+gfxram16x16 = 0x1a
+gfxram32x32 = 0x1c
+rasterram = 0x1e
+palrampointer = 0x20
+;0x22
+;0x24
+;0x26
+;0x28
+;0x2a
+;0x2c
 
-;$4e
+;0x4e
 
 ;==============================================
 ;Main Control Inputs
@@ -83,8 +83,8 @@ Active_Player = 0xa8
 RngByte0 = 0xae
 RngByte1 = 0xaf
 
-;$b4
-;$b5
+;0xb4
+;0xb5
 Dip_Regulation = 0xbb
 
 ;==============================================
@@ -93,85 +93,87 @@ Dip_Regulation = 0xbb
 Dip_1PRounds = 0xde
 Dip_2PRounds = 0xdf
 
+;0xe6
+;0xe7
+;0xe8
+
 game_unlock = 0xee
 
 ;==============================================
 ;Game Data
 ;==============================================
 stageid = 0x100
-;$107
-;$109
+;0x107
+;0x109
 clock_frames = 0x10a
 Dev_Turbo = 0x116
-;$125
-;$12b
-;$134
-;$13c
+;0x125
+;0x12b
+;0x134
+;0x13c
 
-;$182
-;$1c8
+;0x182
+;0x1c8
 
-;$214
+;0x214
 
-;$250
+;0x250
 
 ;Camera Stuff
-;$288
-;$28c
-;$290
-;$292
-;$294
-;$296
-;$2a0
-;$2a4
-;$310
-;$312
-;$314
-;$316
-;$398
+;0x288
+;0x28c
+camera_x = 0x290
+;0x292
+camera_y = 0x294
+;0x296
+;0x2a0
+;0x2a4
+;0x310
+;0x312
+;0x314
+;0x316
+;0x398
 
+;==============================================
 ;PlayerData
-p1memory = $400
-p1charid = $502
-; = $51a
+;==============================================
+p1memory = 0x400
+; 0x500
+p1_charid = 0x502
+; = 0x51a
 
-p2memory = $800
-p2charid = $902
 
-p3memory = $c00
-p3charid = $d02
+;==============================================
+p2memory = 0x800
+p2_charid = 0x902
 
-p4memory = $1000
-p4charid = $1102
+;==============================================
+p3memory = 0xc00
+p3_charid = 0xd02
 
-;-$43ea
-;-$43ec
-;-$50ce
-;-$5162
+;==============================================
+p4memory = 0x1000
+p4_charid = 0x1102
+
+;Reminder that chardata.asm is for a4/a6 offsets
+
+;==============================================
+;
+;==============================================
+;-0x43ea
+;-0x43ec
+;-0x50ce
+;-0x5162
 
 
 ;unknown
 
-;$ff0fca,$ff13ca,$ff17ca,$ff1bca
-unk_ff3554 = $ff3554
-unk_ff3622 = $ff3622
+;0xff0fca,0xff13ca,0xff17ca,0xff1bca
+unk_ff3554 = 0xff3554
+unk_ff3622 = 0xff3622
 
-unk_ff3c0c = $ff3c0c
+unk_ff3c0c = 0xff3c0c
 ;ff3c16
-;unk_ff3c14 = $ff3c14
-;unk_ff3c18 = $ff3c18
+;unk_ff3c14 = 0xff3c14
+;unk_ff3c18 = 0xff3c18
 ;ff3d18
-
-;==============================================
-;Player Memory Offset
-;==============================================
-PL_Enable = 0x00
-PL_Render = 0x01
-PL_Flip = 0x0b
-PL_X = 0x10
-PL_Y = 0x14
-PL_charid = 0x102
-;PL_Anim_Pnt =
-;
-;
-;

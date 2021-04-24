@@ -3865,7 +3865,7 @@ loc_003800:
 loc_003814:
 	jsr loc_0032a4
 	move.l #$24e,d1
-	add.b (ism_choice,a6),d1
+	add.b (PL_ism_choice,a6),d1
 	moveq #0,d2
 	moveq #0,d3
 	bra.w loc_003938
@@ -5568,7 +5568,7 @@ loc_004b72:
 	bsr.w loc_004bd4
 
 loc_004b88:
-	move.b d0,(ism_choice,a6)
+	move.b d0,(PL_ism_choice,a6)
 	move.b d0,(2,a1,d2.w)
 	bsr.b loc_004ba4
 	cmp.b (a1,d2.w),d0
@@ -9784,7 +9784,7 @@ loc_007f38:
 	move.b d0,($14b,a6)
 	move.b d0,($15f,a6)
 	move.b ($160,a6),($102,a6)
-	move.b ($162,a6),(ism_choice,a6)
+	move.b ($162,a6),(PL_ism_choice,a6)
 	move.w #$90,($154,a6)
 	lea (p2memory,a5),a1
 	tst.b ($101,a6)
@@ -10951,7 +10951,7 @@ loc_008d98:
 	bsr.w loc_008e9c
 	btst.b #0,(Active_Player,a5)
 	beq.b Set_CharSelect_P2
-	move.b #0,($502,a5)
+	move.b #0,(p1_charid,a5)
 	move.b #0,($560,a5)
 	move.b #2,($500,a5)
 	move.b #6,($504,a5)
@@ -11007,7 +11007,7 @@ loc_008e9c:
 	move.b d1,($147,a6)
 	move.b d1,($148,a6)
 	move.b d1,($119,a6)
-	move.b d1,(ism_choice,a6)
+	move.b d1,(PL_ism_choice,a6)
 	move.b d1,($162,a6)
 	move.b d1,($15b,a6)
 	move.b d1,($15d,a6)
@@ -11066,13 +11066,13 @@ loc_008f80:
 
 ;VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV
 loc_008f8c:
-	dc.w loc_008f9a-loc_008f8c
-	dc.w loc_008fc8-loc_008f8c
-	dc.w loc_008fe0-loc_008f8c
-	dc.w loc_008fce-loc_008f8c
-	dc.w loc_008fd4-loc_008f8c
-	dc.w loc_008fda-loc_008f8c
-	dc.w loc_00a7fe-loc_008f8c
+	dc.w loc_008f9a-loc_008f8c;00
+	dc.w loc_008fc8-loc_008f8c;02
+	dc.w loc_008fe0-loc_008f8c;04 Intro
+	dc.w loc_008fce-loc_008f8c;06 Game Over Start
+	dc.w loc_008fd4-loc_008f8c;08 Game Over
+	dc.w loc_008fda-loc_008f8c;0a Credits
+	dc.w loc_00a7fe-loc_008f8c;0c High Score
 
 ;==============================================
 loc_008f9a:
@@ -11102,7 +11102,7 @@ loc_008fd4:
 
 ;==============================================
 loc_008fda:
-	jmp loc_025dbc
+	jmp Credits_PRG
 
 ;==============================================
 loc_008fe0:
@@ -23843,7 +23843,7 @@ loc_025a60:
 	moveq #0,d6
 
 loc_025a68:
-	lea.l loc_025bec(pc),a0
+	lea.l Default_Scores(pc),a0
 	moveq #$1c,d4
 	bsr.b loc_025a78
 	addq.b #1,d6
@@ -23986,7 +23986,7 @@ loc_025be4:
 
 ;VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV
 ;Defualt Scores
-loc_025bec:
+Default_Scores:
 	dc.l $00030000
 	dc.b 'RYU',$2d
 	dc.w $0000,$0005,$0000,$0000
@@ -24104,8 +24104,7 @@ loc_025bec:
 	dc.w $0000,$0002,$0000,$0000
 
 ;==============================================
-;Credits Selector
-loc_025dbc:
+Credits_PRG:
 	moveq #0,d0
 	move.b ($149,a5),d0
 	move.w loc_025dca(pc,d0.w),d1
@@ -26656,7 +26655,7 @@ loc_027c3c:
 loc_027c40:
 	tst.b ($ec,a6)
 	bne.b loc_027c54
-	cmpi.b #-1,(ism_choice,a6)
+	cmpi.b #-1,(PL_ism_choice,a6)
 	beq.b loc_027c54
 	move.b #1,($bc,a6)
 
@@ -26758,9 +26757,9 @@ loc_027d32:
 	subq.b #1,($28a,a6)
 
 loc_027d3c:
-	tst.b (reversalwindow,a6)
+	tst.b (PL_Reversal_Window,a6)
 	beq.b loc_027d46
-	subq.b #1,(reversalwindow,a6)
+	subq.b #1,(PL_Reversal_Window,a6)
 
 loc_027d46:
 	tst.b ($23f,a6)
@@ -27418,7 +27417,7 @@ loc_028456:
 	bne.w loc_02a9d0
 	jsr loc_0309d0
 	bne.w loc_02b714
-	tst.b (ism_choice,a6)
+	tst.b (PL_ism_choice,a6)
 	bmi.w loc_02a7ea
 	jsr loc_030a2a
 	bne.w loc_02b736
@@ -28686,7 +28685,7 @@ loc_02920c:
 	beq.b loc_029224
 	cmpi.b #$c,($102,a6);if Dan
 	bne.b loc_029282
-	cmpi.b #1,(ism_choice,a6);if V-ism
+	cmpi.b #1,(PL_ism_choice,a6);if V-ism
 	bne.b loc_029282
 
 loc_029224:
@@ -28891,7 +28890,7 @@ loc_0293f8:
 	bne.b loc_029416
 	tst.w ($50,a6)
 	bmi.b loc_029416
-	cmpi.b #$ff,(ism_choice,a6) ;Xism check
+	cmpi.b #$ff,(PL_ism_choice,a6) ;Xism check
 	beq.b loc_029416
 	tst.b ($214,a6)
 	bne.w loc_02b16a
@@ -29277,7 +29276,7 @@ loc_029864:
 
 ;==============================================
 loc_029884:
-	cmpi.b #$ff,(ism_choice,a6)
+	cmpi.b #$ff,(PL_ism_choice,a6)
 	beq.w loc_0298de
 	tst.b ($258,a6)
 	bne.b loc_0298de
@@ -29504,9 +29503,9 @@ loc_029ad4:
 	move.b d0,($23b,a6)
 	move.b ($2c9,a6),($b,a6)
 	move.b #0,($2a0,a6)
-	tst.b (cpucontrol,a6)
+	tst.b (PL_cpucontrol,a6)
 	bne.b loc_029b50
-	move.b #2,(reversalwindow,a6)
+	move.b #2,(PL_Reversal_Window,a6)
 	bsr.w loc_02b24a
 	bne.w loc_02b320
 	bsr.w loc_02b1be
@@ -29553,7 +29552,7 @@ loc_029ba2:
 	bne.w loc_029be8
 	tst.b ($50,a6)
 	bmi.w loc_029be8
-	cmpi.b #$ff,(ism_choice,a6)
+	cmpi.b #$ff,(PL_ism_choice,a6)
 	beq.w loc_029be8
 	move.b ($10d,a5),d0
 	or.b ($10e,a5),d0
@@ -30745,7 +30744,7 @@ loc_02a710:
 	lsl.w #2,d1
 	movea.l #loc_0dcb12,a0
 	movea.l (a0,d1.w),a0
-	move.b (ism_choice,a6),d1
+	move.b (PL_ism_choice,a6),d1
 	addq.b #1,d1
 	add.w d1,d1
 	move.w (a0,d1.w),d1
@@ -31189,7 +31188,7 @@ loc_02ab24:
 
 loc_02ab4e:
 	move.b #1,($2c6,a6)
-	tst.b (ism_choice,a6)
+	tst.b (PL_ism_choice,a6)
 	bpl.b loc_02ab62
 	tst.b ($31,a6)
 	bne.w loc_02ac0c
@@ -31380,10 +31379,10 @@ loc_02ad26:
 	movea.l #loc_0dd012,a0
 	movea.l (a0,d0.w),a0
 	moveq #0,d0
-	tst.b (ism_choice,a6)
+	tst.b (PL_ism_choice,a6)
 	beq.b loc_02ad64
 	moveq #4,d0
-	cmpi.b #$ff,(ism_choice,a6)
+	cmpi.b #$ff,(PL_ism_choice,a6)
 	beq.b loc_02ad64
 	moveq #8,d0
 
@@ -32974,7 +32973,7 @@ loc_02bcd8:
 	move.b d0,($d6,a6)
 	move.b d0,($25d,a6)
 	move.b d0,($294,a6)
-	move.b d0,(reversalwindow,a6)
+	move.b d0,(PL_Reversal_Window,a6)
 	move.b d0,($2ac,a6)
 	move.b d0,($26f,a6)
 	move.b d0,($de,a6)
@@ -33057,10 +33056,10 @@ loc_02be14:
 	movea.l #loc_0df932,a0
 	move.b (a0,d0.w),($24c,a6)
 	moveq #8,d1
-	cmpi.b #$ff,(ism_choice,a6)
+	cmpi.b #$ff,(PL_ism_choice,a6)
 	beq.b loc_02be3c
 	moveq #-8,d1
-	tst.b (ism_choice,a6)
+	tst.b (PL_ism_choice,a6)
 	beq.b loc_02be3c
 	cmpi.b #$1b,($102,a6)
 	bne.b loc_02be3c
@@ -33082,11 +33081,11 @@ loc_02be50:
 	move.w (a0,d0.w),($a6,a6)
 	movea.l #AismWalkSpeed,a0
 	movea.l #loc_0dd792,a1
-	tst.b (ism_choice,a6)
+	tst.b (PL_ism_choice,a6)
 	beq.w loc_02be9e
 	movea.l #XismWalkSpeed,a0
 	movea.l #loc_0de792,a1
-	cmpi.b #$ff,(ism_choice,a6)
+	cmpi.b #$ff,(PL_ism_choice,a6)
 	beq.b loc_02be9e
 	movea.l #VismWalkSpeed,a0
 	movea.l #loc_0ddf92,a1
@@ -34671,7 +34670,7 @@ loc_02ebbe:
 	andi.w #3,d0
 	beq.b loc_02ec02
 	movea.l #loc_0dca72,a0
-	move.b (charid,a6),d0
+	move.b (PL_charid,a6),d0
 	add.w d0,d0
 	move.w (a0,d0.w),d0
 	lea.l (a0,d0.w),a0
@@ -34779,16 +34778,16 @@ loc_02eca0:
 ;CPS1Chain
 ;==============================================
 loc_02eca8:
-	cmpi.b #$ff,(ism_choice,a6)
+	cmpi.b #$ff,(PL_ism_choice,a6)
 	bne.b loc_02ecca
-	tst.b (Attacktype,a6)
+	tst.b (PL_Attacktype,a6)
 	beq.b loc_02ecca
 	move.b ($378,a6),d0
 	btst #2,d0
 	beq.b loc_02ecca
 
-	clr.b (Attacktype,a6)
-	move.b #4,(ButtonStrength,a6);HP Attack Write
+	clr.b (PL_Attacktype,a6)
+	move.b #4,(PL_ButtonStrength,a6);HP Attack Write
 
 loc_02ecca:
 	rts
@@ -34797,7 +34796,7 @@ loc_02ecca:
 ;Reversal Check
 ;==============================================
 ReversalCheck:
-	tst.b (reversalwindow,a6)
+	tst.b (PL_Reversal_Window,a6)
 	bne.w loc_02ed00
 	bra.w loc_02edf4
 
@@ -34806,10 +34805,10 @@ ReversalCheck:
 ;==============================================
 loc_02ecd8:
 	moveq #$30,d0
-	tst.b (ism_choice,a6)
+	tst.b (PL_ism_choice,a6)
 	beq.b loc_02ecec
 	move.w #$90,d0
-	tst.b (ism_choice,a6)
+	tst.b (PL_ism_choice,a6)
 	bmi.b loc_02ecec
 	moveq #$48,d0
 
@@ -34926,10 +34925,10 @@ loc_02edf4:
 ;Alpha Counter Start
 ;==============================================
 loc_02edf8:
-	tst.b (ism_choice,a6)
+	tst.b (PL_ism_choice,a6)
 	bmi.b loc_02edf4
 	moveq #$30,d6
-	tst.b (ism_choice,a6)
+	tst.b (PL_ism_choice,a6)
 	beq.b loc_02ee08
 	moveq #$48,d6
 
@@ -35069,7 +35068,7 @@ loc_02ef6c:
 	bmi.b loc_02efc0
 	tst.b ($123,a6)
 	bne.b loc_02efa6
-	tst.b (ism_choice,a6)
+	tst.b (PL_ism_choice,a6)
 	bmi.b loc_02efa6
 	beq.b loc_02efb0
 	bra.b loc_02efb0
@@ -35630,7 +35629,7 @@ loc_02f4bc:
 	or.b ($37a,a6),d0
 	andi.w #7,d0
 	moveq #4,d1
-	tst.b (ism_choice,a6)
+	tst.b (PL_ism_choice,a6)
 	bmi.w loc_02f520
 	bra.b loc_02f4fc
 
@@ -35642,7 +35641,7 @@ loc_02f4dc:
 	andi.w #$70,d0
 	lsr.w #4,d0
 	moveq #4,d1
-	tst.b (ism_choice,a6)
+	tst.b (PL_ism_choice,a6)
 	bmi.w loc_02f520
 
 loc_02f4fc:
@@ -36374,10 +36373,10 @@ loc_02fc4a:
 	movea.l #CharAniPNTtable,a0
 	movea.l (a0,d0.w),a0
 	moveq #0,d0
-	tst.b (ism_choice,a6)
+	tst.b (PL_ism_choice,a6)
 	beq.b loc_02fc6e
 	moveq #$10,d0
-	tst.b (ism_choice,a6)
+	tst.b (PL_ism_choice,a6)
 	bmi.b loc_02fc6e
 	moveq #$20,d0
 
@@ -37194,11 +37193,11 @@ loc_03380e:
 loc_03383a:
 	moveq #0,d4
 	moveq #$4e,d5
-	tst.b (ism_choice,a0)
+	tst.b (PL_ism_choice,a0)
 	bmi.b loc_03385a
 	moveq #6,d4
 	moveq #$50,d5
-	tst.b (ism_choice,a0)
+	tst.b (PL_ism_choice,a0)
 	bne.b loc_03385a
 	moveq #$3,d4
 	moveq #$4f,d5

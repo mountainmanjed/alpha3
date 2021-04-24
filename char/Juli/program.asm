@@ -111,7 +111,7 @@ loc_06b838:
 	move.w ($10,a4),($10,a6)
 	move.w ($14,a4),($14,a6)
 	moveq #-$20,d0
-	tst.b (plflip,a6)
+	tst.b (PL_Flip,a6)
 	beq.b loc_06b85e
 	neg.w d0
 
@@ -136,9 +136,9 @@ loc_06b87c:
 	tst.b ($80,a6)
 	bne.w JuliCrouchAttacks
 	clr.b ($2c8,a6)
-	tst.b (Attacktype,a6)
+	tst.b (PL_Attacktype,a6)
 	bne.w JuliKicks
-	move.b (plmovestate,a6),d0
+	move.b (PL_Move_state,a6),d0
 	move.w loc_06b89c(pc,d0.w),d1
 	jmp loc_06b89c(pc,d1.w)
 
@@ -149,23 +149,23 @@ loc_06b89c:
 
 ;----------------------------------------------
 loc_06b8a0:
-	addq.b #2,(plmovestate,a6)
-	move.b (sidecheck,a6),(plflip,a6)
+	addq.b #2,(PL_Move_state,a6)
+	move.b (pl_sidecheck,a6),(PL_Flip,a6)
 	move.b #1,($a9,a6)
 	jsr loc_02aebc
-	move.b (ButtonStrength,a6),d0
+	move.b (PL_ButtonStrength,a6),d0
 	lsr.b #1,d0
 	jsr loc_02ef6c
 	moveq #1,d0
 	moveq #0,d1
-	move.b (ButtonStrength,a6),d1
+	move.b (PL_ButtonStrength,a6),d1
 	move.w JuliPunchDist(pc,d1.w),d1
-	cmp.w (distanceaway,a6),d1
+	cmp.w (pl_dist_away,a6),d1
 	bcs.b loc_06b8d6
 	moveq #0,d0
 
 loc_06b8d6:
-	add.b (ButtonStrength,a6),d0
+	add.b (PL_ButtonStrength,a6),d0
 	jmp loc_02a710
 
 ;VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV
@@ -180,7 +180,7 @@ loc_06b8e6:
 ;Kicks
 ;==============================================
 JuliKicks:
-	move.b (plmovestate,a6),d0
+	move.b (PL_Move_state,a6),d0
 	move.w loc_06b8f8(pc,d0.w),d1
 	jmp loc_06b8f8(pc,d1.w)
 
@@ -192,14 +192,14 @@ loc_06b8f8:
 
 ;----------------------------------------------
 loc_06b8fe:
-	addq.b #2,(plmovestate,a6)
-	move.b (sidecheck,a6),(plflip,a6)
+	addq.b #2,(PL_Move_state,a6)
+	move.b (pl_sidecheck,a6),(PL_Flip,a6)
 	move.b #1,($a9,a6)
-	cmpi.b #2,(ButtonStrength,a6)
+	cmpi.b #2,(PL_ButtonStrength,a6)
 	bne.b loc_06b934
-	btst #1,(Directioninput,a6)
+	btst #1,(PL_Directioninput,a6)
 	beq.b loc_06b934
-	move.b #4,(plmovestate,a6)
+	move.b #4,(PL_Move_state,a6)
 	moveq #1,d0
 	jsr loc_02ef6c
 	moveq #$1e,d0
@@ -207,15 +207,15 @@ loc_06b8fe:
 
 loc_06b934:
 	jsr loc_02aebc
-	move.b (ButtonStrength,a6),d0
+	move.b (PL_ButtonStrength,a6),d0
 	lsr.b #1,d0
 	jsr loc_02ef6c
 	moveq #6,d0
-	add.b (ButtonStrength,a6),d0
+	add.b (PL_ButtonStrength,a6),d0
 	moveq #0,d1
-	move.b (ButtonStrength,a6),d1
+	move.b (PL_ButtonStrength,a6),d1
 	move.w JuliKickDist(pc,d1.w),d1
-	move.w (distanceaway,a6),d2
+	move.w (pl_dist_away,a6),d2
 	cmp.w d2,d1
 	bcc.b loc_06b960
 	addq.b #1,d0
@@ -240,7 +240,7 @@ loc_06b972:
 	move.b ($34,a6),d0
 	beq.b loc_06b998
 	clr.b ($34,a6)
-	tst.b (plflip,a6)
+	tst.b (PL_Flip,a6)
 	bne.b loc_06b994
 	neg.w d0
 
@@ -255,7 +255,7 @@ loc_06b998:
 ;==============================================
 JuliCrouchAttacks:
 	move.b #1,($2c8,a6)
-	move.b (plmovestate,a6),d0
+	move.b (PL_Move_state,a6),d0
 	move.w loc_06b9ac(pc,d0.w),d1
 	jmp loc_06b9ac(pc,d1.w)
 
@@ -266,15 +266,15 @@ loc_06b9ac:
 
 ;----------------------------------------------
 loc_06b9b0:
-	addq.b #2,(plmovestate,a6)
+	addq.b #2,(PL_Move_state,a6)
 	move.b #1,($a9,a6)
-	move.b (sidecheck,a6),(plflip,a6)
+	move.b (pl_sidecheck,a6),(PL_Flip,a6)
 	jsr loc_02aebc
-	move.b (ButtonStrength,a6),d1
+	move.b (PL_ButtonStrength,a6),d1
 	lsr.b #1,d1
 	move.b d1,d0
 	jsr loc_02ef6c
-	tst.b (Attacktype,a6)
+	tst.b (PL_Attacktype,a6)
 	beq.b loc_06b9dc
 	addq.b #3,d1
 
@@ -291,12 +291,12 @@ loc_06b9e6:
 ;Air Normals
 ;##############################################
 loc_06b9ec:
-	move.b #6,(plmovestate,a6)
+	move.b #6,(PL_Move_state,a6)
 	move.b #4,($80,a6)
 	move.b #1,($a9,a6)
 	jsr loc_02b1fc
 	moveq #0,d0
-	move.b (ButtonStrength,a6),d0
+	move.b (PL_ButtonStrength,a6),d0
 	lsr.b #1,d0
 	jsr loc_02ef6c
 	moveq #$12,d0
@@ -305,12 +305,12 @@ loc_06b9ec:
 	moveq #$18,d0
 
 loc_06ba1c:
-	tst.b (Attacktype,a6)
+	tst.b (PL_Attacktype,a6)
 	beq.b loc_06ba24
 	addq.w #3,d0
 
 loc_06ba24:
-	move.b (ButtonStrength,a6),d1
+	move.b (PL_ButtonStrength,a6),d1
 	lsr.b #1,d1
 	add.b d1,d0
 	jmp loc_02a710
@@ -343,17 +343,17 @@ loc_06ba66:
 	bne.w loc_06bea6
 
 loc_06ba74:
-	lea.l (moveinpslot0,a6),a4
+	lea.l (pl_inp_slot_0,a6),a4
 	jsr loc_02d622
 	bne.w loc_06bb8a
 
 loc_06ba82:
-	lea.l (moveinpslot2,a6),a4
+	lea.l (pl_inp_slot_2,a6),a4
 	jsr loc_02d672
 	bne.w loc_06bc66
 
 loc_06ba90:
-	lea.l (moveinpslot8,a6),a4
+	lea.l (pl_inp_slot_8,a6),a4
 	jsr loc_02d5f2
 	bne.w loc_06bd80
 
@@ -380,16 +380,16 @@ loc_06bac0:
 loc_06bac4:
 	tst.b ($b9,a6)
 	bne.b loc_06bad0
-	tst.b (pltaunt,a6)
+	tst.b (pl_taunt_count,a6)
 	beq.b loc_06bac0
 
 loc_06bad0:
 	jsr loc_02ed00
 	beq.b loc_06bac0
 	move.l #$02000e00,(4,a6)
-	move.b #$2a,(plmoveid,a6)
+	move.b #$2a,(pl_move_id,a6)
 	clr.b ($a9,a6)
-	move.b (sidecheck,a6),(plflip,a6)
+	move.b (pl_sidecheck,a6),(PL_Flip,a6)
 	rts
 
 ;----------------------------------------------
@@ -403,8 +403,8 @@ loc_06baf2:
 	jsr loc_02ecd8
 	beq.w loc_06ba3c
 	move.l #$02001000,(4,a6)
-	move.b #2,(plmoveid,a6)
-	move.b (sidecheck,a6),(plflip,a6)
+	move.b #2,(pl_move_id,a6)
+	move.b (pl_sidecheck,a6),(PL_Flip,a6)
 	jmp loc_02f980
 
 loc_06bb30:
@@ -413,7 +413,7 @@ loc_06bb30:
 	jsr loc_02ed28
 	beq.w loc_06ba3c
 	move.l #$02001000,(4,a6)
-	move.b #2,(plmoveid,a6)
+	move.b #2,(pl_move_id,a6)
 	jmp loc_02f980
 
 
@@ -426,9 +426,9 @@ loc_06bb56:
 	jsr loc_02ed00
 	beq.w loc_06bab6
 	move.l #$02000e00,(4,a6)
-	move.b #0,(plmoveid,a6)
+	move.b #0,(pl_move_id,a6)
 	clr.b ($a9,a6)
-	move.b (sidecheck,a6),(plflip,a6)
+	move.b (pl_sidecheck,a6),(PL_Flip,a6)
 	rts
 
 ;----------------------------------------------
@@ -436,9 +436,9 @@ loc_06bb8a:
 	jsr loc_02ed00
 	beq.w loc_06ba82
 	move.l #$02000e00,(4,a6)
-	move.b #4,(plmoveid,a6)
+	move.b #4,(pl_move_id,a6)
 	move.b #1,($a9,a6)
-	move.b (sidecheck,a6),(plflip,a6)
+	move.b (pl_sidecheck,a6),(PL_Flip,a6)
 	jmp loc_02f74c
 
 ;----------------------------------------------
@@ -448,7 +448,7 @@ loc_06bbb4:
 	tst.b ($3c,a6)
 	ble.w loc_06ba9e
 	moveq #$40,d0
-	tst.w (plyvelocity,a6)
+	tst.w (pl_y_velocity,a6)
 	bpl.b loc_06bbce
 	moveq #$58,d0
 
@@ -459,9 +459,9 @@ loc_06bbce:
 	jsr loc_02ed28
 	beq.w loc_06ba9e
 	move.l #$02000e00,(4,a6)
-	move.b #$12,(plmoveid,a6)
+	move.b #$12,(pl_move_id,a6)
 	move.b #1,($a9,a6)
-	move.b (sidecheck,a6),(plflip,a6)
+	move.b (pl_sidecheck,a6),(PL_Flip,a6)
 	jmp loc_02f74c
 
 ;----------------------------------------------
@@ -471,20 +471,20 @@ loc_06bc06:
 	jsr loc_02ed00
 	beq.w loc_06ba82
 	move.l #$02000e00,(4,a6)
-	move.b #6,(plmoveid,a6)
+	move.b #6,(pl_move_id,a6)
 	move.b #1,($a9,a6)
-	move.b (sidecheck,a6),(plflip,a6)
+	move.b (pl_sidecheck,a6),(PL_Flip,a6)
 	jmp loc_02f74c
 
 loc_06bc34:
-	tst.w (plyvelocity,a6)
+	tst.w (pl_y_velocity,a6)
 	bmi.w loc_06ba82
 	jsr loc_02ed28
 	beq.w loc_06ba82
 	move.l #$02000e00,(4,a6)
-	move.b #6,(plmoveid,a6)
+	move.b #6,(pl_move_id,a6)
 	move.b #1,($a9,a6)
-	move.b (sidecheck,a6),(plflip,a6)
+	move.b (pl_sidecheck,a6),(PL_Flip,a6)
 	jmp loc_02f74c
 
 ;----------------------------------------------
@@ -492,9 +492,9 @@ loc_06bc66:
 	jsr loc_02ed00
 	beq.w loc_06ba90
 	move.l #$02000e00,(4,a6)
-	move.b #8,(plmoveid,a6)
+	move.b #8,(pl_move_id,a6)
 	move.b #1,($a9,a6)
-	move.b (sidecheck,a6),(plflip,a6)
+	move.b (pl_sidecheck,a6),(PL_Flip,a6)
 	jmp loc_02f728
 
 ;----------------------------------------------
@@ -502,9 +502,9 @@ loc_06bc90:
 	jsr loc_02ed00
 	beq.w loc_06ba82
 	move.l #$02000e00,(4,a6)
-	move.b #$a,(plmoveid,a6)
+	move.b #$a,(pl_move_id,a6)
 	move.b #1,($a9,a6)
-	move.b (sidecheck,a6),(plflip,a6)
+	move.b (pl_sidecheck,a6),(PL_Flip,a6)
 	jmp loc_02f728
 
 ;----------------------------------------------
@@ -514,9 +514,9 @@ loc_06bcba:
 	jsr loc_02ed00
 	beq.w loc_06baac
 	move.l #$02000e00,(4,a6)
-	move.b #$e,(plmoveid,a6)
+	move.b #$e,(pl_move_id,a6)
 	clr.b ($a9,a6)
-	move.b (sidecheck,a6),(plflip,a6)
+	move.b (pl_sidecheck,a6),(PL_Flip,a6)
 	clr.l ($84,a6)
 
 loc_06bce8:
@@ -533,9 +533,9 @@ loc_06bd0c:
 	jsr loc_02ed00
 	beq.w loc_06ba9e
 	move.l #$02000e00,(4,a6)
-	move.b #$14,(plmoveid,a6)
+	move.b #$14,(pl_move_id,a6)
 	clr.b ($a9,a6)
-	move.b (sidecheck,a6),(plflip,a6)
+	move.b (pl_sidecheck,a6),(PL_Flip,a6)
 	rts
 
 ;----------------------------------------------
@@ -543,9 +543,9 @@ loc_06bd30:
 	jsr loc_02ed00
 	beq.w loc_06ba9e
 	move.l #$02000e00,(4,a6)
-	move.b #$10,(plmoveid,a6)
+	move.b #$10,(pl_move_id,a6)
 	clr.b ($a9,a6)
-	move.b (sidecheck,a6),(plflip,a6)
+	move.b (pl_sidecheck,a6),(PL_Flip,a6)
 	jmp loc_02f728
 
 ;----------------------------------------------
@@ -553,9 +553,9 @@ loc_06bd58:
 	jsr loc_02ed00
 	beq.w loc_06ba9e
 	move.l #$02000e00,(4,a6)
-	move.b #$16,(plmoveid,a6)
+	move.b #$16,(pl_move_id,a6)
 	clr.b ($a9,a6)
-	move.b (sidecheck,a6),(plflip,a6)
+	move.b (pl_sidecheck,a6),(PL_Flip,a6)
 	jmp loc_02f728
 
 ;----------------------------------------------
@@ -563,84 +563,84 @@ loc_06bd80:
 	jsr loc_02ed00
 	beq.w loc_06ba9e
 	move.l #$02000e00,(4,a6)
-	move.b #$18,(plmoveid,a6)
+	move.b #$18,(pl_move_id,a6)
 	move.b #1,($a9,a6)
-	move.b (sidecheck,a6),(plflip,a6)
+	move.b (pl_sidecheck,a6),(PL_Flip,a6)
 	jmp loc_02f74c
 
 ;----------------------------------------------
 loc_06bdaa:
-	tst.b (ism_choice,a6)
+	tst.b (PL_ism_choice,a6)
 	bne.w loc_06ba66
-	cmpi.w #$30,(plmeter,a6)
+	cmpi.w #$30,(PL_meter,a6)
 	bcs.w loc_06ba66
 	jsr loc_02ecd8
 	beq.w loc_06ba66
 	move.l #$02001000,(4,a6)
-	move.b #$c,(plmoveid,a6)
+	move.b #$c,(pl_move_id,a6)
 	move.b #1,($a9,a6)
-	move.b (sidecheck,a6),(plflip,a6)
+	move.b (pl_sidecheck,a6),(PL_Flip,a6)
 	jmp loc_02f4dc
 
 ;----------------------------------------------
 loc_06bde6:
-	tst.b (ism_choice,a6)
+	tst.b (PL_ism_choice,a6)
 	bne.w loc_06ba4a
 	tst.w ($276,a6)
 	beq.w loc_06ba4a
-	cmpi.w #$90,(plmeter,a6)
+	cmpi.w #$90,(PL_meter,a6)
 	bcs.w loc_06ba4a
 	jsr loc_02eee0
 	beq.w loc_06ba4a
 	move.l #$02001000,(4,a6)
-	move.b #$1c,(plmoveid,a6)
-	move.b (sidecheck,a6),(plflip,a6)
+	move.b #$1c,(pl_move_id,a6)
+	move.b (pl_sidecheck,a6),(PL_Flip,a6)
 	move.b #4,($248,a6)
-	move.b #4,(ButtonStrength,a6)
+	move.b #4,(PL_ButtonStrength,a6)
 	rts
 
 ;----------------------------------------------
 loc_06be2c:
-	cmpi.b #1,(ism_choice,a6)
+	cmpi.b #1,(PL_ism_choice,a6)
 	beq.w loc_06ba58
-	cmpi.w #$30,(plmeter,a6)
+	cmpi.w #$30,(PL_meter,a6)
 	bcs.w loc_06ba58
 	jsr loc_02ecd8
 	beq.w loc_06ba58
 	move.l #$02001000,(4,a6)
-	move.b #$1e,(plmoveid,a6)
+	move.b #$1e,(pl_move_id,a6)
 	move.b #1,($a9,a6)
-	move.b (sidecheck,a6),(plflip,a6)
+	move.b (pl_sidecheck,a6),(PL_Flip,a6)
 	jmp loc_02f4dc
 
 ;----------------------------------------------
 loc_06be6a:
-	tst.b (ism_choice,a6)
+	tst.b (PL_ism_choice,a6)
 	bne.w loc_06ba4a
-	cmpi.w #$30,(plmeter,a6)
+	cmpi.w #$30,(PL_meter,a6)
 	bcs.w loc_06ba4a
 	jsr loc_02ecd8
 	beq.w loc_06ba4a
 	move.l #$02001000,(4,a6)
-	move.b #$20,(plmoveid,a6)
+	move.b #$20,(pl_move_id,a6)
 	move.b #1,($a9,a6)
-	move.b (sidecheck,a6),(plflip,a6)
+	move.b (pl_sidecheck,a6),(PL_Flip,a6)
 	jmp loc_02f4dc
 
 ;----------------------------------------------
 loc_06bea6:
-	tst.b (ism_choice,a6)
+	tst.b (PL_ism_choice,a6)
 	bne.w loc_06ba74
-	cmpi.w #$30,(plmeter,a6)
+	cmpi.w #$30,(PL_meter,a6)
 	bcs.w loc_06ba74
 	bsr.w loc_06f088
 	beq.w loc_06ba74
 	jsr loc_02ecd8
 	beq.w loc_06ba74
 	move.l #$02001000,(4,a6)
-	move.b #$22,(plmoveid,a6)
+	move.b #$22,(pl_move_id,a6)
 	move.b #1,($a9,a6)
-	move.b (sidecheck,a6),(plflip,a6)
+	move.b (pl_sidecheck,a6),(PL_Flip,a6)
 	clr.l ($84,a6)
 	jsr loc_02f4bc
 
@@ -657,16 +657,16 @@ loc_06beee:
 
 ;----------------------------------------------
 loc_06bf1c:
-	tst.b (ism_choice,a6)
+	tst.b (PL_ism_choice,a6)
 	bne.w loc_06ba4a
-	cmpi.w #$30,(plmeter,a6)
+	cmpi.w #$30,(PL_meter,a6)
 	bcs.w loc_06ba4a
 	jsr loc_02ecd8
 	beq.w loc_06ba4a
 	move.l #$02001000,(4,a6)
-	move.b #$26,(plmoveid,a6)
+	move.b #$26,(pl_move_id,a6)
 	move.b #1,($a9,a6)
-	move.b (sidecheck,a6),(plflip,a6)
+	move.b (pl_sidecheck,a6),(PL_Flip,a6)
 	jmp loc_02f4bc
 
 ;----------------------------------------------
@@ -678,15 +678,15 @@ loc_06bf58:
 ;A-ism Alpha Counter Write
 ;##############################################
 loc_06bf62:
-	tst.b (ism_choice,a6)
+	tst.b (PL_ism_choice,a6)
 	bne.w loc_06bfaa
 	move.l #$02000e06,(4,a6)
-	move.b #$10,(plmoveid,a6)
+	move.b #$10,(pl_move_id,a6)
 	clr.b ($2c8,a6)
 	move.b #1,($a9,a6)
-	move.b #4,(ButtonStrength,a6)
+	move.b #4,(PL_ButtonStrength,a6)
 	clr.b ($5f,a6)
-	move.b (sidecheck,a6),(plflip,a6)
+	move.b (pl_sidecheck,a6),(PL_Flip,a6)
 	movea.w ($38,a6),a4
 	move.b #$14,($5f,a4)
 	move.b #$18,($25d,a6)
@@ -698,12 +698,12 @@ loc_06bf62:
 ;##############################################
 loc_06bfaa:
 	move.l #$02000e0c,(4,a6)
-	move.b #4,(plmoveid,a6)
+	move.b #4,(pl_move_id,a6)
 	clr.b ($2c8,a6)
 	move.b #1,($a9,a6)
-	move.b #4,(ButtonStrength,a6)
+	move.b #4,(PL_ButtonStrength,a6)
 	clr.b ($5f,a6)
-	move.b (sidecheck,a6),(plflip,a6)
+	move.b (pl_sidecheck,a6),(PL_Flip,a6)
 	movea.w ($38,a6),a4
 	move.b #$15,($5f,a4)
 	move.b #$19,($25d,a6)
@@ -714,7 +714,7 @@ loc_06bfaa:
 ;AI Move Checks
 ;##############################################
 loc_06bfea:
-	move.b (plmoveid,a6),d0
+	move.b (pl_move_id,a6),d0
 	move.w loc_06bff6(pc,d0.w),d1
 	jmp loc_06bff6(pc,d1.w)
 
@@ -747,7 +747,7 @@ loc_06bff6:
 
 ;----------------------------------------------
 loc_06c022:
-	tst.b (pltaunt,a6)
+	tst.b (pl_taunt_count,a6)
 	beq.w loc_06c0d4
 	bra.w loc_06c0d0
 
@@ -774,25 +774,25 @@ loc_06c036:
 loc_06c058:
 	tst.w ($276,a6)
 	beq.w loc_06c0d4
-	tst.b (ism_choice,a6)
+	tst.b (PL_ism_choice,a6)
 	bne.w loc_06c0d4
-	cmpi.w #$90,(plmeter,a6)
+	cmpi.w #$90,(PL_meter,a6)
 	bcs.w loc_06c0d4
 	bra.w loc_06c0d0
 
 ;----------------------------------------------
 loc_06c076:
-	tst.b (ism_choice,a6)
+	tst.b (PL_ism_choice,a6)
 	bne.w loc_06c0d4
-	cmpi.w #$30,(plmeter,a6)
+	cmpi.w #$30,(PL_meter,a6)
 	bcs.b loc_06c0d4
 	bra.w loc_06c0d0
 
 ;----------------------------------------------
 loc_06c08a:
-	cmpi.b #1,(ism_choice,a6)
+	cmpi.b #1,(PL_ism_choice,a6)
 	beq.w loc_06c0d4
-	cmpi.w #$30,(plmeter,a6)
+	cmpi.w #$30,(PL_meter,a6)
 	bcs.b loc_06c0d4
 	bra.w loc_06c0d0
 
@@ -800,9 +800,9 @@ loc_06c08a:
 loc_06c0a0:
 	tst.w ($276,a6)
 	beq.w loc_06c0d4
-	tst.b (ism_choice,a6)
+	tst.b (PL_ism_choice,a6)
 	bne.w loc_06c0d4
-	cmpi.w #$30,(plmeter,a6)
+	cmpi.w #$30,(PL_meter,a6)
 	bcs.b loc_06c0d4
 	bsr.w loc_06f088
 	beq.w loc_06c0d4
@@ -825,7 +825,7 @@ loc_06c0d4:
 ;Special Move Programming
 ;##############################################
 loc_06c0d8:
-	move.b (plmoveid,a6),d0
+	move.b (pl_move_id,a6),d0
 	move.w loc_06c0e4(pc,d0.w),d1
 	jmp loc_06c0e4(pc,d1.w)
 
@@ -860,7 +860,7 @@ loc_06c0e4:
 ;Meter Charge
 ;==============================================
 JuliMeterCharge:
-	move.b (plmovestate,a6),d0
+	move.b (PL_Move_state,a6),d0
 	move.w loc_06c11c(pc,d0.w),d1
 	jmp loc_06c11c(pc,d1.w)
 
@@ -871,7 +871,7 @@ loc_06c11c:
 
 ;----------------------------------------------
 loc_06c120:
-	addq.b #2,(plmovestate,a6)
+	addq.b #2,(PL_Move_state,a6)
 	move.b #2,($40,a6)
 	move.b #$48,($41,a6)
 	move.b #$7f,($3a,a6)
@@ -938,7 +938,7 @@ loc_06c1e4:
 ;Vism Activate
 ;==============================================
 JuliVismActivate:
-	move.b (plmovestate,a6),d0
+	move.b (PL_Move_state,a6),d0
 	move.w JuliVismActtbl(pc,d0.w),d1
 	jmp JuliVismActtbl(pc,d1.w)
 
@@ -950,7 +950,7 @@ JuliVismActtbl:
 
 ;----------------------------------------------
 JuliVismStep0:
-	addq.b #2,(plmovestate,a6)
+	addq.b #2,(PL_Move_state,a6)
 	jsr VShadowPalWrite
 	jsr loc_02068c
 	moveq #$2b,d0
@@ -965,7 +965,7 @@ loc_06c21e:
 JuliVismStep1:
 	tst.b ($34,a6)
 	beq.b loc_06c252
-	addq.b #2,(plmovestate,a6)
+	addq.b #2,(PL_Move_state,a6)
 	move.b #$ff,($ab,a6)
 	move.b #$1e,($3a,a6)
 	moveq #1,d0
@@ -997,7 +997,7 @@ loc_06c26e:
 ;Cannon Spike
 ;==============================================
 loc_06c274:
-	move.b (plmovestate,a6),d0
+	move.b (PL_Move_state,a6),d0
 	move.w loc_06c280(pc,d0.w),d1
 	jmp loc_06c280(pc,d1.w)
 
@@ -1013,18 +1013,18 @@ loc_06c280:
 
 ;----------------------------------------------
 loc_06c28e:
-	addq.b #2,(plmovestate,a6)
+	addq.b #2,(PL_Move_state,a6)
 	move.b d0,($2c8,a6)
 	move.b d0,($5b,a6)
 	move.b #1,($ce,a6)
 	moveq #0,d0
-	move.b (ButtonStrength,a6),d0
+	move.b (PL_ButtonStrength,a6),d0
 	lsr.b #1,d0
 	addq.b #6,d0
 	jsr loc_02ef6c
 	jsr loc_020674
 	moveq #6,d0
-	add.b (ButtonStrength,a6),d0
+	add.b (PL_ButtonStrength,a6),d0
 	asr.w #1,d0
 	jmp loc_02a758
 
@@ -1032,14 +1032,14 @@ loc_06c28e:
 loc_06c2c4:
 	tst.b ($35,a6)
 	beq.b loc_06c2f6
-	addq.b #2,(plmovestate,a6)
+	addq.b #2,(PL_Move_state,a6)
 	move.b #1,($31,a6)
 	move.b #7,($3b,a6)
 	moveq #0,d0
-	move.b (ButtonStrength,a6),d0
+	move.b (PL_ButtonStrength,a6),d0
 	lsl.w #2,d0
-	move.l loc_06c2fc(pc,d0.w),(plxvelocity,a6)
-	move.l loc_06c2fc+4(pc,d0.w),(plxdrag,a6)
+	move.l loc_06c2fc(pc,d0.w),(pl_x_velocity,a6)
+	move.l loc_06c2fc+4(pc,d0.w),(pl_x_drag,a6)
 	moveq #$14,d0
 	jsr loc_0038e4
 
@@ -1059,12 +1059,12 @@ loc_06c314:
 	bsr.w loc_06f05a
 	subq.b #1,($3b,a6)
 	bne.b loc_06c33e
-	addq.b #2,(plmovestate,a6)
+	addq.b #2,(PL_Move_state,a6)
 	moveq #0,d0
-	move.b (ButtonStrength,a6),d0
+	move.b (PL_ButtonStrength,a6),d0
 	lsl.w #2,d0
-	move.l loc_06c344(pc,d0.w),(plyvelocity,a6)
-	move.l loc_06c344+4(pc,d0.w),(plydrag,a6)
+	move.l loc_06c344(pc,d0.w),(pl_y_velocity,a6)
+	move.l loc_06c344+4(pc,d0.w),(pl_y_drag,a6)
 
 loc_06c33e:
 	jmp loc_02a7ea
@@ -1082,20 +1082,20 @@ loc_06c35c:
 	bsr.w loc_06f074
 	bpl.b loc_06c374
 	moveq #0,d0
-	move.l d0,(plxvelocity,a6)
-	move.l d0,(plxdrag,a6)
+	move.l d0,(pl_x_velocity,a6)
+	move.l d0,(pl_x_drag,a6)
 
 loc_06c374:
-	tst.w (plyvelocity,a6)
+	tst.w (pl_y_velocity,a6)
 	bpl.b loc_06c3a0
-	addq.b #2,(plmovestate,a6)
-	move.b (ButtonStrength,a6),d0
+	addq.b #2,(PL_Move_state,a6)
+	move.b (PL_ButtonStrength,a6),d0
 	ext.w d0
 	lsl.w #2,d0
-	move.l loc_06c3a6(pc,d0.w),(plxvelocity,a6)
-	move.l loc_06c3a6+4(pc,d0.w),(plxdrag,a6)
+	move.l loc_06c3a6(pc,d0.w),(pl_x_velocity,a6)
+	move.l loc_06c3a6+4(pc,d0.w),(pl_x_drag,a6)
 	moveq #$c,d0
-	add.b (ButtonStrength,a6),d0
+	add.b (PL_ButtonStrength,a6),d0
 	asr.w #1,d0
 	jsr loc_02a758
 
@@ -1114,7 +1114,7 @@ loc_06c3be:
 	move.w ($64,a6),d0
 	cmp.w ($14,a6),d0
 	bcs.w loc_06eff2
-	addq.b #2,(plmovestate,a6)
+	addq.b #2,(PL_Move_state,a6)
 	move.w d0,($14,a6)
 	moveq #0,d0
 	move.w d0,($16,a6)
@@ -1140,7 +1140,7 @@ loc_06c406:
 loc_06c412:
 	tst.b ($33,a6)
 	bpl.b loc_06c42a
-	move.b #2,(plmovestate,a6)
+	move.b #2,(PL_Move_state,a6)
 	clr.b ($5b,a6)
 	moveq #2,d0
 	jmp loc_02a758
@@ -1156,18 +1156,18 @@ loc_06c43a:
 
 ;==============================================
 loc_06c440:
-	move.b #8,(plmovestate,a6)
-	cmpi.b #4,(plmoveid,a6)
+	move.b #8,(PL_Move_state,a6)
+	cmpi.b #4,(pl_move_id,a6)
 	beq.b loc_06c454
-	move.b #$10,(plmovestate,a6)
+	move.b #$10,(PL_Move_state,a6)
 
 loc_06c454:
-	move.l #$ffff4000,(plxvelocity,a6)
-	move.l #0,(plxdrag,a6)
-	move.l #$a0000,(plyvelocity,a6)
-	move.l #$ffff8000,(plydrag,a6)
+	move.l #$ffff4000,(pl_x_velocity,a6)
+	move.l #0,(pl_x_drag,a6)
+	move.l #$a0000,(pl_y_velocity,a6)
+	move.l #$ffff8000,(pl_y_drag,a6)
 	moveq #$12,d0
-	add.b (ButtonStrength,a6),d0
+	add.b (PL_ButtonStrength,a6),d0
 	asr.w #1,d0
 	jmp loc_02a758
 
@@ -1175,7 +1175,7 @@ loc_06c454:
 ;Cannon Drill
 ;==============================================
 loc_06c482:
-	move.b (plmovestate,a6),d0
+	move.b (PL_Move_state,a6),d0
 	move.w loc_06c48e(pc,d0.w),d1
 	jmp loc_06c48e(pc,d1.w)
 
@@ -1191,7 +1191,7 @@ loc_06c48e:
 
 ;----------------------------------------------
 loc_06c49c:
-	addq.b #2,(plmovestate,a6)
+	addq.b #2,(PL_Move_state,a6)
 	move.b d0,($2c8,a6)
 	move.b d0,($a,a6)
 	move.b d0,($5b,a6)
@@ -1208,7 +1208,7 @@ loc_06c49c:
 	move.b #1,($a,a6)
 
 loc_06c4d8:
-	add.b (ButtonStrength,a6),d0
+	add.b (PL_ButtonStrength,a6),d0
 	asr.w #1,d0
 	jmp loc_02a758
 
@@ -1217,20 +1217,20 @@ loc_06c4e4:
 	jsr loc_02a7ea
 	tst.b ($35,a6)
 	bne.b loc_06c52e
-	addq.b #2,(plmovestate,a6)
+	addq.b #2,(PL_Move_state,a6)
 	move.b #1,($31,a6)
-	move.b (ButtonStrength,a6),d0
+	move.b (PL_ButtonStrength,a6),d0
 	ext.w d0
 	move.b loc_06c530(pc,d0.w),($3a,a6)
 	lsl.w #3,d0
-	move.l Juli_Cannon_Drill_MV(pc,d0.w),(plxvelocity,a6)
-	move.l Juli_Cannon_Drill_MV+4(pc,d0.w),(plyvelocity,a6)
-	move.l Juli_Cannon_Drill_MV+8(pc,d0.w),(plxdrag,a6)
-	move.l Juli_Cannon_Drill_MV+$c(pc,d0.w),(plydrag,a6)
-	tst.b (plflip,a6)
+	move.l Juli_Cannon_Drill_MV(pc,d0.w),(pl_x_velocity,a6)
+	move.l Juli_Cannon_Drill_MV+4(pc,d0.w),(pl_y_velocity,a6)
+	move.l Juli_Cannon_Drill_MV+8(pc,d0.w),(pl_x_drag,a6)
+	move.l Juli_Cannon_Drill_MV+$c(pc,d0.w),(pl_y_drag,a6)
+	tst.b (PL_Flip,a6)
 	bne.b loc_06c52e
-	neg.l (plxvelocity,a6)
-	neg.l (plxdrag,a6)
+	neg.l (pl_x_velocity,a6)
+	neg.l (pl_x_drag,a6)
 
 loc_06c52e:
 	rts
@@ -1256,17 +1256,17 @@ loc_06c566:
 loc_06c57c:
 	jsr loc_02aa08
 	bcc.w loc_06eff2
-	addq.b #2,(plmovestate,a6)
+	addq.b #2,(PL_Move_state,a6)
 	move.w ($64,a6),($14,a6)
 	moveq #0,d0
 	move.w d0,($16,a6)
 	move.b d0,($31,a6)
-	move.l d0,(plyvelocity,a6)
-	move.l d0,(plydrag,a6)
-	move.b (ButtonStrength,a6),d0
+	move.l d0,(pl_y_velocity,a6)
+	move.l d0,(pl_y_drag,a6)
+	move.b (PL_ButtonStrength,a6),d0
 	lsl.w #2,d0
-	move.l loc_06c5bc(pc,d0.w),(plxvelocity,a6)
-	move.l loc_06c5bc+4(pc,d0.w),(plxdrag,a6)
+	move.l loc_06c5bc(pc,d0.w),(pl_x_velocity,a6)
+	move.l loc_06c5bc+4(pc,d0.w),(pl_x_drag,a6)
 	moveq #$10,d0
 	jmp loc_02a758
 
@@ -1279,12 +1279,12 @@ loc_06c5bc:
 ;----------------------------------------------
 loc_06c5d4:
 	bsr.w loc_06f05a
-	tst.w (plxvelocity,a6)
+	tst.w (pl_x_velocity,a6)
 	bpl.b loc_06c5f0
-	addq.b #2,(plmovestate,a6)
+	addq.b #2,(PL_Move_state,a6)
 	moveq #0,d0
-	move.l d0,(plxvelocity,a6)
-	move.l d0,(plxdrag,a6)
+	move.l d0,(pl_x_velocity,a6)
+	move.l d0,(pl_x_drag,a6)
 	move.b d0,($ce,a6)
 
 loc_06c5f0:
@@ -1306,7 +1306,7 @@ loc_06c610:
 	move.w ($64,a6),d0
 	cmp.w ($14,a6),d0
 	bcs.w loc_06eff2
-	move.b #6,(plmovestate,a6)
+	move.b #6,(PL_Move_state,a6)
 	move.w d0,($14,a6)
 	moveq #0,d0
 	move.w d0,($16,a6)
@@ -1321,35 +1321,35 @@ loc_06c640:
 	move.w ($64,a6),d0
 	cmp.w ($14,a6),d0
 	bcs.w loc_06eff2
-	move.b #6,(plmovestate,a6)
+	move.b #6,(PL_Move_state,a6)
 	move.w d0,($14,a6)
 	moveq #0,d0
 	move.w d0,($16,a6)
 	move.b d0,($31,a6)
-	move.l #$ffffc000,(plxdrag,a6)
+	move.l #$ffffc000,(pl_x_drag,a6)
 	moveq #$35,d0
 	jmp loc_02a758
 
 ;==============================================
 loc_06c678:
-	move.b #$c,(plmovestate,a6)
-	move.l #$20000,(plxvelocity,a6)
+	move.b #$c,(PL_Move_state,a6)
+	move.l #$20000,(pl_x_velocity,a6)
 	moveq #0,d0
-	move.l d0,(plxdrag,a6)
-	move.l d0,(plyvelocity,a6)
-	move.l #$ffffa000,(plydrag,a6)
+	move.l d0,(pl_x_drag,a6)
+	move.l d0,(pl_y_velocity,a6)
+	move.l #$ffffa000,(pl_y_drag,a6)
 	moveq #$34,d0
 	jmp loc_02a758
 
 ;==============================================
 loc_06c6a0:
-	move.b #$a,(plmovestate,a6)
-	move.l #$ffff8000,(plxvelocity,a6)
-	move.l #0,(plxdrag,a6)
-	move.l #$80000,(plyvelocity,a6)
-	move.l #$ffff8000,(plydrag,a6)
+	move.b #$a,(PL_Move_state,a6)
+	move.l #$ffff8000,(pl_x_velocity,a6)
+	move.l #0,(pl_x_drag,a6)
+	move.l #$80000,(pl_y_velocity,a6)
+	move.l #$ffff8000,(pl_y_drag,a6)
 	moveq #$12,d0
-	add.b (ButtonStrength,a6),d0
+	add.b (PL_ButtonStrength,a6),d0
 	asr.w #1,d0
 	jmp loc_02a758
 
@@ -1357,7 +1357,7 @@ loc_06c6a0:
 ;Spin Knuckle
 ;==============================================
 loc_06c6d4:
-	move.b (plmovestate,a6),d0
+	move.b (PL_Move_state,a6),d0
 	move.w loc_06c6e0(pc,d0.w),d1
 	jmp loc_06c6e0(pc,d1.w)
 
@@ -1370,14 +1370,14 @@ loc_06c6e0:
 
 ;----------------------------------------------
 loc_06c6e8:
-	addq.b #2,(plmovestate,a6)
+	addq.b #2,(PL_Move_state,a6)
 	move.b d0,($2c8,a6)
 	move.b #1,($ce,a6)
 	moveq #7,d0
 	jsr loc_02ef6c
 	jsr loc_020674
 	moveq #$28,d0
-	add.b (ButtonStrength,a6),d0
+	add.b (PL_ButtonStrength,a6),d0
 	asr.w #1,d0
 	jmp loc_02a758
 
@@ -1385,15 +1385,15 @@ loc_06c6e8:
 loc_06c712:
 	tst.b ($35,a6)
 	bne.b loc_06c742
-	addq.b #2,(plmovestate,a6)
+	addq.b #2,(PL_Move_state,a6)
 	move.b #1,($31,a6)
-	move.b (ButtonStrength,a6),d0
+	move.b (PL_ButtonStrength,a6),d0
 	ext.w d0
 	lsl.w #3,d0
-	move.l loc_06c748(pc,d0.w),(plxvelocity,a6)
-	move.l loc_06c748+4(pc,d0.w),(plyvelocity,a6)
-	move.l loc_06c748+8(pc,d0.w),(plxdrag,a6)
-	move.l loc_06c748+$c(pc,d0.w),(plydrag,a6)
+	move.l loc_06c748(pc,d0.w),(pl_x_velocity,a6)
+	move.l loc_06c748+4(pc,d0.w),(pl_y_velocity,a6)
+	move.l loc_06c748+8(pc,d0.w),(pl_x_drag,a6)
+	move.l loc_06c748+$c(pc,d0.w),(pl_y_drag,a6)
 
 loc_06c742:
 	jmp loc_02a7ea
@@ -1416,17 +1416,17 @@ loc_06c784:
 	move.w ($64,a6),d0
 	cmp.w ($14,a6),d0
 	bcs.w loc_06eff8
-	addq.b #2,(plmovestate,a6)
+	addq.b #2,(PL_Move_state,a6)
 	move.w d0,($14,a6)
 	moveq #0,d0
 	move.w d0,($16,a6)
 	move.b d0,($31,a6)
-	move.l d0,(plxvelocity,a6)
-	move.l d0,(plyvelocity,a6)
-	move.l d0,(plxdrag,a6)
-	move.l d0,(plydrag,a6)
+	move.l d0,(pl_x_velocity,a6)
+	move.l d0,(pl_y_velocity,a6)
+	move.l d0,(pl_x_drag,a6)
+	move.l d0,(pl_y_drag,a6)
 	move.w #$18,d0
-	tst.b (plflip,a6)
+	tst.b (PL_Flip,a6)
 	bne.b loc_06c7c6
 	neg.w d0
 
@@ -1451,7 +1451,7 @@ loc_06c7e8:
 ;Hooligan Comboination
 ;==============================================
 loc_06c7f4:
-	move.b (plmovestate,a6),d0
+	move.b (PL_Move_state,a6),d0
 	move.w loc_06c800(pc,d0.w),d1
 	jmp loc_06c800(pc,d1.w)
 
@@ -1467,7 +1467,7 @@ loc_06c800:
 
 ;----------------------------------------------
 loc_06c80e:
-	addq.b #2,(plmovestate,a6)
+	addq.b #2,(PL_Move_state,a6)
 	moveq #0,d0
 	move.l d0,($84,a6)
 	move.b d0,($2c8,a6)
@@ -1500,15 +1500,15 @@ loc_06c898:
 	jsr loc_02a7ea
 	tst.b ($35,a6)
 	bne.b loc_06c8ce
-	addq.b #2,(plmovestate,a6)
+	addq.b #2,(PL_Move_state,a6)
 	move.b #1,($31,a6)
-	move.b (ButtonStrength,a6),d0
+	move.b (PL_ButtonStrength,a6),d0
 	ext.w d0
 	lsl.w #3,d0
-	move.l loc_06c8d0(pc,d0.w),(plxvelocity,a6)
-	move.l loc_06c8d0+4(pc,d0.w),(plyvelocity,a6)
-	move.l loc_06c8d0+8(pc,d0.w),(plxdrag,a6)
-	move.l loc_06c8d0+$c(pc,d0.w),(plydrag,a6)
+	move.l loc_06c8d0(pc,d0.w),(pl_x_velocity,a6)
+	move.l loc_06c8d0+4(pc,d0.w),(pl_y_velocity,a6)
+	move.l loc_06c8d0+8(pc,d0.w),(pl_x_drag,a6)
+	move.l loc_06c8d0+$c(pc,d0.w),(pl_y_drag,a6)
 
 loc_06c8ce:
 	rts
@@ -1524,7 +1524,7 @@ loc_06c900:
 	jsr loc_02a7ea
 	tst.b ($35,a6)
 	beq.b loc_06c916
-	addq.b #2,(plmovestate,a6)
+	addq.b #2,(PL_Move_state,a6)
 	addi.w #$28,($14,a6)
 
 loc_06c916:
@@ -1537,7 +1537,7 @@ loc_06c918:
 	move.w ($64,a6),d0
 	cmp.w ($14,a6),d0
 	bcs.b loc_06c94c
-	move.b #$c,(plmovestate,a6)
+	move.b #$c,(PL_Move_state,a6)
 	move.w d0,($14,a6)
 	moveq #0,d0
 	move.w d0,($16,a6)
@@ -1561,7 +1561,7 @@ loc_06c96e:
 	movea.w ($38,a6),a4
 	move.w ($14,a6),d1
 	sub.w ($14,a4),d1
-	move.b #8,(plmovestate,a6)
+	move.b #8,(PL_Move_state,a6)
 	moveq #$18,d0
 	tst.b ($31,a4)
 	bne.b loc_06c994
@@ -1571,7 +1571,7 @@ loc_06c96e:
 	bcc.b loc_06c99c
 
 loc_06c994:
-	move.b #$a,(plmovestate,a6)
+	move.b #$a,(PL_Move_state,a6)
 	moveq #$19,d0
 
 loc_06c99c:
@@ -1579,7 +1579,7 @@ loc_06c99c:
 
 ;==============================================
 loc_06c9a2:
-	tst.w (plyvelocity,a6)
+	tst.w (pl_y_velocity,a6)
 	bpl.b loc_06c9ba
 	move.w ($64,a6),d0
 	addi.w #$10,d0
@@ -1613,12 +1613,12 @@ loc_06c9d0:
 	moveq #7,d0
 	jsr loc_02ef6c
 	moveq #0,d0
-	move.b (ButtonStrength,a6),d0
+	move.b (PL_ButtonStrength,a6),d0
 	lsl.w #3,d0
-	move.l loc_06ca0a(pc,d0.w),(plxvelocity,a6)
-	move.l loc_06ca0a+4(pc,d0.w),(plyvelocity,a6)
-	move.l loc_06ca0a+8(pc,d0.w),(plxdrag,a6)
-	move.l loc_06ca0a+$c(pc,d0.w),(plydrag,a6)
+	move.l loc_06ca0a(pc,d0.w),(pl_x_velocity,a6)
+	move.l loc_06ca0a+4(pc,d0.w),(pl_y_velocity,a6)
+	move.l loc_06ca0a+8(pc,d0.w),(pl_x_drag,a6)
+	move.l loc_06ca0a+$c(pc,d0.w),(pl_y_drag,a6)
 
 loc_06ca08:
 	rts
@@ -1677,13 +1677,13 @@ loc_06caa0:
 	moveq #5,d0
 	jsr loc_02ef6c
 	moveq #0,d0
-	move.b (ButtonStrength,a6),d0
+	move.b (PL_ButtonStrength,a6),d0
 	move.b loc_06cae0(pc,d0.w),($3a,a6)
 	lsl.w #3,d0
-	move.l loc_06cae6(pc,d0.w),(plxvelocity,a6)
-	move.l loc_06cae6+4(pc,d0.w),(plyvelocity,a6)
-	move.l loc_06cae6+8(pc,d0.w),(plxdrag,a6)
-	move.l loc_06cae6+$c(pc,d0.w),(plydrag,a6)
+	move.l loc_06cae6(pc,d0.w),(pl_x_velocity,a6)
+	move.l loc_06cae6+4(pc,d0.w),(pl_y_velocity,a6)
+	move.l loc_06cae6+8(pc,d0.w),(pl_x_drag,a6)
+	move.l loc_06cae6+$c(pc,d0.w),(pl_y_drag,a6)
 
 loc_06cade:
 	rts
@@ -1713,19 +1713,19 @@ loc_06cb32:
 	moveq #0,d0
 	move.w d0,($16,a6)
 	move.b d0,($31,a6)
-	move.l d0,(plyvelocity,a6)
-	move.l d0,(plydrag,a6)
-	move.l #$ffffc000,(plxdrag,a6)
+	move.l d0,(pl_y_velocity,a6)
+	move.l d0,(pl_y_drag,a6)
+	move.l #$ffffc000,(pl_x_drag,a6)
 	moveq #$35,d0
 	jmp loc_02a758
 
 loc_06cb60:
 	addq.b #2,($84,a6)
-	move.l #$20000,(plxvelocity,a6)
+	move.l #$20000,(pl_x_velocity,a6)
 	moveq #0,d0
-	move.l d0,(plxdrag,a6)
-	move.l d0,(plyvelocity,a6)
-	move.l #$ffffa000,(plydrag,a6)
+	move.l d0,(pl_x_drag,a6)
+	move.l d0,(pl_y_velocity,a6)
+	move.l #$ffffa000,(pl_y_drag,a6)
 	moveq #$34,d0
 	jmp loc_02a758
 
@@ -1741,12 +1741,12 @@ loc_06cb86:
 ;xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 loc_06cb9c:
 	bsr.w loc_06f05a
-	tst.w (plxvelocity,a6)
+	tst.w (pl_x_velocity,a6)
 	bpl.b loc_06cbb8
 	addq.b #2,($84,a6)
 	moveq #0,d0
-	move.l d0,(plxvelocity,a6)
-	move.l d0,(plxdrag,a6)
+	move.l d0,(pl_x_velocity,a6)
+	move.l d0,(pl_x_drag,a6)
 	move.b d0,($ce,a6)
 
 loc_06cbb8:
@@ -1778,12 +1778,12 @@ loc_06cbea:
 	addq.b #2,($84,a6)
 	move.b #1,($2c8,a6)
 	move.b #1,($a9,a6)
-	move.b (ButtonStrength,a6),d0
+	move.b (PL_ButtonStrength,a6),d0
 	add.w d0,d0
-	move.l loc_06cc18(pc,d0.w),(plxdrag,a6)
+	move.l loc_06cc18(pc,d0.w),(pl_x_drag,a6)
 	moveq #0,d0
-	move.l d0,(plyvelocity,a6)
-	move.l d0,(plydrag,a6)
+	move.l d0,(pl_y_velocity,a6)
+	move.l d0,(pl_y_drag,a6)
 	moveq #3,d0
 	jmp loc_02ef6c
 
@@ -1818,19 +1818,19 @@ loc_06cc5e:
 
 ;==============================================
 loc_06cc6a:
-	move.l (plxvelocity,a6),d0
-	tst.b (plflip,a6)
+	move.l (pl_x_velocity,a6),d0
+	tst.b (PL_Flip,a6)
 	bne.b loc_06cc76
 	neg.l d0
 
 loc_06cc76:
 	add.l d0,($10,a6)
-	move.l (plxdrag,a6),d0
-	add.l d0,(plxvelocity,a6)
+	move.l (pl_x_drag,a6),d0
+	add.l d0,(pl_x_velocity,a6)
 	bpl.b loc_06cc8e
 	moveq #0,d0
-	move.l d0,(plxvelocity,a6)
-	move.l d0,(plxdrag,a6)
+	move.l d0,(pl_x_velocity,a6)
+	move.l d0,(pl_x_drag,a6)
 
 loc_06cc8e:
 	rts
@@ -1839,7 +1839,7 @@ loc_06cc8e:
 ;Spin Drive Smasher
 ;==============================================
 loc_06cc90:
-	move.b (plmovestate,a6),d0
+	move.b (PL_Move_state,a6),d0
 	move.w loc_06cc9c(pc,d0.w),d1
 	jmp loc_06cc9c(pc,d1.w)
 
@@ -1859,14 +1859,14 @@ loc_06cc9c:
 
 ;----------------------------------------------
 loc_06ccb0:
-	addq.b #2,(plmovestate,a6)
+	addq.b #2,(PL_Move_state,a6)
 	move.b d0,($2c8,a6)
 	move.b #2,($23f,a6)
 	jsr loc_0804da
 	jsr loc_02f53c
 	jsr loc_02068c
 	moveq #$42,d0
-	add.b (ButtonStrength,a6),d0
+	add.b (PL_ButtonStrength,a6),d0
 	asr.w #1,d0
 	jmp loc_02a758
 
@@ -1875,7 +1875,7 @@ loc_06ccde:
 	move.b #2,($23f,a6)
 	tst.b ($35,a6)
 	bpl.b loc_06cd06
-	addq.b #2,(plmovestate,a6)
+	addq.b #2,(PL_Move_state,a6)
 	moveq #-1,d0
 	tst.b ($3f,a6)
 	beq.b loc_06ccf8
@@ -1896,24 +1896,24 @@ loc_06cd0c:
 	jsr loc_02a7ea
 	tst.b ($35,a6)
 	bmi.b loc_06cd64
-	addq.b #2,(plmovestate,a6)
+	addq.b #2,(PL_Move_state,a6)
 	clr.b ($ab,a6)
 	jsr loc_02fcd4
 	tst.b ($3f,a6)
 	bne.b loc_06cd38
-	move.b (ButtonStrength,a6),d0
+	move.b (PL_ButtonStrength,a6),d0
 	lsr.b #1,d0
 
 loc_06cd38:
 	move.b loc_06cd66(pc,d0.w),($25d,a6)
 	move.b #1,($31,a6)
 	moveq #0,d0
-	move.b (ButtonStrength,a6),d0
+	move.b (PL_ButtonStrength,a6),d0
 	lsl.w #3,d0
-	move.l loc_06cd6a(pc,d0.w),(plxvelocity,a6)
-	move.l loc_06cd6a+4(pc,d0.w),(plxdrag,a6)
-	move.l loc_06cd6a+8(pc,d0.w),(plyvelocity,a6)
-	move.l loc_06cd6a+$c(pc,d0.w),(plydrag,a6)
+	move.l loc_06cd6a(pc,d0.w),(pl_x_velocity,a6)
+	move.l loc_06cd6a+4(pc,d0.w),(pl_x_drag,a6)
+	move.l loc_06cd6a+8(pc,d0.w),(pl_y_velocity,a6)
+	move.l loc_06cd6a+$c(pc,d0.w),(pl_y_drag,a6)
 
 loc_06cd64:
 	rts
@@ -1934,16 +1934,16 @@ loc_06cd9a:
 	move.w ($64,a6),d0
 	cmp.w ($14,a6),d0
 	bcs.w loc_06eff2
-	addq.b #2,(plmovestate,a6)
+	addq.b #2,(PL_Move_state,a6)
 	move.w d0,($14,a6)
 	moveq #0,d0
 	move.w d0,($16,a6)
-	move.b (ButtonStrength,a6),d0
+	move.b (PL_ButtonStrength,a6),d0
 	lsl.w #3,d0
-	move.l loc_06cde2(pc,d0.w),(plxvelocity,a6)
-	move.l loc_06cde2+4(pc,d0.w),(plxdrag,a6)
-	move.l loc_06cde2+8(pc,d0.w),(plyvelocity,a6)
-	move.l loc_06cde2+$c(pc,d0.w),(plydrag,a6)
+	move.l loc_06cde2(pc,d0.w),(pl_x_velocity,a6)
+	move.l loc_06cde2+4(pc,d0.w),(pl_x_drag,a6)
+	move.l loc_06cde2+8(pc,d0.w),(pl_y_velocity,a6)
+	move.l loc_06cde2+$c(pc,d0.w),(pl_y_drag,a6)
 	moveq #$24,d0
 	jmp loc_02a758
 
@@ -1963,11 +1963,11 @@ loc_06ce12:
 	clr.b ($31,a6)
 
 loc_06ce26:
-	tst.w (plxvelocity,a6)
+	tst.w (pl_x_velocity,a6)
 	bpl.w loc_06eff2
-	addq.b #2,(plmovestate,a6)
+	addq.b #2,(PL_Move_state,a6)
 	moveq #$4a,d0
-	add.b (ButtonStrength,a6),d0
+	add.b (PL_ButtonStrength,a6),d0
 	asr.w #1,d0
 	jmp loc_02a758
 
@@ -1975,17 +1975,17 @@ loc_06ce26:
 loc_06ce40:
 	tst.b ($35,a6)
 	bne.b loc_06ce7a
-	addq.b #2,(plmovestate,a6)
+	addq.b #2,(PL_Move_state,a6)
 	move.b #1,($31,a6)
 	move.b #5,($3b,a6)
 	clr.b ($5b,a6)
 	moveq #0,d0
-	move.b (ButtonStrength,a6),d0
+	move.b (PL_ButtonStrength,a6),d0
 	lsl.w #3,d0
-	move.l loc_06ce80(pc,d0.w),(plxvelocity,a6)
-	move.l loc_06ce80+4(pc,d0.w),(plxdrag,a6)
-	move.l loc_06ce80+8(pc,d0.w),(plyvelocity,a6)
-	move.l loc_06ce80+$c(pc,d0.w),(plydrag,a6)
+	move.l loc_06ce80(pc,d0.w),(pl_x_velocity,a6)
+	move.l loc_06ce80+4(pc,d0.w),(pl_x_drag,a6)
+	move.l loc_06ce80+8(pc,d0.w),(pl_y_velocity,a6)
+	move.l loc_06ce80+$c(pc,d0.w),(pl_y_drag,a6)
 
 loc_06ce7a:
 	jmp loc_02a7ea
@@ -2008,14 +2008,14 @@ loc_06cec2:
 	clr.b ($5b,a6)
 	subq.b #1,($3b,a6)
 	bne.b loc_06cef0
-	addq.b #2,(plmovestate,a6)
+	addq.b #2,(PL_Move_state,a6)
 	moveq #0,d0
-	move.b (ButtonStrength,a6),d0
+	move.b (PL_ButtonStrength,a6),d0
 	lsl.w #3,d0
-	move.l loc_06cef6(pc,d0.w),(plxvelocity,a6)
-	move.l loc_06cef6+4(pc,d0.w),(plxdrag,a6)
-	move.l loc_06cef6+8(pc,d0.w),(plyvelocity,a6)
-	move.l loc_06cef6+$c(pc,d0.w),(plydrag,a6)
+	move.l loc_06cef6(pc,d0.w),(pl_x_velocity,a6)
+	move.l loc_06cef6+4(pc,d0.w),(pl_x_drag,a6)
+	move.l loc_06cef6+8(pc,d0.w),(pl_y_velocity,a6)
+	move.l loc_06cef6+$c(pc,d0.w),(pl_y_drag,a6)
 
 loc_06cef0:
 	jmp loc_02a7ea
@@ -2036,22 +2036,22 @@ loc_06cf26:
 loc_06cf34:
 	moveq #0,d0
 	move.b d0,($5b,a6)
-	tst.w (plxvelocity,a6)
+	tst.w (pl_x_velocity,a6)
 	bpl.b loc_06cf48
-	move.l d0,(plxvelocity,a6)
-	move.l d0,(plxdrag,a6)
+	move.l d0,(pl_x_velocity,a6)
+	move.l d0,(pl_x_drag,a6)
 
 loc_06cf48:
-	tst.w (plyvelocity,a6)
+	tst.w (pl_y_velocity,a6)
 	bpl.b loc_06cf76
-	addq.b #2,(plmovestate,a6)
+	addq.b #2,(PL_Move_state,a6)
 	move.b d0,($35,a6)
-	move.b (ButtonStrength,a6),d0
+	move.b (PL_ButtonStrength,a6),d0
 	lsl.w #2,d0
-	move.l loc_06cf80(pc,d0.w),(plxvelocity,a6)
-	move.l loc_06cf80+4(pc,d0.w),(plxdrag,a6)
+	move.l loc_06cf80(pc,d0.w),(pl_x_velocity,a6)
+	move.l loc_06cf80+4(pc,d0.w),(pl_x_drag,a6)
 	moveq #$c,d0
-	add.b (ButtonStrength,a6),d0
+	add.b (PL_ButtonStrength,a6),d0
 	asr.w #1,d0
 	jsr loc_02a758
 
@@ -2076,13 +2076,13 @@ loc_06cfa4:
 	move.w ($64,a6),d0
 	cmp.w ($14,a6),d0
 	bcs.w loc_06eff8
-	addq.b #2,(plmovestate,a6)
+	addq.b #2,(PL_Move_state,a6)
 	move.w d0,($14,a6)
 	moveq #0,d0
 	move.w d0,($16,a6)
 	move.b d0,($31,a6)
 	move.w #$94,d0
-	add.b (ButtonStrength,a6),d0
+	add.b (PL_ButtonStrength,a6),d0
 	asr.w #1,d0
 	jmp loc_02a758
 
@@ -2096,7 +2096,7 @@ loc_06cfd6:
 ;crash
 ;==============================================
 loc_06cfe4:
-	move.b (plmovestate,a6),d0
+	move.b (PL_Move_state,a6),d0
 	move.w loc_06cff4(pc,d0.w),d1
 	jsr loc_06cff4(pc,d1.w)
 	bra.w loc_06d0d6
@@ -2109,7 +2109,7 @@ loc_06cff4:
 
 ;----------------------------------------------
 loc_06cffa:
-	addq.b #2,(plmovestate,a6)
+	addq.b #2,(PL_Move_state,a6)
 	move.b #1,($ce,a6)
 	moveq #0,d0
 	move.b d0,($2c8,a6)
@@ -2121,7 +2121,7 @@ loc_06cffa:
 	clr.b ($3c,a6)
 	move.b #$50,($3a,a6)
 	move.b #5,($3b,a6)
-	clr.b (plxvelocity,a6)
+	clr.b (pl_x_velocity,a6)
 	move.b #1,($41,a6)
 	moveq #$51,d0
 	jmp loc_02a758
@@ -2151,16 +2151,16 @@ loc_06d082:
 	jsr loc_01c2c8
 	beq.b loc_06d0aa
 	move.l #$01003904,(a4)
-	move.b (plxvelocity,a6),($3c,a4)
+	move.b (pl_x_velocity,a6),($3c,a4)
 	move.w a6,($36,a4)
-	addq.b #2,(plxvelocity,a6)
+	addq.b #2,(pl_x_velocity,a6)
 
 loc_06d0aa:
 	subq.b #1,($3a,a6)
 	bpl.w loc_06eff2
 
 loc_06d0b2:
-	addq.b #2,(plmovestate,a6)
+	addq.b #2,(PL_Move_state,a6)
 	st.b ($3c,a6)
 	move.b #0,($2a0,a6)
 	moveq #$52,d0
@@ -2209,7 +2209,7 @@ loc_06d11e:
 	move.b #$1a,($25d,a4)
 	clr.b ($263,a4)
 	move.w #$30,d0
-	move.b (plflip,a6),($b,a4)
+	move.b (PL_Flip,a6),($b,a4)
 	beq.b loc_06d142
 	neg.w d0
 
@@ -2265,7 +2265,7 @@ loc_06d1ba:
 ;Mach Slide
 ;==============================================
 loc_06d1c0:
-	move.b (plmovestate,a6),d0
+	move.b (PL_Move_state,a6),d0
 	move.w loc_06d1cc(pc,d0.w),d1
 	jmp loc_06d1cc(pc,d1.w)
 
@@ -2278,7 +2278,7 @@ loc_06d1cc:
 
 ;----------------------------------------------
 loc_06d1d4:
-	addq.b #2,(plmovestate,a6)
+	addq.b #2,(PL_Move_state,a6)
 	move.b #1,($ce,a6)
 	clr.b ($2c8,a6)
 	moveq #$13,d0
@@ -2289,15 +2289,15 @@ loc_06d1d4:
 
 loc_06d1f8:
 	moveq #0,d0
-	move.b (ButtonStrength,a6),d0
+	move.b (PL_ButtonStrength,a6),d0
 	move.w loc_06d228(pc,d0.w),($3a,a6)
 	lsl.w #2,d0
-	move.l loc_06d22e(pc,d0.w),(plxvelocity,a6)
-	move.l loc_06d22e+4(pc,d0.w),(plxdrag,a6)
-	tst.b (plflip,a6)
+	move.l loc_06d22e(pc,d0.w),(pl_x_velocity,a6)
+	move.l loc_06d22e+4(pc,d0.w),(pl_x_drag,a6)
+	tst.b (PL_Flip,a6)
 	bne.b loc_06d220
-	neg.l (plxvelocity,a6)
-	neg.l (plxdrag,a6)
+	neg.l (pl_x_velocity,a6)
+	neg.l (pl_x_drag,a6)
 
 loc_06d220:
 	moveq #$58,d0
@@ -2321,19 +2321,19 @@ loc_06d246:
 loc_06d250:
 	move.b ($ac,a6),d0
 	subq.b #1,d0
-	cmp.b (plflip,a6),d0
+	cmp.b (PL_Flip,a6),d0
 	beq.b loc_06d264
 	subq.w #1,($3a,a6)
 	bpl.w loc_06eff2
 
 loc_06d264:
-	addq.b #2,(plmovestate,a6)
-	move.l #$30000,(plxvelocity,a6)
-	move.l #$3000,(plxdrag,a6)
-	tst.b (plflip,a6)
+	addq.b #2,(PL_Move_state,a6)
+	move.l #$30000,(pl_x_velocity,a6)
+	move.l #$3000,(pl_x_drag,a6)
+	tst.b (PL_Flip,a6)
 	bne.b loc_06d286
-	neg.l (plxvelocity,a6)
-	neg.l (plxdrag,a6)
+	neg.l (pl_x_velocity,a6)
+	neg.l (pl_x_drag,a6)
 
 loc_06d286:
 	moveq #$59,d0
@@ -2354,7 +2354,7 @@ loc_06d298:
 loc_06d2a6:
 	tst.b ($33,a6)
 	bpl.b loc_06d2c0
-	move.b #2,(plmovestate,a6)
+	move.b #2,(PL_Move_state,a6)
 	move.b #1,($ce,a6)
 	clr.b ($2c8,a6)
 	bra.w loc_06d1f8
@@ -2372,7 +2372,7 @@ loc_06d2d0:
 ;Cannon Strike
 ;==============================================
 loc_06d2d6:
-	move.b (plmovestate,a6),d0
+	move.b (PL_Move_state,a6),d0
 	move.w loc_06d2e2(pc,d0.w),d1
 	jmp loc_06d2e2(pc,d1.w)
 
@@ -2386,22 +2386,22 @@ loc_06d2e2:
 
 ;----------------------------------------------
 loc_06d2ec:
-	addq.b #2,(plmovestate,a6)
+	addq.b #2,(PL_Move_state,a6)
 	move.b #1,($31,a6)
 	move.b #1,($ce,a6)
 	moveq #0,d0
 	move.b d0,($5b,a6)
-	move.b (ButtonStrength,a6),d0
+	move.b (PL_ButtonStrength,a6),d0
 	lsl.w #3,d0
-	move.l loc_06d33c(pc,d0.w),(plxvelocity,a6)
-	move.l loc_06d33c+4(pc,d0.w),(plxdrag,a6)
-	move.l loc_06d33c+8(pc,d0.w),(plyvelocity,a6)
-	move.l loc_06d33c+$c(pc,d0.w),(plydrag,a6)
+	move.l loc_06d33c(pc,d0.w),(pl_x_velocity,a6)
+	move.l loc_06d33c+4(pc,d0.w),(pl_x_drag,a6)
+	move.l loc_06d33c+8(pc,d0.w),(pl_y_velocity,a6)
+	move.l loc_06d33c+$c(pc,d0.w),(pl_y_drag,a6)
 	moveq #6,d0
 	jsr loc_02ef6c
 	jsr loc_020674
 	moveq #$52,d0
-	add.b (ButtonStrength,a6),d0
+	add.b (PL_ButtonStrength,a6),d0
 	asr.w #1,d0
 	jmp loc_02a758
 
@@ -2416,11 +2416,11 @@ loc_06d36c:
 	jsr loc_02a7ea
 	tst.b ($35,a6)
 	bne.b loc_06d38a
-	addq.b #2,(plmovestate,a6)
-	tst.b (plflip,a6)
+	addq.b #2,(PL_Move_state,a6)
+	tst.b (PL_Flip,a6)
 	bne.b loc_06d38a
-	neg.l (plxvelocity,a6)
-	neg.l (plxdrag,a6)
+	neg.l (pl_x_velocity,a6)
+	neg.l (pl_x_drag,a6)
 
 loc_06d38a:
 	rts
@@ -2431,7 +2431,7 @@ loc_06d38c:
 	bmi.w loc_06d3fe
 	jsr loc_02aa08
 	bcc.w loc_06eff2
-	move.b #8,(plmovestate,a6)
+	move.b #8,(PL_Move_state,a6)
 	move.w ($64,a6),($14,a6)
 	moveq #0,d0
 	move.w d0,($16,a6)
@@ -2446,7 +2446,7 @@ loc_06d3c0:
 	move.w ($64,a6),d0
 	cmp.w ($14,a6),d0
 	bcs.w loc_06eff2
-	move.b #8,(plmovestate,a6)
+	move.b #8,(PL_Move_state,a6)
 	move.w d0,($14,a6)
 	moveq #0,d0
 	move.w d0,($16,a6)
@@ -2469,13 +2469,13 @@ loc_06d3fe:
 	clr.w ($16,a6)
 
 loc_06d410:
-	move.b #6,(plmovestate,a6)
-	move.l #$ffff8000,(plxvelocity,a6)
-	move.l #0,(plxdrag,a6)
-	move.l #$80000,(plyvelocity,a6)
-	move.l #$ffff8000,(plydrag,a6)
+	move.b #6,(PL_Move_state,a6)
+	move.l #$ffff8000,(pl_x_velocity,a6)
+	move.l #0,(pl_x_drag,a6)
+	move.l #$80000,(pl_y_velocity,a6)
+	move.l #$ffff8000,(pl_y_drag,a6)
 	moveq #$12,d0
-	add.b (ButtonStrength,a6),d0
+	add.b (PL_ButtonStrength,a6),d0
 	asr.w #1,d0
 	jmp loc_02a758
 
@@ -2483,7 +2483,7 @@ loc_06d410:
 ;Run
 ;==============================================
 loc_06d444:
-	move.b (plmovestate,a6),d0
+	move.b (PL_Move_state,a6),d0
 	move.w loc_06d450(pc,d0.w),d1
 	jmp loc_06d450(pc,d1.w)
 
@@ -2495,17 +2495,17 @@ loc_06d450:
 
 ;----------------------------------------------
 loc_06d456:
-	addq.b #2,(plmovestate,a6)
+	addq.b #2,(PL_Move_state,a6)
 	move.b #1,($ce,a6)
 	clr.b ($2c8,a6)
 	move.b #5,($3a,a6)
 	move.b #$27,($3b,a6)
-	move.l #$70000,(plxvelocity,a6)
-	move.l #$fffff400,(plxdrag,a6)
-	tst.b (plflip,a6)
+	move.l #$70000,(pl_x_velocity,a6)
+	move.l #$fffff400,(pl_x_drag,a6)
+	tst.b (PL_Flip,a6)
 	bne.b loc_06d48e
-	neg.l (plxvelocity,a6)
-	neg.l (plxdrag,a6)
+	neg.l (pl_x_velocity,a6)
+	neg.l (pl_x_drag,a6)
 
 loc_06d48e:
 	moveq #$4e,d0
@@ -2522,17 +2522,17 @@ loc_06d496:
 	bpl.w loc_06eff2
 	tst.b ($125,a6)
 	bne.w loc_06eff2
-	btst #0,(Directioninput,a6)
+	btst #0,(PL_Directioninput,a6)
 	beq.w loc_06eff2
 
 loc_06d4c0:
-	addq.b #2,(plmovestate,a6)
-	move.l #$30000,(plxvelocity,a6)
-	move.l #$3000,(plxdrag,a6)
-	tst.b (plflip,a6)
+	addq.b #2,(PL_Move_state,a6)
+	move.l #$30000,(pl_x_velocity,a6)
+	move.l #$3000,(pl_x_drag,a6)
+	tst.b (PL_Flip,a6)
 	bne.b loc_06d4e2
-	neg.l (plxvelocity,a6)
-	neg.l (plxdrag,a6)
+	neg.l (pl_x_velocity,a6)
+	neg.l (pl_x_drag,a6)
 
 loc_06d4e2:
 	moveq #$4f,d0
@@ -2551,17 +2551,17 @@ loc_06d4f4:
 
 ;==============================================
 loc_06d502:
-	move.l (plxvelocity,a6),d0
+	move.l (pl_x_velocity,a6),d0
 	add.l d0,($10,a6)
-	move.l (plxdrag,a6),d0
-	add.l d0,(plxvelocity,a6)
+	move.l (pl_x_drag,a6),d0
+	add.l d0,(pl_x_velocity,a6)
 	rts
 
 ;==============================================
 ;Earth Direct
 ;==============================================
 loc_06d514:
-	move.b (plmovestate,a6),d0
+	move.b (PL_Move_state,a6),d0
 	move.w loc_06d520(pc,d0.w),d1
 	jmp loc_06d520(pc,d1.w)
 
@@ -2577,7 +2577,7 @@ loc_06d520:
 
 ;----------------------------------------------
 loc_06d52e:
-	addq.b #2,(plmovestate,a6)
+	addq.b #2,(PL_Move_state,a6)
 	move.b #1,($ce,a6)
 	clr.b ($2c8,a6)
 	moveq #6,d0
@@ -2591,26 +2591,26 @@ loc_06d552:
 	tst.b ($35,a6)
 	beq.w loc_06eff2
 	move.w #$bb,d0
-	add.b (ButtonStrength,a6),d0
+	add.b (PL_ButtonStrength,a6),d0
 	jsr loc_02e3fe
 	beq.w loc_06d604
-	move.b #6,(plmovestate,a6)
+	move.b #6,(PL_Move_state,a6)
 	move.b #1,($31,a6)
-	move.l #$fffe0000,(plxvelocity,a6)
-	move.l #0,(plxdrag,a6)
-	move.l #$90000,(plyvelocity,a6)
-	move.l #$ffffa800,(plydrag,a6)
+	move.l #$fffe0000,(pl_x_velocity,a6)
+	move.l #0,(pl_x_drag,a6)
+	move.l #$90000,(pl_y_velocity,a6)
+	move.l #$ffffa800,(pl_y_drag,a6)
 	moveq #0,d0
-	move.b (ButtonStrength,a6),d0
+	move.b (PL_ButtonStrength,a6),d0
 	lsl.w #3,d0
-	move.l loc_06d5d4(pc,d0.w),(plxvelocity,a6)
-	move.l loc_06d5d4+4(pc,d0.w),(plxdrag,a6)
-	move.l loc_06d5d4+8(pc,d0.w),(plyvelocity,a6)
-	move.l loc_06d5d4+$c(pc,d0.w),(plydrag,a6)
-	tst.b (plflip,a6)
+	move.l loc_06d5d4(pc,d0.w),(pl_x_velocity,a6)
+	move.l loc_06d5d4+4(pc,d0.w),(pl_x_drag,a6)
+	move.l loc_06d5d4+8(pc,d0.w),(pl_y_velocity,a6)
+	move.l loc_06d5d4+$c(pc,d0.w),(pl_y_drag,a6)
+	tst.b (PL_Flip,a6)
 	bne.b loc_06d5c6
-	neg.l (plxvelocity,a6)
-	neg.l (plxdrag,a6)
+	neg.l (pl_x_velocity,a6)
+	neg.l (pl_x_drag,a6)
 
 loc_06d5c6:
 	moveq #$55,d0
@@ -2625,7 +2625,7 @@ loc_06d5d4:
 
 ;xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 loc_06d604:
-	addq.b #2,(plmovestate,a6)
+	addq.b #2,(PL_Move_state,a6)
 	jmp loc_02a7ea
 
 ;----------------------------------------------
@@ -2640,7 +2640,7 @@ loc_06d61c:
 	bne.b loc_06d670
 	jsr loc_02aa08
 	bcc.b loc_06d670
-	addq.b #2,(plmovestate,a6)
+	addq.b #2,(PL_Move_state,a6)
 	move.b #$18,($3a,a6)
 	move.b #$30,($123,a5)
 	move.w ($64,a6),($14,a6)
@@ -2648,7 +2648,7 @@ loc_06d61c:
 	move.b d0,($31,a6)
 	move.w d0,($16,a6)
 	move.w #$bc,d0
-	add.b (ButtonStrength,a6),d0
+	add.b (PL_ButtonStrength,a6),d0
 	jsr loc_02e970
 	moveq #$56,d0
 	jsr loc_02a758
@@ -2665,20 +2665,20 @@ loc_06d670:
 loc_06d67c:
 	subq.b #1,($3a,a6)
 	bpl.b loc_06d6d6
-	addq.b #2,(plmovestate,a6)
+	addq.b #2,(PL_Move_state,a6)
 	move.b #1,($31,a6)
 	move.b #1,($de,a6)
 	move.w #$bb,d0
-	add.b (ButtonStrength,a6),d0
+	add.b (PL_ButtonStrength,a6),d0
 	jsr loc_02e7f2
-	move.l #$fffe0000,(plxvelocity,a6)
-	move.l #0,(plxdrag,a6)
-	move.l #$60000,(plyvelocity,a6)
-	move.l #$ffffa800,(plydrag,a6)
-	tst.b (plflip,a6)
+	move.l #$fffe0000,(pl_x_velocity,a6)
+	move.l #0,(pl_x_drag,a6)
+	move.l #$60000,(pl_y_velocity,a6)
+	move.l #$ffffa800,(pl_y_drag,a6)
+	tst.b (PL_Flip,a6)
 	bne.b loc_06d6ce
-	neg.l (plxvelocity,a6)
-	neg.l (plxdrag,a6)
+	neg.l (pl_x_velocity,a6)
+	neg.l (pl_x_drag,a6)
 
 loc_06d6ce:
 	moveq #$14,d0
@@ -2692,7 +2692,7 @@ loc_06d6d6:
 loc_06d6e2:
 	jsr loc_02aa08
 	bcc.w loc_06eff2
-	addq.b #2,(plmovestate,a6)
+	addq.b #2,(PL_Move_state,a6)
 	move.w ($64,a6),($14,a6)
 	moveq #0,d0
 	move.b d0,($31,a6)
@@ -2712,7 +2712,7 @@ loc_06d710:
 ;Sniping Arrow
 ;==============================================
 loc_06d71e:
-	move.b (plmovestate,a6),d0
+	move.b (PL_Move_state,a6),d0
 	move.w loc_06d72a(pc,d0.w),d1
 	jmp loc_06d72a(pc,d1.w)
 
@@ -2725,26 +2725,26 @@ loc_06d72a:
 
 ;----------------------------------------------
 loc_06d732:
-	addq.b #2,(plmovestate,a6)
+	addq.b #2,(PL_Move_state,a6)
 	move.b #1,($ce,a6)
 	clr.b ($2c8,a6)
 	moveq #6,d0
 	jsr loc_02ef6c
 	jsr loc_020674
 	moveq #0,d0
-	move.b (ButtonStrength,a6),d0
+	move.b (PL_ButtonStrength,a6),d0
 	lsl.w #3,d0
-	move.l loc_06d78c(pc,d0.w),(plxvelocity,a6)
-	move.l loc_06d78c+4(pc,d0.w),(plxdrag,a6)
-	move.l loc_06d78c+8(pc,d0.w),(plyvelocity,a6)
-	move.l loc_06d78c+$c(pc,d0.w),(plydrag,a6)
-	tst.b (plflip,a6)
+	move.l loc_06d78c(pc,d0.w),(pl_x_velocity,a6)
+	move.l loc_06d78c+4(pc,d0.w),(pl_x_drag,a6)
+	move.l loc_06d78c+8(pc,d0.w),(pl_y_velocity,a6)
+	move.l loc_06d78c+$c(pc,d0.w),(pl_y_drag,a6)
+	tst.b (PL_Flip,a6)
 	bne.b loc_06d77c
-	neg.l (plxvelocity,a6)
-	neg.l (plxdrag,a6)
+	neg.l (pl_x_velocity,a6)
+	neg.l (pl_x_drag,a6)
 
 loc_06d77c:
-	move.b (ButtonStrength,a6),d0
+	move.b (PL_ButtonStrength,a6),d0
 	lsr.b #1,d0
 	addi.b #$5a,d0
 	jmp loc_02a758
@@ -2760,7 +2760,7 @@ loc_06d7bc:
 	jsr loc_02a7ea
 	move.b ($34,a6),d0
 	beq.b loc_06d7d8
-	tst.b (plflip,a6)
+	tst.b (PL_Flip,a6)
 	bne.b loc_06d7d0
 	neg.w d0
 
@@ -2771,7 +2771,7 @@ loc_06d7d0:
 loc_06d7d8:
 	tst.b ($35,a6)
 	bne.b loc_06d7e8
-	addq.b #2,(plmovestate,a6)
+	addq.b #2,(PL_Move_state,a6)
 	move.b #1,($31,a6)
 
 loc_06d7e8:
@@ -2781,13 +2781,13 @@ loc_06d7e8:
 loc_06d7ea:
 	jsr loc_02aa08
 	bcc.w loc_06eff2
-	addq.b #2,(plmovestate,a6)
+	addq.b #2,(PL_Move_state,a6)
 	move.w ($64,a6),($14,a6)
 	moveq #0,d0
 	move.b d0,($31,a6)
 	move.w d0,($16,a6)
 	move.b d0,($ce,a6)
-	move.b (ButtonStrength,a6),d0
+	move.b (PL_ButtonStrength,a6),d0
 	lsr.b #1,d0
 	addi.b #$5d,d0
 	jmp loc_02a758
@@ -2808,7 +2808,7 @@ loc_06d832:
 ;??? Disappears
 ;==============================================
 loc_06d83e:
-	move.b (plmovestate,a6),d0
+	move.b (PL_Move_state,a6),d0
 	move.w loc_06d84a(pc,d0.w),d1
 	jmp loc_06d84a(pc,d1.w)
 
@@ -2821,7 +2821,7 @@ loc_06d84a:
 loc_06d84e:
 	tst.b ($33,a6)
 	bpl.w loc_06eff2
-	addq.b #2,(plmovestate,a6)
+	addq.b #2,(PL_Move_state,a6)
 	moveq #$50,d0
 	jmp loc_02a758
 
@@ -2833,7 +2833,7 @@ loc_06d862:
 ;Death Cross Dancing
 ;==============================================
 loc_06d868:
-	move.b (plmovestate,a6),d0
+	move.b (PL_Move_state,a6),d0
 	move.w loc_06d874(pc,d0.w),d1
 	jmp loc_06d874(pc,d1.w)
 
@@ -2852,7 +2852,7 @@ loc_06d874:
 
 ;----------------------------------------------
 loc_06d886:
-	addq.b #2,(plmovestate,a6)
+	addq.b #2,(PL_Move_state,a6)
 	moveq #0,d0
 	move.b d0,($2c8,a6)
 	move.b d0,($3c,a6)
@@ -2869,7 +2869,7 @@ loc_06d8b8:
 	move.b #2,($23f,a6)
 	tst.b ($35,a6)
 	bpl.b loc_06d8e6
-	addq.b #2,(plmovestate,a6)
+	addq.b #2,(PL_Move_state,a6)
 	move.b #$31,($3a,a6)
 	moveq #-1,d0
 	tst.b ($3f,a6)
@@ -2891,22 +2891,22 @@ loc_06d8ec:
 	jsr loc_02a7ea
 	subq.b #1,($3a,a6)
 	bpl.b loc_06d944
-	addq.b #2,(plmovestate,a6)
+	addq.b #2,(PL_Move_state,a6)
 	clr.b ($ab,a6)
 	jsr loc_02fcd4
 	tst.b ($3f,a6)
 	bne.b loc_06d918
-	move.b (ButtonStrength,a6),d0
+	move.b (PL_ButtonStrength,a6),d0
 	lsr.b #1,d0
 
 loc_06d918:
 	move.b loc_06d946(pc,d0.w),($25d,a6)
-	move.l #$90000,(plxvelocity,a6)
-	move.l #$ffff8000,(plxdrag,a6)
-	tst.b (plflip,a6)
+	move.l #$90000,(pl_x_velocity,a6)
+	move.l #$ffff8000,(pl_x_drag,a6)
+	tst.b (PL_Flip,a6)
 	bne.b loc_06d93c
-	neg.l (plxvelocity,a6)
-	neg.l (plxdrag,a6)
+	neg.l (pl_x_velocity,a6)
+	neg.l (pl_x_drag,a6)
 
 loc_06d93c:
 	moveq #$62,d0
@@ -2935,7 +2935,7 @@ loc_06d954:
 	move.w #$9f,d0
 	jsr loc_02e3e0
 	beq.w loc_06d9c0
-	addq.b #2,(plmovestate,a6)
+	addq.b #2,(PL_Move_state,a6)
 	clr.l ($84,a6)
 	movea.w ($276,a6),a4
 	move.l #$02001010,(4,a4)
@@ -2958,7 +2958,7 @@ loc_06d9c0:
 loc_06d9ca:
 	tst.b ($3c,a6)
 	beq.w loc_06daf6
-	addq.b #2,(plmovestate,a6)
+	addq.b #2,(PL_Move_state,a6)
 	clr.b ($3c,a6)
 	move.w #$9f,d0
 	jmp loc_02e7f2
@@ -2970,17 +2970,17 @@ loc_06d9e4:
 	bset.b #0,($3c,a6)
 	cmpi.b #3,($3c,a6)
 	bne.b loc_06da40
-	addq.b #2,(plmovestate,a6)
+	addq.b #2,(PL_Move_state,a6)
 	move.b #1,($31,a6)
 	st.b ($3c,a6)
-	move.l #$70000,(plxvelocity,a6)
-	move.l #$1000,(plxdrag,a6)
-	move.l #$40000,(plyvelocity,a6)
-	move.l #$ffffa000,(plydrag,a6)
-	tst.b (plflip,a6)
+	move.l #$70000,(pl_x_velocity,a6)
+	move.l #$1000,(pl_x_drag,a6)
+	move.l #$40000,(pl_y_velocity,a6)
+	move.l #$ffffa000,(pl_y_drag,a6)
+	tst.b (PL_Flip,a6)
 	bne.b loc_06da34
-	neg.l (plxvelocity,a6)
-	neg.l (plxdrag,a6)
+	neg.l (pl_x_velocity,a6)
+	neg.l (pl_x_drag,a6)
 
 loc_06da34:
 	moveq #$64,d0
@@ -2999,7 +2999,7 @@ loc_06da4a:
 	beq.b loc_06da7e
 	jsr loc_02aa08
 	bcc.b loc_06da7e
-	addq.b #2,(plmovestate,a6)
+	addq.b #2,(PL_Move_state,a6)
 	move.b #$f,($3a,a6)
 	clr.b ($31,a6)
 	move.w ($64,a6),($14,a6)
@@ -3084,7 +3084,7 @@ loc_06db38:
 	move.b #$1a,($25d,a4)
 	clr.b ($263,a4)
 	move.w ($64,a4),($14,a4)
-	move.b (plflip,a6),d0
+	move.b (PL_Flip,a6),d0
 	eori.b #1,d0
 	move.b d0,($b,a4)
 	movea.w ($38,a6),a1
@@ -3194,7 +3194,7 @@ loc_06dc5c:
 ;Reverse Shaft Breaker
 ;==============================================
 loc_06dc9a:
-	move.b (plmovestate,a6),d0
+	move.b (PL_Move_state,a6),d0
 	move.w loc_06dca6(pc,d0.w),d1
 	jmp loc_06dca6(pc,d1.w)
 
@@ -3211,14 +3211,14 @@ loc_06dca6:
 
 ;----------------------------------------------
 loc_06dcb6:
-	addq.b #2,(plmovestate,a6)
+	addq.b #2,(PL_Move_state,a6)
 	move.b #1,($2c8,a6)
 	move.b #2,($23f,a6)
 	jsr loc_0804da
 	jsr loc_02f53c
 	jsr loc_02068c
 	moveq #$36,d0
-	add.b (ButtonStrength,a6),d0
+	add.b (PL_ButtonStrength,a6),d0
 	jmp loc_02a758
 
 ;----------------------------------------------
@@ -3226,7 +3226,7 @@ loc_06dce4:
 	jsr loc_02a7ea
 	tst.b ($35,a6)
 	bpl.b loc_06dd0c
-	addq.b #2,(plmovestate,a6)
+	addq.b #2,(PL_Move_state,a6)
 	moveq #-1,d0
 	tst.b ($3f,a6)
 	beq.b loc_06dcfe
@@ -3246,12 +3246,12 @@ loc_06dd0e:
 	jsr loc_02a7ea
 	tst.b ($35,a6)
 	bmi.b loc_06dd3a
-	addq.b #2,(plmovestate,a6)
+	addq.b #2,(PL_Move_state,a6)
 	clr.b ($ab,a6)
 	jsr loc_02fcd4
 	tst.b ($3f,a6)
 	bne.b loc_06dd34
-	move.b (ButtonStrength,a6),d0
+	move.b (PL_ButtonStrength,a6),d0
 	lsr.b #1,d0
 
 loc_06dd34:
@@ -3269,13 +3269,13 @@ loc_06dd40:
 	jsr loc_02a7ea
 	tst.b ($35,a6)
 	beq.b loc_06dd6a
-	addq.b #2,(plmovestate,a6)
+	addq.b #2,(PL_Move_state,a6)
 	move.b #1,($31,a6)
 	moveq #0,d0
-	move.b (ButtonStrength,a6),d0
+	move.b (PL_ButtonStrength,a6),d0
 	lsl.w #2,d0
-	move.l loc_06dd6c(pc,d0.w),(plyvelocity,a6)
-	move.l loc_06dd6c+4(pc,d0.w),(plydrag,a6)
+	move.l loc_06dd6c(pc,d0.w),(pl_y_velocity,a6)
+	move.l loc_06dd6c+4(pc,d0.w),(pl_y_drag,a6)
 
 loc_06dd6a:
 	rts
@@ -3289,7 +3289,7 @@ loc_06dd6c:
 ;----------------------------------------------
 loc_06dd84:
 	bsr.w loc_06f076
-	cmpi.w #1,(plyvelocity,a6)
+	cmpi.w #1,(pl_y_velocity,a6)
 	bcs.b loc_06ddbc
 	tst.b ($125,a6)
 	beq.b loc_06dda6
@@ -3310,8 +3310,8 @@ loc_06ddb6:
 	jmp loc_02a7ea
 
 loc_06ddbc:
-	addq.b #2,(plmovestate,a6)
-	move.l #$fffff800,(plydrag,a6)
+	addq.b #2,(PL_Move_state,a6)
+	move.l #$fffff800,(pl_y_drag,a6)
 	move.b #1,($a8,a6)
 	clr.w ($3a,a6)
 	jmp loc_02a7ea
@@ -3320,10 +3320,10 @@ loc_06ddbc:
 loc_06ddd8:
 	bsr.w loc_06f076
 	bpl.b loc_06ddf6
-	addq.b #2,(plmovestate,a6)
-	move.l #$ffffa800,(plydrag,a6)
+	addq.b #2,(PL_Move_state,a6)
+	move.l #$ffffa800,(pl_y_drag,a6)
 	moveq #$37,d0
-	add.b (ButtonStrength,a6),d0
+	add.b (PL_ButtonStrength,a6),d0
 	jmp loc_02a758
 
 loc_06ddf6:
@@ -3338,14 +3338,14 @@ loc_06de06:
 	move.w ($64,a6),d0
 	cmp.w ($14,a6),d0
 	bcs.b loc_06de40
-	addq.b #2,(plmovestate,a6)
+	addq.b #2,(PL_Move_state,a6)
 	move.w d0,($14,a6)
 	moveq #0,d0
 	move.w d0,($12,a6)
 	move.b d0,($31,a6)
 	move.b d0,($a9,a6)
 	jsr loc_00369c
-	move.b (ButtonStrength,a6),d0
+	move.b (PL_ButtonStrength,a6),d0
 	lsr.b #1,d0
 	addi.b #$75,d0
 	jmp loc_02a758
@@ -3365,7 +3365,7 @@ loc_06de46:
 ;Killer Bee Cannon Drill
 ;==============================================
 loc_06de5e:
-	move.b (plmovestate,a6),d0
+	move.b (PL_Move_state,a6),d0
 	move.w loc_06de6a(pc,d0.w),d1
 	jmp loc_06de6a(pc,d1.w)
 
@@ -3394,9 +3394,9 @@ loc_06de6a:
 
 ;----------------------------------------------
 loc_06de8e:
-	addq.b #2,(plmovestate,a6)
+	addq.b #2,(PL_Move_state,a6)
 	move.b d0,($2c8,a6)
-	move.b (ButtonStrength,a6),d0
+	move.b (PL_ButtonStrength,a6),d0
 	add.w d0,d0
 	addi.w #$3c,d0
 	jmp loc_02a758
@@ -3406,15 +3406,15 @@ loc_06dea6:
 	jsr loc_02a7ea
 	tst.b ($35,a6)
 	bne.b loc_06def2
-	addq.b #2,(plmovestate,a6)
+	addq.b #2,(PL_Move_state,a6)
 	move.b #1,($31,a6)
 	moveq #0,d0
-	move.b (ButtonStrength,a6),d0
+	move.b (PL_ButtonStrength,a6),d0
 	lsl.w #3,d0
-	move.l loc_06def4(pc,d0.w),(plxvelocity,a6)
-	move.l loc_06def4+4(pc,d0.w),(plxdrag,a6)
-	move.l loc_06def4+8(pc,d0.w),(plyvelocity,a6)
-	move.l loc_06def4+$c(pc,d0.w),(plydrag,a6)
+	move.l loc_06def4(pc,d0.w),(pl_x_velocity,a6)
+	move.l loc_06def4+4(pc,d0.w),(pl_x_drag,a6)
+	move.l loc_06def4+8(pc,d0.w),(pl_y_velocity,a6)
+	move.l loc_06def4+$c(pc,d0.w),(pl_y_drag,a6)
 	movea.w ($38,a6),a4
 	move.l ($10,a4),d0
 	sub.l ($10,a6),d0
@@ -3423,7 +3423,7 @@ loc_06dea6:
 
 loc_06deec:
 	asr.l #5,d0
-	move.l d0,(plxvelocity,a6)
+	move.l d0,(pl_x_velocity,a6)
 
 loc_06def2:
 	rts
@@ -3439,7 +3439,7 @@ loc_06df24:
 	jsr loc_02a7ea
 	tst.b ($35,a6)
 	beq.b loc_06df3a
-	addq.b #2,(plmovestate,a6)
+	addq.b #2,(PL_Move_state,a6)
 	addi.w #$28,($14,a6)
 
 loc_06df3a:
@@ -3452,7 +3452,7 @@ loc_06df3c:
 	addi.w #$b8,d0
 	cmp.w ($14,a6),d0
 	bcc.w loc_06eff2
-	addq.b #2,(plmovestate,a6)
+	addq.b #2,(PL_Move_state,a6)
 	move.b #2,($23f,a6)
 	addi.w #$ffcc,d0
 	move.w d0,($14,a6)
@@ -3460,7 +3460,7 @@ loc_06df3c:
 	jsr loc_02f53c
 	jsr loc_02068c
 	moveq #0,d0
-	move.b (ButtonStrength,a6),d0
+	move.b (PL_ButtonStrength,a6),d0
 	add.w d0,d0
 	addi.w #$3d,d0
 	jmp loc_02a758
@@ -3470,7 +3470,7 @@ loc_06df86:
 	jsr loc_02a7ea
 	tst.b ($35,a6)
 	bpl.b loc_06dfae
-	addq.b #2,(plmovestate,a6)
+	addq.b #2,(PL_Move_state,a6)
 	moveq #-1,d0
 	tst.b ($3f,a6)
 	beq.b loc_06dfa0
@@ -3490,12 +3490,12 @@ loc_06dfb0:
 	jsr loc_02a7ea
 	tst.b ($35,a6)
 	bmi.b loc_06dfdc
-	addq.b #2,(plmovestate,a6)
+	addq.b #2,(PL_Move_state,a6)
 	clr.b ($ab,a6)
 	jsr loc_02fcd4
 	tst.b ($3f,a6)
 	bne.b loc_06dfd6
-	move.b (ButtonStrength,a6),d0
+	move.b (PL_ButtonStrength,a6),d0
 	lsr.b #1,d0
 
 loc_06dfd6:
@@ -3513,14 +3513,14 @@ loc_06dfe2:
 	jsr loc_02a7ea
 	tst.b ($35,a6)
 	beq.b loc_06e012
-	addq.b #2,(plmovestate,a6)
+	addq.b #2,(PL_Move_state,a6)
 	moveq #0,d0
-	move.b (ButtonStrength,a6),d0
+	move.b (PL_ButtonStrength,a6),d0
 	lsl.w #3,d0
-	move.l loc_06e014(pc,d0.w),(plxvelocity,a6)
-	move.l loc_06e014+4(pc,d0.w),(plxdrag,a6)
-	move.l loc_06e014+8(pc,d0.w),(plyvelocity,a6)
-	move.l loc_06e014+$c(pc,d0.w),(plydrag,a6)
+	move.l loc_06e014(pc,d0.w),(pl_x_velocity,a6)
+	move.l loc_06e014+4(pc,d0.w),(pl_x_drag,a6)
+	move.l loc_06e014+8(pc,d0.w),(pl_y_velocity,a6)
+	move.l loc_06e014+$c(pc,d0.w),(pl_y_drag,a6)
 
 loc_06e012:
 	rts
@@ -3537,16 +3537,16 @@ loc_06e044:
 	move.w ($64,a6),d0
 	cmp.w ($14,a6),d0
 	bcs.w loc_06eff2
-	addq.b #2,(plmovestate,a6)
+	addq.b #2,(PL_Move_state,a6)
 	move.w d0,($14,a6)
 	moveq #0,d0
 	move.w d0,($12,a6)
 	move.b d0,($31,a6)
 	move.b d0,($a9,a6)
-	move.b (sidecheck,a6),(plflip,a6)
+	move.b (pl_sidecheck,a6),(PL_Flip,a6)
 	jsr loc_00369c
 	moveq #0,d0
-	move.b (ButtonStrength,a6),d0
+	move.b (PL_ButtonStrength,a6),d0
 	add.w d0,d0
 	addi.w #$3e,d0
 	jmp loc_02a758
@@ -3556,7 +3556,7 @@ loc_06e088:
 	jsr loc_02a7ea
 	tst.b ($35,a6)
 	bne.b loc_06e0e4
-	addq.b #2,(plmovestate,a6)
+	addq.b #2,(PL_Move_state,a6)
 	tst.b ($5b,a6)
 	beq.b loc_06e0a4
 	bmi.b loc_06e0a4
@@ -3566,24 +3566,24 @@ loc_06e0a4:
 	moveq #0,d0
 	move.b d0,($5b,a6)
 	move.b #1,($2c8,a6)
-	move.b (ButtonStrength,a6),d0
+	move.b (PL_ButtonStrength,a6),d0
 	move.b d0,($3a,a6)
 	addq.b #2,($3a,a6)
 	lsl.w #3,d0
-	move.l loc_06e0f6(pc,d0.w),(plxvelocity,a6)
-	move.l loc_06e0f6+4(pc,d0.w),(plxdrag,a6)
-	move.l loc_06e0f6+8(pc,d0.w),(plyvelocity,a6)
-	move.l loc_06e0f6+$c(pc,d0.w),(plydrag,a6)
-	tst.b (plflip,a6)
+	move.l loc_06e0f6(pc,d0.w),(pl_x_velocity,a6)
+	move.l loc_06e0f6+4(pc,d0.w),(pl_x_drag,a6)
+	move.l loc_06e0f6+8(pc,d0.w),(pl_y_velocity,a6)
+	move.l loc_06e0f6+$c(pc,d0.w),(pl_y_drag,a6)
+	tst.b (PL_Flip,a6)
 	bne.b loc_06e0f4
-	neg.l (plxvelocity,a6)
-	neg.l (plxdrag,a6)
+	neg.l (pl_x_velocity,a6)
+	neg.l (pl_x_drag,a6)
 
 loc_06e0e4:
 	tst.b ($34,a6)
 	beq.b loc_06e0f4
 	clr.b ($34,a6)
-	move.b (sidecheck,a6),(plflip,a6)
+	move.b (pl_sidecheck,a6),(PL_Flip,a6)
 
 loc_06e0f4:
 	rts
@@ -3604,7 +3604,7 @@ loc_06e126:
 	move.b #1,($a8,a6)
 
 loc_06e13c:
-	move.b (plflip,a6),d0
+	move.b (PL_Flip,a6),d0
 	btst d0,($ac,a6)
 	bne.b loc_06e154
 	jsr loc_02aa08
@@ -3612,14 +3612,14 @@ loc_06e13c:
 	jmp loc_02a7ea
 
 loc_06e154:
-	addq.b #2,(plmovestate,a6)
-	move.l #$40000,(plxvelocity,a6)
-	move.l #$ffffc000,(plxdrag,a6)
+	addq.b #2,(PL_Move_state,a6)
+	move.l #$40000,(pl_x_velocity,a6)
+	move.l #$ffffc000,(pl_x_drag,a6)
 	move.w ($64,a6),($14,a6)
 	moveq #0,d0
 	move.w d0,($16,a6)
 	move.b d0,($5b,a6)
-	move.b (ButtonStrength,a6),d0
+	move.b (PL_ButtonStrength,a6),d0
 	add.w d0,d0
 	addi.w #$3f,d0
 	jmp loc_02a758
@@ -3628,7 +3628,7 @@ loc_06e154:
 loc_06e188:
 	bsr.w loc_06f05a
 	bpl.b loc_06e192
-	addq.b #2,(plmovestate,a6)
+	addq.b #2,(PL_Move_state,a6)
 
 loc_06e192:
 	jmp loc_02a7ea
@@ -3646,7 +3646,7 @@ loc_06e1a4:
 	tst.b ($5b,a6)
 	beq.b loc_06e1dc
 	bmi.b loc_06e1dc
-	cmpi.b #4,(ButtonStrength,a6)
+	cmpi.b #4,(PL_ButtonStrength,a6)
 	bcs.b loc_06e1dc
 	tst.b ($125,a6)
 	bne.b loc_06e1d0
@@ -3656,7 +3656,7 @@ loc_06e1a4:
 	beq.b loc_06e1dc
 
 loc_06e1d0:
-	addq.b #2,(plmovestate,a6)
+	addq.b #2,(PL_Move_state,a6)
 	moveq #$48,d0
 	jmp loc_02a758
 
@@ -3670,21 +3670,21 @@ loc_06e1ec:
 	jsr loc_02a7ea
 	tst.b ($35,a6)
 	beq.b loc_06e23c
-	addq.b #2,(plmovestate,a6)
+	addq.b #2,(PL_Move_state,a6)
 	move.b #1,($31,a6)
 	movea.w ($38,a6),a4
 	move.l ($10,a4),d0
 	sub.l ($10,a6),d0
 	asr.l #4,d0
-	move.b (sidecheck,a6),(plflip,a6)
+	move.b (pl_sidecheck,a6),(PL_Flip,a6)
 	bne.b loc_06e21a
 	neg.l d0
 
 loc_06e21a:
-	move.l d0,(plxvelocity,a6)
-	move.l #0,(plxdrag,a6)
-	move.l #$80000,(plyvelocity,a6)
-	move.l #$ffff8000,(plydrag,a6)
+	move.l d0,(pl_x_velocity,a6)
+	move.l #0,(pl_x_drag,a6)
+	move.l #$80000,(pl_y_velocity,a6)
+	move.l #$ffff8000,(pl_y_drag,a6)
 	move.b #$10,($3a,a6)
 
 loc_06e23c:
@@ -3695,7 +3695,7 @@ loc_06e23e:
 	bsr.w loc_06f074
 	subq.b #1,($3a,a6)
 	bpl.b loc_06e24c
-	addq.b #2,(plmovestate,a6)
+	addq.b #2,(PL_Move_state,a6)
 
 loc_06e24c:
 	rts
@@ -3705,10 +3705,10 @@ loc_06e24e:
 	jsr loc_02a7ea
 	tst.b ($35,a6)
 	bpl.b loc_06e274
-	addq.b #2,(plmovestate,a6)
+	addq.b #2,(PL_Move_state,a6)
 	move.b #1,($dd,a6)
-	move.l #$fffc0000,(plyvelocity,a6)
-	move.l #$ffffc000,(plydrag,a6)
+	move.l #$fffc0000,(pl_y_velocity,a6)
+	move.l #$ffffc000,(pl_y_drag,a6)
 
 loc_06e274:
 	rts
@@ -3719,12 +3719,12 @@ loc_06e276:
 	move.w ($64,a6),d0
 	cmp.w ($14,a6),d0
 	bcs.w loc_06eff2
-	addq.b #2,(plmovestate,a6)
+	addq.b #2,(PL_Move_state,a6)
 	move.w d0,($14,a6)
-	move.l #$fffc0000,(plxvelocity,a6)
-	move.l #0,(plxdrag,a6)
-	move.l #$80000,(plyvelocity,a6)
-	move.l #$ffff8000,(plydrag,a6)
+	move.l #$fffc0000,(pl_x_velocity,a6)
+	move.l #0,(pl_x_drag,a6)
+	move.l #$80000,(pl_y_velocity,a6)
+	move.l #$ffff8000,(pl_y_drag,a6)
 	moveq #$49,d0
 	jmp loc_02a758
 
@@ -3735,7 +3735,7 @@ loc_06e2b6:
 	move.w ($64,a6),d0
 	cmp.w ($14,a6),d0
 	bcs.b loc_06e2d8
-	addq.b #2,(plmovestate,a6)
+	addq.b #2,(PL_Move_state,a6)
 	move.w d0,($14,a6)
 	moveq #0,d0
 	move.w d0,($16,a6)
@@ -3758,7 +3758,7 @@ loc_06e2e2:
 ;Jump Back
 ;==============================================
 loc_06e2fa:
-	move.b (plmovestate,a6),d0
+	move.b (PL_Move_state,a6),d0
 	move.w loc_06e30a(pc,d0.w),d1
 	jsr loc_06e30a(pc,d1.w)
 	bra.w loc_06e574
@@ -3776,7 +3776,7 @@ loc_06e30a:
 
 ;----------------------------------------------
 loc_06e31a:
-	addq.b #2,(plmovestate,a6)
+	addq.b #2,(PL_Move_state,a6)
 	move.b #1,($2c8,a6)
 	move.b #2,($23f,a6)
 	moveq #0,d0
@@ -3794,7 +3794,7 @@ loc_06e352:
 	jsr loc_02a7ea
 	tst.b ($35,a6)
 	bpl.b loc_06e380
-	addq.b #2,(plmovestate,a6)
+	addq.b #2,(PL_Move_state,a6)
 	move.b #$31,($3a,a6)
 	moveq #-1,d0
 	tst.b ($3f,a6)
@@ -3819,24 +3819,24 @@ loc_06e382:
 	bpl.b loc_06e3b2
 	move.b #1,($34,a6)
 	addi.w #$28,($14,a6)
-	move.l #$40000,(plyvelocity,a6)
-	move.l #$ffffa000,(plydrag,a6)
+	move.l #$40000,(pl_y_velocity,a6)
+	move.l #$ffffa000,(pl_y_drag,a6)
 
 loc_06e3b2:
-	move.l (plyvelocity,a6),d0
+	move.l (pl_y_velocity,a6),d0
 	add.l d0,($14,a6)
-	move.l (plydrag,a6),d0
-	add.l d0,(plyvelocity,a6)
+	move.l (pl_y_drag,a6),d0
+	add.l d0,(pl_y_velocity,a6)
 	move.w ($64,a6),d0
 	cmp.w ($14,a6),d0
 	bcs.b loc_06e3f4
-	addq.b #2,(plmovestate,a6)
+	addq.b #2,(PL_Move_state,a6)
 	move.b #1,($31,a6)
-	clr.l (plyvelocity,a6)
-	clr.l (plydrag,a6)
+	clr.l (pl_y_velocity,a6)
+	clr.l (pl_y_drag,a6)
 	move.w ($64,a6),($14,a6)
 	move.w #$d0,d0
-	add.b (ButtonStrength,a6),d0
+	add.b (PL_ButtonStrength,a6),d0
 	asr.w #1,d0
 	jmp loc_02a758
 
@@ -3847,29 +3847,29 @@ loc_06e3f4:
 loc_06e3f6:
 	subq.b #1,($3a,a6)
 	bpl.b loc_06e456
-	addq.b #2,(plmovestate,a6)
+	addq.b #2,(PL_Move_state,a6)
 	move.b #1,($31,a6)
 	clr.b ($ab,a6)
 	jsr loc_02fcd4
 	tst.b ($3f,a6)
 	bne.b loc_06e41c
-	move.b (ButtonStrength,a6),d0
+	move.b (PL_ButtonStrength,a6),d0
 	lsr.b #1,d0
 
 loc_06e41c:
 	move.b loc_06e458(pc,d0.w),($25d,a6)
 	move.b loc_06e45c(pc,d0.w),($3a,a6)
 	moveq #0,d0
-	move.b (ButtonStrength,a6),d0
+	move.b (PL_ButtonStrength,a6),d0
 	lsl.w #3,d0
-	move.l loc_06e460(pc,d0.w),(plxvelocity,a6)
-	move.l loc_06e460+4(pc,d0.w),(plxdrag,a6)
-	move.l loc_06e460+8(pc,d0.w),(plyvelocity,a6)
-	move.l loc_06e460+$c(pc,d0.w),(plydrag,a6)
-	tst.b (plflip,a6)
+	move.l loc_06e460(pc,d0.w),(pl_x_velocity,a6)
+	move.l loc_06e460+4(pc,d0.w),(pl_x_drag,a6)
+	move.l loc_06e460+8(pc,d0.w),(pl_y_velocity,a6)
+	move.l loc_06e460+$c(pc,d0.w),(pl_y_drag,a6)
+	tst.b (PL_Flip,a6)
 	bne.b loc_06e456
-	neg.l (plxvelocity,a6)
-	neg.l (plxdrag,a6)
+	neg.l (pl_x_velocity,a6)
+	neg.l (pl_x_drag,a6)
 
 loc_06e456:
 	rts
@@ -3905,20 +3905,20 @@ loc_06e4be:
 	jmp loc_02a7ea
 
 loc_06e4c4:
-	move.b #$a,(plmovestate,a6)
+	move.b #$a,(PL_Move_state,a6)
 	st.b ($3c,a6)
-	move.l #$ffff0000,(plxvelocity,a6)
-	move.l #0,(plxdrag,a6)
-	move.l #$a0000,(plyvelocity,a6)
-	move.l #$ffff8000,(plydrag,a6)
-	tst.b (plflip,a6)
+	move.l #$ffff0000,(pl_x_velocity,a6)
+	move.l #0,(pl_x_drag,a6)
+	move.l #$a0000,(pl_y_velocity,a6)
+	move.l #$ffff8000,(pl_y_drag,a6)
+	tst.b (PL_Flip,a6)
 	bne.b loc_06e4fc
-	neg.l (plxvelocity,a6)
-	neg.l (plxdrag,a6)
+	neg.l (pl_x_velocity,a6)
+	neg.l (pl_x_drag,a6)
 
 loc_06e4fc:
 	moveq #$12,d0
-	add.b (ButtonStrength,a6),d0
+	add.b (PL_ButtonStrength,a6),d0
 	asr.w #1,d0
 	jmp loc_02a758
 
@@ -3926,7 +3926,7 @@ loc_06e4fc:
 loc_06e50a:
 	jsr loc_02aa08
 	bcc.w loc_06eff2
-	addq.b #2,(plmovestate,a6)
+	addq.b #2,(PL_Move_state,a6)
 	moveq #$c,d0
 	jmp loc_02a758
 
@@ -3955,9 +3955,9 @@ loc_06e55a:
 	move.b d0,($25d,a6)
 	move.b d0,($263,a6)
 	bsr.w loc_06e4c4
-	move.l (plxvelocity,a6),d0
+	move.l (pl_x_velocity,a6),d0
 	add.l d0,d0
-	move.l d0,(plxvelocity,a6)
+	move.l d0,(pl_x_velocity,a6)
 	rts
 
 ;==============================================
@@ -3999,7 +3999,7 @@ loc_06e5bc:
 	addq.b #2,($84,a6)
 	move.b #$1a,($25d,a4)
 	clr.b ($263,a4)
-	move.b (plflip,a6),($b,a4)
+	move.b (PL_Flip,a6),($b,a4)
 	move.w ($10,a6),($10,a4)
 	move.w ($64,a6),($14,a4)
 	moveq #$6b,d0
@@ -4047,7 +4047,7 @@ loc_06e646:
 ;Dramatic Mode Super 2?
 ;==============================================
 loc_06e648:
-	move.b (plmovestate,a6),d0
+	move.b (PL_Move_state,a6),d0
 	move.w loc_06e654(pc,d0.w),d1
 	jmp loc_06e654(pc,d1.w)
 
@@ -4060,7 +4060,7 @@ loc_06e654:
 
 ;----------------------------------------------
 loc_06e65c:
-	addq.b #2,(plmovestate,a6)
+	addq.b #2,(PL_Move_state,a6)
 	move.b #1,($2c8,a6)
 	move.b #2,($23f,a6)
 	jsr loc_0804da
@@ -4074,7 +4074,7 @@ loc_06e686:
 	jsr loc_02a7ea
 	tst.b ($35,a6)
 	bpl.b loc_06e6ae
-	addq.b #2,(plmovestate,a6)
+	addq.b #2,(PL_Move_state,a6)
 	moveq #-1,d0
 	tst.b ($3f,a6)
 	beq.b loc_06e6a0
@@ -4094,12 +4094,12 @@ loc_06e6b0:
 	jsr loc_02a7ea
 	tst.b ($35,a6)
 	bmi.b loc_06e6dc
-	addq.b #2,(plmovestate,a6)
+	addq.b #2,(PL_Move_state,a6)
 	clr.b ($ab,a6)
 	jsr loc_02fcd4
 	tst.b ($3f,a6)
 	bne.b loc_06e6d6
-	move.b (ButtonStrength,a6),d0
+	move.b (PL_ButtonStrength,a6),d0
 	lsr.b #1,d0
 
 loc_06e6d6:
@@ -4124,7 +4124,7 @@ loc_06e6e2:
 ;Psycho Streak
 ;==============================================
 loc_06e6fa:
-	move.b (plmovestate,a6),d0
+	move.b (PL_Move_state,a6),d0
 	move.w loc_06e706(pc,d0.w),d1
 	jmp loc_06e706(pc,d1.w)
 
@@ -4137,7 +4137,7 @@ loc_06e706:
 
 ;----------------------------------------------
 loc_06e70e:
-	addq.b #2,(plmovestate,a6)
+	addq.b #2,(PL_Move_state,a6)
 	move.b #2,($23f,a6)
 	clr.b ($2c8,a6)
 	move.b #$44,($2a0,a6)
@@ -4151,7 +4151,7 @@ loc_06e736:
 	move.b #2,($23f,a6)
 	tst.b ($35,a6)
 	bpl.b loc_06e764
-	addq.b #2,(plmovestate,a6)
+	addq.b #2,(PL_Move_state,a6)
 	moveq #-1,d0
 	tst.b ($3f,a6)
 	beq.b loc_06e750
@@ -4173,13 +4173,13 @@ loc_06e76a:
 	jsr loc_02a7ea
 	tst.b ($35,a6)
 	bmi.b loc_06e7a2
-	addq.b #2,(plmovestate,a6)
+	addq.b #2,(PL_Move_state,a6)
 	move.b #$5a,($3b,a6)
 	clr.b ($ab,a6)
 	jsr loc_02fcd4
 	tst.b ($3f,a6)
 	bne.b loc_06e79c
-	move.b (ButtonStrength,a6),d0
+	move.b (PL_ButtonStrength,a6),d0
 	lsr.b #1,d0
 
 loc_06e79c:
@@ -4202,7 +4202,7 @@ loc_06e7a8:
 ;Taunt
 ;==============================================
 loc_06e7b6:
-	move.b (plmovestate,a6),d0
+	move.b (PL_Move_state,a6),d0
 	move.w loc_06e7c2(pc,d0.w),d1
 	jmp loc_06e7c2(pc,d1.w)
 
@@ -4213,11 +4213,11 @@ loc_06e7c2:
 
 ;----------------------------------------------
 loc_06e7c6:
-	addq.b #2,(plmovestate,a6)
+	addq.b #2,(PL_Move_state,a6)
 	move.b #1,($ce,a6)
 	tst.b ($3e,a6)
 	bne.b loc_06e7da
-	subq.b #1,(pltaunt,a6)
+	subq.b #1,(pl_taunt_count,a6)
 
 loc_06e7da:
 	clr.b ($2c8,a6)
@@ -4237,7 +4237,7 @@ loc_06e7e6:
 loc_06e7f4:
 	cmpi.b #4,($80,a6)
 	beq.w loc_06ea60
-	move.b (plmovestate,a6),d0
+	move.b (PL_Move_state,a6),d0
 	move.w loc_06e80a(pc,d0.w),d1
 	jmp loc_06e80a(pc,d1.w)
 
@@ -4260,7 +4260,7 @@ loc_06e80a:
 
 ;----------------------------------------------
 loc_06e824:
-	addq.b #2,(plmovestate,a6)
+	addq.b #2,(PL_Move_state,a6)
 	moveq #3,d0
 	jsr loc_02ef6c
 	moveq #$2d,d0
@@ -4271,7 +4271,7 @@ loc_06e838:
 	tst.b ($35,a6)
 	beq.w loc_06eff2
 	moveq #$55,d0
-	tst.b (Attacktype,a6)
+	tst.b (PL_Attacktype,a6)
 	beq.b loc_06e84a
 	moveq #$56,d0
 
@@ -4280,27 +4280,27 @@ loc_06e84a:
 	beq.b loc_06e8ae
 	tst.b ($125,a6)
 	beq.b loc_06e878
-	clr.b (plflip,a6)
+	clr.b (PL_Flip,a6)
 	jsr loc_01bd5c
 	move.w ($10,a3),d0
 	addi.w #$c0,d0
 	cmp.w ($10,a6),d0
 	bcs.b loc_06e886
-	move.b #1,(plflip,a6)
+	move.b #1,(PL_Flip,a6)
 	bra.b loc_06e886
 
 loc_06e878:
 	btst.b #0,($371,a6)
 	beq.b loc_06e886
-	eori.b #1,(plflip,a6)
+	eori.b #1,(PL_Flip,a6)
 
 loc_06e886:
-	move.b #6,(plmovestate,a6)
+	move.b #6,(PL_Move_state,a6)
 	moveq #$1e,d0
-	tst.b (Attacktype,a6)
+	tst.b (PL_Attacktype,a6)
 	beq.b loc_06e8a2
-	move.b #$e,(plmovestate,a6)
-	eori.b #1,(plflip,a6)
+	move.b #$e,(PL_Move_state,a6)
+	eori.b #1,(PL_Flip,a6)
 	moveq #$1d,d0
 
 loc_06e8a2:
@@ -4308,7 +4308,7 @@ loc_06e8a2:
 	jmp loc_02fa36
 
 loc_06e8ae:
-	addq.b #2,(plmovestate,a6)
+	addq.b #2,(PL_Move_state,a6)
 	jmp loc_02a7ea
 
 ;----------------------------------------------
@@ -4323,7 +4323,7 @@ loc_06e8c6:
 	tst.b ($35,a6)
 	beq.w loc_06eff8
 	bmi.w loc_06f000
-	addq.b #2,(plmovestate,a6)
+	addq.b #2,(PL_Move_state,a6)
 	clr.b ($35,a6)
 	rts
 
@@ -4331,7 +4331,7 @@ loc_06e8c6:
 loc_06e8e2:
 	tst.b ($35,a6)
 	beq.b loc_06e8fa
-	addq.b #2,(plmovestate,a6)
+	addq.b #2,(PL_Move_state,a6)
 	move.b #$30,($123,a5)
 	moveq #$5c,d0
 	jsr loc_02e970
@@ -4344,7 +4344,7 @@ loc_06e8fa:
 loc_06e906:
 	tst.b ($35,a6)
 	bpl.b loc_06e924
-	addq.b #2,(plmovestate,a6)
+	addq.b #2,(PL_Move_state,a6)
 	jsr loc_02a7ea
 	jsr loc_02f9be
 	moveq #$55,d0
@@ -4365,11 +4365,11 @@ loc_06e93e:
 	jsr loc_02a7ea
 	tst.b ($35,a6)
 	beq.w loc_06f000
-	addq.b #2,(plmovestate,a6)
-	move.l #$ffff0000,(plxvelocity,a6)
-	move.l #$40000,(plyvelocity,a6)
-	move.l #0,(plxdrag,a6)
-	move.l #$ffff9000,(plydrag,a6)
+	addq.b #2,(PL_Move_state,a6)
+	move.l #$ffff0000,(pl_x_velocity,a6)
+	move.l #$40000,(pl_y_velocity,a6)
+	move.l #0,(pl_x_drag,a6)
+	move.l #$ffff9000,(pl_y_drag,a6)
 	jmp loc_02f9be
 
 ;----------------------------------------------
@@ -4384,7 +4384,7 @@ loc_06e984:
 	move.w ($64,a6),d0
 	cmp.w ($14,a6),d0
 	bcs.b loc_06e9ac
-	addq.b #2,(plmovestate,a6)
+	addq.b #2,(PL_Move_state,a6)
 	move.w d0,($14,a6)
 	clr.w ($16,a6)
 	move.b #1,($32,a6)
@@ -4395,7 +4395,7 @@ loc_06e9ac:
 
 ;----------------------------------------------
 loc_06e9b2:
-	addq.b #2,(plmovestate,a6)
+	addq.b #2,(PL_Move_state,a6)
 	move.b #$30,(-$7edd,a6)
 	moveq #$5d,d0
 	jsr loc_02e970
@@ -4406,12 +4406,12 @@ loc_06e9ca:
 	jsr loc_02a7ea
 	tst.b ($35,a6)
 	bpl.w loc_06effa
-	addq.b #2,(plmovestate,a6)
+	addq.b #2,(PL_Move_state,a6)
 	clr.b ($35,a6)
-	move.l #$13000,(plxvelocity,a6)
-	move.l #$80000,(plyvelocity,a6)
-	move.l #0,(plxdrag,a6)
-	move.l #$ffff5000,(plydrag,a6)
+	move.l #$13000,(pl_x_velocity,a6)
+	move.l #$80000,(pl_y_velocity,a6)
+	move.l #0,(pl_x_drag,a6)
+	move.l #$ffff5000,(pl_y_drag,a6)
 	jsr loc_02f9be
 	moveq #$56,d0
 	jmp loc_02e7f2
@@ -4429,7 +4429,7 @@ loc_06ea20:
 	move.w ($64,a6),d0
 	cmp.w ($14,a6),d0
 	bcs.w loc_06eff8
-	addq.b #2,(plmovestate,a6)
+	addq.b #2,(PL_Move_state,a6)
 	move.w d0,($14,a6)
 	moveq #0,d0
 	move.w d0,($16,a6)
@@ -4447,7 +4447,7 @@ loc_06ea52:
 ;Air Throw
 ;==============================================
 loc_06ea60:
-	move.b (plmovestate,a6),d0
+	move.b (PL_Move_state,a6),d0
 	move.w loc_06ea6c(pc,d0.w),d1
 	jmp loc_06ea6c(pc,d1.w)
 
@@ -4472,7 +4472,7 @@ loc_06ea84:
 	moveq #3,d0
 	jsr loc_02ef6c
 	moveq #$71,d0
-	tst.b (Attacktype,a6)
+	tst.b (PL_Attacktype,a6)
 	beq.b loc_06ea96
 	moveq #$72,d0
 
@@ -4481,43 +4481,43 @@ loc_06ea96:
 	beq.w loc_06eb34
 	tst.b ($125,a6)
 	beq.b loc_06eac6
-	clr.b (plflip,a6)
+	clr.b (PL_Flip,a6)
 	jsr loc_01bd5c
 	move.w ($10,a3),d0
 	addi.w #$c0,d0
 	cmp.w ($10,a6),d0
 	bcs.b loc_06ead4
-	move.b #1,(plflip,a6)
+	move.b #1,(PL_Flip,a6)
 	bra.b loc_06ead4
 
 loc_06eac6:
 	btst.b #0,($371,a6)
 	beq.b loc_06ead4
-	eori.b #1,(plflip,a6)
+	eori.b #1,(PL_Flip,a6)
 
 loc_06ead4:
-	tst.b (Attacktype,a6)
+	tst.b (PL_Attacktype,a6)
 	bne.b loc_06eaf4
-	move.b #4,(plmovestate,a6)
+	move.b #4,(PL_Move_state,a6)
 	move.b #$c,($3b,a6)
 	moveq #$20,d0
 	jsr loc_02a758
 	jmp loc_02f9be
 
 loc_06eaf4:
-	move.b #$e,(plmovestate,a6)
-	eori.b #1,(plflip,a6)
-	move.l #0,(plxvelocity,a6)
-	move.l #0,(plyvelocity,a6)
-	move.l #0,(plxdrag,a6)
-	move.l #$ffffc000,(plydrag,a6)
+	move.b #$e,(PL_Move_state,a6)
+	eori.b #1,(PL_Flip,a6)
+	move.l #0,(pl_x_velocity,a6)
+	move.l #0,(pl_y_velocity,a6)
+	move.l #0,(pl_x_drag,a6)
+	move.l #$ffffc000,(pl_y_drag,a6)
 	move.b #$c,($3b,a6)
 	moveq #$1f,d0
 	jsr loc_02a758
 	jmp loc_02fa36
 
 loc_06eb34:
-	addq.b #2,(plmovestate,a6)
+	addq.b #2,(PL_Move_state,a6)
 	moveq #$2e,d0
 	jmp loc_02a758
 
@@ -4532,23 +4532,23 @@ loc_06eb40:
 loc_06eb56:
 	subq.b #1,($3b,a6)
 	bpl.w loc_06effa
-	addq.b #2,(plmovestate,a6)
+	addq.b #2,(PL_Move_state,a6)
 	clr.b ($3b,a6)
 	jmp loc_02f9be
 
 ;==============================================
 loc_06eb6c:
-	move.l (plxvelocity,a6),d0
+	move.l (pl_x_velocity,a6),d0
 	beq.b loc_06eb7e
 	add.l d0,($10,a6)
-	move.l (plxdrag,a6),d0
-	add.l d0,(plxvelocity,a6)
+	move.l (pl_x_drag,a6),d0
+	add.l d0,(pl_x_velocity,a6)
 
 loc_06eb7e:
-	move.l (plyvelocity,a6),d0
+	move.l (pl_y_velocity,a6),d0
 	add.l d0,($14,a6)
-	move.l (plydrag,a6),d0
-	add.l d0,(plyvelocity,a6)
+	move.l (pl_y_drag,a6),d0
+	add.l d0,(pl_y_velocity,a6)
 	rts
 
 ;----------------------------------------------
@@ -4567,7 +4567,7 @@ loc_06eba2:
 	jmp loc_02f9be
 
 loc_06ebb4:
-	addq.b #2,(plmovestate,a6)
+	addq.b #2,(PL_Move_state,a6)
 	moveq #$57,d0
 	jmp loc_02e7f2
 
@@ -4575,7 +4575,7 @@ loc_06ebc0:
 	move.w d0,($14,a6)
 	moveq #0,d0
 	move.w d0,($16,a6)
-	move.b #$a,(plmovestate,a6)
+	move.b #$a,(PL_Move_state,a6)
 	jsr loc_00369c
 	moveq #$2f,d0
 	jmp loc_02a758
@@ -4599,7 +4599,7 @@ loc_06ec0a:
 	jsr loc_02a7ea
 	tst.b ($35,a6)
 	bne.w loc_06eff8
-	addq.b #2,(plmovestate,a6)
+	addq.b #2,(PL_Move_state,a6)
 	move.w ($64,a6),d0
 	subi.w #8,d0
 	move.w d0,($14,a6)
@@ -4623,7 +4623,7 @@ loc_06ec46:
 loc_06ec54:
 	subq.b #1,($3b,a6)
 	bpl.w loc_06f000
-	addq.b #2,(plmovestate,a6)
+	addq.b #2,(PL_Move_state,a6)
 	clr.b ($3b,a6)
 	jmp loc_02fa36
 
@@ -4642,11 +4642,11 @@ loc_06ec76:
 	clr.w ($16,a6)
 	tst.b ($35,a6)
 	beq.w loc_06effa
-	addq.b #2,(plmovestate,a6)
-	move.l #$20000,(plxvelocity,a6)
-	move.l #$80000,(plyvelocity,a6)
-	move.l #0,(plxdrag,a6)
-	move.l #$ffffa000,(plydrag,a6)
+	addq.b #2,(PL_Move_state,a6)
+	move.l #$20000,(pl_x_velocity,a6)
+	move.l #$80000,(pl_y_velocity,a6)
+	move.l #0,(pl_x_drag,a6)
+	move.l #$ffffa000,(pl_y_drag,a6)
 	move.b #$30,(-$7edd,a6)
 	moveq #$5e,d0
 	jsr loc_02e970
@@ -4657,7 +4657,7 @@ loc_06ecce:
 	jsr loc_02a7ea
 	tst.b ($35,a6)
 	bpl.w loc_06effa
-	addq.b #2,(plmovestate,a6)
+	addq.b #2,(PL_Move_state,a6)
 	clr.b ($35,a6)
 	moveq #$58,d0
 	jmp loc_02e7f2
@@ -4674,7 +4674,7 @@ loc_06ecf8:
 	move.w ($64,a6),d0
 	cmp.w ($14,a6),d0
 	bcs.w loc_06eff8
-	addq.b #2,(plmovestate,a6)
+	addq.b #2,(PL_Move_state,a6)
 	move.w d0,($14,a6)
 	moveq #0,d0
 	move.w d0,($16,a6)
@@ -4707,7 +4707,7 @@ loc_06ed40:
 ;----------------------------------------------
 loc_06ed4a:
 	addq.b #2,(6,a6)
-	move.b (sidecheck,a6),(plflip,a6)
+	move.b (pl_sidecheck,a6),(PL_Flip,a6)
 	clr.w ($84,a6)
 	moveq #0,d0
 	jmp loc_02a708
@@ -4725,7 +4725,7 @@ loc_06ed72:
 	moveq #0,d6
 	move.b #$3c,($3a,a6)
 	st.b ($85,a6)
-	move.w #$258,(plxvelocity,a6)
+	move.w #$258,(pl_x_velocity,a6)
 	tst.w ($276,a6)
 	beq.b loc_06ed98
 	move.b #6,(6,a6)
@@ -4754,7 +4754,7 @@ loc_06edbc:
 
 ;----------------------------------------------
 loc_06eddc:
-	subq.w #1,(plxvelocity,a6)
+	subq.w #1,(pl_x_velocity,a6)
 	bmi.w loc_06ee12
 	movea.w ($276,a6),a4
 	tst.w ($50,a4)
@@ -4797,7 +4797,7 @@ loc_06ee2e:
 
 ;xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 loc_06ee3c:
-	move.b (plmovestate,a6),d0
+	move.b (PL_Move_state,a6),d0
 	move.w loc_06ee48(pc,d0.w),d1
 	jmp loc_06ee48(pc,d1.w)
 
@@ -4808,7 +4808,7 @@ loc_06ee48:
 
 ;+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-
 loc_06ee4c:
-	addq.b #2,(plmovestate,a6)
+	addq.b #2,(PL_Move_state,a6)
 	move.b ($84,a6),d0
 	addi.b #$23,d0
 	jmp loc_02a708
@@ -4830,7 +4830,7 @@ loc_06ee86:
 
 ;xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 loc_06ee90:
-	move.b (plmovestate,a6),d0
+	move.b (PL_Move_state,a6),d0
 	move.w loc_06ee9c(pc,d0.w),d1
 	jmp loc_06ee9c(pc,d1.w)
 
@@ -4841,8 +4841,8 @@ loc_06ee9c:
 
 ;+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-
 loc_06eea0:
-	addq.b #2,(plmovestate,a6)
-	clr.b (plflip,a6)
+	addq.b #2,(PL_Move_state,a6)
+	clr.b (PL_Flip,a6)
 	moveq #$25,d0
 	jmp loc_02a708
 
@@ -4854,7 +4854,7 @@ loc_06eeb0:
 ;xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 loc_06eeba:
 	movea.w ($276,a6),a4
-	move.b (plmovestate,a6),d0
+	move.b (PL_Move_state,a6),d0
 	move.w loc_06eeca(pc,d0.w),d1
 	jmp loc_06eeca(pc,d1.w)
 
@@ -4865,8 +4865,8 @@ loc_06eeca:
 
 ;+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-
 loc_06eece:
-	addq.b #2,(plmovestate,a6)
-	clr.b (plflip,a6)
+	addq.b #2,(PL_Move_state,a6)
+	clr.b (PL_Flip,a6)
 	moveq #$25,d0
 	move.w ($10,a6),d1
 	cmp.w ($10,a4),d1
@@ -4884,7 +4884,7 @@ loc_06eeea:
 ;xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 loc_06eef4:
 	movea.w ($276,a6),a4
-	move.b (plmovestate,a6),d0
+	move.b (PL_Move_state,a6),d0
 	move.w loc_06ef04(pc,d0.w),d1
 	jmp loc_06ef04(pc,d1.w)
 
@@ -4897,7 +4897,7 @@ loc_06ef04:
 
 ;+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-
 loc_06ef0c:
-	addq.b #2,(plmovestate,a6)
+	addq.b #2,(PL_Move_state,a6)
 	moveq #$58,d0
 	jmp loc_02a758
 
@@ -4905,7 +4905,7 @@ loc_06ef0c:
 loc_06ef18:
 	tst.b ($33,a6)
 	bpl.w loc_06eff2
-	addq.b #2,(plmovestate,a6)
+	addq.b #2,(PL_Move_state,a6)
 	move.w #$a0,d0
 	cmpi.b #5,($84,a6)
 	beq.b loc_06ef34
@@ -4914,7 +4914,7 @@ loc_06ef18:
 loc_06ef34:
 	add.w ($290,a5),d0
 	move.w d0,($10,a6)
-	move.b #0,(plflip,a6)
+	move.b #0,(PL_Flip,a6)
 	moveq #$59,d0
 	jmp loc_02a758
 
@@ -4922,7 +4922,7 @@ loc_06ef34:
 loc_06ef4a:
 	tst.b ($33,a6)
 	bpl.w loc_06eff2
-	addq.b #2,(plmovestate,a6)
+	addq.b #2,(PL_Move_state,a6)
 	moveq #$27,d0
 	jmp loc_02a708
 
@@ -4943,16 +4943,16 @@ loc_06ef68:
 loc_06ef7a:
 	moveq #0,d0
 	moveq #0,d1
-	movem.l d0-d1,(moveinpslot0,a6)
-	movem.l d0-d1,(moveinpslot1,a6)
-	movem.l d0-d1,(moveinpslot2,a6)
-	movem.l d0-d1,(moveinpslot3,a6)
-	movem.l d0-d1,(moveinpslot4,a6)
-	movem.l d0-d1,(moveinpslot5,a6)
-	movem.l d0-d1,(moveinpslot6,a6)
-	movem.l d0-d1,(moveinpslot7,a6)
-	movem.l d0-d1,(moveinpslot8,a6)
-	movem.l d0-d1,(moveinpslot9,a6)
+	movem.l d0-d1,(pl_inp_slot_0,a6)
+	movem.l d0-d1,(pl_inp_slot_1,a6)
+	movem.l d0-d1,(pl_inp_slot_2,a6)
+	movem.l d0-d1,(pl_inp_slot_3,a6)
+	movem.l d0-d1,(pl_inp_slot_4,a6)
+	movem.l d0-d1,(pl_inp_slot_5,a6)
+	movem.l d0-d1,(pl_inp_slot_6,a6)
+	movem.l d0-d1,(pl_inp_slot_7,a6)
+	movem.l d0-d1,(pl_inp_slot_8,a6)
+	movem.l d0-d1,(pl_inp_slot_9,a6)
 	movem.l d0-d1,($1d0,a6)
 	movem.l d0-d1,($1d8,a6)
 	movem.l d0-d1,($1e0,a6)
@@ -4991,7 +4991,7 @@ loc_06f000:
 loc_06f006:
 	jsr loc_02bb5a
 	move.l #$02000e00,(4,a6)
-	move.b #$1a,(plmoveid,a6)
+	move.b #$1a,(pl_move_id,a6)
 	move.b #$7f,($25d,a6)
 	move.b #1,($263,a6)
 	moveq #$58,d0
@@ -5019,15 +5019,15 @@ loc_06f058:
 
 ;==============================================
 loc_06f05a:
-	move.l (plxvelocity,a6),d0
-	tst.b (plflip,a6)
+	move.l (pl_x_velocity,a6),d0
+	tst.b (PL_Flip,a6)
 	bne.b loc_06f066
 	neg.l d0
 
 loc_06f066:
 	add.l d0,($10,a6)
-	move.l (plxdrag,a6),d0
-	add.l d0,(plxvelocity,a6)
+	move.l (pl_x_drag,a6),d0
+	add.l d0,(pl_x_velocity,a6)
 	rts
 
 ;==============================================
@@ -5036,10 +5036,10 @@ loc_06f074:
 
 ;==============================================
 loc_06f076:
-	move.l (plyvelocity,a6),d0
+	move.l (pl_y_velocity,a6),d0
 	add.l d0,($14,a6)
-	add.l (plydrag,a6),d0
-	move.l d0,(plyvelocity,a6)
+	add.l (pl_y_drag,a6),d0
+	move.l d0,(pl_y_velocity,a6)
 	rts
 
 ;==============================================
