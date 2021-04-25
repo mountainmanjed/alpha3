@@ -5457,7 +5457,7 @@ loc_004980:
 	move.b #1,($280,a5)
 	move.b #1,($300,a5)
 	move.w #3,($102,a5)
-	move.b #$13,($109,a5)
+	move.b #$13,(clock_counter,a5)
 	move.b #59,(Clock_frames,a5)
 	jsr loc_01a5e8
 	moveq #0,d0
@@ -11176,7 +11176,7 @@ loc_0090a0:
 	move.w #7,($14c,a5)
 
 loc_0090d0:
-	move.b #$63,($109,a5)
+	move.b #$63,(clock_counter,a5)
 	bsr.w Set_TimerSpeed
 	bsr.w loc_009178
 	tst.b ($168,a5)
@@ -12122,9 +12122,9 @@ loc_009be2:
 	subq.b #1,(Clock_frames,a5)
 	bne.b loc_009c1c
 	bsr.w Set_TimerSpeed
-	subq.b #1,($109,a5)
+	subq.b #1,(clock_counter,a5)
 	bpl.b loc_009c1c
-	move.b #0,($109,a5)
+	move.b #0,(clock_counter,a5)
 	st.b ($10d,a5)
 	bsr.w loc_00a846
 
@@ -12966,7 +12966,7 @@ loc_00a436:
 	move.b d0,($801,a5)
 	move.b d0,($c01,a5)
 	move.b d0,($1001,a5)
-	move.b #$63,($109,a5)
+	move.b #$63,(clock_counter,a5)
 	bsr.w Set_TimerSpeed
 	bsr.w loc_00aaa6
 	lea.l (p1memory,a5),a0
@@ -14091,7 +14091,7 @@ loc_00b06e:
 ;==============================================
 loc_00b076:
 	moveq #0,d0
-	move.b ($109,a5),d0
+	move.b (clock_counter,a5),d0
 	moveq #0,d2
 	move.b loc_00b0a2(pc,d0.w),d2
 	move.w loc_00b08a(pc,d2.w),d2
@@ -14237,7 +14237,7 @@ loc_00b180:
 	move.w (a1,d0.w),d0
 	lea.l (a1,d0.w),a1
 	moveq #0,d0
-	move.b ($109,a5),d0
+	move.b (clock_counter,a5),d0
 	move.b (a1,d0.w),d0
 	andi.b #$ef,ccr
 	abcd.b d1,d0
@@ -16639,16 +16639,16 @@ loc_0205be:
 	cmpi.b #3,($ac,a5)
 	beq.w loc_02031a
 	moveq #$10,d0
-	cmpi.b #$50,($109,a5)
+	cmpi.b #$50,(clock_counter,a5)
 	bcc.b loc_0205f2
 	moveq #6,d0
-	cmpi.b #$3c,($109,a5)
+	cmpi.b #$3c,(clock_counter,a5)
 	bcc.b loc_0205f2
 	moveq #4,d0
-	cmpi.b #$28,($109,a5)
+	cmpi.b #$28,(clock_counter,a5)
 	bcc.b loc_0205f2
 	moveq #6,d0
-	cmpi.b #$14,($109,a5)
+	cmpi.b #$14,(clock_counter,a5)
 	bcc.b loc_0205f2
 	moveq #$a,d0
 
@@ -16765,13 +16765,13 @@ loc_020722:
 
 loc_02072e:
 	moveq #0,d1
-	cmpi.b #$50,($109,a5)
+	cmpi.b #$50,(clock_counter,a5)
 	bcc.b loc_02074e
 	moveq #2,d1
-	cmpi.b #$3c,($109,a5)
+	cmpi.b #$3c,(clock_counter,a5)
 	bcc.b loc_02074e
 	moveq #4,d1
-	cmpi.b #$28,($109,a5)
+	cmpi.b #$28,(clock_counter,a5)
 	bcc.b loc_02074e
 	moveq #6,d1
 
@@ -33266,9 +33266,9 @@ loc_02c0be:
 ;==============================================
 loc_02c0ce:
 	moveq #0,d0
-	move.b ($102,a6),d0
+	move.b (PL_charid,a6),d0
 	lsl.w #2,d0
-	add.b ($132,a6),d0
+	add.b (PL_ism_choice,a6),d0
 	addq.b #1,d0
 	move.b loc_02c0e4(pc,d0.w),($271,a6)
 	rts
@@ -33295,7 +33295,7 @@ loc_02c0e4:
 ;==============================================
 loc_02c164:
 	moveq #0,d0
-	move.b ($102,a6),d0
+	move.b (PL_charid,a6),d0
 	lsl.w #2,d0
 	move.w loc_02c186(pc,d0.w),d1
 	move.w loc_02c186+2(pc,d0.w),d2
@@ -34600,9 +34600,9 @@ loc_02eb06:
 	bne.b loc_02eb88
 	cmpi.b #$ff,($132,a6)
 	bne.b loc_02eb30
-	cmpi.b #$11,($102,a6)
+	cmpi.b #Gen_id,(PL_charid,a6)
 	beq.b loc_02eb88
-	cmpi.b #$13,($102,a6)
+	cmpi.b #GenStance_id,(PL_charid,a6)
 	beq.b loc_02eb88
 
 loc_02eb30:
@@ -34645,7 +34645,7 @@ loc_02eb88:
 ;==============================================
 loc_02eb8c:
 	movea.l #loc_0dc9ea,a0
-	move.b ($102,a6),d0
+	move.b (PL_charid,a6),d0
 	add.w d0,d0
 	move.w (a0,d0.w),d0
 	lea.l (a0,d0.w),a0

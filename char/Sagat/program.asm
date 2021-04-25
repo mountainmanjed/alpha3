@@ -2305,7 +2305,7 @@ loc_04a830:
 	move.w #$b00,(2,a4)
 	move.w a6,($36,a4)
 	move.w a4,($28,a6)
-	move.b ($102,a6),(3,a4)
+	move.b (PL_charid,a6),(3,a4)
 
 loc_04a852:
 	rts
@@ -2357,13 +2357,13 @@ loc_04a894:
 	movea.w ($38,a6),a4
 	tst.b ($125,a4)
 	sne.b d1
-	cmpi.b #0,($102,a4)
+	cmpi.b #Ryu_id,(PL_charid,a4)
 	bne.b loc_04a8b2
 	tst.b d0
 	bne.w loc_04a8f0
 
 loc_04a8b2:
-	cmpi.b #5,($102,a4)
+	cmpi.b #Adon_id,(PL_charid,a4)
 	bne.b loc_04a8c0
 	eor.b d0,d1
 	bmi.w loc_04a9e6
@@ -2372,7 +2372,7 @@ loc_04a8b2:
 loc_04a8c0:
 	move.b #4,(7,a6)
 	moveq #$32,d0
-	cmpi.b #0,($102,a4)
+	cmpi.b #Ryu_id,(PL_charid,a4)
 	beq.b loc_04a8d2
 	moveq #$22,d0
 

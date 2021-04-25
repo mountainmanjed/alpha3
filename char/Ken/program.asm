@@ -19,7 +19,7 @@ loc_035a86:
 	addq.b #2,(6,a6)
 	moveq #$22,d0
 	movea.w ($38,a6),a4
-	cmpi.b #0,($102,a4)
+	cmpi.b #Ryu_id,(PL_charid,a4)
 	bne.b loc_035acc
 	move.b #4,(6,a6)
 	move.w ($10,a6),($40,a6)

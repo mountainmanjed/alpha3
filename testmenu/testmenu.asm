@@ -88,7 +88,7 @@ loc_00de8e:
 	bsr.w loc_010ca6
 
 loc_00de9c:
-	bra.w loc_00df36
+	bra.w render_menu_arrow
 
 ;==============================================
 loc_00dea0:
@@ -97,7 +97,7 @@ loc_00dea0:
 	move.w (4,a6),d6
 	andi.w #$c,d6
 	beq.b loc_00dedc
-	bsr.w loc_00df1c
+	bsr.w Clear_Menu_Arrow
 	btst #3,d6
 	beq.b loc_00dec4
 	subq.w #2,(4,a5)
@@ -113,7 +113,7 @@ loc_00dec4:
 	clr.w (4,a5)
 
 loc_00ded8:
-	bsr.w loc_00df36
+	bsr.w render_menu_arrow
 
 loc_00dedc:
 	btst.b #8,(6,a6)
@@ -148,7 +148,7 @@ ServiceMain_States:
 	dc.w ExitService_Main-ServiceMain_States
 
 ;==============================================
-loc_00df1c:
+Clear_Menu_Arrow:
 	move.l #$200000,d1
 	tst.w (Region,a5)
 	bne.b loc_00df2e
@@ -160,7 +160,7 @@ loc_00df2e:
 	rts
 
 ;==============================================
-loc_00df36:
+render_menu_arrow:
 	lea.l $900718,a1
 	move.w (4,a5),d0
 	lsl.w #2,d0

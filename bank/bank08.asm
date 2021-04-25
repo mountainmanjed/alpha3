@@ -3868,9 +3868,9 @@ loc_082f74:
 	cmpi.b #2,($82,a6)
 	bcs.w loc_083064
 	beq.w loc_082fdc
-	cmpi.b #0,($102,a6)
+	cmpi.b #Ryu_id,(PL_charid,a6)
 	bne.b loc_082f98
-	tst.b ($132,a6)
+	tst.b (PL_ism_choice,a6)
 	bmi.w loc_083066
 
 loc_082f98:

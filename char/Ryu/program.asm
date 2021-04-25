@@ -48,7 +48,7 @@ loc_034026:
 loc_034056:
 	tst.b ($10d,a5)
 	bne.w loc_0340e0
-	cmpi.b #1,($102,a4)
+	cmpi.b #Ken_id,(PL_charid,a4)
 	bne.w loc_0340e0
 	tst.b ($105,a5)
 	beq.w loc_0340e0
@@ -223,14 +223,14 @@ loc_034202:
 	addq.b #2,(6,a6)
 	moveq #0,d0
 	movea.w ($38,a6),a4
-	cmpi.b #$b,($102,a4)
+	cmpi.b #Sagat_id,(PL_charid,a4)
 	bne.b loc_03421a
 	tst.b ($125,a4)
 	bne.b loc_034254
 
 loc_03421a:
 	moveq #$22,d0
-	cmpi.b #1,($102,a4)
+	cmpi.b #Ken_id,(PL_charid,a4)
 	bne.b loc_034254
 	move.b #4,(6,a6)
 	move.b #2,($3a,a6)

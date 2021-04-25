@@ -79,6 +79,8 @@ PL_Palnum = 0x128
 PL_ism_choice = 0x132
 
 ; = 0x15c
+
+; = 0x160
 ; = 0x161
 
 pl_inp_slot_0 = 0x180
@@ -119,3 +121,45 @@ pl_inp_slot_b = 0x308
 
 ;371
 ;378
+
+;==============================================
+;IDs
+;==============================================
+Ryu_id = 0x00
+Ken_id = 0x01
+Akuma_id = 0x02
+Nash_id = 0x03
+Chun_id = 0x04
+Adon_id = 0x05
+Sodom_id = 0x06
+Guy_id = 0x07
+Birdie_id = 0x08
+Rose_id = 0x09
+Dictator_id = 0x0a
+Sagat_id = 0x0b
+Dan_id = 0x0c
+
+;Alpha 2
+Sakura_id = 0x0d
+Rolento_id = 0x0e
+Dhalsim_id = 0x0f
+Zangief_id = 0x10
+Gen_id = 0x11
+GenStance_id = 0x13
+
+;Alpha 3
+Boxer_id = 0x15
+Cammy_id = 0x16
+Ehonda_id = 0x18
+Blanka_id = 0x19
+RMika_id = 0x1a
+Cody_id = 0x1b
+Claw_id = 0x1c
+Karin_id = 0x1d
+Juli_id = 0x1e
+Juni_id = 0x1f
+
+;Unused
+;sf2_chun_id = 0x12;from sample rom
+;sword_sodom_id = 0x14 ;from sample rom
+;evilryu_id = 0x17 ;from later ports

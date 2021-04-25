@@ -1,12 +1,12 @@
 ;Shared memory with Z80 at 0xc000
-Soundram = $618000
-Sound_Test_end = $619ff9
-Sound_END = $619fff
+Soundram = 0x618000
+Sound_Test_end = 0x619ff9
+Sound_END = 0x619fff
 
-NetworkRam = $660000
+NetworkRam = 0x660000
 
-ObjectRam0 = $700000
-ObjectRam = $708000
+ObjectRam0 = 0x700000
+ObjectRam = 0x708000
 
 CPSinput00 = 0x804000
 CPSinput01 = 0x804010
@@ -14,9 +14,9 @@ CPSinput02 = 0x804020
 QsoundVolume = 0x804030
 Epprom = 0x804040
 
-DebugDip = $8040b0
-OBJram_Bank0 = $8040e0
-OBJram_Bank1 = $8040e1
+DebugDip = 0x8040b0
+OBJram_Bank0 = 0x8040e0
+OBJram_Bank1 = 0x8040e1
 
 cps0_gpuregistera = 0x804100
 cps0_gpuregisterb = 0x804102

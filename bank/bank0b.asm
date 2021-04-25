@@ -8425,7 +8425,7 @@ loc_0b93d8:
 loc_0b9400:
 	move.w #$2615,d7
 	moveq #0,d0
-	move.b ($109,a5),d0
+	move.b (clock_counter,a5),d0
 	cmpi.b #$15,d0
 	bcc.b loc_0b941c
 	btst #2,($b4,a5)

@@ -8931,13 +8931,52 @@ loc_01e5f8:
 ;VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV
 ;Character Selected Location
 loc_01e60a:
-	dc.w $0003,$0603,$0502,$0201,$0301,$0404,$0204,$0202
-	dc.w $0402,$0306,$0300,$0401,$0102,$0305,$0205,$0104
-	dc.w $0504,$0405,$0301,$0405,$0204,$0000,$0304,$0000
-	dc.w $0103,$0503,$0302,$0203,$0403,$0303,$0000,$0000
+	dc.b 00,03;00 Ryu
+	dc.b 06,03;01 Ken
+	dc.b 05,02;02 Akuma
+	dc.b 02,01;03 Nash
+	dc.b 03,01;04 Chun
+	dc.b 04,04;05 Adon
+	dc.b 02,04;06 Sodom
+	dc.b 02,02;07 Guy
+	dc.b 04,02;08 Bridie
+	dc.b 03,06;09 Rose
+	dc.b 03,00;0a Dic
+	dc.b 04,01;0b Sagat
+	dc.b 01,02;0c Dan
+
+	dc.b 03,05;0d Sakura
+	dc.b 02,05;0e Rolento
+	dc.b 01,04;0f Dhalsim
+	dc.b 05,04;10 Zangief
+	dc.b 04,05;11 Gen
+
+	dc.b 03,01;12 sf2-Chun
+
+	dc.b 04,05;13 Gen 2
+
+	dc.b 02,04;14 Sword Sodom
+
+	dc.b 00,00;15 Boxer
+	dc.b 03,04;16 Cammy
+
+	dc.b 00,00;17 Evil Ryu
+
+	dc.b 01,03;18 E.Honda
+	dc.b 05,03;19 Blanka
+	dc.b 03,02;1a R.Mika
+	dc.b 02,03;1b Cody
+	dc.b 04,03;1c Claw
+	dc.b 03,03;1d Karin
+
+	dc.b 00,00;1e Juli
+	dc.b 00,00;1f Juni
 
 ;Random Select
-	dc.w $0101,$0505,$0501,$0105
+	dc.b 01,01;p1 upper
+	dc.b 05,05;p1 bottom
+	dc.b 05,01;p2 upper
+	dc.b 01,05;p2 bottom
 
 ;==============================================
 loc_01e652:
@@ -8962,14 +9001,14 @@ loc_01e686
 	tst.b ($3f,a6)
 	beq.b loc_01e694
 	bsr.w loc_01e898
-	move.b d0,($102,a6)
+	move.b d0,(PL_charid,a6)
 
 loc_01e694:
 	rts
 
 loc_01e696:
-	move.w ($10,a6),d2
-	move.w ($14,a6),d3
+	move.w (PL_X,a6),d2
+	move.w (PL_Y,a6),d3
 
 loc_01e69e:
 	btst #3,d0
