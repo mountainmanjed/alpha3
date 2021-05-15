@@ -42,11 +42,11 @@ loc_04129a:
 ;==============================================
 loc_0412b8:
 	movea.w ($38,a6),a4
-	cmpi.b #$1b,($102,a4)
+	cmpi.b #Cody_id,(PL_charid,a4)
 	bne.b loc_0412d6
-	tst.b ($125,a6)
+	tst.b (PL_cpucontrol,a6)
 	sne.b d0
-	tst.b ($125,a4)
+	tst.b (PL_cpucontrol,a4)
 	sne.b d1
 	eor.b d0,d1
 	bmi.w loc_04142e
@@ -905,7 +905,7 @@ loc_041b98:
 
 ;==============================================
 loc_041bb0:
-	tst.b ($bc,a6)
+	tst.b (pl_taunt_count,a6)
 	beq.w loc_041bc0
 	bra.w loc_041bbc
 
@@ -1014,7 +1014,7 @@ loc_041cae:
 loc_041cee:
 	tst.b ($b9,a6)
 	bne.b loc_041cfc
-	tst.b ($bc,a6)
+	tst.b (pl_taunt_count,a6)
 	beq.w loc_041c48
 
 loc_041cfc:
@@ -1987,7 +1987,7 @@ loc_042824:
 	move.b #1,($ce,a6)
 	tst.b ($3e,a6)
 	bne.b loc_042838
-	subq.b #1,($bc,a6)
+	subq.b #1,(pl_taunt_count,a6)
 
 loc_042838:
 	moveq #0,d0

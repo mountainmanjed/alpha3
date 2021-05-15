@@ -103,10 +103,12 @@ game_unlock = 0xee
 ;Game Data
 ;==============================================
 stageid = 0x100
+;0x101
 ;0x107
 clock_counter = 0x109
 clock_frames = 0x10a
 
+;0x114
 Dev_Turbo = 0x116
 ;0x125
 ;0x12b

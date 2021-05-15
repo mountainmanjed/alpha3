@@ -4382,7 +4382,7 @@ loc_003d8a:
 loc_003d9c:
 	tst.b ($bc,a5)
 	beq.b loc_003dae
-	cmpi.b #6,($102,a6)
+	cmpi.b #Sodom_id,(PL_charid,a6)
 	bne.b loc_003dae
 	move.w #$3d5,d1
 
@@ -4404,7 +4404,7 @@ loc_003db8:
 
 loc_003dd4:
 	moveq #0,d1
-	move.b ($102,a6),d1
+	move.b (PL_charid,a6),d1
 	add.w d1,d1
 	move.w loc_003dea(pc,d1.w),d1
 	moveq #0,d2
@@ -4413,10 +4413,14 @@ loc_003dd4:
 
 ;VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV
 loc_003dea:
-	dc.w $0305,$0328,$0345,$0365,$0385,$03a5,$03c5,$03e5
-	dc.w $0405,$0425,$0445,$0465,$0485,$04a5,$04c5,$04e5
-	dc.w $0505,$0525,$0000,$0525,$0000,$05a5,$05c5,$0000
-	dc.w $0603,$0625,$0645,$0665,$0685,$06a2,$05c5,$05c5
+	dc.w $0305,$0328,$0345,$0365
+	dc.w $0385,$03a5,$03c5,$03e5
+	dc.w $0405,$0425,$0445,$0465
+	dc.w $0485,$04a5,$04c5,$04e5
+	dc.w $0505,$0525,$0000,$0525
+	dc.w $0000,$05a5,$05c5,$0000
+	dc.w $0603,$0625,$0645,$0665
+	dc.w $0685,$06a2,$05c5,$05c5
 
 ;==============================================
 loc_003e2a:
@@ -4448,17 +4452,21 @@ loc_003e56:
 ;==============================================
 loc_003e6c:
 	moveq #0,d1
-	move.b ($102,a6),d1
+	move.b (PL_charid,a6),d1
 	add.w d1,d1
 	move.w loc_003e7a(pc,d1.w),d1
 	rts
 
 ;VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV
 loc_003e7a:
-	dc.w $0300,$0320,$0340,$0360,$0380,$03a0,$03c0,$03e0
-	dc.w $0400,$0420,$0440,$0460,$0480,$04a0,$04c0,$04e0
-	dc.w $0500,$0520,$0000,$0520,$0000,$05a0,$05c0,$0000
-	dc.w $0600,$0620,$0640,$0660,$0680,$06a0,$05c0,$05c0
+	dc.w $0300,$0320,$0340,$0360
+	dc.w $0380,$03a0,$03c0,$03e0
+	dc.w $0400,$0420,$0440,$0460
+	dc.w $0480,$04a0,$04c0,$04e0
+	dc.w $0500,$0520,$0000,$0520
+	dc.w $0000,$05a0,$05c0,$0000
+	dc.w $0600,$0620,$0640,$0660
+	dc.w $0680,$06a0,$05c0,$05c0
 
 ;==============================================
 loc_003eba:
@@ -4515,7 +4523,7 @@ loc_003f46:
 
 ;==============================================
 loc_003f54:
-	bsr.w loc_00402c
+	bsr.w Input_P1Shot_check
 	bne.b loc_003f60
 	subq.w #1,(2,a5)
 	bpl.b loc_003f7e
@@ -4537,7 +4545,7 @@ loc_003f80:
 
 ;==============================================
 loc_003f8e:
-	bsr.w loc_00402c
+	bsr.w Input_P1Shot_check
 	bne.b loc_003f9a
 	subq.w #1,(2,a5)
 	bpl.b loc_003fa4
@@ -4594,7 +4602,7 @@ BootFontPalettes:
 	dc.w $ff0f,$ff0f;0c Brazil
 
 ;==============================================
-loc_00402c:
+Input_P1Shot_check:
 	move.w (INP_P1,a5),d0
 	btst #8,d0
 	rts
@@ -4644,40 +4652,32 @@ loc_0040a2:
 
 ;VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV
 loc_0040d6:
-	dc.w loc_00410a-loc_0040d6
-	dc.w loc_00436e-loc_0040d6
-	dc.w loc_004344-loc_0040d6
-	dc.w loc_00436e-loc_0040d6
-
-	dc.w loc_00413a-loc_0040d6
-	dc.w loc_00436e-loc_0040d6
-	dc.w loc_004298-loc_0040d6
-	dc.w loc_00436e-loc_0040d6
-
-;10
-	dc.w loc_00433e-loc_0040d6
-	dc.w loc_00436e-loc_0040d6
-	dc.w loc_004368-loc_0040d6
-	dc.w loc_00436e-loc_0040d6
-
-	dc.w loc_004344-loc_0040d6
-	dc.w loc_00436e-loc_0040d6
-	dc.w loc_0043ec-loc_0040d6
-	dc.w loc_0041f2-loc_0040d6
-
-;20
-	dc.w loc_00436e-loc_0040d6
-	dc.w loc_004298-loc_0040d6
-	dc.w loc_00436e-loc_0040d6
-	dc.w loc_00433e-loc_0040d6
-
-	dc.w loc_00436e-loc_0040d6
-	dc.w loc_004368-loc_0040d6
-	dc.w loc_00436e-loc_0040d6
-	dc.w loc_004344-loc_0040d6
-
-	dc.w loc_00436e-loc_0040d6
-	dc.w loc_0043ec-loc_0040d6
+	dc.w loc_00410a-loc_0040d6 ;00
+	dc.w loc_00436e-loc_0040d6 ;02
+	dc.w loc_004344-loc_0040d6 ;04
+	dc.w loc_00436e-loc_0040d6 ;06
+	dc.w loc_00413a-loc_0040d6 ;08
+	dc.w loc_00436e-loc_0040d6 ;0a
+	dc.w loc_004298-loc_0040d6 ;0c
+	dc.w loc_00436e-loc_0040d6 ;0e
+	dc.w loc_00433e-loc_0040d6 ;10
+	dc.w loc_00436e-loc_0040d6 ;12
+	dc.w loc_004368-loc_0040d6 ;14
+	dc.w loc_00436e-loc_0040d6 ;16
+	dc.w loc_004344-loc_0040d6 ;18
+	dc.w loc_00436e-loc_0040d6 ;1a
+	dc.w loc_0043ec-loc_0040d6 ;1c
+	dc.w loc_0041f2-loc_0040d6 ;1e
+	dc.w loc_00436e-loc_0040d6 ;20
+	dc.w loc_004298-loc_0040d6 ;22
+	dc.w loc_00436e-loc_0040d6 ;24
+	dc.w loc_00433e-loc_0040d6 ;26
+	dc.w loc_00436e-loc_0040d6 ;28
+	dc.w loc_004368-loc_0040d6 ;2a
+	dc.w loc_00436e-loc_0040d6 ;2c
+	dc.w loc_004344-loc_0040d6 ;2e
+	dc.w loc_00436e-loc_0040d6 ;30
+	dc.w loc_0043ec-loc_0040d6 ;32
 
 ;==============================================
 loc_00410a:
@@ -15064,22 +15064,88 @@ loc_00ba10:
 	jsr RNGFunction
 	andi.w #$20,d0
 	add.b ($102,a0),d0
-	move.b loc_00ba26(pc,d0.w),($102,a1)
+	move.b Dramatic_Partners(pc,d0.w),(PL_charid,a1)
 	rts
 
 ;VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV
 ;Dramatic Mode Partners
-loc_00ba26:
-	dc.b $01,$00,$11,$04,$03,$0b,$18,$1b,$15,$0f,$16,$05,$19,$1d,$1c,$09
-	dc.b $1a,$02,$00,$02,$00,$08,$0a,$00,$06,$0c,$10,$07,$0e,$0d,$1f,$1e
-	dc.b $01,$00,$11,$04,$03,$0b,$18,$1b,$15,$0f,$16,$05,$19,$1d,$1c,$09
-	dc.b $1a,$02,$00,$02,$00,$08,$0a,$00,$06,$0c,$10,$07,$0e,$0d,$1f,$1e
+Dramatic_Partners:
+;Player2 List
+	dc.b Ken_id;		Ryu
+	dc.b Ryu_id;		Ken
+	dc.b Gen_id;		Akm
+	dc.b Chun_id;		Nsh
+	dc.b Nash_id;		Chn
+	dc.b Sagat_id;		Adn
+	dc.b Ehonda_id;		Sdm
+	dc.b Cody_id;		Guy
+	dc.b Boxer_id;		Brd
+	dc.b Dhalsim_id;	Rse
+	dc.b Cammy_id;		Dic
+	dc.b Adon_id;		Sag
+	dc.b Blanka_id;		Dan
+	dc.b Karin_id;		Sak
+	dc.b Claw_id;		Rol
+	dc.b Rose_id;		Sim
+	dc.b RMika_id;		Zan
+	dc.b Akuma_id;		Gen
+	dc.b Ryu_id;		0x12
+	dc.b Akuma_id;		GenC
+	dc.b Ryu_id;		0x14
+	dc.b Birdie_id;		Box
+	dc.b Dictator_id;	Cam
+	dc.b Ryu_id;		0x17
+	dc.b Sodom_id;		Ehd
+	dc.b Dan_id;		Blk
+	dc.b Zangief_id;	Rmk
+	dc.b Guy_id;		Cdy
+	dc.b Rolento_id;	Clw
+	dc.b Sakura_id;		Kar
+	dc.b Juni_id;		Jul
+	dc.b Juli_id;		Jun
+
+;Player1 List
+	dc.b Ken_id;		Ryu
+	dc.b Ryu_id;		Ken
+	dc.b Gen_id;		Akm
+	dc.b Chun_id;		Nsh
+	dc.b Nash_id;		Chn
+	dc.b Sagat_id;		Adn
+	dc.b Ehonda_id;		Sdm
+	dc.b Cody_id;		Guy
+	dc.b Boxer_id;		Brd
+	dc.b Dhalsim_id;	Rse
+	dc.b Cammy_id;		Dic
+	dc.b Adon_id;		Sag
+	dc.b Blanka_id;		Dan
+	dc.b Karin_id;		Sak
+	dc.b Claw_id;		Rol
+	dc.b Rose_id;		Sim
+	dc.b RMika_id;		Zan
+	dc.b Akuma_id;		Gen
+	dc.b Ryu_id;		0x12
+	dc.b Akuma_id;		GenC
+	dc.b Ryu_id;		0x14
+	dc.b Birdie_id;		Box
+	dc.b Dictator_id;	Cam
+	dc.b Ryu_id;		0x17
+	dc.b Sodom_id;		Ehd
+	dc.b Dan_id;		Blk
+	dc.b Zangief_id;	Rmk
+	dc.b Guy_id;		Cdy
+	dc.b Rolento_id;	Clw
+	dc.b Sakura_id;		Kar
+	dc.b Juni_id;		Jul
+	dc.b Juli_id;		Jun
+
 
 ;==============================================
+;a0 = Winner Player Memory
+;==============================================
 loc_00ba66:
-	tst.b ($125,a0)
+	tst.b (PL_cpucontrol,a0)
 	bne.w loc_00baca
-	move.l ($140,a0),d2
+	move.l (pl_arcade_progress,a0),d2
 	move.w #$ffff,($114,a5)
 	bsr.w loc_00b8b6
 	move.w ($114,a5),d0
@@ -21000,18 +21066,18 @@ loc_023b32:
 ;==============================================
 loc_023b3a:
 	moveq #0,d0
-	move.b ($102,a1),d0
+	move.b (PL_charid,a1),d0
 	movea.l #loc_0c5f7a,a0
 	move.b (a0,d0.w),d0
-	cmpi.b #$1b,($102,a1)
+	cmpi.b #Cody_id,(PL_Charid,a1)
 	bne.b loc_023b5e
-	cmpi.b #1,($132,a1)
+	cmpi.b #Vism_ID,(PL_ism_choice,a1)
 	bne.b loc_023b5e
 	subi.b #$10,d0
 
 loc_023b5e:
 	moveq #0,d1
-	move.b ($297,a1),d1
+	move.b (pl_blockstring_counter,a1),d1
 	lsl.b #2,d1
 	add.b d1,d0
 	bpl.b loc_023b88
@@ -26657,7 +26723,7 @@ loc_027c40:
 	bne.b loc_027c54
 	cmpi.b #-1,(PL_ism_choice,a6)
 	beq.b loc_027c54
-	move.b #1,($bc,a6)
+	move.b #1,(pl_taunt_count,a6)
 
 loc_027c54:
 	move.b ($102,a6),d0
@@ -28367,7 +28433,7 @@ loc_028ea6:
 loc_028eac:
 	move.b #4,(7,a6)
 	move.b ($2c9,a6),($b,a6)
-	addq.b #1,($297,a6)
+	addq.b #1,(pl_blockstring_counter,a6)
 	tst.b ($31,a6)
 	bne.b loc_028f02
 	move.b #2,($54,a6)
@@ -32914,7 +32980,7 @@ loc_02bba0:
 	move.b d0,($25f,a6)
 	move.b d0,($26c,a6)
 	move.b d0,($273,a6)
-	move.b d0,($297,a6)
+	move.b d0,(pl_blockstring_counter,a6)
 	move.b d0,($24f,a6)
 	move.b d0,($26f,a6)
 	move.b d0,($de,a6)
@@ -33061,7 +33127,7 @@ loc_02be14:
 	moveq #-8,d1
 	tst.b (PL_ism_choice,a6)
 	beq.b loc_02be3c
-	cmpi.b #$1b,($102,a6)
+	cmpi.b #Cody_id,(PL_Charid,a6)
 	bne.b loc_02be3c
 	moveq #-24,d1
 

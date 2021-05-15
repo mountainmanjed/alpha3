@@ -77,7 +77,9 @@ PL_cpucontrol = 0x125
 PL_Palnum = 0x128
 
 PL_ism_choice = 0x132
+pl_arcade_progress = 0x140
 
+PL_PalRam_pnt = 0x150
 ; = 0x15c
 
 ; = 0x160
@@ -108,6 +110,9 @@ pl_dist_away = 0x21c
 
 PL_Reversal_Window = 0x256
 
+pl_collsion_counter = 0x280
+pl_blockstring_counter = 0x297
+
 pl_sidecheck = 0x2c9
 PL_Stun = 0x2cc
 
@@ -121,7 +126,6 @@ pl_inp_slot_b = 0x308
 
 ;371
 ;378
-
 ;==============================================
 ;IDs
 ;==============================================
@@ -163,3 +167,9 @@ Juni_id = 0x1f
 ;sf2_chun_id = 0x12;from sample rom
 ;sword_sodom_id = 0x14 ;from sample rom
 ;evilryu_id = 0x17 ;from later ports
+
+;Ism Ids
+Xism_ID = -1
+Aism_ID = 0
+Vism_ID = 1
+Sism_ID = 2

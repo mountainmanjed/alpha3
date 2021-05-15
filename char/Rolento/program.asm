@@ -1127,7 +1127,7 @@ loc_04fc80:
 	bmi.w loc_04f930
 	tst.b ($b9,a6)
 	bne.b loc_04fc96
-	tst.b ($bc,a6)
+	tst.b (pl_taunt_count,a6)
 	beq.w loc_04f930
 
 loc_04fc96:
@@ -1247,7 +1247,7 @@ loc_04fdb4:
 	bmi.b loc_04fdd8
 	tst.b ($b9,a6)
 	bne.w loc_04fdd4
-	tst.b ($bc,a6)
+	tst.b (pl_taunt_count,a6)
 	beq.w loc_04fdd8
 	bra.b loc_04fdd4
 
@@ -2844,7 +2844,7 @@ loc_050f14:
 	move.b #1,($ce,a6)
 	tst.b ($3e,a6)
 	bne.b loc_050f2c
-	subq.b #1,($bc,a6)
+	subq.b #1,(pl_taunt_count,a6)
 
 loc_050f2c:
 	moveq #$2e,d0

@@ -4489,7 +4489,7 @@ loc_093506:
 loc_093518:
 	tst.b (a4)
 	beq.b loc_09354c
-	cmpi.b #$1b,($102,a4)
+	cmpi.b #Cody_id,(PL_Charid,a4)
 	bne.b loc_09354c
 	clr.b ($1e5,a4)
 	move.w ($10,a6),d0
@@ -4521,7 +4521,7 @@ loc_093550:
 loc_093566:
 	tst.b (a0)
 	beq.b loc_093576
-	cmpi.b #$1b,($102,a4)
+	cmpi.b #Cody_id,(PL_charid,a4)
 	bne.b loc_093576
 	clr.b ($1e5,a0)
 

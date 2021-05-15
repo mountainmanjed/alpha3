@@ -741,7 +741,7 @@ loc_047654:
 loc_047682:
 	tst.b ($b9,a6)
 	bne.b loc_047690
-	tst.b ($bc,a6)
+	tst.b (pl_taunt_count,a6)
 	beq.w loc_047596
 
 loc_047690:
@@ -2468,7 +2468,7 @@ loc_048918:
 	move.b #1,($ce,a6)
 	tst.b ($3e,a6)
 	bne.b loc_04892c
-	subq.b #1,($bc,a6)
+	subq.b #1,(pl_taunt_count,a6)
 
 loc_04892c:
 	clr.b ($a9,a6)
