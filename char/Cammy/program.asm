@@ -2627,7 +2627,7 @@ loc_05caf2:
 	bne.b loc_05cb1e
 	btst.b #3,($11b,a6)
 	beq.b loc_05cb2a
-	btst.b #6,($11a,a6)
+	btst.b #6,(PL_Buttons,a6)
 	beq.b loc_05cb2a
 
 loc_05cb1e:

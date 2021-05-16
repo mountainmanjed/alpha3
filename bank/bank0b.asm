@@ -4514,7 +4514,7 @@ loc_0b3dbc:
 	lea.l ($10e,a6),a0
 	moveq #0,d0
 	move.l d0,d1
-	move.w ($114,a5),d0
+	move.w (Arcade_Match,a5),d0
 	addq.w #1,d0
 	move.w d0,d1
 	move.w #$60e,(a0)

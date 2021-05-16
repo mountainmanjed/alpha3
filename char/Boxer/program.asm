@@ -6,7 +6,7 @@ loc_05990e:
 	bne.b loc_05993a
 	cmpi.w #6,($138,a5)
 	beq.b loc_05993a
-	cmpi.w #$1400,($11a,a6)
+	cmpi.w #$1400,(PL_Buttons,a6)
 	bne.b loc_05993a
 	jsr loc_01c368
 	beq.b loc_05993a
@@ -1147,7 +1147,7 @@ loc_05a54a:
 	bpl.w loc_05ac1e
 	tst.b ($125,a6)
 	bne.b loc_05a580
-	btst.b #7,($11a,a6)
+	btst.b #7,(PL_Buttons,a6)
 	beq.b loc_05a580
 	addq.b #2,(7,a6)
 	moveq #$33,d0
@@ -1176,7 +1176,7 @@ loc_05a5ac:
 	bpl.w loc_05ac1e
 	tst.b ($125,a6)
 	bne.b loc_05a580
-	btst.b #7,($11a,a6)
+	btst.b #7,(PL_Buttons,a6)
 	beq.b loc_05a580
 	tst.b ($3a,a6)
 	bpl.w loc_05ac1e

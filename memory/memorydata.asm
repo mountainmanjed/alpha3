@@ -80,12 +80,19 @@ Dip_EventMode = 0xa5
 ;
 ;==============================================
 Active_Player = 0xa8
+; = 0xac
+; = 0xad
 RngByte0 = 0xae
 RngByte1 = 0xaf
 
-;0xb4
-;0xb5
+; = 0xb4
+; = 0xb5
+
 Dip_Regulation = 0xbb
+
+; = 0xbe
+; = 0xbf
+; = 0xc0
 
 ;==============================================
 ;Game Dips Extra
@@ -93,9 +100,9 @@ Dip_Regulation = 0xbb
 Dip_1PRounds = 0xde
 Dip_2PRounds = 0xdf
 
-;0xe6
-;0xe7
-;0xe8
+; = 0xe6
+; = 0xe7
+; = 0xe8
 
 game_unlock = 0xee
 
@@ -108,13 +115,26 @@ stageid = 0x100
 clock_counter = 0x109
 clock_frames = 0x10a
 
-;0x114
+Arcade_Match = 0x114
 Dev_Turbo = 0x116
 ;0x125
 ;0x12b
+;0x12e
+;0x130
 ;0x134
+;0x138
 ;0x13c
 
+;0x15d
+
+; = 0x163
+GCrush_Timer = 0x171
+StageID_Secondary = 0x174
+; = 0x178
+
+;==============================================
+;
+;==============================================
 ;0x182
 ;0x1c8
 
@@ -123,6 +143,7 @@ Dev_Turbo = 0x116
 ;0x250
 
 ;Camera Stuff
+Camera_Data = 0x280
 ;0x288
 ;0x28c
 cam_f_x = 0x290
@@ -137,40 +158,55 @@ camera_y = 0x2a4
 ;0x316
 ;0x398
 
-;==============================================
-;PlayerData
-;==============================================
-p1memory = 0x400
-; 0x500
-p1_charid = 0x502
-; = 0x51a
 
+Sound_Data_Start = 0x5e80
+;0x6e82
 
 ;==============================================
-p2memory = 0x800
-p2_charid = 0x902
-
-;==============================================
-p3memory = 0xc00
-p3_charid = 0xd02
-
-;==============================================
-p4memory = 0x1000
-p4_charid = 0x1102
-
-;Reminder that chardata.asm is for a4/a6 offsets
-
-;==============================================
-;
+;Negative A5 offsets
 ;==============================================
 ;-0x43ea
 ;-0x43ec
 ;-0x50ce
 ;-0x5162
 
+;Arcade Progression
+;-0x707e
 
-;unknown
+;==============================================
+;Player Data
+;==============================================
+p1memory = 0x400
+; 0x500
+p1_charid = 0x502
+; = 0x51a
+p1_arcade_progress = 0x540
+p1_crushed_gaurd = 0x66e
 
+;==============================================
+p2memory = 0x800
+p2_charid = 0x902
+p2_arcade_progress = 0x940
+p2_crushed_gaurd = 0xa6e
+;==============================================
+p3memory = 0xc00
+p3_charid = 0xd02
+p3_ism_choice = 0xd32
+p3_crushed_gaurd = 0xe6e
+
+;==============================================
+p4memory = 0x1000
+p4_charid = 0x1102
+p4_ism_choice = 0x1132
+p4_crushed_gaurd = 0x126e
+
+
+;Reminder that chardata.asm is for a4/a6 offsets
+
+
+;==============================================
+;unknown direct
+;==============================================
 ;0xff0fca,0xff13ca,0xff17ca,0xff1bca
 unk_ff3554 = 0xff3554
 unk_ff3622 = 0xff3622
@@ -180,3 +216,14 @@ unk_ff3c0c = 0xff3c0c
 ;unk_ff3c14 = 0xff3c14
 ;unk_ff3c18 = 0xff3c18
 ;ff3d18
+
+;==============================================
+;Region ids
+;==============================================
+Japan_region = 0x00
+USA_region = 0x02
+Hispanic_region = 0x04
+Oceania_Region = 0x06
+Asia_Region = 0x08
+Europe_Region = 0x0a
+Brazil_Region = 0x0c

@@ -17194,7 +17194,7 @@ loc_08e84c:
 	move.w d0,($26,a6)
 	move.w d0,($12,a6)
 	bsr.w loc_08ec76
-	move.w ($114,a5),d1
+	move.w (Arcade_Match,a5),d1
 	lsl.w #4,d1
 	add.w d1,d0
 	move.w d0,($14,a6)
@@ -17316,7 +17316,7 @@ loc_08e9dc:
 
 ;-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 loc_08e9de:
-	move.w ($114,a5),d1
+	move.w (Arcade_Match,a5),d1
 	add.w d1,d1
 	jsr loc_084c5a
 	beq.b loc_08e9f0

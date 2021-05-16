@@ -621,7 +621,7 @@ loc_02da90:
 
 ;----------------------------------------------
 loc_02da9a:
-	move.w ($11a,a6),d0
+	move.w (PL_Buttons,a6),d0
 	andi.w #$f,d0
 	beq.w loc_02df58
 	moveq #0,d1
@@ -648,7 +648,7 @@ loc_02dac8:
 loc_02dad8:
 	subq.b #1,(4,a4)
 	beq.w loc_02df58
-	move.w ($11a,a6),d0
+	move.w (PL_Buttons,a6),d0
 	andi.w #$f,d0
 	beq.w loc_02df5a
 	bsr.w loc_02db86
@@ -671,7 +671,7 @@ loc_02dafe:
 loc_02db16:
 	subq.b #1,(4,a4)
 	beq.w loc_02df58
-	move.w ($11a,a6),d0
+	move.w (PL_Buttons,a6),d0
 	andi.w #$f,d0
 	beq.w loc_02df5a
 	bsr.b loc_02dba4
@@ -689,7 +689,7 @@ loc_02db3a:
 loc_02db42:
 	subq.b #1,(4,a4)
 	beq.w loc_02df58
-	move.w ($11a,a6),d0
+	move.w (PL_Buttons,a6),d0
 	andi.w #$f,d0
 	beq.w loc_02df5a
 	bsr.b loc_02dba4

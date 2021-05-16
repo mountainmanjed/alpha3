@@ -1749,7 +1749,7 @@ loc_03b580:
 	clr.w ($3a,a6)
 	tst.b ($125,a6)
 	bne.b loc_03b5d4
-	move.b ($11a,a6),d0
+	move.b (PL_Buttons,a6),d0
 	move.b ($378,a6),d0
 	andi.b #$10,d0
 	bne.w loc_03b5d0

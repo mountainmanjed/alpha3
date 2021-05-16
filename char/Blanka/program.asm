@@ -1751,7 +1751,7 @@ loc_060b80:
 	bne.b loc_060bb8
 	tst.b ($125,a6)
 	bne.b loc_060bb8
-	move.b ($11a,a6),d0
+	move.b (PL_Buttons,a6),d0
 	and.b ($1f0,a6),d0
 	beq.b loc_060bb8
 	subq.b #1,($3a,a6)

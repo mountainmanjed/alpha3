@@ -1682,7 +1682,7 @@ loc_050290:
 loc_05029c:
 	tst.b ($125,a6)
 	bne.b loc_0502b8
-	move.w ($11a,a6),d1
+	move.w (PL_Buttons,a6),d1
 	andi.w #3,d1
 	beq.b loc_0502b8
 	btst #1,d1

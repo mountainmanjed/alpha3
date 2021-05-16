@@ -10,6 +10,7 @@ loc_0dc9d4:
 	even
 
 ;VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV
+;Player Table
 loc_0dc9ea:
 	dc.w loc_0dca2a-loc_0dc9ea
 	dc.w loc_0dca2a-loc_0dc9ea
@@ -65,6 +66,7 @@ loc_0dca5a:
 	dc.w $07ff,$0534,$0020,$07ff,$0124,$0000
 
 ;VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV
+;Player Table
 loc_0dca72:
 	dc.w loc_0dcab2-loc_0dca72
 	dc.w loc_0dcac6-loc_0dca72
@@ -131,10 +133,38 @@ loc_0dcace:
 
 ;VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV
 loc_0dcad2:
-	dc.w $0018,$0018,$0018,$0020,$0018,$0020,$0020,$0018
-	dc.w $0020,$0018,$0020,$0020,$0018,$0018,$0018,$0018
-	dc.w $0018,$0018,$0018,$0018,$0018,$0018,$0018,$0018
-	dc.w $0018,$0018,$0018,$0018,$0018,$0018,$0018,$0018
+	dc.w $0018
+	dc.w $0018
+	dc.w $0018
+	dc.w $0020
+	dc.w $0018
+	dc.w $0020
+	dc.w $0020
+	dc.w $0018
+	dc.w $0020
+	dc.w $0018
+	dc.w $0020
+	dc.w $0020
+	dc.w $0018
+	dc.w $0018
+	dc.w $0018
+	dc.w $0018
+	dc.w $0018
+	dc.w $0018
+	dc.w $0018
+	dc.w $0018
+	dc.w $0018
+	dc.w $0018
+	dc.w $0018
+	dc.w $0018
+	dc.w $0018
+	dc.w $0018
+	dc.w $0018
+	dc.w $0018
+	dc.w $0018
+	dc.w $0018
+	dc.w $0018
+	dc.w $0018
 
 ;VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV
 loc_0dcb12:
@@ -289,7 +319,7 @@ loc_0dd112:
 	dc.l loc_13dffa,loc_141904,loc_12ea16,loc_12ea16
 
 ;VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV
-;Intro?
+;Initialize character?
 loc_0dd192:
 	dc.l loc_03598c,loc_03750e,loc_037676,loc_03a36e
 	dc.l loc_03bdac,loc_03dad8,loc_03f2cc,loc_041270

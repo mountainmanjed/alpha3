@@ -2,10 +2,11 @@
 ;By Jed
 ;based off of a3 euro avalanche
 
-	include "memorydata.asm"
-	include "GameValues.asm"
-	include "cps2constants.asm"
-	include "chardata.asm"
+	include "memory/memorydata.asm"
+	include "memory/GameValues.asm"
+	include "memory/cps2constants.asm"
+	include "memory/chardata.asm"
+	include "memory/cameramemory.asm"
 	include "macros.asm"
 
 ;Vector Table
@@ -1374,7 +1375,7 @@ loc_001198:
 	jsr loc_00306a
 	bsr.w loc_00128c
 	jsr loc_00140c
-	jsr loc_0030c4
+	jsr Sound_Transfer
 	jsr loc_001662
 	jsr loc_0017f6
 	bsr.w loc_0015dc
@@ -3252,7 +3253,8 @@ loc_0030ae:
 	rts
 
 ;==============================================
-loc_0030c4:
+;Transfer to Z80 Ram
+Sound_Transfer:
 	moveq #0,d0
 	tst.b (Dip_Sound_Mode,a5)
 	beq.b loc_0030ce
@@ -3265,7 +3267,7 @@ loc_0030ce:
 	beq.w loc_003166
 	cmpi.b #$ff,$61801f
 	bne.b loc_003166
-	lea ($5e80,a5),a4
+	lea (Sound_Data_Start,a5),a4
 	move.w ($6e82,a5),d0
 	move.b (a4,d0.w),$618007
 	move.b (1,a4,d0.w),$618009
@@ -3295,7 +3297,7 @@ loc_003168:
 	bne.b loc_00319c
 
 loc_003174:
-	lea ($5e80,a5),a4
+	lea (Sound_Data_Start,a5),a4
 	move.w ($6e80,a5),d0
 	move.l d1,(a4,d0.w)
 	move.l d2,(4,a4,d0.w)
@@ -3311,7 +3313,7 @@ loc_00319c:
 ;==============================================
 loc_00319e:
 	move.w #$ff,d6
-	lea ($5e80,a5),a0
+	lea (Sound_Data_Start,a5),a0
 	moveq #0,d0
 
 loc_0031a8:
@@ -4105,40 +4107,79 @@ loc_003a5e:
 loc_003a6e:
 	tst.b ($15d,a5)
 	bne.b loc_003aac
-	cmpi.w #9,($114,a5)
+	cmpi.w #9,(Arcade_Match,a5)
 	bne.b loc_003a86
 	cmpi.b #0,d0
 	bne.b loc_003a86
-	moveq #$22,d0
+	moveq #$22,d0;Set Evil Ryu Song
 	bra.b loc_003aac
 
 loc_003a86:
-	cmpi.w #8,($114,a5)
+	cmpi.w #8,(Arcade_Match,a5)
 	bne.b loc_003a9a
-	cmpi.w #$14,(stageid,a5)
+	cmpi.w #Boss_Stage,(stageid,a5)
 	bne.b loc_003a9a
-	moveq #$23,d0
+	moveq #$23,d0;Set Final Round Song?
 	bra.b loc_003aac
 
 loc_003a9a:
-	cmpi.w #8,($114,a5)
+	cmpi.w #8,(Arcade_Match,a5)
 	bne.b loc_003aac
-	cmpi.w #4,(stageid,a5)
+	cmpi.w #Akm_Stage,(stageid,a5)
 	bne.b loc_003aac
-	moveq #$24,d0
+	moveq #$24,d0;Set Shin Akuma Song
 
 loc_003aac:
 	moveq #0,d1
-	move.b loc_003aba(pc,d0.w),d1
+	move.b Stage_Songids(pc,d0.w),d1
 	moveq #0,d2
 	moveq #0,d3
 	bra.w loc_0038d8
 
 ;VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV
-loc_003aba:
-	dc.b $09,$0a,$0b,$0c,$0d,$0e,$0f,$10,$11,$12,$13,$14,$15,$16,$17,$18
-	dc.b $19,$1a,$00,$00,$00,$1e,$1f,$00,$21,$22,$23,$24,$25,$26,$27,$27
-	dc.b $1d,$20,$28,$29,$1b,$00
+Stage_Songids:
+	dc.b $09;Ryu
+	dc.b $0a;Ken
+	dc.b $0b;Akuma
+	dc.b $0c;Nash
+	dc.b $0d;Chun
+	dc.b $0e;Adon
+	dc.b $0f;Sodom
+	dc.b $10;Guy
+
+	dc.b $11;Birdie
+	dc.b $12;Rose
+	dc.b $13;Dic
+	dc.b $14;Sagat
+	dc.b $15;Dan
+	dc.b $16;Sakura
+	dc.b $17;Rolento
+	dc.b $18;Dhalsim
+
+	dc.b $19;Zangief
+	dc.b $1a;Gen
+	dc.b $00;0x12
+	dc.b $00;GenC
+	dc.b $00;0x14
+	dc.b $1e;Boxer
+	dc.b $1f;Cammy
+	dc.b $00;0x17
+
+	dc.b $21;E.Honda
+	dc.b $22;Blanka
+	dc.b $23;R.Mika
+	dc.b $24;Cody
+	dc.b $25;Claw
+	dc.b $26;Karin
+	dc.b $27;Juli
+	dc.b $27;Juni
+
+	dc.b $1d;
+	dc.b $20;
+	dc.b $28;Evil Ryu
+	dc.b $29;Final Round
+	dc.b $1b;Shin Akuma
+	dc.b $00;
 
 ;==============================================
 loc_003ae0:
@@ -5454,7 +5495,7 @@ loc_004980:
 	jsr loc_01fc54
 	jsr loc_01fc70
 	move.b #1,($200,a5)
-	move.b #1,($280,a5)
+	move.b #1,(Camera_Data,a5)
 	move.b #1,($300,a5)
 	move.w #3,($102,a5)
 	move.b #$13,(clock_counter,a5)
@@ -6685,7 +6726,7 @@ loc_005a2c:
 	lea ($200,a5),a0
 	lea (-$7128,a5),a1
 	bsr.b loc_005a84
-	lea ($280,a5),a0
+	lea (Camera_Data,a5),a0
 	lea (-$70f8,a5),a1
 	bsr.b loc_005a84
 	lea ($300,a5),a0
@@ -6714,8 +6755,37 @@ loc_005aa0:
 
 ;VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV
 loc_005acc:
-	dc.w $0100,$0002,$1d0d,$013a,$1b07,$0136,$190c,$0132
-	dc.w $160a,$0014,$1806,$0030,$1c08,$0138,$1a10,$0034
+	dc.b Ken_id,Ryu_id
+	dc.b $00
+	dc.b Ken_Stage
+
+	dc.b Karin_id,Sakura_id
+	dc.b $01
+	dc.b Kar_Stage
+
+	dc.b Cody_id,Guy_id
+	dc.b $01
+	dc.b Cdy_Stage
+
+	dc.b Blanka_id,Dan_id
+	dc.b $01
+	dc.b Blk_Stage
+
+	dc.b Cammy_id,Dictator_id
+	dc.b $00
+	dc.b Boss_Stage
+
+	dc.b Ehonda_id,Sodom_id
+	dc.b $00
+	dc.b EHd_Stage
+
+	dc.b Claw_id,Birdie_id
+	dc.b $01
+	dc.b Claw_Stage
+
+	dc.w RMika_id,Zangief_id
+	dc.b $00
+	dc.b Rmka_Stage
 
 loc_005aec:
 	dc.w $fff8,$ffe0,$ffe8,$ffe0,$ffe0,$ffe0,$0000,$0008
@@ -9829,51 +9899,51 @@ loc_008018:
 	beq.w loc_0080c2
 	tst.b ($168,a5)
 	bne.w loc_0080c2
-	move.w ($11a,a6),d3
+	move.w (PL_Buttons,a6),d3
 	andi.w #$7700,d3
 	beq.w loc_0080c2
 	cmpi.w #$7700,d3
-	bne.b loc_008056
+	bne.b SurvivalModeCheck
 	cmpi.b #4,(game_unlock,a5)
 	bne.b loc_0080c2
 	st.b ($15f,a6)
 	bra.w loc_0080c2
 
-loc_008056
-	cmpi.w #$700,d3
-	bne.b loc_008072
+SurvivalModeCheck:
+	cmpi.w #$700,d3;all punches
+	bne.b SakiyoModeCheck
 	cmpi.b #4,(game_unlock,a5)
 	bne.b loc_0080c2
 	st.b ($14b,a6)
 	move.b #$ff,($149,a6)
 	bra.w loc_0080c2
 
-loc_008072
-	cmpi.w #$1100,d3
-	bne.b loc_00808a
+SakiyoModeCheck:
+	cmpi.w #$1100,d3;LP+LK
+	bne.b SeriousModeCheck
 	cmpi.b #3,(game_unlock,a5)
 	bcs.b loc_0080c2
-	move.b #1,($131,a6)
+	move.b #1,(Pl_Sakiyo_mode,a6)
 	bra.w loc_0080c2
 
-loc_00808a:
-	cmpi.w #$2200,d3
-	bne.b loc_0080ae
+SeriousModeCheck:
+	cmpi.w #$2200,d3;MP+MK
+	bne.b ClassicModeCheck
 	cmpi.b #3,(game_unlock,a5)
 	bcs.b loc_0080c2
 	tst.b (Dip_1PRounds,a5)
 	beq.b loc_0080c2
 	tst.b (Dip_2PRounds,a5)
 	beq.b loc_0080c2
-	move.b #1,($15a,a6)
+	move.b #1,(pl_serious_mode,a6)
 	bra.w loc_0080c2
 
-loc_0080ae
-	cmpi.w #$4400,d3
+ClassicModeCheck:
+	cmpi.w #$4400,d3;HP+HK
 	bne.b loc_0080c2
 	cmpi.b #2,(game_unlock,a5)
 	bcs.b loc_0080c2
-	move.b #1,($15e,a6)
+	move.b #1,(pl_classic_mode,a6)
 
 loc_0080c2
 	rts
@@ -10005,7 +10075,7 @@ loc_00823c:
 	bne.b loc_008282
 	move.w ($11c,a6),d0
 	not.w d0
-	and.w ($11a,a6),d0
+	and.w (PL_Buttons,a6),d0
 	andi.w #$7700,d0
 	beq.b loc_008282
 	tst.b ($10c,a6)
@@ -10168,7 +10238,7 @@ loc_0083d2:
 loc_0083e4:
 	move.w ($11c,a6),d0
 	not.w d0
-	and.w ($11a,a6),d0
+	and.w (PL_Buttons,a6),d0
 	andi.w #$7700,d0
 	bne.b loc_0083fa
 	subq.b #1,($10a,a6)
@@ -10559,7 +10629,7 @@ loc_00879e:
 
 ;==============================================
 loc_0087ce:
-	move.w ($11a,a6),d0
+	move.w (PL_Buttons,a6),d0
 	beq.w loc_00889e
 	move.w #$258,($10a,a6)
 	addi.b #$10,($10c,a6)
@@ -11019,7 +11089,7 @@ loc_008e9c:
 	move.l d1,($140,a6)
 	move.b d1,($15c,a6)
 	move.w #$90,($154,a6)
-	move.w d2,($11a,a6)
+	move.w d2,(PL_Buttons,a6)
 	tst.b ($83,a5)
 	bne.b loc_008e9a
 	btst d0,(Active_Player,a5)
@@ -11169,7 +11239,7 @@ loc_0090a0:
 	addq.b #1,d0
 	move.b d0,($108,a5)
 	move.b (Dip_Continue,a5),($11f,a5)
-	move.w ($174,a5),(stageid,a5)
+	move.w (StageID_Secondary,a5),(stageid,a5)
 	move.w #9,($14c,a5)
 	tst.b ($bf,a5)
 	beq.b loc_0090d0
@@ -11556,7 +11626,7 @@ loc_009530:
 loc_00953e:
 	jsr loc_02040a
 	jsr loc_033696
-	jsr loc_00b718
+	jsr GCrush_Flash_Function
 	jsr loc_0276e2
 	jsr loc_02f64a
 	jsr loc_00b220
@@ -12048,7 +12118,7 @@ loc_009af6:
 	move.b #1,($12d,a5)
 	move.w #$9280,($48,a5)
 	move.b #1,($200,a5)
-	move.b #1,($280,a5)
+	move.b #1,(Camera_Data,a5)
 	move.b #1,($300,a5)
 	move.b d0,($559,a5)
 	move.b d0,($959,a5)
@@ -12256,7 +12326,7 @@ loc_009d88:
 	move.l d2,($140,a0)
 	tst.b ($163,a5)
 	bne.b loc_009da4
-	move.w ($114,a5),d0
+	move.w (Arcade_Match,a5),d0
 	cmp.w ($14c,a5),d0
 	bne.b loc_009da4
 	st.b ($14a,a5)
@@ -12337,7 +12407,7 @@ loc_009e5e:
 	move.l d2,($940,a5)
 	tst.b ($163,a5)
 	bne.b loc_009e92
-	move.w ($114,a5),d0
+	move.w (Arcade_Match,a5),d0
 	cmp.w ($14c,a5),d0
 	bne.b loc_009e92
 	st.b ($14a,a5)
@@ -12515,7 +12585,7 @@ loc_009fdc:
 	tst.b ($141,a5)
 	bne.b loc_00a04c
 	move.w ($14c,a5),d0
-	cmp.w ($114,a5),d0
+	cmp.w (Arcade_Match,a5),d0
 	bne.b loc_00a04c
 	lea.l (p1memory,a5),a6
 	lea.l (p2memory,a5),a1
@@ -13476,7 +13546,7 @@ loc_00a9c2:
 	st.b ($130,a5)
 	move.b (Dip_Continue,a5),($11f,a5)
 	move.w #9,($14c,a5)
-	move.w #8,($114,a5)
+	move.w #8,(Arcade_Match,a5)
 	moveq #0,d1
 	moveq #0,d2
 	lea.l (p1memory,a5),a6
@@ -14222,7 +14292,7 @@ loc_00b16e:
 ;==============================================
 loc_00b180:
 	lea.l loc_00bf22(pc),a1
-	move.w ($114,a5),d0
+	move.w (Arcade_Match,a5),d0
 	move.b (a1,d0.w),d0
 	ext.w d0
 	lsl.w #5,d0
@@ -14232,7 +14302,7 @@ loc_00b180:
 	andi.w #$1f,d0
 	move.b (a1,d0.w),d1
 	lea.l loc_00bdc8(pc),a1
-	move.w ($114,a5),d0
+	move.w (Arcade_Match,a5),d0
 	add.w d0,d0
 	move.w (a1,d0.w),d0
 	lea.l (a1,d0.w),a1
@@ -14775,22 +14845,22 @@ loc_00b6dc:
 
 ;VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV
 loc_00b6ec:
-	dc.w loc_00b6f2-loc_00b6ec
-	dc.w loc_00b6fa-loc_00b6ec
-	dc.w loc_00b702-loc_00b6ec
+	dc.w Activate_Player1-loc_00b6ec
+	dc.w Activate_Player2-loc_00b6ec
+	dc.w Activate_Player3and4-loc_00b6ec
 
 ;==============================================
-loc_00b6f2:
+Activate_Player1:
 	move.b #1,($401,a5)
 	rts
 
 ;==============================================
-loc_00b6fa:
+Activate_Player2:
 	move.b #1,($801,a5)
 	rts
 
 ;==============================================
-loc_00b702:
+Activate_Player3and4:
 	move.b #1,($c01,a5)
 	move.b #1,($1001,a5)
 	rts
@@ -14801,37 +14871,41 @@ loc_00b710:
 	rts
 
 ;==============================================
-loc_00b718:
-	move.b ($66e,a5),d0
-	or.b ($a6e,a5),d0
-	or.b ($e6e,a5),d0
-	or.b ($126e,a5),d0
+GCrush_Flash_Function:
+	move.b (p1_crushed_gaurd,a5),d0
+	or.b (p2_crushed_gaurd,a5),d0
+	or.b (p3_crushed_gaurd,a5),d0
+	or.b (p4_crushed_gaurd,a5),d0
 	beq.w loc_00b776
 	tst.b ($170,a5)
 	bne.b loc_00b756
 	tst.b ($124,a5)
 	bne.w loc_00b776
 	st.b ($124,a5)
+
+;Gaurd Crush Flash
 	move.b #$b,($12b,a5)
 	move.b d0,($170,a5)
-	move.b #$f,($171,a5)
-	move.w #$f00f,$90cfe0
+	move.b #$f,(GCrush_Timer,a5)
+	move.w #$f00f,$90cfe0;Palette write
 
 loc_00b756:
-	subq.b #1,($171,a5)
+	subq.b #1,(GCrush_Timer,a5)
 	bpl.b loc_00b776
+
+;If GCrush_timer > 0 then
+;Reset crush flags
 	moveq #0,d0
 	move.b d0,($124,a5)
 	move.b d0,($170,a5)
-	move.b d0,($66e,a5)
-	move.b d0,($a6e,a5)
-	move.b d0,($e6e,a5)
-	move.b d0,($126e,a5)
+	move.b d0,(p1_crushed_gaurd,a5)
+	move.b d0,(p2_crushed_gaurd,a5)
+	move.b d0,(p3_crushed_gaurd,a5)
+	move.b d0,(p4_crushed_gaurd,a5)
 
+;else end
 loc_00b776:
 	rts
-
-loc_00b
 
 ;===============================================
 loc_00b778:
@@ -14877,7 +14951,7 @@ loc_00b7cc:
 	bne.b loc_00b7cc
 
 loc_00b7dc:
-	move.w d0,($114,a5)
+	move.w d0,(Arcade_Match,a5)
 	move.b d1,($102,a1)
 	lea.l (-$705e,a5),a2
 	move.b (a2,d0.w),($132,a1)
@@ -14886,19 +14960,19 @@ loc_00b7ee:
 	move.b ($102,a1),d0
 
 loc_00b7f2:
-	move.w (stageid,a5),($172,a5)
+	move.w (stageid,a5),(StageID_Secondary,a5)
 	move.b d0,d1
 	bsr.w loc_00bb90
 	add.w d0,d0
-	move.w d0,($174,a5)
+	move.w d0,(StageID_Secondary,a5)
 	clr.b ($111,a5)
 	tst.b ($bf,a5)
 	bne.b loc_00b86c
 	tst.b ($168,a5)
 	beq.b loc_00b824
-	cmpi.w #5,($114,a5)
+	cmpi.w #5,(Arcade_Match,a5)
 	bne.b loc_00b86c
-	move.w #$14,($174,a5)
+	move.w #Boss_Stage,(StageID_Secondary,a5)
 	rts
 
 loc_00b824:
@@ -14906,25 +14980,25 @@ loc_00b824:
 	beq.b loc_00b86c
 	tst.b ($14b,a0)
 	beq.b loc_00b842
-	cmpi.w #$1a,($114,a5)
+	cmpi.w #$1a,(Arcade_Match,a5)
 	bne.b loc_00b86c
-	move.w #$14,($174,a5)
+	move.w #Boss_Stage,(StageID_Secondary,a5)
 	rts
 
 loc_00b842:
 	moveq #0,d0
 	move.b ($102,a0),d0
-	cmpi.w #8,($114,a5)
+	cmpi.w #8,(Arcade_Match,a5)
 	beq.b loc_00b85c
 	addi.w #$20,d0
-	cmpi.w #9,($114,a5)
+	cmpi.w #9,(Arcade_Match,a5)
 	bne.b loc_00b86c
 
 loc_00b85c:
 	move.b loc_00b86e(pc,d0.w),d0
 	bmi.b loc_00b86c
 	add.w d0,d0
-	move.w d0,($174,a5)
+	move.w d0,(StageID_Secondary,a5)
 	st.b ($111,a5)
 
 loc_00b86c:
@@ -14932,14 +15006,29 @@ loc_00b86c:
 
 ;VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV
 loc_00b86e:
-	dc.b $0a,$ff,$ff,$0a,$0a,$ff,$ff,$ff,$0a,$ff,$ff,$0a,$0a,$0a,$ff,$ff
-	dc.b $ff,$ff,$ff,$ff,$ff,$ff,$ff,$ff,$ff,$0a,$0a,$ff,$ff,$0a,$ff,$ff
-	dc.b $0a,$0a,$0a,$0a,$0a,$0a,$0a,$0a,$0a,$0a,$0a,$0a,$0a,$0a,$0a,$0a
-	dc.b $0a,$0a,$ff,$0a,$ff,$0a,$0a,$ff,$0a,$0a,$0a,$0a,$0a,$0a,$0a,$0a
+	dc.b $0a,$ff,$ff,$0a
+	dc.b $0a,$ff,$ff,$ff
+	dc.b $0a,$ff,$ff,$0a
+	dc.b $0a,$0a,$ff,$ff
+	dc.b $ff,$ff,$ff,$ff
+	dc.b $ff,$ff,$ff,$ff
+	dc.b $ff,$0a,$0a,$ff
+	dc.b $ff,$0a,$ff,$ff
+
+	dc.b $0a,$0a,$0a,$0a
+	dc.b $0a,$0a,$0a,$0a
+	dc.b $0a,$0a,$0a,$0a
+	dc.b $0a,$0a,$0a,$0a
+	dc.b $0a,$0a,$ff,$0a
+	dc.b $ff,$0a,$0a,$ff
+	dc.b $0a,$0a,$0a,$0a
+	dc.b $0a,$0a,$0a,$0a
 
 ;==============================================
+;unused
+;Maybe set SF2_Chun stage
 loc_00b8ae:
-	move.w #$24,($174,a5)
+	move.w #$24,(StageID_Secondary,a5)
 	rts
 
 ;==============================================
@@ -15019,15 +15108,15 @@ loc_00b980
 	exg.l a0,a1
 
 loc_00b98a:
-	bsr.w loc_00ba10
+	bsr.w Dramatic_Set_Partner
 
 loc_00b98e:
-	move.b ($132,a0),($132,a1)
+	move.b (PL_ism_choice,a0),(PL_ism_choice,a1)
 	move.b ($162,a0),($162,a1)
-	move.l ($540,a5),d2
-	or.l ($940,a5),d2
-	move.l d2,($540,a5)
-	move.l d2,($940,a5)
+	move.l (p1_arcade_progress,a5),d2
+	or.l (p2_arcade_progress,a5),d2
+	move.l d2,(p1_arcade_progress,a5)
+	move.l d2,(p2_arcade_progress,a5)
 	bsr.w loc_00b9de
 	moveq #-1,d0
 	lea.l (-$707e,a5),a2
@@ -15041,11 +15130,11 @@ loc_00b9b4:
 	bne.b loc_00b9b4
 
 loc_00b9c4:
-	move.w d0,($114,a5)
-	move.b d1,($d02,a5)
+	move.w d0,(Arcade_Match,a5)
+	move.b d1,(p3_charid,a5)
 	lea.l (-$705e,a5),a2
-	move.b (a2,d0.w),($d32,a5)
-	move.b ($d02,a5),d0
+	move.b (a2,d0.w),(p3_ism_choice,a5)
+	move.b (p3_charid,a5),d0
 	bra.w loc_00b7f2
 
 loc_00b9de:
@@ -15060,83 +15149,82 @@ loc_00ba00:
 	dc.w $0000,$0000,$00ff,$ffff,$0101,$0101,$01ff,$ffff
 
 ;==============================================
-loc_00ba10:
+Dramatic_Set_Partner:
 	jsr RNGFunction
 	andi.w #$20,d0
-	add.b ($102,a0),d0
-	move.b Dramatic_Partners(pc,d0.w),(PL_charid,a1)
+	add.b (PL_Charid,a0),d0
+	move.b Dramatic_Mode_Partners(pc,d0.w),(PL_charid,a1)
 	rts
 
 ;VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV
-;Dramatic Mode Partners
-Dramatic_Partners:
-;Player2 List
-	dc.b Ken_id;		Ryu
-	dc.b Ryu_id;		Ken
-	dc.b Gen_id;		Akm
-	dc.b Chun_id;		Nsh
-	dc.b Nash_id;		Chn
-	dc.b Sagat_id;		Adn
-	dc.b Ehonda_id;		Sdm
-	dc.b Cody_id;		Guy
-	dc.b Boxer_id;		Brd
-	dc.b Dhalsim_id;	Rse
-	dc.b Cammy_id;		Dic
-	dc.b Adon_id;		Sag
-	dc.b Blanka_id;		Dan
-	dc.b Karin_id;		Sak
-	dc.b Claw_id;		Rol
-	dc.b Rose_id;		Sim
-	dc.b RMika_id;		Zan
-	dc.b Akuma_id;		Gen
-	dc.b Ryu_id;		0x12
-	dc.b Akuma_id;		GenC
-	dc.b Ryu_id;		0x14
-	dc.b Birdie_id;		Box
-	dc.b Dictator_id;	Cam
-	dc.b Ryu_id;		0x17
-	dc.b Sodom_id;		Ehd
-	dc.b Dan_id;		Blk
-	dc.b Zangief_id;	Rmk
-	dc.b Guy_id;		Cdy
-	dc.b Rolento_id;	Clw
-	dc.b Sakura_id;		Kar
-	dc.b Juni_id;		Jul
-	dc.b Juli_id;		Jun
+Dramatic_Mode_Partners:
+;List 1
+	dc.b Ken_id			;Ryu
+	dc.b Ryu_id			;Ken
+	dc.b Gen_id			;Akm
+	dc.b Chun_id		;Nsh
+	dc.b Nash_id		;Chn
+	dc.b Sagat_id		;Adn
+	dc.b Ehonda_id		;Sdm
+	dc.b Cody_id		;Guy
+	dc.b Boxer_id		;Brd
+	dc.b Dhalsim_id		;Rse
+	dc.b Cammy_id		;Dic
+	dc.b Adon_id		;Sag
+	dc.b Blanka_id		;Dan
+	dc.b Karin_id		;Sak
+	dc.b Claw_id		;Rol
+	dc.b Rose_id		;Sim
+	dc.b RMika_id		;Zan
+	dc.b Akuma_id		;Gen
+	dc.b Ryu_id			;0x12
+	dc.b Akuma_id		;GenC
+	dc.b Ryu_id			;0x14
+	dc.b Birdie_id		;Box
+	dc.b Dictator_id	;Cam
+	dc.b Ryu_id			;0x17
+	dc.b Sodom_id		;Ehd
+	dc.b Dan_id			;Blk
+	dc.b Zangief_id		;Rmk
+	dc.b Guy_id			;Cdy
+	dc.b Rolento_id		;Clw
+	dc.b Sakura_id		;Kar
+	dc.b Juni_id		;Jul
+	dc.b Juli_id		;Jun
 
-;Player1 List
-	dc.b Ken_id;		Ryu
-	dc.b Ryu_id;		Ken
-	dc.b Gen_id;		Akm
-	dc.b Chun_id;		Nsh
-	dc.b Nash_id;		Chn
-	dc.b Sagat_id;		Adn
-	dc.b Ehonda_id;		Sdm
-	dc.b Cody_id;		Guy
-	dc.b Boxer_id;		Brd
-	dc.b Dhalsim_id;	Rse
-	dc.b Cammy_id;		Dic
-	dc.b Adon_id;		Sag
-	dc.b Blanka_id;		Dan
-	dc.b Karin_id;		Sak
-	dc.b Claw_id;		Rol
-	dc.b Rose_id;		Sim
-	dc.b RMika_id;		Zan
-	dc.b Akuma_id;		Gen
-	dc.b Ryu_id;		0x12
-	dc.b Akuma_id;		GenC
-	dc.b Ryu_id;		0x14
-	dc.b Birdie_id;		Box
-	dc.b Dictator_id;	Cam
-	dc.b Ryu_id;		0x17
-	dc.b Sodom_id;		Ehd
-	dc.b Dan_id;		Blk
-	dc.b Zangief_id;	Rmk
-	dc.b Guy_id;		Cdy
-	dc.b Rolento_id;	Clw
-	dc.b Sakura_id;		Kar
-	dc.b Juni_id;		Jul
-	dc.b Juli_id;		Jun
+;List 2
+	dc.b Ken_id			;Ryu
+	dc.b Ryu_id			;Ken
+	dc.b Gen_id			;Akm
+	dc.b Chun_id		;Nsh
+	dc.b Nash_id		;Chn
+	dc.b Sagat_id		;Adn
+	dc.b Ehonda_id		;Sdm
+	dc.b Cody_id		;Guy
+	dc.b Boxer_id		;Brd
+	dc.b Dhalsim_id		;Rse
+	dc.b Cammy_id		;Dic
+	dc.b Adon_id		;Sag
+	dc.b Blanka_id		;Dan
+	dc.b Karin_id		;Sak
+	dc.b Claw_id		;Rol
+	dc.b Rose_id		;Sim
+	dc.b RMika_id		;Zan
+	dc.b Akuma_id		;Gen
+	dc.b Ryu_id			;0x12
+	dc.b Akuma_id		;GenC
+	dc.b Ryu_id			;0x14
+	dc.b Birdie_id		;Box
+	dc.b Dictator_id	;Cam
+	dc.b Ryu_id			;0x17
+	dc.b Sodom_id		;Ehd
+	dc.b Dan_id			;Blk
+	dc.b Zangief_id		;Rmk
+	dc.b Guy_id			;Cdy
+	dc.b Rolento_id		;Clw
+	dc.b Sakura_id		;Kar
+	dc.b Juni_id		;Jul
+	dc.b Juli_id		;Jun
 
 
 ;==============================================
@@ -15146,9 +15234,9 @@ loc_00ba66:
 	tst.b (PL_cpucontrol,a0)
 	bne.w loc_00baca
 	move.l (pl_arcade_progress,a0),d2
-	move.w #$ffff,($114,a5)
+	move.w #$ffff,(Arcade_Match,a5)
 	bsr.w loc_00b8b6
-	move.w ($114,a5),d0
+	move.w (Arcade_Match,a5),d0
 	lea.l (-$707e,a5),a2
 
 loc_00ba84:
@@ -15160,7 +15248,7 @@ loc_00ba84:
 	bne.b loc_00ba84
 
 loc_00ba94:
-	move.w d0,($114,a5)
+	move.w d0,(Arcade_Match,a5)
 	cmp.w ($14c,a5),d0
 	bhi.b loc_00baca
 	tst.w ($138,a5)
@@ -15188,9 +15276,9 @@ loc_00bacc:
 	or.l ($940,a5),d2
 	move.l d2,($540,a5)
 	move.l d2,($940,a5)
-	move.w #$ffff,($114,a5)
+	move.w #$ffff,(Arcade_Match,a5)
 	bsr.w loc_00b9de
-	move.w ($114,a5),d0
+	move.w (Arcade_Match,a5),d0
 	lea.l (-$707e,a5),a2
 
 loc_00baf8
@@ -15202,7 +15290,7 @@ loc_00baf8
 	bne.b loc_00baf8
 
 loc_00bb08:
-	move.w d0,($114,a5)
+	move.w d0,(Arcade_Match,a5)
 	cmp.w ($14c,a5),d0
 	bhi.b loc_00bb28
 	move.b d1,($102,a1)
@@ -15230,8 +15318,14 @@ loc_00bb38:
 
 ;VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV
 loc_00bb44:
-	dc.w $012c,$0300,$012c,$0300,$0190,$0400,$01f4,$0500
-	dc.w $0258,$0600,$02bc,$0700,$0320,$0800,$0384,$0900
+	dc.w $012c,$0300
+	dc.w $012c,$0300
+	dc.w $0190,$0400
+	dc.w $01f4,$0500
+	dc.w $0258,$0600
+	dc.w $02bc,$0700
+	dc.w $0320,$0800
+	dc.w $0384,$0900
 	dc.w $03e8,$1000
 
 ;==============================================
@@ -15242,26 +15336,38 @@ loc_00bb68:
 
 ;VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV
 loc_00bb70:
-	dc.b $00,$01,$02,$03,$04,$05,$06,$07,$08,$09,$0a,$0b,$0c,$0d,$0e,$0f
-	dc.b $10,$11,$00,$11,$00,$15,$16,$00,$18,$19,$1a,$1b,$1c,$1d,$1e,$1f
+	dc.b $00,$01,$02,$03
+	dc.b $04,$05,$06,$07
+	dc.b $08,$09,$0a,$0b
+	dc.b $0c,$0d,$0e,$0f
+	dc.b $10,$11,$00,$11
+	dc.b $00,$15,$16,$00
+	dc.b $18,$19,$1a,$1b
+	dc.b $1c,$1d,$1e,$1f
 
 ;==============================================
 loc_00bb90:
 	ext.w d0
 	move.b loc_00bba8(pc,d0.w),d0
-	cmpi.w #8,(Region,a5)
+	cmpi.w #Asia_Region,(Region,a5)
 	bne.b loc_00bba6
-	cmpi.b #$18,d0
+	cmpi.b #Ehonda_id,d0
 	bne.b loc_00bba6
-	moveq #$c,d0
+	moveq #Dan_id,d0
 
 loc_00bba6:
 	rts
 
 ;VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV
 loc_00bba8:
-	dc.b $00,$01,$02,$03,$04,$05,$06,$07,$08,$09,$15,$0b,$0c,$0d,$0e,$0f
-	dc.b $10,$11,$00,$11,$00,$15,$16,$00,$18,$19,$1a,$1b,$1c,$1d,$15,$15
+	dc.b $00,$01,$02,$03
+	dc.b $04,$05,$06,$07
+	dc.b $08,$09,$15,$0b
+	dc.b $0c,$0d,$0e,$0f
+	dc.b $10,$11,$00,$11
+	dc.b $00,$15,$16,$00
+	dc.b $18,$19,$1a,$1b
+	dc.b $1c,$1d,$15,$15
 
 ;==============================================
 loc_00bbc8:
@@ -15271,8 +15377,14 @@ loc_00bbc8:
 
 ;VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV
 loc_00bbd0:
-	dc.b $00,$01,$02,$03,$04,$05,$06,$07,$08,$09,$0a,$0b,$0c,$0d,$0e,$0f
-	dc.b $10,$11,$00,$11,$00,$15,$16,$00,$18,$19,$1a,$1b,$1c,$1d,$1e,$1f
+	dc.b $00,$01,$02,$03
+	dc.b $04,$05,$06,$07
+	dc.b $08,$09,$0a,$0b
+	dc.b $0c,$0d,$0e,$0f
+	dc.b $10,$11,$00,$11
+	dc.b $00,$15,$16,$00
+	dc.b $18,$19,$1a,$1b
+	dc.b $1c,$1d,$1e,$1f
 
 ;==============================================
 loc_00bbf0:
@@ -15815,16 +15927,16 @@ loc_00d1d8:
 	beq.b loc_00d1ec
 	cmpi.b #$1e,($102,a1)
 	bne.w loc_00d212
-	bra.w loc_00d220
+	bra.w Set_Doll_IDs
 
 loc_00d1ec:
 	tst.b ($168,a5)
 	bne.w loc_00d336
-	cmpi.w #4,($114,a5)
+	cmpi.w #4,(Arcade_Match,a5)
 	beq.w loc_00d342
-	cmpi.w #8,($114,a5)
+	cmpi.w #8,(Arcade_Match,a5)
 	beq.w loc_00d370
-	cmpi.w #9,($114,a5)
+	cmpi.w #9,(Arcade_Match,a5)
 	beq.w loc_00d274
 
 loc_00d212:
@@ -15834,16 +15946,16 @@ loc_00d212:
 	rts
 
 ;==============================================
-loc_00d220:
+Set_Doll_IDs:
 	move.b #$e,($13f,a5)
 	clr.b ($163,a5)
 	clr.b ($178,a5)
-	move.b #$1e,($d02,a5)
-	move.b #$1f,($1102,a5)
-	move.b #0,($d32,a5)
-	move.b #0,($1132,a5)
-	move.w #$2a,(stageid,a5)
-	move.w #$2a,($174,a5)
+	move.b #Juli_id,(p3_charid,a5)
+	move.b #Juni_id,(p4_charid,a5)
+	move.b #Aism_ID,(p3_ism_choice,a5)
+	move.b #Aism_ID,(p4_ism_choice,a5)
+	move.w #Hid_Stage,(stageid,a5)
+	move.w #$2a,(StageID_Secondary,a5)
 	rts
 
 ;VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV
@@ -15875,8 +15987,8 @@ loc_00d29c:
 	cmpi.b #$15,d1
 	bne.b loc_00d2de
 	st.b ($178,a5)
-	move.w #$14,(stageid,a5)
-	move.w #$14,($174,a5)
+	move.w #Boss_Stage,(stageid,a5)
+	move.w #$14,(StageID_Secondary,a5)
 	btst.b #5,($149,a6)
 	beq.b loc_00d320
 	move.b d1,($102,a1)
@@ -15893,8 +16005,8 @@ loc_00d2de:
 	move.b #$1f,($1102,a5)
 	move.b #0,($d32,a5)
 	move.b #0,($1132,a5)
-	move.w #$2a,(stageid,a5)
-	move.w #$2a,($174,a5)
+	move.w #Hid_Stage,(stageid,a5)
+	move.w #$2a,(StageID_Secondary,a5)
 	btst.b #5,($149,a6)
 	beq.b loc_00d320
 	clr.b ($178,a5)
@@ -16586,7 +16698,7 @@ loc_0204b0:
 	lsl.w #5,d0
 	lea.l loc_020876(pc),a0
 	lea.l (a0,d0.w),a0
-	move.w ($114,a5),d0
+	move.w (Arcade_Match,a5),d0
 	tst.b ($15d,a5)
 	beq.b loc_0204d2
 	lea.l loc_020976(pc),a1
@@ -16892,7 +17004,7 @@ loc_02077a:
 loc_0207d8:
 	lsl.w #4,d1
 	lea.l (a0,d1.w),a0
-	move.w ($114,a5),d0
+	move.w (Arcade_Match,a5),d0
 	tst.b ($15d,a5)
 	beq.b loc_0207f2
 	lea.l loc_020976(pc),a1
@@ -24685,14 +24797,14 @@ loc_0263be:
 	lea.l ($20,a4),a4
 	tst.b (a4)
 	beq.w loc_0263d0
-	lea.l ($280,a5),a6
+	lea.l (Camera_Data,a5),a6
 	bsr.w loc_0263e4
 
 loc_0263d0:
 	lea.l ($20,a4),a4
 	tst.b (a4)
 	beq.w loc_0263e2
-	lea.l ($280,a5),a6
+	lea.l (Camera_Data,a5),a6
 	bra.w loc_0263e4
 
 loc_0263e2:
@@ -25298,16 +25410,16 @@ loc_02694c:
 	move.w (-$50e8,a5),(stageid,a5)
 	cmpi.w #0,(Region,a5)
 	beq.w loc_026972
-	cmpi.w #$30,(stageid,a5)
+	cmpi.w #EHd_Stage,(stageid,a5)
 	bne.w loc_026972
-	move.w #$18,(stageid,a5)
+	move.w #Dan_Stage,(stageid,a5)
 
 loc_026972:
 	jsr loc_01a5e8
 	lea.l ($200,a5),a6
 	clr.l (4,a6)
 	jsr loc_017514
-	lea.l ($280,a5),a6
+	lea.l (Camera_Data,a5),a6
 	clr.l (4,a6)
 	jsr loc_017c4e
 	lea.l ($300,a5),a6
@@ -26718,15 +26830,15 @@ loc_027bf6:
 loc_027c3c:
 	bsr.w loc_02baf2
 
-loc_027c40:
-	tst.b ($ec,a6)
+Set_Taunts:
+	tst.b (pl_serious_game,a6)
 	bne.b loc_027c54
-	cmpi.b #-1,(PL_ism_choice,a6)
+	cmpi.b #Xism_ID,(PL_ism_choice,a6)
 	beq.b loc_027c54
 	move.b #1,(pl_taunt_count,a6)
 
 loc_027c54:
-	move.b ($102,a6),d0
+	move.b (PL_charid,a6),d0
 	ext.w d0
 	lsl.w #2,d0
 	movea.l #loc_0dd192,a0
@@ -26745,7 +26857,7 @@ loc_027c6e:
 	bsr.w loc_02a708
 
 loc_027c8c:
-	bsr.b loc_027c40
+	bsr.b Set_Taunts
 	bra.w loc_02a070
 	rts
 
@@ -33122,7 +33234,7 @@ loc_02be14:
 	movea.l #loc_0df932,a0
 	move.b (a0,d0.w),($24c,a6)
 	moveq #8,d1
-	cmpi.b #$ff,(PL_ism_choice,a6)
+	cmpi.b #Xism_ID,(PL_ism_choice,a6)
 	beq.b loc_02be3c
 	moveq #-8,d1
 	tst.b (PL_ism_choice,a6)
@@ -33142,16 +33254,18 @@ loc_02be3c:
 loc_02be50:
 	movea.l #loc_0df992,a0
 	move.b (a0,d0.w),($158,a6)
+
 	movea.l #loc_0dcad2,a0
 	add.w d0,d0
 	move.w (a0,d0.w),($a6,a6)
+
 	movea.l #AismWalkSpeed,a0
 	movea.l #loc_0dd792,a1
 	tst.b (PL_ism_choice,a6)
 	beq.w loc_02be9e
 	movea.l #XismWalkSpeed,a0
 	movea.l #loc_0de792,a1
-	cmpi.b #$ff,(PL_ism_choice,a6)
+	cmpi.b #Xism_ID,(PL_ism_choice,a6)
 	beq.b loc_02be9e
 	movea.l #VismWalkSpeed,a0
 	movea.l #loc_0ddf92,a1
@@ -34664,7 +34778,7 @@ loc_02eb06:
 	bne.b loc_02eb88
 	jsr loc_02af7a
 	bne.b loc_02eb88
-	cmpi.b #$ff,($132,a6)
+	cmpi.b #Xism_ID,(PL_ism_choice,a6)
 	bne.b loc_02eb30
 	cmpi.b #Gen_id,(PL_charid,a6)
 	beq.b loc_02eb88

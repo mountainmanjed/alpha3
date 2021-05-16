@@ -65,9 +65,20 @@ pl_move_id = 0xaa ; byte
 ;= 0xba ;word
 pl_taunt_count = 0xbc
 
-PL_charid = 0x102
+pl_sakiyo_game = 0xeb
+pl_serious_game = 0xec
+pl_classic_game = 0xf0
+;= = 0xf1
 
-; = 0x11a
+
+; = 0x100
+; = 0x101
+PL_charid = 0x102
+; = 0x103
+; = 0x104
+; = 0x105
+
+PL_Buttons = 0x11a
 PL_meter = 0x11e
 
 ;0x123 ;byte
@@ -76,14 +87,29 @@ PL_cpucontrol = 0x125
 
 PL_Palnum = 0x128
 
+; = 0x12e
+; = 0x130
+Pl_Sakiyo_mode = 0x131
 PL_ism_choice = 0x132
 pl_arcade_progress = 0x140
 
 PL_PalRam_pnt = 0x150
+
+; = 0x158
+; = 0x159
+pl_serious_mode = 0x15a
+; = 0x15b
 ; = 0x15c
+pl_classic_mode = 0x15e
+; = 0x15f
 
 ; = 0x160
 ; = 0x161
+; = 0x162
+
+; = 0x167
+; = 0x168
+; = 0x169
 
 pl_inp_slot_0 = 0x180
 pl_inp_slot_1 = 0x188
@@ -103,12 +129,14 @@ pl_inp_slot_9 = 0x1c8
 rolentowire = 0x1e4 ;word
 codyknife = 0x1e4 ;byte needs to be negative
 rosegthrow = 0x1e4 ; addr.w
-
+;>> 0x1fd
 ;??= 0x214
 
 pl_dist_away = 0x21c
 
 PL_Reversal_Window = 0x256
+
+pl_crushed_gaurd = 0x26e
 
 pl_collsion_counter = 0x280
 pl_blockstring_counter = 0x297
@@ -137,23 +165,22 @@ Chun_id = 0x04
 Adon_id = 0x05
 Sodom_id = 0x06
 Guy_id = 0x07
+
 Birdie_id = 0x08
 Rose_id = 0x09
 Dictator_id = 0x0a
 Sagat_id = 0x0b
 Dan_id = 0x0c
-
-;Alpha 2
 Sakura_id = 0x0d
 Rolento_id = 0x0e
 Dhalsim_id = 0x0f
+
 Zangief_id = 0x10
 Gen_id = 0x11
 GenStance_id = 0x13
-
-;Alpha 3
 Boxer_id = 0x15
 Cammy_id = 0x16
+
 Ehonda_id = 0x18
 Blanka_id = 0x19
 RMika_id = 0x1a
@@ -168,8 +195,40 @@ Juni_id = 0x1f
 ;sword_sodom_id = 0x14 ;from sample rom
 ;evilryu_id = 0x17 ;from later ports
 
+;==============================================
 ;Ism Ids
+;==============================================
 Xism_ID = -1
 Aism_ID = 0
 Vism_ID = 1
 Sism_ID = 2
+
+;==============================================
+;Stage IDs
+;==============================================
+Ryu_Stage  = 0x00; Japan (Sunset)
+Ken_Stage  = 0x02; USA (Hotel)
+Akm_Stage  = 0x04; Japan (Cave)
+Nsh_Stage  = 0x06; USA (Hangar)
+Chn_Stage  = 0x08; China
+Adn_Stage  = 0x0A; Thailand (Temple)
+Sdm_Stage  = 0x0C; USA (Japanese)
+Guy_Stage  = 0x0E; USA (Metro City)
+Brd_Stage  = 0x10; England
+Rse_Stage  = 0x12; Italy
+Boss_Stage = 0x14; Point 48106 (Night)
+Sgt_Stage  = 0x16; Thailand (Statue)
+Dan_Stage  = 0x18; Japan (Swings)
+Sakr_Stage = 0x1A; Japan (Market at Day)
+Rol_Stage  = 0x1C; USA (Military)
+Sim_Stage  = 0x1E; India
+Zan_Stage  = 0x20; Russia
+Gen_Stage  = 0x22; Hong Kong
+Hid_Stage  = 0x2A; Point 48106 (Day)
+Cmy_Stage  = 0x2C; Greece
+EHd_Stage  = 0x30; Japan (Sumo Ring)
+Blk_Stage  = 0x32; Brazil
+Rmka_Stage = 0x34; Japan (Seaside)
+Cdy_Stage  = 0x36; USA (Prison)
+Claw_Stage = 0x38; Spain
+Kar_Stage  = 0x3A; Japan (Market at Night)

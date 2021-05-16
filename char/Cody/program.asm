@@ -1754,7 +1754,7 @@ loc_06611e:
 	beq.w loc_067488
 	clr.b ($35,a6)
 	move.b ($3b,a6),d0
-	btst d0,($11a,a6)
+	btst d0,(PL_Buttons,a6)
 	beq.b loc_066142
 	subq.b #1,($3a,a6)
 	bne.w loc_067488
@@ -2582,7 +2582,7 @@ loc_066988:
 	clr.b ($35,a6)
 	tst.b ($125,a6)
 	bne.b loc_0669b0
-	btst #7,($11a,a6)
+	btst #7,(PL_Buttons,a6)
 	beq.b loc_0669b0
 	subq.b #1,($3a,a6)
 	bne.w loc_067488

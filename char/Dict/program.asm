@@ -1292,7 +1292,7 @@ loc_047c60:
 	bcs.w loc_047dc8
 	tst.w ($44,a6)
 	bpl.w loc_048d36
-	move.w ($11a,a6),d1
+	move.w (PL_Buttons,a6),d1
 	moveq #0,d0
 	btst #8,d1
 	bne.b loc_047c92

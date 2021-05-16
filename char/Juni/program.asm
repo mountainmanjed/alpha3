@@ -3695,7 +3695,7 @@ loc_071bfa:
 	bne.b loc_071c32
 	btst #3,($11b,a6)
 	beq.b loc_071c3e
-	btst #6,($11a,a6)
+	btst #6,(PL_Buttons,a6)
 	beq.b loc_071c3e
 
 loc_071c32:
