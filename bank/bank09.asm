@@ -5638,7 +5638,7 @@ loc_09420e:
 	move.b ($f,a0),d0
 	move.b loc_094280(pc,d0.w),d0
 	addi.w #$c,d0
-	cmpi.w #8,(Region,a5)
+	cmpi.w #Asia_Region,(Region,a5)
 	bne.b loc_094262
 	addq.w #1,d0
 

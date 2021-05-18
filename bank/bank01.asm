@@ -1663,7 +1663,7 @@ loc_0179b6:
 ;Global 8x8 Functions
 ;==============================================
 loc_0179be:
-	cmpi.w #8,(Region,a5)
+	cmpi.w #Asia_Region,(Region,a5)
 	bne.b loc_0179d0
 	move.w #$1c0,d0
 	move.w #$100,d1
@@ -2511,7 +2511,7 @@ loc_018458:
 
 ;==============================================
 loc_018460:
-	cmpi.w #8,(Region,a5)
+	cmpi.w #Asia_Region,(Region,a5)
 	bne.b loc_018472
 	move.w #$1c0,d0
 	move.w #$100,d1
@@ -7529,7 +7529,7 @@ loc_01c7ae:
 loc_01c7b0:
 	btst.b #3,($1c2,a5)
 	beq.b loc_01c7e2
-	lea.l (Sound_Data_Start,a5),a4
+	lea.l (Sound_Buffer_Start,a5),a4
 	move.w ($6e82,a5),d5
 	moveq #$38,d3
 	moveq #9,d6
@@ -8606,7 +8606,7 @@ loc_01e4d4:
 	bne.b loc_01e50e
 	cmpi.b #4,(game_unlock,a5)
 	bcs.b loc_01e50e
-	tst.b ($168,a5)
+	tst.b (Dramatic_Mode_flag,a5)
 	bne.b loc_01e50e
 	btst.b #0,($8d,a5)
 	beq.b loc_01e500
@@ -8889,7 +8889,7 @@ loc_01e784:
 	bne.b loc_01e7c4
 	cmpi.b #4,(game_unlock,a5)
 	bcs.b loc_01e7b0
-	tst.b ($168,a5)
+	tst.b (Dramatic_Mode_flag,a5)
 	beq.b loc_01e7b0
 	move.w d1,($378,a6)
 	btst.b #1,($3c,a4)
@@ -9179,7 +9179,7 @@ loc_01ea44:
 	bne.b loc_01ea7a
 	cmpi.b #4,(game_unlock,a5)
 	bcs.b loc_01ea7a
-	tst.b ($168,a5)
+	tst.b (Dramatic_Mode_flag,a5)
 	beq.b loc_01ea7a
 	btst.b #1,($3c,a4)
 	beq.b loc_01ea7a
@@ -9818,8 +9818,8 @@ loc_01f1d0:
 	addq.w #2,($14,a5)
 	move.b ($81,a5),d6
 	andi.w #3,d6
-	movea.w ($156,a5),a1
-	movea.w ($158,a5),a2
+	movea.w (left_hud_pointer,a5),a1
+	movea.w (right_hud_pointer,a5),a2
 	cmpi.w #2,($138,a5)
 	bne.b loc_01f214
 	lea.l (p1memory,a5),a1
@@ -10008,7 +10008,7 @@ loc_01f434:
 loc_01f438:
 	tst.b ($bf,a5)
 	bne.w loc_01f688
-	tst.b ($168,a5)
+	tst.b (Dramatic_Mode_flag,a5)
 	bne.w loc_01f688
 	tst.b ($15d,a5)
 	bne.w loc_01f688

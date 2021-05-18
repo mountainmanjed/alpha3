@@ -382,9 +382,9 @@ loc_00e14c:
 	andi.b #$cc,($6b,a5)
 	moveq #3,d0
 	jsr loc_01557c
-	cmpi.w #4,(Region,a5)
+	cmpi.w #Hispanic_region,(Region,a5)
 	beq.b loc_00e184
-	cmpi.w #$c,(Region,a5)
+	cmpi.w #Brazil_Region,(Region,a5)
 	bne.b loc_00e192
 
 loc_00e184:
@@ -421,9 +421,9 @@ loc_00e1cc:
 	bset.b #0,($6b,a5)
 
 loc_00e1da:
-	cmpi.w #4,(Region,a5)
+	cmpi.w #Hispanic_region,(Region,a5)
 	beq.b loc_00e1ea
-	cmpi.w #$c,(Region,a5)
+	cmpi.w #Brazil_Region,(Region,a5)
 	bne.b loc_00e1fc
 
 loc_00e1ea:
@@ -1170,9 +1170,9 @@ loc_00ea5e:
 	addq.w #2,($8,a5)
 	jsr loc_01b0e6
 	moveq #$b,d0
-	cmpi.w #4,(Region,a5)
+	cmpi.w #Hispanic_region,(Region,a5)
 	beq.b loc_00ea7c
-	cmpi.w #$c,(Region,a5)
+	cmpi.w #Brazil_Region,(Region,a5)
 	beq.b loc_00ea7c
 	addq.w #2,d0
 
@@ -1188,9 +1188,9 @@ loc_00ea84:
 	jsr loc_002e5e
 
 loc_00ea98:
-	cmpi.w #4,(Region,a5)
+	cmpi.w #Hispanic_region,(Region,a5)
 	beq.b loc_00eaa8
-	cmpi.w #$c,(Region,a5)
+	cmpi.w #Brazil_Region,(Region,a5)
 	bne.b loc_00eae2
 
 loc_00eaa8:
@@ -1488,12 +1488,12 @@ loc_00ee82:
 
 loc_00eea6:
 	moveq #$13,d0
-	cmpi.w #4,(Region,a5)
+	cmpi.w #Hispanic_region,(Region,a5)
 	beq.b loc_00eec4
-	cmpi.w #$c,(Region,a5)
+	cmpi.w #Brazil_Region,(Region,a5)
 	beq.b loc_00eec4
 	moveq #$12,d0
-	cmpi.w #8,(Region,a5)
+	cmpi.w #Asia_Region,(Region,a5)
 	beq.b loc_00eec4
 	moveq #$10,d0
 
@@ -1508,14 +1508,14 @@ loc_00eeca:
 	bsr.w loc_00fe94
 	bsr.w loc_00ff3e
 	bsr.w loc_00ffea
-	cmpi.w #8,(Region,a5)
+	cmpi.w #Asia_Region,(Region,a5)
 	bne.b loc_00eef2
 	bsr.w loc_010040
 
 loc_00eef2:
-	cmpi.w #4,(Region,a5)
+	cmpi.w #Hispanic_region,(Region,a5)
 	beq.b loc_00ef02
-	cmpi.w #$c,(Region,a5)
+	cmpi.w #Brazil_Region,(Region,a5)
 	bne.b loc_00ef0e
 
 loc_00ef02:
@@ -1527,12 +1527,12 @@ loc_00ef0e:
 	moveq #$1b,d1
 	bsr.w loc_00f1fc
 	moveq #$14,d7
-	cmpi.w #4,(Region,a5)
+	cmpi.w #Hispanic_region,(Region,a5)
 	beq.b loc_00ef32
-	cmpi.w #$c,(Region,a5)
+	cmpi.w #Brazil_Region,(Region,a5)
 	beq.b loc_00ef32
 	moveq #$10,d7
-	cmpi.w #8,(Region,a5)
+	cmpi.w #Asia_Region,(Region,a5)
 	beq.b loc_00ef32
 	moveq #$e,d7
 
@@ -1543,12 +1543,12 @@ loc_00ef32:
 loc_00ef36:
 	bsr.w loc_010b64
 	moveq #$14,d7
-	cmpi.w #4,(Region,a5)
+	cmpi.w #Hispanic_region,(Region,a5)
 	beq.b loc_00ef58
-	cmpi.w #$c,(Region,a5)
+	cmpi.w #Brazil_Region,(Region,a5)
 	beq.b loc_00ef58
 	moveq #$10,d7
-	cmpi.w #8,(Region,a5)
+	cmpi.w #Asia_Region,(Region,a5)
 	beq.b loc_00ef58
 	moveq #$e,d7
 
@@ -1575,9 +1575,9 @@ loc_00ef8e:
 	move.w #0,($14,a5)
 
 loc_00ef94:
-	cmpi.w #4,(Region,a5)
+	cmpi.w #Hispanic_region,(Region,a5)
 	beq.b loc_00efa4
-	cmpi.w #$c,(Region,a5)
+	cmpi.w #Brazil_Region,(Region,a5)
 	bne.b loc_00efc0
 
 loc_00efa4:
@@ -1611,9 +1611,9 @@ loc_00efea:
 	move.w #4,($14,a5)
 
 loc_00eff0:
-	cmpi.w #4,(Region,a5)
+	cmpi.w #Hispanic_region,(Region,a5)
 	beq.b loc_00f000
-	cmpi.w #$c,(Region,a5)
+	cmpi.w #Brazil_Region,(Region,a5)
 	bne.b loc_00f01c
 
 loc_00f000:
@@ -1639,11 +1639,11 @@ loc_00f02a:
 
 loc_00f02e:
 	move.w ($14,a5),d0
-	cmpi.w #4,(Region,a5)
+	cmpi.w #Hispanic_region,(Region,a5)
 	beq.b loc_00f05a
-	cmpi.w #8,(Region,a5)
+	cmpi.w #Asia_Region,(Region,a5)
 	beq.b loc_00f052
-	cmpi.w #$c,(Region,a5)
+	cmpi.w #Brazil_Region,(Region,a5)
 	beq.b loc_00f05a
 	move.w loc_00f062(pc,d0.w),d1
 	jmp loc_00f062(pc,d1.w)
@@ -1861,12 +1861,12 @@ loc_00f22c:
 	lsl.w #3,d2
 	add.w d2,d0
 	lea.l loc_00f27c(pc),a0
-	cmpi.w #4,(Region,a5)
+	cmpi.w #Hispanic_region,(Region,a5)
 	beq.b loc_00f256
-	cmpi.w #$c,(Region,a5)
+	cmpi.w #Brazil_Region,(Region,a5)
 	beq.b loc_00f256
 	lea.l loc_00f31c(pc),a0
-	cmpi.w #$8,(Region,a5)
+	cmpi.w #Asia_Region,(Region,a5)
 	beq.b loc_00f256
 	lea.l loc_00f36c(pc),a0
 
@@ -1972,10 +1972,10 @@ loc_00f7b6:
 	beq.w loc_00f86c
 	moveq #9,d1
 	moveq #1,d3
-	cmpi.w #4,(Region,a5)
+	cmpi.w #Hispanic_region,(Region,a5)
 	beq.b loc_00f7da
 	moveq #2,d3
-	cmpi.w #$c,(Region,a5)
+	cmpi.w #Brazil_Region,(Region,a5)
 	beq.b loc_00f7da
 	moveq #$12,d1
 
@@ -1990,9 +1990,9 @@ loc_00f7da:
 	bra.b loc_00f804
 
 loc_00f7ee:
-	cmpi.w #4,(Region,a5)
+	cmpi.w #Hispanic_region,(Region,a5)
 	beq.b loc_00f7fe
-	cmpi.w #$c,(Region,a5)
+	cmpi.w #Brazil_Region,(Region,a5)
 	bne.b loc_00f804
 
 loc_00f7fe:
@@ -2017,9 +2017,9 @@ loc_00f812:
 	bra.b loc_00f838
 
 loc_00f822:
-	cmpi.w #4,(Region,a5)
+	cmpi.w #Hispanic_region,(Region,a5)
 	beq.b loc_00f832
-	cmpi.w #$c,(Region,a5)
+	cmpi.w #Brazil_Region,(Region,a5)
 	bne.b loc_00f838
 
 loc_00f832:

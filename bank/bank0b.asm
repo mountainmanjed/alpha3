@@ -4381,7 +4381,7 @@ loc_0b3c08:
 ;==============================================
 loc_0b3c0a:
 	move.b #1,(1,a6)
-	movea.w ($156,a5),a4
+	movea.w (left_hud_pointer,a5),a4
 	tst.b ($15d,a5)
 	bne.w loc_0b3c34
 	tst.b ($141,a5)
@@ -4423,7 +4423,7 @@ loc_0b3c76:
 	bsr.w loc_0b4380
 
 loc_0b3c88:
-	movea.w ($158,a5),a4
+	movea.w (right_hud_pointer,a5),a4
 	tst.b ($15d,a5)
 	bne.w loc_0b3cac
 	tst.b ($141,a5)
@@ -4470,7 +4470,7 @@ loc_0b3d00:
 loc_0b3d04:
 	bsr.w loc_0b427c
 	bsr.w loc_0b434c
-	movea.w ($156,a5),a4
+	movea.w (left_hud_pointer,a5),a4
 	move.b ($130,a4),d1
 	subq.b #1,d1
 	bne.w loc_0b3d3e
@@ -4492,7 +4492,7 @@ loc_0b3d3e:
 loc_0b3d62:
 	bsr.w loc_0b42e4
 	bsr.w loc_0b434c
-	movea.w ($158,a5),a4
+	movea.w (right_hud_pointer,a5),a4
 	move.b ($130,a4),d1
 	subq.b #1,d1
 	bne.w loc_0b3d9c
@@ -4584,7 +4584,7 @@ loc_0b3e84:
 
 ;----------------------------------------------
 loc_0b3e8c:
-	movea.w ($156,a5),a4
+	movea.w (left_hud_pointer,a5),a4
 	moveq #0,d0
 	moveq #0,d1
 	moveq #0,d2
@@ -4592,7 +4592,7 @@ loc_0b3e8c:
 	move.b ($108,a5),d7
 	subq.b #1,d7
 	lea.l ($12a,a4),a2
-	movea.w ($158,a5),a4
+	movea.w (right_hud_pointer,a5),a4
 	tst.b ($ec,a4)
 	beq.w loc_0b3eb4
 	lea.l (a2,d7.w),a2
@@ -4624,7 +4624,7 @@ loc_0b3ee8:
 	lea.l ($18,a3),a3
 	movea.l a3,a4
 	dbra d7,loc_0b3eba
-	movea.w ($158,a5),a4
+	movea.w (right_hud_pointer,a5),a4
 	moveq #0,d0
 	moveq #0,d1
 	moveq #0,d2
@@ -4632,7 +4632,7 @@ loc_0b3ee8:
 	move.b ($108,a5),d7
 	subq.b #1,d7
 	lea.l ($12a,a4),a2
-	movea.w ($156,a5),a4
+	movea.w (left_hud_pointer,a5),a4
 	tst.b ($ec,a4)
 	beq.w loc_0b3f1a
 	lea.l (a2,d7.w),a2
@@ -4679,14 +4679,14 @@ loc_0b3f6a:
 
 ;----------------------------------------------
 loc_0b3f70:
-	movea.w ($156,a5),a4
+	movea.w (left_hud_pointer,a5),a4
 	moveq #0,d0
 	moveq #0,d1
 	moveq #0,d7
 	move.b ($108,a5),d7
 	subq.b #1,d7
 	lea.l ($12a,a4),a2
-	movea.w ($158,a5),a4
+	movea.w (right_hud_pointer,a5),a4
 	tst.b ($ec,a4)
 	beq.w loc_0b3f96
 	lea.l (a2,d7.w),a2
@@ -4718,14 +4718,14 @@ loc_0b3fb6:
 	lea.l ($18,a3),a3
 	movea.l a3,a4
 	dbra d7,loc_0b3f9c
-	movea.w ($158,a5),a4
+	movea.w (right_hud_pointer,a5),a4
 	moveq #0,d0
 	moveq #0,d1
 	moveq #0,d7
 	move.b ($108,a5),d7
 	subq.b #1,d7
 	lea.l ($12a,a4),a2
-	movea.w ($156,a5),a4
+	movea.w (left_hud_pointer,a5),a4
 	tst.b ($ec,a4)
 	beq.w loc_0b3ffa
 	lea.l (a2,d7.w),a2
@@ -4789,7 +4789,7 @@ loc_0b4050:
 	move.w #$28,(6,a4)
 	tst.w ($138,a5)
 	bne.b loc_0b4098
-	movea.w ($156,a5),a3
+	movea.w (left_hud_pointer,a5),a3
 	tst.b ($f0,a3)
 	bne.b loc_0b4098
 	move.w #$2940,(a4)
@@ -4803,14 +4803,14 @@ loc_0b4098:
 	move.w #$28,(6,a4)
 	tst.w ($138,a5)
 	bne.b loc_0b40cc
-	movea.w ($158,a5),a3
+	movea.w (right_hud_pointer,a5),a3
 	tst.b ($f0,a3)
 	bne.b loc_0b40cc
 	move.w #$2941,(a4)
 	move.w #$1d,(2,a4)
 
 loc_0b40cc:
-	movea.w ($156,a5),a4
+	movea.w (left_hud_pointer,a5),a4
 	lea.l ($46,a6),a4
 	move.w #$2637,(a4)+
 	move.w #$53b,(a4)+
@@ -4864,7 +4864,7 @@ loc_0b40cc:
 	move.w #$1d,(a4)+
 	move.w #$78,(a4)+
 	move.w #$10,(a4)+
-	movea.w ($158,a5),a4
+	movea.w (right_hud_pointer,a5),a4
 	lea.l ($56,a6),a4
 	move.w #$2637,(a4)+
 	move.w #$51c,(a4)+
@@ -5946,10 +5946,10 @@ loc_0b4f2c:
 	move.b #1,($46,a6)
 
 loc_0b4f40:
-	movea.w ($156,a5),a4
+	movea.w (left_hud_pointer,a5),a4
 	tst.b ($f0,a4)
 	bne.w loc_0b5684
-	movea.w ($156,a5),a4
+	movea.w (left_hud_pointer,a5),a4
 	move.w ($11e,a4),($28,a6)
 	move.b ($132,a4),($2c,a6)
 	cmpi.b #2,($123,a4)
@@ -5974,7 +5974,7 @@ loc_0b4f6a:
 	tst.b ($42,a6)
 	beq.b loc_0b4fba
 	clr.b ($42,a6)
-	movea.w ($156,a5),a4
+	movea.w (left_hud_pointer,a5),a4
 	movea.l #$90c360,a0
 	moveq #0,d0
 	bsr.w loc_0b637a
@@ -6017,13 +6017,13 @@ loc_0b4fea:
 
 ;----------------------------------------------
 loc_0b5010:
-	movea.w ($156,a5),a4
+	movea.w (left_hud_pointer,a5),a4
 	tst.b ($ab,a4)
 	bpl.b loc_0b5068
 
 loc_0b501a:
 	move.b #1,($40,a6)
-	movea.w ($156,a5),a4
+	movea.w (left_hud_pointer,a5),a4
 	move.b ($b4,a5),d0
 	andi.w #3,d0
 	add.w d0,d0
@@ -6047,7 +6047,7 @@ loc_0b5068:
 	tst.b ($40,a6)
 	beq.w loc_0b5084
 	clr.b ($40,a6)
-	movea.w ($156,a5),a4
+	movea.w (left_hud_pointer,a5),a4
 	movea.l #$90c360,a0
 	moveq #0,d0
 	bsr.w loc_0b637a
@@ -6058,7 +6058,7 @@ loc_0b5084:
 	cmpi.b #3,d0
 	bne.b loc_0b50c2
 	move.b #1,($42,a6)
-	movea.w ($156,a5),a4
+	movea.w (left_hud_pointer,a5),a4
 	movea.l #$90c360,a0
 	bsr.w loc_0b6370
 	lea.l ($126,a6),a4
@@ -6082,7 +6082,7 @@ loc_0b50c2:
 
 ;-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 loc_0b50e4:
-	movea.w ($156,a5),a4
+	movea.w (left_hud_pointer,a5),a4
 	movea.l #$90c360,a0
 	moveq #0,d0
 	bsr.w loc_0b637a
@@ -6136,8 +6136,8 @@ loc_0b5158:
 
 ;+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-
 loc_0b517e:
-	movea.w ($156,a5),a3
-	movea.w ($156,a5),a4
+	movea.w (left_hud_pointer,a5),a3
+	movea.w (left_hud_pointer,a5),a4
 	tst.b ($ab,a4)
 	bpl.w loc_0b527a
 
@@ -6159,7 +6159,7 @@ loc_0b518e:
 	cmpi.b #3,d0
 	bne.w loc_0b5220
 	moveq #$f,d7
-	movea.w ($156,a5),a4
+	movea.w (left_hud_pointer,a5),a4
 	movea.l #$90c360,a0
 	lea.l loc_0b645a(pc),a1
 	bsr.w loc_0b6346
@@ -6168,7 +6168,7 @@ loc_0b518e:
 ;-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 loc_0b51f0:
 	moveq #$f,d7
-	movea.w ($156,a5),a4
+	movea.w (left_hud_pointer,a5),a4
 	movea.l #$90c360,a0
 	lea.l loc_0b643a(pc),a1
 	bsr.w loc_0b6346
@@ -6177,7 +6177,7 @@ loc_0b51f0:
 ;-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 loc_0b5208:
 	moveq #$f,d7
-	movea.w ($156,a5),a4
+	movea.w (left_hud_pointer,a5),a4
 	movea.l #$90c360,a0
 	lea.l loc_0b641a(pc),a1
 	bsr.w loc_0b6346
@@ -6185,13 +6185,13 @@ loc_0b5208:
 
 ;-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 loc_0b5220:
-	movea.w ($156,a5),a4
+	movea.w (left_hud_pointer,a5),a4
 	movea.l #$90c360,a0
 	moveq #0,d0
 	bsr.w loc_0b637a
 
 loc_0b5230:
-	movea.w ($156,a5),a4
+	movea.w (left_hud_pointer,a5),a4
 	movea.w a3,a4
 	moveq #0,d0
 	move.w d0,d1
@@ -6220,7 +6220,7 @@ loc_0b527a:
 	tst.b ($40,a6)
 	beq.w loc_0b5296
 	clr.b ($40,a6)
-	movea.w ($156,a5),a4
+	movea.w (left_hud_pointer,a5),a4
 	movea.l #$90c360,a0
 	moveq #0,d0
 	bsr.w loc_0b637a
@@ -6253,7 +6253,7 @@ loc_0b5296:
 
 loc_0b5300:
 	moveq #$f,d7
-	movea.w ($156,a5),a4
+	movea.w (left_hud_pointer,a5),a4
 	movea.l #$90c360,a0
 	lea.l loc_0b645a(pc),a1
 	bsr.w loc_0b6346
@@ -6269,7 +6269,7 @@ loc_0b5318:
 	lea.l ($126,a6),a4
 	move.w #$2692,(a4)
 	moveq #$f,d7
-	movea.w ($156,a5),a4
+	movea.w (left_hud_pointer,a5),a4
 	movea.l #$90c360,a0
 	lea.l loc_0b643a(pc),a1
 	bsr.w loc_0b6346
@@ -6285,7 +6285,7 @@ loc_0b5352:
 	lea.l ($126,a6),a4
 	move.w #$2692,(a4)
 	moveq #$f,d7
-	movea.w ($156,a5),a4
+	movea.w (left_hud_pointer,a5),a4
 	movea.l #$90c360,a0
 	lea.l loc_0b641a(pc),a1
 	bsr.w loc_0b6346
@@ -6303,7 +6303,7 @@ loc_0b5388:
 
 ;-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 loc_0b53aa:
-	movea.w ($156,a5),a4
+	movea.w (left_hud_pointer,a5),a4
 	tst.b ($b9,a4)
 	beq.w loc_0b547a
 	move.b #1,($40,a6)
@@ -6323,7 +6323,7 @@ loc_0b53aa:
 	move.w d1,(a4)+
 	move.w #$103b,(a4)+
 	move.w (a1),(a4)+
-	movea.w ($156,a5),a4
+	movea.w (left_hud_pointer,a5),a4
 	movea.l #$90c360,a0
 	bsr.w loc_0b6370
 	lea.l ($126,a6),a4
@@ -6394,7 +6394,7 @@ loc_0b54aa:
 
 ;+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-
 loc_0b54d0:
-	movea.w ($156,a5),a4
+	movea.w (left_hud_pointer,a5),a4
 	tst.b ($ab,a4)
 	bpl.b loc_0b550e
 
@@ -6419,7 +6419,7 @@ loc_0b550e:
 	cmpi.b #3,d0
 	beq.b loc_0b5532
 	clr.b ($42,a6)
-	movea.w ($156,a5),a4
+	movea.w (left_hud_pointer,a5),a4
 	movea.l #$90c360,a0
 	moveq #0,d0
 	bsr.w loc_0b637a
@@ -6439,7 +6439,7 @@ loc_0b553e:
 	move.w #$20,($10,a4)
 	move.w #$20,($18,a4)
 	move.w #$1b,($1a,a4)
-	movea.w ($156,a5),a4
+	movea.w (left_hud_pointer,a5),a4
 	movea.l #$90c360,a0
 	moveq #0,d0
 	bsr.w loc_0b637a
@@ -6456,7 +6456,7 @@ loc_0b557a:
 	move.w #$ffff,(4,a4)
 	move.w #$29cb,($18,a4)
 	move.w #$11b,($1a,a4)
-	movea.w ($156,a5),a4
+	movea.w (left_hud_pointer,a5),a4
 	movea.l #$90c360,a0
 	bsr.w loc_0b6358
 
@@ -6485,7 +6485,7 @@ loc_0b55c0:
 	move.w #$40,($c,a4)
 
 loc_0b562a:
-	movea.w ($156,a5),a4
+	movea.w (left_hud_pointer,a5),a4
 	movea.l #$90c360,a0
 	bsr.w loc_0b6370
 
@@ -6511,12 +6511,12 @@ loc_0b5638:
 
 ;-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 loc_0b5678:
-	movea.w ($158,a5),a4
+	movea.w (right_hud_pointer,a5),a4
 	tst.b ($f0,a4)
 	bne.w loc_0b60b8
 
 loc_0b5684:
-	movea.w ($158,a5),a4
+	movea.w (right_hud_pointer,a5),a4
 	move.w ($11e,a4),($2a,a6)
 	move.b ($132,a4),($2c,a6)
 	cmpi.b #2,($123,a4)
@@ -6540,7 +6540,7 @@ loc_0b56a2:
 	tst.b ($43,a6)
 	beq.b loc_0b56f0
 	clr.b ($43,a6)
-	movea.w ($158,a5),a4
+	movea.w (right_hud_pointer,a5),a4
 	movea.l #$90c380,a0
 	moveq #0,d0
 	bsr.w loc_0b637a
@@ -6581,13 +6581,13 @@ loc_0b5720:
 	bra.w loc_0b579e
 
 loc_0b5746:
-	movea.w ($158,a5),a4
+	movea.w (right_hud_pointer,a5),a4
 	tst.b ($ab,a4)
 	bpl.b loc_0b579e
 
 loc_0b5750:
 	move.b #1,($41,a6)
-	movea.w ($158,a5),a4
+	movea.w (right_hud_pointer,a5),a4
 	move.b ($b4,a5),d0
 	andi.w #3,d0
 	add.w d0,d0
@@ -6611,7 +6611,7 @@ loc_0b579e:
 	tst.b ($41,a6)
 	beq.w loc_0b57ba
 	clr.b ($41,a6)
-	movea.w ($158,a5),a4
+	movea.w (right_hud_pointer,a5),a4
 	movea.l #$90c380,a0
 	moveq #0,d0
 	bsr.w loc_0b637a
@@ -6621,7 +6621,7 @@ loc_0b57ba:
 	cmpi.b #3,d0
 	bne.b loc_0b57f2
 	move.b #1,($43,a6)
-	movea.w ($158,a5),a4
+	movea.w (right_hud_pointer,a5),a4
 	movea.l #$90c380,a0
 	bsr.w loc_0b6370
 	lea.l ($146,a6),a4
@@ -6642,7 +6642,7 @@ loc_0b57f2:
 
 ;-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 loc_0b5810:
-	movea.w ($158,a5),a4
+	movea.w (right_hud_pointer,a5),a4
 	movea.l #$90c380,a0
 	moveq #0,d0
 	bsr.w loc_0b637a
@@ -6696,8 +6696,8 @@ loc_0b5884:
 
 ;+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-
 loc_0b58aa:
-	movea.w ($158,a5),a3
-	movea.w ($158,a5),a4
+	movea.w (right_hud_pointer,a5),a3
+	movea.w (right_hud_pointer,a5),a4
 	tst.b ($ab,a4)
 	bpl.w loc_0b599e
 
@@ -6719,7 +6719,7 @@ loc_0b58ba:
 	cmpi.b #3,d0
 	bne.w loc_0b594c
 	moveq #$f,d7
-	movea.w ($158,a5),a4
+	movea.w (right_hud_pointer,a5),a4
 	movea.l #$90c380,a0
 	lea.l loc_0b645a(pc),a1
 	bsr.w loc_0b6346
@@ -6727,7 +6727,7 @@ loc_0b58ba:
 
 loc_0b591c:
 	moveq #$f,d7
-	movea.w ($158,a5),a4
+	movea.w (right_hud_pointer,a5),a4
 	movea.l #$90c380,a0
 	lea.l loc_0b643a(pc),a1
 	bsr.w loc_0b6346
@@ -6735,14 +6735,14 @@ loc_0b591c:
 
 loc_0b5934:
 	moveq #$f,d7
-	movea.w ($158,a5),a4
+	movea.w (right_hud_pointer,a5),a4
 	movea.l #$90c380,a0
 	lea.l loc_0b641a(pc),a1
 	bsr.w loc_0b6346
 	bra.w loc_0b595c
 
 loc_0b594c:
-	movea.w ($158,a5),a4
+	movea.w (right_hud_pointer,a5),a4
 	movea.l #$90c380,a0
 	moveq #0,d0
 	bsr.w loc_0b637a
@@ -6775,7 +6775,7 @@ loc_0b599e:
 	tst.b ($41,a6)
 	beq.w loc_0b59ba
 	clr.b ($41,a6)
-	movea.w ($158,a5),a4
+	movea.w (right_hud_pointer,a5),a4
 	movea.l #$90c380,a0
 	moveq #0,d0
 	bsr.w loc_0b637a
@@ -6808,7 +6808,7 @@ loc_0b59ba:
 
 loc_0b5a24:
 	moveq #$f,d7
-	movea.w ($158,a5),a4
+	movea.w (right_hud_pointer,a5),a4
 	movea.l #$90c380,a0
 	lea.l loc_0b645a(pc),a1
 	bsr.w loc_0b6346
@@ -6823,7 +6823,7 @@ loc_0b5a3c:
 	lea.l ($146,a6),a4
 	move.w #$2692,(a4)
 	moveq #$f,d7
-	movea.w ($158,a5),a4
+	movea.w (right_hud_pointer,a5),a4
 	movea.l #$90c380,a0
 	lea.l loc_0b643a(pc),a1
 	bsr.w loc_0b6346
@@ -6838,7 +6838,7 @@ loc_0b5a70:
 	lea.l ($146,a6),a4
 	move.w #$2692,(a4)
 	moveq #$f,d7
-	movea.w ($158,a5),a4
+	movea.w (right_hud_pointer,a5),a4
 	movea.l #$90c380,a0
 	lea.l loc_0b641a(pc),a1
 	bsr.w loc_0b6346
@@ -6855,7 +6855,7 @@ loc_0b5aa0:
 
 ;-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 loc_0b5abe:
-	movea.w ($158,a5),a4
+	movea.w (right_hud_pointer,a5),a4
 	tst.b ($b9,a4)
 	beq.w loc_0b5b8a
 	move.b #1,($41,a6)
@@ -6875,7 +6875,7 @@ loc_0b5abe:
 	move.w d1,(a4)+
 	move.w #$101c,(a4)+
 	move.w (a1),(a4)+
-	movea.w ($158,a5),a4
+	movea.w (right_hud_pointer,a5),a4
 	movea.l #$90c380,a0
 	bsr.w loc_0b6370
 	lea.l ($146,a6),a4
@@ -6945,7 +6945,7 @@ loc_0b5bba:
 
 ;+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-
 loc_0b5be0:
-	movea.w ($158,a5),a4
+	movea.w (right_hud_pointer,a5),a4
 	tst.b ($ab,a4)
 	bpl.b loc_0b5c1e
 
@@ -6970,7 +6970,7 @@ loc_0b5c1e:
 	cmpi.b #3,d0
 	beq.b loc_0b5c42
 	clr.b ($43,a6)
-	movea.w ($158,a5),a4
+	movea.w (right_hud_pointer,a5),a4
 	movea.l #$90c380,a0
 	moveq #0,d0
 	bsr.w loc_0b637a
@@ -6990,7 +6990,7 @@ loc_0b5c4e:
 	move.w #$20,($10,a4)
 	move.w #$20,($18,a4)
 	move.w #$1b,($1a,a4)
-	movea.w ($158,a5),a4
+	movea.w (right_hud_pointer,a5),a4
 	movea.l #$90c380,a0
 	moveq #0,d0
 	bsr.w loc_0b637a
@@ -7007,7 +7007,7 @@ loc_0b5c8a:
 	move.w #$160,(4,a4)
 	move.w #$29cb,($18,a4)
 	move.w #$11c,($1a,a4)
-	movea.w ($158,a5),a4
+	movea.w (right_hud_pointer,a5),a4
 	movea.l #$90c380,a0
 	bsr.w loc_0b6358
 
@@ -7036,7 +7036,7 @@ loc_0b5cd0:
 	move.w #$f0,($c,a4)
 
 loc_0b5d3a:
-	movea.w ($158,a5),a4
+	movea.w (right_hud_pointer,a5),a4
 	movea.l #$90c380,a0
 	bsr.w loc_0b6370
 
@@ -7167,7 +7167,7 @@ loc_0b5ec2:
 
 ;-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 loc_0b5ec8:
-	movea.w ($156,a5),a4
+	movea.w (left_hud_pointer,a5),a4
 	tst.b ($f0,a4)
 	beq.w loc_0b5fc0
 	lea.l ($56,a6),a3
@@ -7213,7 +7213,7 @@ loc_0b5ec8:
 	move.l #0,(a3)+
 
 loc_0b5fc0:
-	movea.w ($158,a5),a4
+	movea.w (right_hud_pointer,a5),a4
 	tst.b ($f0,a4)
 	beq.w loc_0b60b8
 	lea.l ($66,a6),a3
@@ -7265,9 +7265,9 @@ loc_0b60b8:
 loc_0b60ba:
 	moveq #0,d0
 	move.l d0,d1
-	movea.w ($156,a5),a4
+	movea.w (left_hud_pointer,a5),a4
 	move.b ($ec,a4),d0
-	movea.w ($158,a5),a4
+	movea.w (right_hud_pointer,a5),a4
 	move.b ($ec,a4),d1
 	add.b d1,d1
 	add.b d1,d0
@@ -7284,7 +7284,7 @@ loc_0b60ba:
 	move.w (a1)+,(a4)+
 	move.w #$c0,(a4)+
 	move.w #$e0,(a4)
-	movea.w ($156,a5),a4
+	movea.w (left_hud_pointer,a5),a4
 	move.w ($11e,a4),($28,a6)
 	move.b ($132,a4),($2c,a6)
 	cmpi.b #2,($123,a4)
@@ -7337,7 +7337,7 @@ loc_0b616e:
 	move.l (a3)+,(a4)+
 	move.l (a3)+,(a4)+
 	move.l (a3)+,(a4)+
-	movea.w ($156,a5),a4
+	movea.w (left_hud_pointer,a5),a4
 	moveq #0,d0
 	lea.l loc_0b67e4(pc),a1
 	move.b ($123,a4),d0
@@ -7368,7 +7368,7 @@ loc_0b61ae:
 	moveq #0,d1
 	move.w ($28,a6),d1
 	bsr.w loc_0b5e52
-	movea.w ($158,a5),a4
+	movea.w (right_hud_pointer,a5),a4
 	move.w ($11e,a4),($2a,a6)
 	move.b ($132,a4),($2c,a6)
 	cmpi.b #2,($123,a4)
@@ -7421,7 +7421,7 @@ loc_0b625a:
 	move.l (a3)+,(a4)+
 	move.l (a3)+,(a4)+
 	move.l (a3)+,(a4)+
-	movea.w ($158,a5),a4
+	movea.w (right_hud_pointer,a5),a4
 	moveq #0,d0
 	lea.l loc_0b6884(pc),a1
 	move.b ($123,a4),d0
@@ -8019,7 +8019,7 @@ loc_0b8f62:
 ;==============================================
 loc_0b8f64:
 	move.b #1,(1,a6)
-	movea.w ($156,a5),a4
+	movea.w (left_hud_pointer,a5),a4
 	move.w ($50,a4),($28,a6)
 	move.w ($138,a5),d0
 	move.w loc_0b8f80(pc,d0.w),d1
@@ -8089,7 +8089,7 @@ loc_0b901e:
 	move.w d1,d2
 	cmp.w ($28,a6),d2
 	bhi.w loc_0b904a
-	movea.w ($156,a5),a4
+	movea.w (left_hud_pointer,a5),a4
 	tst.b ($52,a4)
 	bmi.w loc_0b904a
 	move.w ($52,a4),($2a,a6)
@@ -8098,7 +8098,7 @@ loc_0b904a:
 	lea.l ($96,a6),a4
 	lea.l loc_0ba7de(pc),a0
 	bsr.w loc_0b9282
-	movea.w ($156,a5),a4
+	movea.w (left_hud_pointer,a5),a4
 	move.w ($28,a6),d1
 	cmp.w ($52,a4),d1
 	beq.w loc_0b906c
@@ -8110,7 +8110,7 @@ loc_0b906c:
 	bsr.w loc_0b927e
 
 loc_0b9078:
-	movea.w ($158,a5),a4
+	movea.w (right_hud_pointer,a5),a4
 	move.w ($50,a4),($2c,a6)
 	move.w ($138,a5),d0
 	move.w loc_0b908e(pc,d0.w),d1
@@ -8180,7 +8180,7 @@ loc_0b912c:
 	move.w d1,d2
 	cmp.w ($2c,a6),d2
 	bhi.w loc_0b9158
-	movea.w ($158,a5),a4
+	movea.w (right_hud_pointer,a5),a4
 	tst.b ($52,a4)
 	bmi.w loc_0b9158
 	move.w ($52,a4),($2e,a6)
@@ -8189,7 +8189,7 @@ loc_0b9158:
 	lea.l ($126,a6),a4
 	lea.l loc_0ba7de(pc),a0
 	bsr.w loc_0b9282
-	movea.w ($158,a5),a4
+	movea.w (right_hud_pointer,a5),a4
 	move.w ($2c,a6),d1
 	cmp.w ($52,a4),d1
 	beq.w loc_0b917a
@@ -8374,7 +8374,7 @@ loc_0b933e:
 	move.l (a0)+,(a4)+
 	move.l (a0)+,(a4)+
 	move.l (a0)+,(a4)+
-	movea.w ($156,a5),a4
+	movea.w (left_hud_pointer,a5),a4
 	move.w ($50,a4),($28,a6)
 	move.w ($50,a4),d0
 	cmpi.w #$90,d0
@@ -8392,7 +8392,7 @@ loc_0b936e:
 	bsr.w loc_0b91fa
 	move.w ($28,a6),d1
 	bsr.w loc_0b927e
-	movea.w ($158,a5),a4
+	movea.w (right_hud_pointer,a5),a4
 	move.w ($50,a4),($2c,a6)
 	move.w ($50,a4),d0
 	cmpi.w #$90,d0
@@ -8457,7 +8457,7 @@ loc_0b9442:
 loc_0b9454:
 	move.w #$316,d1
 	moveq #$23,d3
-	movea.w ($156,a5),a4
+	movea.w (left_hud_pointer,a5),a4
 	move.w #$316,d1
 	tst.b ($eb,a4)
 	beq.b loc_0b946c
@@ -8493,7 +8493,7 @@ loc_0b94a0:
 
 loc_0b94ae:
 	lea.l (8,a1),a1
-	movea.w ($158,a5),a4
+	movea.w (right_hud_pointer,a5),a4
 	move.w #$316,d1
 	tst.b ($eb,a4)
 	beq.b loc_0b94c4
@@ -8603,30 +8603,30 @@ loc_0b959c:
 ;-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
 loc_0b95a4:
 	lea.l loc_0b996c(pc),a0
-	movea.w ($156,a5),a4
+	movea.w (left_hud_pointer,a5),a4
 	bsr.b loc_0b95e2
 	lea.l loc_0b9a7c(pc),a0
-	movea.w ($158,a5),a4
+	movea.w (right_hud_pointer,a5),a4
 	moveq #$21,d0
 	bra.b loc_0b95fa
 
 ;-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
 loc_0b95ba:
 	lea.l loc_0b996c(pc),a0
-	movea.w ($156,a5),a4
+	movea.w (left_hud_pointer,a5),a4
 	moveq #$21,d0
 	bsr.b loc_0b95fa
 	lea.l loc_0b9a7c(pc),a0
-	movea.w ($158,a5),a4
+	movea.w (right_hud_pointer,a5),a4
 	bra.b loc_0b95e2
 
 ;-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
 loc_0b95d0:
 	lea.l loc_0b996c(pc),a0
-	movea.w ($156,a5),a4
+	movea.w (left_hud_pointer,a5),a4
 	bsr.b loc_0b95e2
 	lea.l loc_0b9a7c(pc),a0
-	movea.w ($158,a5),a4
+	movea.w (right_hud_pointer,a5),a4
 
 loc_0b95e2:
 	moveq #0,d0
@@ -8790,7 +8790,7 @@ loc_0b976e:
 
 ;-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 loc_0b977e:
-	movea.w ($156,a5),a4
+	movea.w (left_hud_pointer,a5),a4
 	cmpi.b #$17,($102,a4)
 	bne.b loc_0b97a4
 	lea.l loc_0b9a0c(pc),a0
@@ -8804,7 +8804,7 @@ loc_0b979c:
 	bsr.w loc_0b95fa
 
 loc_0b97a4:
-	movea.w ($158,a5),a4
+	movea.w (right_hud_pointer,a5),a4
 	cmpi.b #$17,($102,a4)
 	bne.b loc_0b97ca
 	lea.l loc_0b9b1c(pc),a0
@@ -9245,7 +9245,7 @@ loc_0bb3dc:
 	rts
 
 loc_0bb3ea:
-	movea.w ($156,a5),a3
+	movea.w (left_hud_pointer,a5),a3
 	moveq #0,d1
 	move.b ($24c,a3),d1
 	add.w d1,d1
@@ -9263,7 +9263,7 @@ loc_0bb416:
 	lea.l ($1b6,a6),a4
 	move.w #$2771,(a4)
 	move.w d1,(4,a4)
-	movea.w ($158,a5),a3
+	movea.w (right_hud_pointer,a5),a3
 	moveq #0,d1
 	move.b ($24c,a3),d1
 	add.w d1,d1
@@ -9280,16 +9280,16 @@ loc_0bb44e:
 	lea.l ($1be,a6),a4
 	move.w #$2712,(a4)
 	move.w d1,(4,a4)
-	movea.w ($156,a5),a3
+	movea.w (left_hud_pointer,a5),a3
 	tst.w ($50,a3)
 	bmi.w loc_0bb6c8
-	movea.w ($158,a5),a3
+	movea.w (right_hud_pointer,a5),a3
 	tst.w ($50,a3)
 	bmi.w loc_0bb6c8
-	movea.w ($156,a5),a3
+	movea.w (left_hud_pointer,a5),a3
 	tst.b ($2c7,a3)
 	bne.w loc_0bb59a
-	movea.w ($158,a5),a3
+	movea.w (right_hud_pointer,a5),a3
 	tst.b ($2c7,a3)
 	bne.w loc_0bb62e
 	tst.b ($170,a5)
@@ -9303,7 +9303,7 @@ loc_0bb44e:
 	bne.w loc_0bb59a
 
 loc_0bb4ae:
-	movea.w ($156,a5),a3
+	movea.w (left_hud_pointer,a5),a3
 	move.b ($24c,a3),d0
 	cmpi.b #$11,d0
 	bcs.w loc_0bb526
@@ -9313,12 +9313,12 @@ loc_0bb4ae:
 	movea.l #$90c3a0,a0
 	bsr.w loc_0bbc9a
 	lea.l ($66,a6),a4
-	movea.w ($156,a5),a3
+	movea.w (left_hud_pointer,a5),a3
 	moveq #0,d1
 	move.b ($296,a3),d1
 	lea.l loc_0bcf3a(pc),a0
 	bsr.w loc_0bba96
-	movea.w ($156,a5),a3
+	movea.w (left_hud_pointer,a5),a3
 	moveq #0,d1
 	move.b ($296,a3),d1
 	add.w d1,d1
@@ -9338,7 +9338,7 @@ loc_0bb516:
 	move.w d1,(4,a4)
 
 loc_0bb526:
-	movea.w ($158,a5),a3
+	movea.w (right_hud_pointer,a5),a3
 	move.b ($24c,a3),d0
 	cmpi.b #$11,d0
 	bcs.w loc_0bb6c2
@@ -9348,7 +9348,7 @@ loc_0bb526:
 	movea.l #$90c3a0,a0
 	bsr.w loc_0bbc9a
 	lea.l ($9e,a6),a4
-	movea.w ($158,a5),a3
+	movea.w (right_hud_pointer,a5),a3
 	moveq #0,d1
 	move.b ($296,a3),d1
 	lea.l loc_0bcf3a(pc),a0
@@ -9372,7 +9372,7 @@ loc_0bb586:
 	bra.w loc_0bb6c2
 
 loc_0bb59a:
-	movea.w ($156,a5),a3
+	movea.w (left_hud_pointer,a5),a3
 	move.b ($24c,a3),d0
 	cmpi.b #$11,d0
 	bcs.w loc_0bb61c
@@ -9380,7 +9380,7 @@ loc_0bb59a:
 	movea.l #loc_35f8f4,a1
 	moveq #1,d7
 	bsr.w loc_0bbcd0
-	movea.w ($156,a5),a3
+	movea.w (left_hud_pointer,a5),a3
 	tst.b ($2c7,a3)
 	bne.w loc_0bb5d4
 	move.b (7,a6),d0
@@ -9388,7 +9388,7 @@ loc_0bb59a:
 	beq.w loc_0bb62e
 
 loc_0bb5d4:
-	movea.w ($156,a5),a4
+	movea.w (left_hud_pointer,a5),a4
 	move.b ($24c,a4),($28,a6)
 	jsr loc_01c2c8
 	beq.w loc_0bb62e
@@ -9407,13 +9407,13 @@ loc_0bb5d4:
 
 loc_0bb61c:
 	lea.l ($66,a6),a4
-	movea.w ($156,a5),a3
+	movea.w (left_hud_pointer,a5),a3
 	moveq #0,d1
 	lea.l loc_0bcf3a(pc),a0
 	bsr.w loc_0bba96
 
 loc_0bb62e:
-	movea.w ($158,a5),a3
+	movea.w (right_hud_pointer,a5),a3
 	move.b ($24c,a3),d0
 	cmpi.b #$11,d0
 	bcs.w loc_0bb6b0
@@ -9421,7 +9421,7 @@ loc_0bb62e:
 	movea.l #loc_35f8f4,a1
 	moveq #1,d7
 	bsr.w loc_0bbcd0
-	movea.w ($158,a5),a3
+	movea.w (right_hud_pointer,a5),a3
 	tst.b ($2c7,a3)
 	bne.w loc_0bb668
 	move.b (7,a6),d0
@@ -9429,7 +9429,7 @@ loc_0bb62e:
 	beq.w loc_0bb6c2
 
 loc_0bb668:
-	movea.w ($158,a5),a4
+	movea.w (right_hud_pointer,a5),a4
 	move.b ($24c,a4),($2a,a6)
 	jsr loc_01c2c8
 	beq.w loc_0bb6c2
@@ -9448,7 +9448,7 @@ loc_0bb668:
 
 loc_0bb6b0:
 	lea.l ($9e,a6),a4
-	movea.w ($158,a5),a3
+	movea.w (right_hud_pointer,a5),a3
 	moveq #0,d1
 	lea.l loc_0bcf3a(pc),a0
 	bsr.w loc_0bba96
@@ -9457,11 +9457,11 @@ loc_0bb6c2:
 	move.b ($170,a5),(7,a6)
 
 loc_0bb6c8:
-	movea.w ($156,a5),a3
+	movea.w (left_hud_pointer,a5),a3
 	clr.b ($2c7,a3)
-	movea.w ($158,a5),a3
+	movea.w (right_hud_pointer,a5),a3
 	clr.b ($2c7,a3)
-	movea.w ($156,a5),a3
+	movea.w (left_hud_pointer,a5),a3
 	move.b ($24c,a3),($28,a6)
 	move.b ($24d,a3),($29,a6)
 	lea.l ($d6,a6),a4
@@ -9473,7 +9473,7 @@ loc_0bb6c8:
 	move.b ($28,a6),d1
 	lea.l loc_0bc748(pc),a0
 	bsr.w loc_0bba96
-	movea.w ($156,a5),a3
+	movea.w (left_hud_pointer,a5),a3
 	lea.l ($10e,a6),a4
 	bsr.w loc_0bb9bc
 	move.w #$3b,d1
@@ -9484,7 +9484,7 @@ loc_0bb6c8:
 	move.b ($28,a6),d1
 	move.b ($29,a6),d2
 	sub.b d2,d1
-	movea.w ($156,a5),a4
+	movea.w (left_hud_pointer,a5),a4
 	movea.l #$90c360,a0
 	tst.b ($41,a6)
 	beq.w loc_0bb75a
@@ -9570,7 +9570,7 @@ loc_0bb816:
 	bsr.w loc_0bba8a
 
 loc_0bb84a:
-	movea.w ($158,a5),a3
+	movea.w (right_hud_pointer,a5),a3
 	move.b ($24c,a3),($2a,a6)
 	move.b ($24d,a3),($2b,a6)
 	lea.l ($146,a6),a4
@@ -9582,7 +9582,7 @@ loc_0bb84a:
 	move.b ($2a,a6),d1
 	lea.l loc_0bc748(pc),a0
 	bsr.w loc_0bba96
-	movea.w ($158,a5),a3
+	movea.w (right_hud_pointer,a5),a3
 	lea.l ($17e,a6),a4
 	bsr.w loc_0bb9e8
 	move.w #$1c,d1
@@ -9593,7 +9593,7 @@ loc_0bb84a:
 	move.b ($2a,a6),d1
 	move.b ($2b,a6),d2
 	sub.b d2,d1
-	movea.w ($158,a5),a4
+	movea.w (right_hud_pointer,a5),a4
 	movea.l #$90c380,a0
 	tst.b ($43,a6)
 	beq.w loc_0bb8cc
@@ -9803,7 +9803,7 @@ loc_0bbada:
 
 ;-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 loc_0bbb1c:
-	movea.w ($156,a5),a3
+	movea.w (left_hud_pointer,a5),a3
 	moveq #0,d1
 	move.b ($24c,a3),d1
 	add.w d1,d1
@@ -9835,7 +9835,7 @@ loc_0bbb68:
 
 loc_0bbb88:
 	move.w d0,(a4)+
-	movea.w ($158,a5),a3
+	movea.w (right_hud_pointer,a5),a3
 	moveq #0,d1
 	move.b ($24c,a3),d1
 	add.w d1,d1
@@ -9867,7 +9867,7 @@ loc_0bbbd8:
 
 loc_0bbbf8:
 	move.w d0,(a4)+
-	movea.w ($156,a5),a3
+	movea.w (left_hud_pointer,a5),a3
 	lea.l ($66,a6),a4
 	bsr.w loc_0bb9bc
 	move.w #$3d,d1
@@ -9876,7 +9876,7 @@ loc_0bbbf8:
 	moveq #0,d1
 	lea.l loc_0bcf3a(pc),a0
 	bsr.w loc_0bba96
-	movea.w ($158,a5),a3
+	movea.w (right_hud_pointer,a5),a3
 	lea.l ($9e,a6),a4
 	bsr.w loc_0bb9e8
 	move.w #$1d,d1
@@ -9885,7 +9885,7 @@ loc_0bbbf8:
 	moveq #$0,d1
 	lea.l loc_0bcf3a(pc),a0
 	bsr.w loc_0bba96
-	movea.w ($156,a5),a3
+	movea.w (left_hud_pointer,a5),a3
 	move.b ($24c,a3),($28,a6)
 	move.b ($24d,a3),($29,a6)
 	lea.l ($10e,a6),a4
@@ -9896,7 +9896,7 @@ loc_0bbbf8:
 	moveq #0,d1
 	move.b ($28,a6),d1
 	bsr.w loc_0bba8a
-	movea.w ($158,a5),a3
+	movea.w (right_hud_pointer,a5),a3
 	move.w ($24c,a3),($2a,a6)
 	move.b ($24d,a3),($2b,a6)
 	lea.l ($17e,a6),a4

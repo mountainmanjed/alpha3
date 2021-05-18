@@ -1406,7 +1406,8 @@ loc_0df912:
 	dc.b $2c,$2b,$28,$28,$28,$28,$28,$28
 
 ;Guard Meter Values
-loc_0df932:
+;0xdf932
+Guard_meter_table:
 	dc.b $44;Ryu
 	dc.b $44;Ken
 	dc.b $44;Akuma

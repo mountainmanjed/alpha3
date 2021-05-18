@@ -6904,7 +6904,7 @@ loc_0851c0:
 	ext.w d0
 	add.w d0,d0
 	addi.w #$e,d0
-	cmpi.w #$8,(Region,a5)
+	cmpi.w #Asia_Region,(Region,a5)
 	bne.b loc_0851fa
 	addq.w #1,d0
 
@@ -14004,7 +14004,7 @@ loc_08b41c:
 	ext.w d0
 	add.w d0,d0
 	addi.w #$e,d0
-	cmpi.w #8,(Region,a5)
+	cmpi.w #Asia_Region,(Region,a5)
 	bne.b loc_08b47a
 	addq.w #$1,d0
 

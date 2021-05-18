@@ -146,7 +146,7 @@ loc_017d9c:
 	beq.b loc_017dd8
 	addq.b #2,(4,a6)
 	clr.b (1,a6)
-	cmpi.w #8,(Region,a5)
+	cmpi.w #Asia_Region,(Region,a5)
 	bne.b loc_017dc0
 	move.w #$100,($5a,a6)
 

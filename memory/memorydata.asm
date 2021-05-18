@@ -55,7 +55,8 @@ INP_P2_repeat = 0x5e
 ;==============================================
 ;
 ;==============================================
-;0x86 ;deals with linking
+; = 0x83
+; = 0x86 ;deals with linking
 Region = 0x90
 
 
@@ -93,7 +94,15 @@ Dip_Regulation = 0xbb
 ; = 0xbe
 ; = 0xbf
 ; = 0xc0
+;0xc4
+;0xc8
 
+
+;0xd4
+;0xd5
+;0xd6
+
+;0xd8
 ;==============================================
 ;Game Dips Extra
 ;==============================================
@@ -103,7 +112,7 @@ Dip_2PRounds = 0xdf
 ; = 0xe6
 ; = 0xe7
 ; = 0xe8
-
+;0xea
 game_unlock = 0xee
 
 ;==============================================
@@ -117,17 +126,42 @@ clock_frames = 0x10a
 
 Arcade_Match = 0x114
 Dev_Turbo = 0x116
-;0x125
-;0x12b
-;0x12e
-;0x130
-;0x134
-;0x138
-;0x13c
+; = 0x118
+;unused 0x119
+; = 0x11a
+; = 0x11c
+; = 0x11d
+; = 0x11e
+; = 0x11f
+; = 0x120
+; = 0x121
+; = 0x122
+; = 0x123
+; = 0x124
+; = 0x125
 
-;0x15d
+; = 0x12b
+
+; = 0x12e
+; = 0x130
+; = 0x134
+; = 0x137
+; = 0x138 Dramatic mode
+; = 0x13c
+
+; = 0x141
+
+; = 0x146
+left_hud_pointer = 0x156
+right_hud_pointer = 0x158
+; = 0x15d
 
 ; = 0x163
+Dramatic_Mode_flag = 0x168
+;unused 0x169
+
+; = 0x16a
+
 GCrush_Timer = 0x171
 StageID_Secondary = 0x174
 ; = 0x178
@@ -159,7 +193,7 @@ camera_y = 0x2a4
 ;0x398
 
 
-Sound_Data_Start = 0x5e80
+Sound_Buffer_Start = 0x5e80
 ;0x6e82
 
 ;==============================================
@@ -172,6 +206,8 @@ Sound_Data_Start = 0x5e80
 
 ;Arcade Progression
 ;-0x707e
+
+;-0x7394
 
 ;==============================================
 ;Player Data

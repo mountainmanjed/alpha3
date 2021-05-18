@@ -40,8 +40,8 @@ pl_y_drag = 0x4c
 PL_HP = 0x50;word
 PL_HP_copy = 0x52;word
 
-; 0x64
-
+; = 0x64
+; = 0x68
 ;NeutralState? = 0x80
 PL_Attacktype = 0x81 ;0 = Punches , 2 = Kicks
 PL_ButtonStrength = 0x82 ;0 = L,2 = M,4 = H
@@ -77,16 +77,19 @@ PL_charid = 0x102
 ; = 0x103
 ; = 0x104
 ; = 0x105
-
+; = 0x107
+; = 0x114
 PL_Buttons = 0x11a
 PL_meter = 0x11e
 
-;0x123 ;byte
+; = 0x123 ;byte
 ;0x124 ;byte
 PL_cpucontrol = 0x125
+; = 0x126
+; = 0x127
 
 PL_Palnum = 0x128
-
+; = 0x12a;long
 ; = 0x12e
 ; = 0x130
 Pl_Sakiyo_mode = 0x131
@@ -100,6 +103,7 @@ PL_PalRam_pnt = 0x150
 pl_serious_mode = 0x15a
 ; = 0x15b
 ; = 0x15c
+; = 0x15d
 pl_classic_mode = 0x15e
 ; = 0x15f
 
@@ -134,15 +138,21 @@ rosegthrow = 0x1e4 ; addr.w
 
 pl_dist_away = 0x21c
 
+pl_gaurd_bar_max = 0x24c
+pl_gaurd_bar = 0x24d
+
 PL_Reversal_Window = 0x256
 
 pl_crushed_gaurd = 0x26e
+;0x27a
+
 
 pl_collsion_counter = 0x280
 pl_blockstring_counter = 0x297
 
 pl_sidecheck = 0x2c9
 PL_Stun = 0x2cc
+pl_stun_max = 0x2cd
 
 Pl_WalkSpeed_pnt = 0x2d0
 Pl_JumpData_pnt = 0x2d4
@@ -150,10 +160,12 @@ Pl_JumpData_pnt = 0x2d4
 pl_inp_slot_a = 0x300
 pl_inp_slot_b = 0x308
 
-;= 0x32c ;byte
+; = 0x32c ;byte
 
-;371
-;378
+; = 0x371
+; = 0x378
+; = 0x379
+; = 0x37a
 ;==============================================
 ;IDs
 ;==============================================

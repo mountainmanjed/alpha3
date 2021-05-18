@@ -15700,7 +15700,7 @@ loc_0aacce:
 	move.b #0,($e,a6)
 	move.w #$2000,($1a,a6)
 	moveq #$e,d0
-	cmpi.w #8,(Region,a5)
+	cmpi.w #Asia_Region,(Region,a5)
 	bne.b loc_0aacf4
 	moveq #$f,d0
 
@@ -18962,7 +18962,7 @@ loc_0ad042:
 
 ;----------------------------------------------
 loc_0ad048:
-	tst.b ($168,a5)
+	tst.b (Dramatic_Mode_flag,a5)
 	bne.b loc_0ad056
 	tst.b ($15d,a5)
 	beq.w loc_0ad1ec
@@ -19182,13 +19182,13 @@ loc_0ad2b8:
 	tst.b ($15d,a5)
 	beq.b loc_0ad2ca
 	movea.w ($13a,a5),a6
-	cmpi.b #2,($102,a6)
+	cmpi.b #Akuma_id,(PL_charid,a6)
 	rts
 
 loc_0ad2ca:
-	cmpi.b #2,($502,a5)
+	cmpi.b #Akuma_id,(p1_charid,a5)
 	beq.b loc_0ad2d8
-	cmpi.b #2,($902,a5)
+	cmpi.b #Akuma_id,(p2_charid,a5)
 
 loc_0ad2d8:
 	rts
@@ -19469,7 +19469,7 @@ loc_0ad5a4:
 	lsl.w #4,d0
 	move.w d0,($40,a6)
 	move.b (3,a6),d0
-	cmpi.w #8,(Region,a5)
+	cmpi.w #Asia_Region,(Region,a5)
 	bne.b loc_0ad5d2
 	cmpi.b #8,($e,a6)
 	bne.b loc_0ad5d2
@@ -19477,7 +19477,7 @@ loc_0ad5a4:
 
 loc_0ad5d2:
 	jsr loc_0ad566
-	cmpi.w #8,(Region,a5)
+	cmpi.w #Asia_Region,(Region,a5)
 	bne.b loc_0ad5ee
 	cmpi.b #8,($e,a6)
 	beq.b loc_0ad5ee
@@ -19927,7 +19927,7 @@ loc_0ad8e6:
 	move.w ($26,a6),($12,a6)
 	cmpi.b #5,(3,a6)
 	bne.b loc_0ad924
-	cmpi.w #8,(Region,a5)
+	cmpi.w #Asia_Region,(Region,a5)
 	bne.b loc_0ad924
 	addq.b #1,($3a,a6)
 
@@ -20318,7 +20318,7 @@ loc_0add74:
 	move.l loc_0addba+4(pc,d0.w),($40,a6)
 	tst.b ($3c,a6)
 	beq.b loc_0adda8
-	cmpi.w #8,(Region,a5)
+	cmpi.w #Asia_Region,(Region,a5)
 	bne.b loc_0adda8
 	addi.w #$100,($14,a6)
 
@@ -20617,7 +20617,7 @@ loc_0ae034:
 	move.w ($3a,a6),d0
 	lsr.w #3,d0
 	move.w d0,($3a,a6)
-	cmpi.w #8,(Region,a5)
+	cmpi.w #Asia_Region,(Region,a5)
 	bne.b loc_0ae074
 	move.b #4,(4,a6)
 
@@ -20853,7 +20853,7 @@ loc_0ae24e:
 	clr.b (1,a4)
 	lea.l (2,a4),a4
 	dbra d7,loc_0ae24e
-	cmpi.w #8,(Region,a5)
+	cmpi.w #Asia_Region,(Region,a5)
 	bne.b loc_0ae27e
 	moveq #8,d0
 	lea.l loc_0ae3de(pc),a0
@@ -21245,7 +21245,7 @@ loc_0ae734:
 	move.b #1,($f,a6)
 	clr.w ($c,a6)
 	move.b (3,a6),d0
-	cmpi.w #0,(Region,a5)
+	cmpi.w #Japan_region,(Region,a5)
 	beq.b loc_0ae750
 	addq.b #1,d0
 
@@ -23175,7 +23175,7 @@ loc_0afb8c:
 	bne.b loc_0afbe8
 	addq.b #2,(4,a6)
 	st.b (1,a6)
-	cmpi.w #8,(Region,a5)
+	cmpi.w #Asia_Region,(Region,a5)
 	bne.b loc_0afbae
 	addi.w #$100,($14,a6)
 

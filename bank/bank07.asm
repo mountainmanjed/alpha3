@@ -2669,8 +2669,8 @@ loc_07e48a:
 
 ;##############################################
 loc_07e4aa:
-	movea.w ($156,a5),a1
-	movea.w ($158,a5),a2
+	movea.w (left_hud_pointer,a5),a1
+	movea.w (right_hud_pointer,a5),a2
 	jsr loc_01c278
 	beq.b loc_07e504
 	move.l #$1000200,(a4)
