@@ -90,12 +90,12 @@ RngByte1 = 0xaf
 ; = 0xb5
 
 Dip_Regulation = 0xbb
-
+; = 0xbd
 ; = 0xbe
 ; = 0xbf
 ; = 0xc0
-;0xc4
-;0xc8
+; = 0xc4
+; = 0xc8
 
 
 ;0xd4
@@ -204,7 +204,7 @@ Sound_Buffer_Start = 0x5e80
 ;-0x50ce
 ;-0x5162
 
-;Arcade Progression
+;Arcade Progression?
 ;-0x707e
 
 ;-0x7394
@@ -213,28 +213,32 @@ Sound_Buffer_Start = 0x5e80
 ;Player Data
 ;==============================================
 p1memory = 0x400
-; 0x500
 p1_charid = 0x502
-; = 0x51a
+P1_Palnum = 0x528
+p1_ism_choice = 0x532
 p1_arcade_progress = 0x540
-p1_crushed_gaurd = 0x66e
+p1_crushed_guard = 0x66e
 
 ;==============================================
 p2memory = 0x800
 p2_charid = 0x902
+P2_Palnum = 0x928
+p2_ism_choice = 0x932
 p2_arcade_progress = 0x940
-p2_crushed_gaurd = 0xa6e
+p2_crushed_guard = 0xa6e
 ;==============================================
 p3memory = 0xc00
 p3_charid = 0xd02
+P3_Palnum = 0xd28
 p3_ism_choice = 0xd32
-p3_crushed_gaurd = 0xe6e
+p3_crushed_guard = 0xe6e
 
 ;==============================================
 p4memory = 0x1000
 p4_charid = 0x1102
+P4_Palnum = 0x1128
 p4_ism_choice = 0x1132
-p4_crushed_gaurd = 0x126e
+p4_crushed_guard = 0x126e
 
 
 ;Reminder that chardata.asm is for a4/a6 offsets

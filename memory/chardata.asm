@@ -96,6 +96,10 @@ Pl_Sakiyo_mode = 0x131
 PL_ism_choice = 0x132
 pl_arcade_progress = 0x140
 
+;pl_survival_mode = 0x149
+;pl_survival_mode = 0x14b
+
+
 PL_PalRam_pnt = 0x150
 
 ; = 0x158
@@ -138,12 +142,12 @@ rosegthrow = 0x1e4 ; addr.w
 
 pl_dist_away = 0x21c
 
-pl_gaurd_bar_max = 0x24c
-pl_gaurd_bar = 0x24d
+pl_guard_bar_max = 0x24c
+pl_guard_bar = 0x24d
 
 PL_Reversal_Window = 0x256
 
-pl_crushed_gaurd = 0x26e
+pl_crushed_guard = 0x26e
 ;0x27a
 
 
