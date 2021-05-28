@@ -1,4 +1,185 @@
 ;==============================================
+;Transfer to Z80 Ram
+Sound_Transfer:
+	moveq #0,d0
+	tst.b (Dip_Sound_Mode,a5)
+	beq.b loc_0030ce
+	moveq #-1,d0
+
+loc_0030ce:
+	move.b d0,$619ffd
+	move.w ($6e82,a5),d0
+	cmp.w ($6e80,a5),d0
+	beq.w loc_003166
+	cmpi.b #$ff,$61801f
+	bne.b loc_003166
+	lea (Sound_Buffer_Start,a5),a4
+	move.w ($6e82,a5),d0
+	move.b (a4,d0.w),$618007
+	move.b (1,a4,d0.w),$618009
+	move.b (2,a4,d0.w),$618001
+	move.b (3,a4,d0.w),$618003
+	move.b (4,a4,d0.w),$618005
+	move.b (5,a4,d0.w),$61800d
+	move.b (6,a4,d0.w),$61800f
+	move.b (7,a4,d0.w),$618011
+	move.b (8,a4,d0.w),$618017
+	move.b (9,a4,d0.w),$618019
+	move.b ($a,a4,d0.w),$618013
+	move.b ($b,a4,d0.w),$618015
+	move.b #0,$61801f
+	addi.w #$10,d0
+	andi.w #$ff0,d0
+	move.w d0,($6e82,a5)
+
+loc_003166:
+	rts
+
+;==============================================
+Write_to_Sound_Buffer:
+	tst.b (Dip_Demo_Sound,a5)
+	bne.b loc_003174
+	tst.b ($83,a5)
+	bne.b loc_00319c
+
+loc_003174:
+	lea (Sound_Buffer_Start,a5),a4
+	move.w ($6e80,a5),d0
+	move.l d1,(a4,d0.w)
+	move.l d2,(4,a4,d0.w)
+	move.l d3,(8,a4,d0.w)
+	move.b $ff8080,($c,a4,d0.w)
+	addi.w #$10,d0
+	andi.w #$ff0,d0
+	move.w d0,($6e80,a5)
+
+loc_00319c:
+	rts
+
+;==============================================
+loc_00319e:
+	move.w #$ff,d6
+	lea (Sound_Buffer_Start,a5),a0
+	moveq #0,d0
+
+loc_0031a8:
+	move.l d0,(a0)+
+	move.l d0,(a0)+
+	move.l d0,(a0)+
+	move.l d0,(a0)+
+	dbra d6,loc_0031a8
+	move.l d0,($6e80,a5)
+	rts
+
+;==============================================
+loc_0031ba:
+	bsr.w loc_0032a4
+	move.l #$ff00,d1
+	bra.w loc_003294
+
+loc_0031c8:
+	bsr.w loc_0032a4
+	move.l #$ff01,d1
+	bra.w loc_003294
+
+loc_0031d6:
+	bsr.w loc_0032a4
+	move.b d0,d1
+	andi.w #$f,d1
+	swap d1
+	move.w #$ff02,d1
+	bra.w loc_003294
+
+loc_0031ea:
+	bsr.w loc_0032a4
+	move.l #$ff03,d1
+	bra.w loc_003294
+
+loc_0031f8:
+	bsr.w loc_0032a4
+	move.b d0,d1
+	andi.w #3,d1
+	swap d1
+	move.w #$ff04,d1
+	bra.w loc_003294
+
+loc_00320c:
+	bsr.w loc_0032a4
+	move.l #$ff05,d1
+	bra.w loc_003294
+
+loc_00321a:
+	bsr.w loc_0032a4
+	moveq #0,d2
+	move.b d0,d2
+	ror.l #8,d2
+	move.l d0,d1
+	move.w #$ff06,d1
+	bra.w loc_003296
+
+loc_00322e:
+	bsr.w loc_0032a4
+	moveq #0,d2
+	move.b d0,d2
+	ror.l #8,d2
+	move.l d0,d1
+	move.w #$ff07,d1
+	bra.w loc_003296
+
+loc_003242:
+	bsr.w loc_0032a4
+	move.w d0,d1
+	swap d1
+	move.w #$ff08,d1
+	bra.w loc_003294
+
+loc_003252:
+	bsr.w loc_0032a4
+	move.w d0,d1
+	swap d1
+	move.w #$ff09,d1
+	bra.w loc_003294
+
+loc_003262:
+	bsr.w loc_0032a4
+	move.l #$ff0a,d1
+	bra.b loc_003294
+
+loc_00326e:
+	bsr.w loc_0032a4
+	move.l #$ff0b,d1
+	bra.b loc_003294
+
+loc_00327a:
+	bsr.w loc_0032a4
+	move.w d0,d1
+	swap d1
+	move.w #$ff0c,d1
+	bra.b loc_003294
+
+loc_003288:
+	bsr.w loc_0032a4
+	move.w d0,d1
+	swap d1
+	move.w #$ff0d,d1
+
+loc_003294:
+	moveq #0,d2
+
+loc_003296:
+	moveq #0,d3
+	bsr.w loc_003174
+
+loc_00329c:
+	movem.l (-$71a6,a5),d0-d3/a3-a4
+	rts
+
+;==============================================
+loc_0032a4:
+	movem.l d0-d3/a3-a4,(-$71a6,a5)
+	rts
+
+;==============================================
 loc_0032ac:
 	jsr loc_01bd5c
 	move.w ($10,a6),d0
