@@ -1,4 +1,4 @@
-;/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\
+;VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV
 ;Ryu
 loc_2ba5b6:
     dc.w loc_2ba5be-loc_2ba5b6
@@ -139,7 +139,7 @@ loc_2ba684:
     dc.b $00,$10
     dc.b $ff,$00
 
-;/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\
+;VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV
 loc_2ba6b0:
     dc.w loc_2ba6b8-loc_2ba6b0
     dc.w loc_2bab80-loc_2ba6b0

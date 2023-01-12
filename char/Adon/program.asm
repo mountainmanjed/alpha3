@@ -100,7 +100,7 @@ loc_03dba8:
 	movea.l ($1c,a6),a0
 	move.b (9,a0),d0
 	jsr loc_080b70
-	move.w #$9280,($48,a5)
+	move.w #$9280,(sub_palram,a5)
 
 loc_03dbd2:
 	jmp loc_02a7ea
@@ -115,7 +115,7 @@ loc_03dbd8:
 	movea.l ($1c,a6),a0
 	move.b (9,a0),d0
 	jsr loc_080b70
-	move.w #$9280,($48,a5)
+	move.w #$9280,(sub_palram,a5)
 
 loc_03dc02:
 	jmp loc_02a7ea

@@ -625,7 +625,7 @@ loc_07cb70:
 ;==============================================
 loc_07cb72:;Round Start Palette load
 	movea.l #loc_35f114,a0
-	move.w (stageid,a5),d0
+	move.w (Main_stageid,a5),d0
 	adda.w loc_07cbac(pc,d0.w),a0
 	movea.l #$90c3c0,a1
 	bra.b loc_07cbec
@@ -639,7 +639,7 @@ loc_07cb88:
 ;==============================================
 loc_07cb96:;Round End Palette load
 	movea.l #loc_35f414,a0
-	move.w (stageid,a5),d0
+	move.w (Main_stageid,a5),d0
 	adda.w loc_07cbac(pc,d0.w),a0
 	movea.l #$90c3c0,a1
 	bra.b loc_07cbec

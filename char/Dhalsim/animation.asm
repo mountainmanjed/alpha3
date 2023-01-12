@@ -11504,7 +11504,7 @@ loc_21618c:
     dc.w $0100,$0000,$0000
     dc.w $0000,$0000,$0000
 
-;/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\
+;VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV
 loc_2161a0:
 	dc.w $0012
 

@@ -7736,7 +7736,7 @@ loc_1cfe3a:
 loc_1cfe52
 	dc.w $0012
 
-;/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\
+;VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV
 loc_1cfe54:
 	dc.w $0014
 	dc.l loc_1d704a,loc_1d7060,loc_1d7088,loc_1d70b0
@@ -7773,7 +7773,7 @@ loc_1cfe54:
 	dc.l loc_1d8e3e,loc_1cfe52,loc_1cfe52,loc_1d8e3e
 	dc.w $ffff
 
-;/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\
+;VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV
 loc_1d0058:
 	dc.w $0014
 	dc.l loc_1d8e54,loc_1d8e6a,loc_1d8e86,loc_1d8eba
@@ -7810,7 +7810,7 @@ loc_1d0058:
 	dc.l loc_1daaf4,loc_1cfe52,loc_1cfe52,loc_1daaf4
 	dc.w $ffff
 
-;/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\
+;VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV
 loc_1d025c:
 	dc.w $0014
 	dc.l loc_1dab0a,loc_1dab20,loc_1dab48,loc_1dab70
@@ -7847,7 +7847,7 @@ loc_1d025c:
 	dc.l loc_1d8e3e,loc_1cfe52,loc_1cfe52,loc_1d8e3e
 	dc.w $ffff
 
-;/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\
+;VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV
 loc_1d0460:
 	dc.w $0014
 	dc.l loc_1dc63e,loc_1dc654,loc_1dc670,loc_1dc6b0

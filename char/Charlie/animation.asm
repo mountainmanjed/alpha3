@@ -6921,7 +6921,7 @@ loc_16d19c:
 
     dc.l loc_16d19c
 
-;/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\
+;VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV
 loc_16d1b4:
     dc.w $0006,$001c,$000a
     dc.w $ffd0,$ffa0

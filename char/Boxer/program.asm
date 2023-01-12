@@ -112,7 +112,7 @@ loc_059a10:
 	jsr loc_080b70
 	moveq #$41,d0
 	jsr loc_080b70
-	move.w #$9280,($48,a5)
+	move.w #$9280,(sub_palram,a5)
 
 loc_059a36:
 	bsr.w loc_05ac24

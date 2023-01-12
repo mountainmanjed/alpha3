@@ -7694,7 +7694,7 @@ loc_095a0c:
 	bcc.b loc_095a30
 	addq.b #2,(5,a6)
 	move.w #$20,($3a,a6)
-	move.w #$9280,($48,a5)
+	move.w #$9280,(sub_palram,a5)
 	bsr.w loc_096218
 
 loc_095a30:

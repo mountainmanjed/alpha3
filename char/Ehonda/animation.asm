@@ -6233,7 +6233,7 @@ loc_250a52:
     dc.w $0100,$0000,$0000
     dc.w $0000,$0000,$0000
 
-;/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\
+;VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV
 loc_250a66:
 	dc.w $0012
 

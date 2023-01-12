@@ -9099,7 +9099,7 @@ loc_1c1d2a:
     dc.w $0000,$0000,$0000
     dc.w $0000,$0000,$0000
 
-;/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\
+;VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV
 loc_1c1d3e:
 	dc.w $0012
 

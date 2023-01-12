@@ -6220,7 +6220,7 @@ loc_14ae6e:
 
     dc.l loc_14ae5a
 
-;/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\
+;VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV
 ;Projectiles
 loc_14ae86:
     dc.w loc_14ca3a-loc_14ae86
@@ -8435,7 +8435,7 @@ loc_14ca22:
 
     dc.l loc_14c946
 
-;/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\
+;VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV
 loc_14ca3a:
 	dc.b $01,$00,$00,$00
 	dc.l loc_152c82
@@ -8623,7 +8623,7 @@ loc_14cbc2:
 
 	dc.l loc_14cb6a
 
-;/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\
+;VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV
 ;Sprite Maps
 loc_14cbce:
 	dc.w $0012

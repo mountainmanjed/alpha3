@@ -2505,7 +2505,7 @@ loc_04aa1e:
 loc_04aa58:
 	rts
 
-;VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV/\
+;VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV
 loc_04aa5a:
 	dc.w $0000,$0002,$0000,$fffe
 
@@ -2635,7 +2635,7 @@ loc_04ab92:
 	move.l #$70000,($44,a6)
 	move.l #$ffffa000,($4c,a6)
 	move.b #1,($31,a6)
-	move.w #$9280,($48,a5)
+	move.w #$9280,(sub_palram,a5)
 
 loc_04abf0:
 	jmp loc_02a7ea

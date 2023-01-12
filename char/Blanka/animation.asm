@@ -9406,7 +9406,7 @@ loc_25b970:
 
     dc.l loc_25b8e4
 
-;/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\
+;VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV
 loc_25b988
 	dc.w $0012
 

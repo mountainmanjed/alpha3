@@ -6661,7 +6661,7 @@ loc_221014:
     dc.b $ff,$40,$00,$00
     dc.l loc_229408
 
-;/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\
+;VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV
 loc_22101c:
 	dc.w $0012
 

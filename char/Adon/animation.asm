@@ -6529,7 +6529,7 @@ loc_18a6b4:
     dc.b $02,$40,$00,$00
     dc.l loc_18efb6
 
-;/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\
+;VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV
 loc_18a6bc:
     dc.w $0006,$001c,$000d
     dc.w $ffd8,$ff92

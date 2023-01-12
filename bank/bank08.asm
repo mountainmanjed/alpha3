@@ -6555,7 +6555,7 @@ loc_084e16:
 	add.b d0,d0
 	move.w loc_084e02(pc,d0.w),($5e,a6)
 	move.w #$20,($3a,a6)
-	move.w #$9280,($48,a5)
+	move.w #$9280,(sub_palram,a5)
 	move.b ($10c,a4),d0
 	jsr loc_003c5e
 
@@ -15966,18 +15966,18 @@ loc_08db3c:
 	move.w d0,($16,a6)
 	move.b #8,($3a,a6)
 	move.l #$c0a00400,d2
-	move.w ($172,a5),d1
+	move.w (StageID_01,a5),d1
 	move.w d1,d0
 	lsr.w #1,d0
 	btst d0,d2
 	beq.b loc_08db8c
-	move.w (stageid,a5),d1
+	move.w (Main_stageid,a5),d1
 
 loc_08db8c:
 	bsr.w loc_08df3e
 	move.w d0,($10,a6)
 	move.w d1,($14,a6)
-	move.w (stageid,a5),d1
+	move.w (Main_stageid,a5),d1
 	bsr.w loc_08df3e
 	move.w d0,($4a,a6)
 	move.w d1,($4e,a6)
@@ -16331,7 +16331,7 @@ loc_08df4a:
 
 ;-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 loc_08dfc2:
-	move.w (stageid,a5),d0
+	move.w (Main_stageid,a5),d0
 	lsr.b #1,d0
 	move.l #$c0a00400,d1
 	btst d0,d1
@@ -16518,7 +16518,7 @@ loc_08e148:
 	move.w loc_08e1b4+4(pc,d0.w),($14,a6)
 	moveq #4,d0
 	add.b ($a,a6),d0
-	move.w (stageid,a5),d1
+	move.w (Main_stageid,a5),d1
 	lsl.w #2,d1
 	bsr.w loc_08eca0
 	moveq #0,d0
@@ -16649,7 +16649,7 @@ loc_08e276:
 	addq.b #2,d0
 
 loc_08e2d8:
-	move.w (stageid,a5),d1
+	move.w (Main_stageid,a5),d1
 	lsl.w #2,d1
 	bra.w loc_08eca0
 

@@ -1,7 +1,7 @@
 ;Cps1/16x16 Layer Programming
 loc_017c4e:
-	lea.l (Camera_Data,a5),a6
-	move.w (stageid,a5),d0
+	lea.l (W_Cps1_Start,a5),a6
+	move.w (Main_stageid,a5),d0
 	move.w loc_017c6c(pc,d0.w),d1
 	jsr loc_017c6c(pc,d1.w)
 	move.w ($20,a6),($28,a6)

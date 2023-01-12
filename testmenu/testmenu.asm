@@ -20,7 +20,7 @@ loc_00dd7e:
 	move.l d0,($c,a5)
 	move.l d0,($10,a5)
 	move.l d0,($14,a5)
-	move.w d0,(stageid,a5)
+	move.w d0,(Main_stageid,a5)
 	move.b d0,($8e,a5)
 	move.b d0,(Active_Player,a5)
 	move.b d0,($aa,a5)
@@ -51,7 +51,7 @@ loc_00de16:
 	jsr loc_01b0e6
 	bsr.w loc_010cc2
 	move.w #Mainpalette,(palrampointer,a5)
-	move.w #$90c0,($48,a5)
+	move.w #$90c0,(sub_palram,a5)
 	move.b #$10,(a6)
 	move.b #$10,(1,a6)
 	moveq #0,d0
@@ -1177,7 +1177,7 @@ loc_00ea5e:
 	addq.w #2,d0
 
 loc_00ea7c:
-	tst.b ($86,a5)
+	tst.b (NetworkEnabled,a5)
 	beq.b loc_00ea84
 	addq.w #1,d0
 
@@ -1245,7 +1245,7 @@ loc_00eb00:
 	move.b (Dip_Coin_Mode,a5),(-$5f5c,a5)
 	move.b (Dip_Continue,a5),(-$5f5b,a5)
 	move.b (Dip_Continue,a5),(-$5f5a,a5)
-	move.b ($96,a5),(-$5f59,a5)
+	move.b (Dip_Monitor_Flip,a5),(-$5f59,a5)
 	move.b (Dip_Demo_Sound,a5),(-$5f58,a5)
 	move.b (Dip_Sound_Mode,a5),(-$5f57,a5)
 	move.b (Dip_Chutes,a5),(-$5f56,a5)
@@ -2201,7 +2201,7 @@ loc_00fdc6:
 	bsr.w loc_010894
 	andi.w #3,d0
 	beq.b loc_00fdd8
-	eori.b #$80,($96,a5)
+	eori.b #$80,(Dip_Monitor_Flip,a5)
 	bra.b loc_00fdda
 
 loc_00fdd8:
@@ -2211,7 +2211,7 @@ loc_00fdd8:
 loc_00fdda:
 	moveq #$1e,d1
 	moveq #0,d0
-	move.b ($96,a5),d0
+	move.b (Dip_Monitor_Flip,a5),d0
 	cmp.b (-$5f59,a5),d0
 	beq.b loc_00fdea
 	moveq #$1d,d1
@@ -3506,7 +3506,7 @@ loc_010c88:
 	andi.b #$cc,($6b,a5)
 	moveq #0,d0
 	move.l d0,(0,a5)
-	move.w d0,(stageid,a5)
+	move.w d0,(Main_stageid,a5)
 	move.w #$1b0e,($32,a5)
 	move.w #$2461,($3a,a5)
 
@@ -5814,6 +5814,7 @@ loc_015094:
 	dc.w $0000,$0000,$0007,$9ab0,$0000,$0000,$0007,$9f24
 	dc.w $0007,$a07c,$0000,$0000,$0007,$a462,$0007,$ae16
 
+;unused
 loc_0151a4:
 	dc.w $0000,$0000,$0000,$0000,$0000,$0000,$0000,$0000
 	dc.w $0000,$0000,$0000,$0000,$0000,$0000,$0000,$0000
@@ -5829,6 +5830,7 @@ loc_0151a4:
 	dc.w $0074,$0000,$0091,$0080,$0095,$007e,$0000,$0087
 	dc.w $0000,$0000,$0000,$0000,$0000,$0000
 
+;unused
 loc_015270:
 	dc.w $0001,$0202,$0102,$0304,$0506,$0708,$090a,$0b0c
 	dc.w $0d0e,$0f10,$1112,$1314,$1516,$1718,$191a,$1b1c
@@ -5926,42 +5928,42 @@ loc_0155c2:
 
 ;VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV
 loc_0155c4:
-	dc.w loc_01560c-loc_0155c4
-	dc.w loc_0156d9-loc_0155c4
-	dc.w loc_015735-loc_0155c4
-	dc.w loc_01575d-loc_0155c4
-	dc.w loc_0157da-loc_0155c4
-	dc.w loc_0157fa-loc_0155c4
-	dc.w loc_015a11-loc_0155c4
-	dc.w loc_015a29-loc_0155c4
-	dc.w loc_015aeb-loc_0155c4
-	dc.w loc_015b03-loc_0155c4
-	dc.w loc_015b60-loc_0155c4
-	dc.w loc_015b85-loc_0155c4
-	dc.w loc_015bda-loc_0155c4
-	dc.w loc_015c3c-loc_0155c4
-	dc.w loc_015c91-loc_0155c4
-	dc.w loc_015cf7-loc_0155c4
-	dc.w loc_015d74-loc_0155c4
-	dc.w loc_015e43-loc_0155c4
-	dc.w loc_015f21-loc_0155c4
-	dc.w loc_016001-loc_0155c4
-	dc.w loc_016104-loc_0155c4
-	dc.w loc_0161e5-loc_0155c4
-	dc.w loc_016211-loc_0155c4
-	dc.w loc_0162cb-loc_0155c4
-	dc.w loc_0162e7-loc_0155c4
-	dc.w loc_016407-loc_0155c4
-	dc.w loc_0164c0-loc_0155c4
-	dc.w loc_0165d1-loc_0155c4
-	dc.w loc_0166ce-loc_0155c4
-	dc.w loc_0167a8-loc_0155c4
-	dc.w loc_0167e0-loc_0155c4
-	dc.w loc_016818-loc_0155c4
-	dc.w loc_016850-loc_0155c4
-	dc.w loc_01686d-loc_0155c4
-	dc.w loc_016889-loc_0155c4
-	dc.w loc_0168a5-loc_0155c4
+	dc.w loc_01560c-loc_0155c4 ;00
+	dc.w loc_0156d9-loc_0155c4 ;01
+	dc.w loc_015735-loc_0155c4 ;02
+	dc.w loc_01575d-loc_0155c4 ;03
+	dc.w loc_0157da-loc_0155c4 ;04
+	dc.w loc_0157fa-loc_0155c4 ;05
+	dc.w loc_015a11-loc_0155c4 ;06
+	dc.w loc_015a29-loc_0155c4 ;07
+	dc.w loc_015aeb-loc_0155c4 ;08
+	dc.w loc_015b03-loc_0155c4 ;09
+	dc.w loc_015b60-loc_0155c4 ;0a
+	dc.w loc_015b85-loc_0155c4 ;0b
+	dc.w loc_015bda-loc_0155c4 ;0c A Time
+	dc.w loc_015c3c-loc_0155c4 ;0d
+	dc.w loc_015c91-loc_0155c4 ;0e Euro Gamedata  A.Time
+	dc.w loc_015cf7-loc_0155c4 ;0f
+	dc.w loc_015d74-loc_0155c4 ;10
+	dc.w loc_015e43-loc_0155c4 ;11
+	dc.w loc_015f21-loc_0155c4 ;12
+	dc.w loc_016001-loc_0155c4 ;13
+	dc.w loc_016104-loc_0155c4 ;14
+	dc.w loc_0161e5-loc_0155c4 ;15
+	dc.w loc_016211-loc_0155c4 ;16
+	dc.w loc_0162cb-loc_0155c4 ;17
+	dc.w loc_0162e7-loc_0155c4 ;18
+	dc.w loc_016407-loc_0155c4 ;19
+	dc.w loc_0164c0-loc_0155c4 ;1a
+	dc.w loc_0165d1-loc_0155c4 ;1b
+	dc.w loc_0166ce-loc_0155c4 ;1c
+	dc.w loc_0167a8-loc_0155c4 ;1d
+	dc.w loc_0167e0-loc_0155c4 ;1e
+	dc.w loc_016818-loc_0155c4 ;1f
+	dc.w loc_016850-loc_0155c4 ;20
+	dc.w loc_01686d-loc_0155c4 ;21
+	dc.w loc_016889-loc_0155c4 ;22
+	dc.w loc_0168a5-loc_0155c4 ;23
 
 loc_01560c:
 	dc.b $0f,$0c,$1f

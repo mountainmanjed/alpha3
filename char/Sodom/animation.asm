@@ -10763,7 +10763,7 @@ loc_197226:
     dc.b $04,$40,$00,$00
     dc.l loc_1a5eda
 
-;/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\
+;VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV
 loc_19722e:
 	dc.w $0012
 

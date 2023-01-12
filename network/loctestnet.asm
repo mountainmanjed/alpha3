@@ -1,6 +1,9 @@
+;Memory Labels
+	include "memory/Network_Memory.68k"
+
 ;==============================================
 Loc_Test_Network:
-	tst.b ($86,a5)
+	tst.b (NetworkEnabled,a5)
 	beq.b loc_002582
 	bsr.b loc_002584
 	bra.b loc_0025a8
@@ -99,7 +102,7 @@ loc_002640:
 	bsr.w loc_002a2c
 	move.w loc_002682(pc,d3.w),d0
 	jsr loc_002682(pc,d0.w)
-	lea $661020.l,a0
+	lea $661020,a0
 	movep.l (1,a0),d0
 	cmpi.l #$f423f,d0
 	bls.b loc_002680
@@ -263,14 +266,14 @@ loc_00283c:
 
 ;VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV
 loc_00283e:
-	dc.w loc_00288e-loc_00283e
-	dc.w loc_002d30-loc_00283e
-	dc.w loc_002d30-loc_00283e
-	dc.w loc_00287a-loc_00283e
-	dc.w loc_002d30-loc_00283e
-	dc.w loc_00284e-loc_00283e
-	dc.w loc_002864-loc_00283e
-	dc.w loc_002d30-loc_00283e
+	dc.w loc_00288e-loc_00283e; No Error
+	dc.w loc_002d30-loc_00283e;
+	dc.w loc_002d30-loc_00283e; 
+	dc.w loc_00287a-loc_00283e; 
+	dc.w loc_002d30-loc_00283e;
+	dc.w loc_00284e-loc_00283e;
+	dc.w loc_002864-loc_00283e;
+	dc.w loc_002d30-loc_00283e;
 
 ;==============================================
 loc_00284e:
@@ -392,18 +395,18 @@ loc_0029b6:
 
 ;==============================================
 loc_0029b8:
-	lea $661200,a0
-	lea $662200,a1
-	lea $663200,a2
+	lea Cab0_Rng,a0
+	lea Cab1_Rng,a1
+	lea Cab2_Rng,a2
 	moveq #1,d6
 	bsr.w loc_002a2c
 	move.w loc_0029f8(pc,d3.w),d0
 	jsr loc_0029f8(pc,d0.w)
-	lea $661200,a0
+	lea Cab0_Rng,a0
 	movep.w (1,a0),d0
 	tst.w d0
 	bne.b loc_0029f6
-	move.w #$1c3,d1
+	move.w #RngSeed,d1; Set Rng seed now in the network code
 	movep.w d1,(1,a0)
 	movep.w d1,($1001,a0)
 	movep.w d1,($2001,a0)
@@ -413,29 +416,44 @@ loc_0029f6:
 
 ;VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV
 loc_0029f8:
-	dc.w loc_002a2a-loc_0029f8
-	dc.w loc_002dba-loc_0029f8
-	dc.w loc_002dba-loc_0029f8
-	dc.w loc_002a20-loc_0029f8
-	dc.w loc_002dba-loc_0029f8
-	dc.w loc_002a08-loc_0029f8
-	dc.w loc_002a14-loc_0029f8
-	dc.w loc_002dba-loc_0029f8
+	dc.w loc_002a2a-loc_0029f8 ; No Error
+	dc.w Net_ResetRNG-loc_0029f8
+	dc.w Net_ResetRNG-loc_0029f8 
+	dc.w loc_002a20-loc_0029f8 ; C2 overwrites C0
+	dc.w Net_ResetRNG-loc_0029f8
+	dc.w loc_002a08-loc_0029f8 ; C0 overwrites C1
+	dc.w loc_002a14-loc_0029f8 ; C1 overwrites C2
+	dc.w Net_ResetRNG-loc_0029f8
 
 ;==============================================
+;RNG OverWrites
+;==============================================
 loc_002a08:
-	move.l $661200,$662200
+	move.l Cab0_Rng,Cab1_Rng
 	rts
 
 loc_002a14:
-	move.l $662200,$663200
+	move.l Cab1_Rng,Cab2_Rng
 	rts
 
 loc_002a20:
-	move.l $663200,$661200
+	move.l Cab2_Rng,Cab0_Rng
 
 loc_002a2a:
 	rts
+
+;==============================================
+;Comparing Values between Cabs
+;d3 returns with error
+;	Bit 2 Cab 1&2 Error
+;	Bit 4 Cab 1&3 Error
+;	Bit 8 Cab 2&3 Error
+
+;d6 range in words
+
+;a0 Cab0 Address
+;a1 Cab1 Address
+;a2 Cab2 Address
 
 ;==============================================
 loc_002a2c:
@@ -469,7 +487,7 @@ loc_002a56:
 
 ;==============================================
 loc_002a58:
-	tst.b ($86,a5)
+	tst.b (NetworkEnabled,a5)
 	beq.b loc_002aa0
 	lea $661020,a0
 	movep.l (1,a0),d1
@@ -495,7 +513,7 @@ loc_002aa0:
 
 ;==============================================
 loc_002aa2:
-	tst.b ($86,a5)
+	tst.b (NetworkEnabled,a5)
 	beq.b loc_002aea
 	lea $661028,a0
 	movep.l (1,a0),d1
@@ -521,7 +539,7 @@ loc_002aea:
 
 ;==============================================
 loc_002aec:
-	tst.b ($86,a5)
+	tst.b (NetworkEnabled,a5)
 	beq.b loc_002b34
 	lea $661030,a0
 	movep.l (1,a0),d0
@@ -547,7 +565,7 @@ loc_002b34:
 
 ;==============================================
 loc_002b36:
-	tst.b ($86,a5)
+	tst.b (NetworkEnabled,a5)
 	beq.b loc_002b86
 	tst.b ($9c,a5)
 	beq.b loc_002b44
@@ -600,7 +618,7 @@ loc_002bbc:
 
 ;==============================================
 loc_002bcc:
-	tst.b ($86,a5)
+	tst.b (NetworkEnabled,a5)
 	beq.b loc_002c46
 	lea.l $661048,a0
 	movep.l (1,a0),d1
@@ -618,7 +636,7 @@ loc_002bcc:
 	bra.b loc_002c38
 
 loc_002c08:
-	tst.b ($86,a5)
+	tst.b (NetworkEnabled,a5)
 	beq.b loc_002c46
 	moveq #0,d0
 	move.l d0,$661048
@@ -638,26 +656,29 @@ loc_002c46:
 	rts
 
 ;==============================================
+;Sharing Rng across 3 cabinets
 loc_002c48:
-	tst.b ($86,a5)
+	tst.b (NetworkEnabled,a5)
 	beq.b loc_002c82
 	move.w (RngByte0,a5),d0
-	lea.l $661200,a0
+	lea.l Cab0_Rng,a0
 	movep.w d0,(1,a0)
-	lea.l $662200,a0
+	lea.l Cab1_Rng,a0
 	movep.w d0,(1,a0)
-	lea.l $663200,a0
+	lea.l Cab2_Rng,a0
 	movep.w d0,(1,a0)
 	bsr.w loc_0029b8
 
 loc_002c74:
-	lea.l $661200,a0
+	lea.l Cab0_Rng,a0
 	movep.w (1,a0),d1
 	move.w d1,(RngByte0,a5)
 
 loc_002c82:
 	rts
 
+
+;==============================================
 loc_002c84:
 	rts
 
@@ -670,7 +691,7 @@ loc_002c86:
 	bsr.w loc_002d5e
 	bsr.w loc_002d8c
 	bsr.w loc_002dda
-	bra.w loc_002dba
+	bra.w Net_ResetRNG
 
 ;==============================================
 loc_002ca6:
@@ -745,12 +766,15 @@ loc_002d8c:
 	rts
 
 ;==============================================
-loc_002dba:
+;When more than 1 Cab has the wrong RNG
+;Reset it for everyone
+;==============================================
+Net_ResetRNG:
 	WATCHDOG
-	move.l #$100c3,d0
-	move.l d0,$661200
-	move.l d0,$662200
-	move.l d0,$663200
+	move.l #Net_Reset_Rngseed,d0
+	move.l d0,Cab0_Rng
+	move.l d0,Cab1_Rng
+	move.l d0,Cab2_Rng
 	rts
 
 ;==============================================
@@ -778,7 +802,7 @@ loc_002e02:
 
 ;==============================================
 loc_002e12:
-	tst.b ($86,a5)
+	tst.b (NetworkEnabled,a5)
 	beq.b loc_002e3e
 	bsr.w loc_002ca6
 	bsr.w loc_002cd4
@@ -786,7 +810,7 @@ loc_002e12:
 	bsr.w loc_002d30
 	bsr.w loc_002d5e
 	bsr.w loc_002d8c
-	bsr.b loc_002dba
+	bsr.b Net_ResetRNG
 	bsr.b loc_002dda
 	WATCHDOG
 	bra.w loc_0025a8
@@ -796,7 +820,7 @@ loc_002e3e:
 
 ;==============================================
 loc_002e40:
-	tst.b ($86,a5)
+	tst.b (NetworkEnabled,a5)
 	beq.b loc_002e5c
 	move.w $664000,d0
 	btst #0,d0

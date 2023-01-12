@@ -251,7 +251,7 @@ loc_0651a6:
 	move.w ($38,a6),($4e,a6)
 	jsr loc_080b70
 	move.w ($4e,a6),($38,a6)
-	move.w #$9280,($48,a5)
+	move.w #$9280,(sub_palram,a5)
 
 loc_0651d2:
 	tst.b ($32,a6)

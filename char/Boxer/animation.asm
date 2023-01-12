@@ -5750,7 +5750,7 @@ loc_23ce46:
     dc.b $0d,$40,$00,$00
     dc.l loc_23dab0
 
-;/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\
+;VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV
 loc_23ce4e:
 	dc.w $0012
 

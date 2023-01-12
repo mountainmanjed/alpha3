@@ -12,7 +12,7 @@ CPSinput00 = 0x804000
 CPSinput01 = 0x804010
 CPSinput02 = 0x804020
 QsoundVolume = 0x804030
-Epprom = 0x804040
+Epprom_RW = 0x804040
 
 DebugDip = 0x8040b0
 OBJram_Bank0 = 0x8040e0

@@ -1,0 +1,41 @@
+;Epprom in main memory
+main_epprom = 0xff0c6c
+;with a5 ff8000
+main_epp_offset = -0x7394
+
+Save_Coin_Mode = 0x00
+Save_Set_Continue = 0x01
+
+Save_Monitor_Flip = 0x02
+Save_Demo_Sound = 0x03
+Save_Sound_Mode = 0x04
+Save_Chutes = 0x05
+
+Save_06 = 0x06; ff80bb
+Save_07 = 0x07; ff80bc
+Save_08 = 0x08; ff8093
+Save_09 = 0x09; ff80ce
+Save_0a = 0x0a; ff80d2
+Save_0b = 0x0b; ff80d3
+
+Save_0c = 0x0c; unused
+Save_0d = 0x0d; unused
+Save_0e = 0x0e; unused
+Save_0f = 0x0f; unused
+
+Save_Difficulty = 0x10 
+Save_Damage = 0x11 
+Save_Timer_Speed = 0x12 
+Save_Game_Turbo = 0x13 
+Save_1PRounds = 0x14 
+Save_2PRounds = 0x15 
+Save_EventMode = 0x16
+Save_Join_in = 0x17
+
+Save_Coin_count = 0x60 ;Long
+Save_Service_count = 0x64 ;Long
+Save_FreePlay_count = 0x68 ;Long
+Save_6c = 0x6c ;Long
+Save_70 = 0x70 ;Long
+
+Save_Unlock = 0x75

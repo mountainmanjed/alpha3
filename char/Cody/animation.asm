@@ -8289,7 +8289,7 @@ loc_276e40:
     dc.w $0100,$0000,$0000
     dc.w $0000,$0000,$0000
 
-;/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\
+;VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV
 loc_276e54:
 	dc.w $0012
 

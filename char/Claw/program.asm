@@ -698,7 +698,7 @@ loc_067dfc:
 	move.b ($2c9,a6),($b,a6)
 	jsr loc_02e01e
 	beq.b loc_067e42
-	cmpi.w #$38,(stageid,a5)
+	cmpi.w #$38,(Main_stageid,a5)
 	bne.b loc_067e42
 	move.b #$1e,($aa,a6)
 	st.b ($1fe,a6)
@@ -734,7 +734,7 @@ loc_067e96:
 	clr.b ($1fe,a6)
 	jsr loc_02e01e
 	beq.b loc_067ed0
-	cmpi.w #$38,(stageid,a5)
+	cmpi.w #$38,(Main_stageid,a5)
 	bne.b loc_067ed0
 	move.b #$1e,($aa,a6)
 	move.b #4,($82,a6)
@@ -876,7 +876,7 @@ loc_06806c:
 	move.b ($127,a6),d0
 	cmpi.b #$10,d0
 	bcc.w loc_06811c
-	cmpi.w #$38,(stageid,a5)
+	cmpi.w #$38,(Main_stageid,a5)
 	bne.w loc_06811c
 	clr.b ($1fe,a6)
 	move.b #$1e,($aa,a6)
@@ -891,7 +891,7 @@ loc_068090:
 	move.b ($127,a6),d0
 	cmpi.b #$10,d0
 	bcc.w loc_06811c
-	cmpi.w #$38,(stageid,a5)
+	cmpi.w #$38,(Main_stageid,a5)
 	bne.w loc_06811c
 	st.b ($1fe,a6)
 	move.b #$1e,($aa,a6)

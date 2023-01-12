@@ -6772,7 +6772,7 @@ loc_282fe6:
     dc.b $ff,$40,$00,$00
     dc.l loc_289d9a
 
-;/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\
+;VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV
 loc_282fee:
 	dc.w $0012
 

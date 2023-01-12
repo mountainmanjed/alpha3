@@ -1300,7 +1300,7 @@ loc_0df412:
 	dc.l loc_068040,loc_06a454,loc_06bfea,loc_06fa24
 
 ;VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV
-loc_0df492:
+Char_AI_Scripts:
 	dc.l loc_2ba5b6,loc_2bba6e,loc_2bc25c,loc_2bd64c
 	dc.l loc_2be30a,loc_2c1152,loc_2c23e2,loc_2c5914
 	dc.l loc_2c6b8e,loc_2c9d70,loc_2cabec,loc_2cb550

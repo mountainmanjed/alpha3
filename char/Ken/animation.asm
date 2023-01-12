@@ -6148,7 +6148,7 @@ loc_15796c:
     dc.w $4749,$0200,$0000
     dc.w $02d0,$0000,$0000
 
-;/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\
+;VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV
 loc_157980:
     dc.w loc_1579a4-loc_157980
     dc.w loc_1579a4-loc_157980
@@ -6502,11 +6502,11 @@ loc_157d2c:
 
     dc.l loc_157cf0
 
-;/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\
+;VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV
 loc_157d44:
 	dc.w $0012
 
-;/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\
+;VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV
 loc_157d46:
     dc.w $0006,$0019,$000c
     dc.w $ffd1,$ffa2

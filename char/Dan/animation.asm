@@ -6198,7 +6198,7 @@ loc_1ee038:
 
     dc.l loc_1edffc
 
-;/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\
+;VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV
 loc_1ee050:
 	dc.w $0012
 

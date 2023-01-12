@@ -784,7 +784,9 @@ loc_0039d4:
 loc_0039e0:
 	cmpi.w #$16,d0
 	beq.b loc_0039ec
-	tst.b ($a6,a5)
+
+;Music off check
+	tst.b (Dip_BGM,a5)
 	bne.b loc_003a0e
 
 loc_0039ec:
@@ -863,7 +865,7 @@ loc_003a6e:
 loc_003a86:
 	cmpi.w #8,(Arcade_Match,a5)
 	bne.b loc_003a9a
-	cmpi.w #Boss_Stage,(stageid,a5)
+	cmpi.w #Boss_Stage,(Main_stageid,a5)
 	bne.b loc_003a9a
 	moveq #$23,d0;Set Final Round Song
 	bra.b loc_003aac
@@ -871,7 +873,7 @@ loc_003a86:
 loc_003a9a:
 	cmpi.w #8,(Arcade_Match,a5)
 	bne.b loc_003aac
-	cmpi.w #Akm_Stage,(stageid,a5)
+	cmpi.w #Akm_Stage,(Main_stageid,a5)
 	bne.b loc_003aac
 	moveq #$24,d0;Set Shin Akuma Song
 
@@ -951,11 +953,11 @@ loc_003af8:
 	dc.w $0005;0c Continue
 	dc.w $0003;0e Here Comes a Challenger
 	dc.w $0006;10 Game Over
-	dc.w $0007;12 High Score
-	dc.w $0001;14 INtro
-	dc.w $0008;16
+	dc.w $0007;12 Initial Entry
+	dc.w $0001;14 Attract Demo
+	dc.w $0008;16 Char Intro
 	dc.w $002b;18 Rival Battle
-	dc.w $002c;1a 
+	dc.w $002c;1a Boss Text
 	dc.w $0029;1c Final Round
 
 ;==============================================
@@ -963,10 +965,16 @@ loc_003b16:
 	moveq #1,d1
 	moveq #0,d2
 	move.l #$7fff,d3
-	tst.b ($a6,a5)
+
+;All Music off check
+	tst.b (Dip_BGM,a5)
 	bne.b loc_003b34
+
+;Demo Sound
 	tst.b (Dip_Demo_Sound,a5)
 	bne.b loc_003b32
+
+;
 	tst.b ($83,a5)
 	bne.b loc_003b34
 

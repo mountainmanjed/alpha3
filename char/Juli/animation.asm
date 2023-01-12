@@ -8284,7 +8284,7 @@ loc_29f2fe:
     dc.b $03,$40,$00,$00
     dc.l loc_2a751c
 
-;/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\
+;VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV
 loc_29f306:
 	dc.w $0012
 

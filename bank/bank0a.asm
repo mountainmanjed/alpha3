@@ -1860,7 +1860,7 @@ loc_0a147c:
 	move.w loc_0a1488(pc,d0.w),d1
 	jmp loc_0a1488(pc,d1.w)
 
-;/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\
+;VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV
 loc_0a1488:
 	dc.w loc_0a148c-loc_0a1488
 	dc.w loc_0a14ac-loc_0a1488
@@ -7014,7 +7014,7 @@ loc_0a5788:
 
 ;-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 loc_0a578a:
-	cmpi.w #$1e,(stageid,a5)
+	cmpi.w #$1e,(Main_stageid,a5)
 	bne.w loc_0a57f4
 	tst.w ($138,a5)
 	bne.w loc_0a57f4
@@ -7566,7 +7566,7 @@ loc_0a5c14:
 	beq.w loc_0a5c8e
 	lsl.l #8,d1
 	movea.l d1,a3
-	move.w (stageid,a5),d3
+	move.w (Main_stageid,a5),d3
 
 loc_0a5c48:
 	move.w (a2)+,d0
@@ -18984,7 +18984,7 @@ loc_0ad056:
 	move.w #$700,($2c,a5)
 	move.l #MainpaletteDirect,($e0,a5)
 	move.w #$92a0,(palrampointer,a5)
-	move.w #$92a0,($48,a5)
+	move.w #$92a0,(sub_palram,a5)
 	move.w #$1e0e,($32,a5)
 	move.w #$4261,($3a,a5)
 	jmp loc_01738a
@@ -19431,7 +19431,7 @@ loc_0ad560:
 
 ;-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x
 loc_0ad566:
-	move.w (stageid,a5),d1
+	move.w (Main_stageid,a5),d1
 	movea.l #loc_2ed7ae,a0
 	move.w (a0,d1.w),d1
 	lea.l (a0,d1.w),a0
@@ -22156,7 +22156,7 @@ loc_0af006:
 ;----------------------------------------------
 loc_0af00e:
 	addq.b #2,(4,a6)
-	move.w (stageid,a5),d0
+	move.w (Main_stageid,a5),d0
 	lea.l loc_361354,a0
 	move.w (a0,d0.w),d0
 	lea.l (a0,d0.w),a0

@@ -8135,7 +8135,7 @@ loc_1e4cac:
 
     dc.l loc_1e4cac
 
-;/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\
+;VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV
 loc_1e4cc4:
 	dc.w $0012
 

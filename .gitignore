@@ -22,3 +22,10 @@ sz3ud.03c
 sz3ud.04c
 nvram/sfa3ud/eeprom
 SFA3.desktop
+nvram/mshvsf/eeprom
+nvram/sfa3/eeprom
+nvram/ssf2xjd/eeprom
+sfa3 sample.desktop
+test.bin
+bad
+dlist

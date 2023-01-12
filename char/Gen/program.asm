@@ -149,7 +149,7 @@ loc_056bc0:
 	move.l #$fffdc000,($48,a6)
 	moveq #$54,d0
 	jsr loc_080b70
-	move.w #$9280,($48,a5)
+	move.w #$9280,(sub_palram,a5)
 	moveq #$4d,d0
 	jmp loc_02a758
 
@@ -183,7 +183,7 @@ loc_056c2c:
 	bne.b loc_056c48
 	move.w #$dd,d0
 	jsr loc_080b70
-	move.w #$9280,($48,a5)
+	move.w #$9280,(sub_palram,a5)
 
 loc_056c48:
 	subq.b #1,($3a,a6)

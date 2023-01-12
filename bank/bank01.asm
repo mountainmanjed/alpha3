@@ -409,7 +409,7 @@ loc_016fa0:
 	bne.b loc_016fda
 	clr.b ($181,a5)
 	move.w #$9240,(palrampointer,a5)
-	move.w #$9240,($48,a5)
+	move.w #$9240,(sub_palram,a5)
 
 loc_016fda:
 	rts
@@ -511,7 +511,7 @@ loc_017092:
 loc_0170b8:
 	clr.b ($181,a5)
 	move.w #$9220,(palrampointer,a5)
-	move.w #$9220,($48,a5)
+	move.w #$9220,(sub_palram,a5)
 	rts
 
 ;==============================================
@@ -807,7 +807,7 @@ loc_017304:
 	tst.b ($181,a5)
 	bne.b loc_017304
 	move.w #$92a0,(palrampointer,a5)
-	move.w #$92a0,($48,a5)
+	move.w #$92a0,(sub_palram,a5)
 	rts
 
 ;==============================================
@@ -821,7 +821,7 @@ loc_017320:
 loc_017330:
 	st.b ($182,a5)
 	move.w #Mainpalette,(palrampointer,a5)
-	move.w #$90c0,($48,a5)
+	move.w #$90c0,(sub_palram,a5)
 	move.w #$100,d0
 	move.w #$c01,d1
 	move.w #$ffff,d2
@@ -957,7 +957,7 @@ loc_01747a:
 	move.b ($66f,a5),d0
 	or.b ($a6f,a5),d0
 	move.b d0,(-$5eb6,a5)
-	move.w (stageid,a5),d0
+	move.w (Main_stageid,a5),d0
 	move.w loc_01749a(pc,d0.w),d1
 	jsr loc_01749a(pc,d1.w)
 	bra.w loc_01884a
@@ -1036,8 +1036,8 @@ loc_01750c:
 	bsr.w loc_017c4e
 
 loc_017514:
-	lea.l ($200,a5),a6
-	move.w (stageid,a5),d0
+	lea.l (W_Cps0_Start,a5),a6
+	move.w (Main_stageid,a5),d0
 	move.w loc_017532(pc,d0.w),d1
 	jsr loc_017532(pc,d1.w)
 	move.w ($20,a6),($28,a6)
@@ -1914,8 +1914,8 @@ loc_017c20:
 
 ;==============================================
 loc_017f98:
-	lea.l ($300,a5),a6
-	move.w (stageid,a5),d0
+	lea.l (W_Cps2_Start,a5),a6
+	move.w (Main_stageid,a5),d0
 	move.w loc_018000(pc,d0.w),d1
 	jsr loc_018000(pc,d1.w)
 	move.w ($20,a6),($28,a6)
@@ -2995,7 +2995,7 @@ loc_01883e:
 
 ;==============================================
 loc_01884a:
-	move.w (stageid,a5),d1
+	move.w (Main_stageid,a5),d1
 	add.w d1,d1
 	move.w loc_018876(pc,d1.w),d0
 	move.w loc_018876+2(pc,d1.w),d1
@@ -3052,7 +3052,7 @@ loc_018876:
 loc_0188f6:
 	move.b #0,($3a,a6)
 	move.b #$c,($3b,a6)
-	move.w (stageid,a5),d0
+	move.w (Main_stageid,a5),d0
 	lea.l loc_019106,a1
 	move.b (1,a1,d0.w),(3,a6)
 	lea.l loc_019146,a0
@@ -3122,7 +3122,7 @@ loc_0189c4:
 
 ;==============================================
 loc_0189d4:
-	move.w (stageid,a5),d0
+	move.w (Main_stageid,a5),d0
 	lsl.w #2,d0
 	move.l loc_0189e8(pc,d0.w),($40,a6)
 	move.l loc_0189e8+4(pc,d0.w),($44,a6)
@@ -3432,7 +3432,7 @@ loc_018d14:
 
 ;==============================================
 loc_018da4:
-	move.w (stageid,a5),d0
+	move.w (Main_stageid,a5),d0
 	lea.l loc_019232,a1
 	move.b (1,a1,d0.w),(3,a6)
 	lea.l loc_019272,a0
@@ -3469,7 +3469,7 @@ loc_018df6:
 
 ;==============================================
 Set_Stage_Bounds:
-	move.w (stageid,a5),d0
+	move.w (Main_stageid,a5),d0
 	lsl.w #2,d0
 	move.l Stage_Bounds(pc,d0.w),(cam_ybound,a6)
 	move.l Stage_Bounds+4(pc,d0.w),(cam_xbound,a6)
@@ -3536,7 +3536,7 @@ loc_018f3e:
 
 ;==============================================
 loc_018f56:
-	move.w (stageid,a5),d0
+	move.w (Main_stageid,a5),d0
 	lea.l loc_019462,a1
 	move.b (1,a1,d0.w),(3,a6)
 	lea.l loc_0194a2,a0
@@ -3572,7 +3572,7 @@ loc_018fa8:
 
 ;==============================================
 loc_018fbe:
-	move.w (stageid,a5),d0
+	move.w (Main_stageid,a5),d0
 	lsl.w #2,d0
 	move.l loc_018fd2(pc,d0.w),($40,a6)
 	move.l loc_018fd2+4(pc,d0.w),($44,a6)
@@ -4183,7 +4183,7 @@ loc_019b7a:
 loc_019b90:
 	move.l (camera_x,a5),($10,a4)
 	move.l (camera_y,a5),($14,a4)
-	move.w (stageid,a5),d0
+	move.w (Main_stageid,a5),d0
 	move.w loc_019ba8(pc,d0.w),d1
 	jmp loc_019ba8(pc,d1.w)
 
@@ -5024,7 +5024,7 @@ loc_01a5e0:
 ;Object Postions
 ;==============================================
 loc_01a5e8:
-	move.w (stageid,a5),d0
+	move.w (Main_stageid,a5),d0
 	move.w loc_01a644(pc,d0.w),d0
 	lea.l loc_01a644(pc,d0.w),a1
 
@@ -6031,7 +6031,7 @@ loc_01b738:
 	movea.l (4,a0),a2
 	moveq #0,d0
 	lea.l $90c000,a3
-	move.w (stageid,a5),d3
+	move.w (Main_stageid,a5),d3
 
 loc_01b748:
 	move.w (a2)+,d0
@@ -6660,7 +6660,7 @@ loc_01bdd0:
 
 ;==============================================
 loc_01bdd6:
-	bsr.w loc_01bf22
+	bsr.w ClearP1P2P3Mem
 	bsr.w loc_01bfd0
 	bsr.w loc_01bff8
 	bsr.w loc_01c00a
@@ -6751,7 +6751,7 @@ loc_01be38:
 	rts
 
 ;==============================================
-loc_01bf22:
+ClearP1P2P3Mem:
 	lea.l (p1memory,a5),a6
 	lea.l (p2memory,a5),a4
 	lea.l (p3memory,a5),a3
@@ -6767,7 +6767,7 @@ loc_01bf38:
 	rts
 
 ;==============================================
-loc_01bf44:
+ClearP3P4Mem:
 	lea.l (p3memory,a5),a4
 	lea.l (p4memory,a5),a3
 	move.w #$3f,d7
@@ -6826,9 +6826,9 @@ loc_01bfba:
 ;==============================================
 loc_01bfd0:
 	st.b ($a9,a5)
-	lea.l ($200,a5),a0
-	lea.l (Camera_Data,a5),a1
-	lea.l ($300,a5),a2
+	lea.l (W_Cps0_Start,a5),a0
+	lea.l (W_Cps1_Start,a5),a1
+	lea.l (W_Cps2_Start,a5),a2
 	lea.l ($380,a5),a3
 	move.w #$1f,d7
 	moveq #0,d1
@@ -7591,7 +7591,7 @@ loc_01c838:
 	beq.b loc_01c86c
 	moveq #$38,d3
 	moveq #2,d6
-	lea.l ($200,a5),a6
+	lea.l (W_Cps0_Start,a5),a6
 
 loc_01c848:
 	move.w ($10,a6),d0
@@ -8237,7 +8237,7 @@ loc_01df90:
 	move.b d0,($8f,a5)
 	move.b d0,($bd,a5)
 	move.w #$92a0,(palrampointer,a5)
-	move.w #$92a0,($48,a5)
+	move.w #$92a0,(sub_palram,a5)
 	move.w #$1b00,($32,a5)
 	moveq #8,d0
 	jmp loc_0039e0
@@ -9362,7 +9362,7 @@ loc_01ebfe:
 ;Versus Stage Select
 	move.b (PL_charid,a6),d0
 	add.w d0,d0
-	move.w d0,(stageid,a5)
+	move.w d0,(Main_stageid,a5)
 
 	move.b (PL_charid,a6),d0
 	move.b (PL_ism_choice,a6),d1
@@ -10550,7 +10550,7 @@ loc_01f95c:
 
 ;==============================================
 loc_01f994:
-	move.w (stageid,a5),d0
+	move.w (Main_stageid,a5),d0
 	movea.l #loc_3383b4,a0
 	move.w (a0,d0.w),d0
 	lea.l (a0,d0.w),a0
@@ -10582,7 +10582,7 @@ loc_01f9d6:
 ;Stage load?
 ;==============================================
 loc_01f9e8:
-	move.w (stageid,a5),d0
+	move.w (Main_stageid,a5),d0
 	movea.l #loc_33c474,a0
 	move.w (a0,d0.w),d0
 	lea.l (a0,d0.w),a0
@@ -10590,7 +10590,7 @@ loc_01f9e8:
 	bra.w loc_01face
 
 loc_01fa04:
-	move.w (stageid,a5),d0
+	move.w (Main_stageid,a5),d0
 	movea.l #loc_340954,a0
 	move.w (a0,d0.w),d0
 	lea.l (a0,d0.w),a0
@@ -10598,7 +10598,7 @@ loc_01fa04:
 	bra.w loc_01face
 
 loc_01fa20:
-	move.w (stageid,a5),d0
+	move.w (Main_stageid,a5),d0
 	movea.l #loc_3477b4,a0
 	move.w (a0,d0.w),d0
 	lea.l (a0,d0.w),a0
@@ -10769,7 +10769,7 @@ loc_01fbac:
 
 ;==============================================
 loc_01fbe4:
-	move.w (stageid,a5),d0
+	move.w (Main_stageid,a5),d0
 	movea.l #loc_3383b4,a0
 	move.w (a0,d0.w),d0
 	lea.l (a0,d0.w),a0
@@ -10799,7 +10799,7 @@ loc_01fc26:
 
 ;==============================================
 loc_01fc38:
-	move.w (stageid,a5),d0
+	move.w (Main_stageid,a5),d0
 	movea.l #loc_33c474,a0
 	move.w (a0,d0.w),d0
 	lea.l (a0,d0.w),a0
@@ -10808,7 +10808,7 @@ loc_01fc38:
 
 ;==============================================
 loc_01fc54:
-	move.w (stageid,a5),d0
+	move.w (Main_stageid,a5),d0
 	movea.l #loc_340954,a0
 	move.w (a0,d0.w),d0
 	lea.l (a0,d0.w),a0
@@ -10817,7 +10817,7 @@ loc_01fc54:
 
 ;==============================================
 loc_01fc70:
-	move.w (stageid,a5),d0
+	move.w (Main_stageid,a5),d0
 	movea.l #loc_3477b4,a0
 	move.w (a0,d0.w),d0
 	lea.l (a0,d0.w),a0
@@ -10955,10 +10955,10 @@ loc_01fdd2:
 
 ;==============================================
 loc_01fde0:
-	move.w (stageid,a5),d0
+	move.w (Main_stageid,a5),d0
 	subi.w #$40,d0
 	bcc.b loc_01fe3a
-	move.w (stageid,a5),d0
+	move.w (Main_stageid,a5),d0
 	movea.l #loc_32c094,a0
 	move.w (a0,d0.w),d0
 	addi.w #$140,d0
@@ -10966,7 +10966,7 @@ loc_01fde0:
 	lea.l $90c000,a1
 	moveq #$e,d7
 	bsr.b loc_01fd9e
-	move.w (stageid,a5),d0
+	move.w (Main_stageid,a5),d0
 	movea.l #loc_3383b4,a0
 	move.w (a0,d0.w),d0
 	lea.l (a0,d0.w),a0
@@ -10987,10 +10987,10 @@ loc_01fe3a:
 
 ;==============================================
 loc_01fe50:
-	move.w (stageid,a5),d0
+	move.w (Main_stageid,a5),d0
 	subi.w #$40,d0
 	bcc.b loc_01fe96
-	move.w (stageid,a5),d0
+	move.w (Main_stageid,a5),d0
 	movea.l #loc_33c474,a0
 	move.w (a0,d0.w),d0
 	lea.l (a0,d0.w),a0
@@ -11022,10 +11022,10 @@ loc_01feac:
 
 ;==============================================
 loc_01febc:
-	move.w (stageid,a5),d0
+	move.w (Main_stageid,a5),d0
 	subi.w #$40,d0
 	bcc.b loc_01fee2
-	move.w (stageid,a5),d0
+	move.w (Main_stageid,a5),d0
 	movea.l #loc_340954,a0
 	move.w (a0,d0.w),d0
 	lea.l (a0,d0.w),a0
@@ -11041,10 +11041,10 @@ loc_01fee2:
 
 ;==============================================
 loc_01fef8:
-	move.w (stageid,a5),d0
+	move.w (Main_stageid,a5),d0
 	subi.w #$40,d0
 	bcc.b loc_01ff3c
-	move.w (stageid,a5),d0
+	move.w (Main_stageid,a5),d0
 	movea.l #loc_3477b4,a0
 	move.w (a0,d0.w),d0
 	lea.l (a0,d0.w),a0

@@ -7514,14 +7514,14 @@ loc_245aa6:
     dc.w $0400,$0300,$0000
     dc.w $0230,$0000,$0000
 
-;/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\
+;VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV
 loc_245aba:
 	dc.w loc_245ac2-loc_245aba
 	dc.w loc_245ac2-loc_245aba
 	dc.w loc_245ac2-loc_245aba
 	dc.w 0000
 
-;/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\
+;VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV
 loc_245ac2:
 	dc.b $01,$40,$00,$01
 	dc.l loc_245afc
@@ -7534,12 +7534,12 @@ loc_245ad6:
     dc.w loc_245ae4-loc_245ad6
     dc.w 0000
 
-;/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\
+;VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV
 loc_245adc:
 	dc.b $ff,$40,$00,$00
 	dc.l loc_245afc
 
-;/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\
+;VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV
 loc_245ae4:
 	dc.b $08,$00,$00,$00
 	dc.l loc_2471ea
@@ -7552,7 +7552,7 @@ loc_245af4:
 	dc.b $08,$40,$00,$00
 	dc.l loc_247246
 
-;/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\
+;VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV
 loc_245afc:
 	dc.w $0012
 

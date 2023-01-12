@@ -78,7 +78,7 @@ loc_1713d8:
     dc.w loc_1717be-loc_1713d8
     dc.w 0000
 
-;/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\
+;VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV
 loc_171462:
     dc.w loc_17247a-loc_171462
     dc.w loc_17247a-loc_171462
@@ -6900,7 +6900,7 @@ loc_176a1e:
 
     dc.l loc_176942
 
-;/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\
+;VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV
 ;SF2 costume animations
 loc_176a36:
     dc.w loc_176bca-loc_176a36
@@ -13788,7 +13788,7 @@ loc_17befa:
 
 	dc.w loc_17c148-loc_17befa
 
-;/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\
+;VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV
 loc_17bf3c:
     dc.w loc_17bfa0-loc_17bf3c
     dc.w loc_17bfcc-loc_17bf3c
@@ -14325,7 +14325,7 @@ loc_17c2c4:
 
     dc.l loc_17c28c
 
-;/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\
+;VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV
 loc_17c2d0:
 	dc.w $0012
 

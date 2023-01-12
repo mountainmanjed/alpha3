@@ -1,0 +1,29 @@
+
+;##############################################
+;Cabinet 0
+;Host
+Cab0 = 0x661000
+
+Cab0_Rng = Cab0+0x200
+Cab0_RngVal0 = Cab0+0x200
+Cab0_RngVal1 = Cab0+0x202
+
+
+;##############################################
+;Cabinet 1
+Cab1 = 0x662000
+
+Cab1_Rng = Cab1+0x200
+Cab1_RngVal0 = Cab1+0x200
+Cab1_RngVal1 = Cab1+0x202
+
+
+;##############################################
+;Cabinet 2
+Cab2 = 0x663000
+
+Cab2_Rng = Cab2+0x200
+Cab2_RngVal0 = Cab2+0x200
+Cab2_RngVal0 = Cab2+0x202
+
+

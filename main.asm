@@ -6,7 +6,7 @@
 	include "memory/GameValues.asm"
 	include "memory/cps2constants.asm"
 	include "memory/chardata.asm"
-	include "memory/cameramemory.asm"
+	include "memory/epprom.68k"
 	include "macros.asm"
 
 ;Vector Table
@@ -121,7 +121,7 @@ loc_0001d2:
 	jsr loc_0001ea(pc,d1.w)
 	bra.b loc_0001d2
 
-;/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\
+;VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV
 loc_0001ea:
 	dc.w loc_0001ee-loc_0001ea
 	dc.w loc_00025a-loc_0001ea
@@ -642,7 +642,7 @@ EntryPoint:;91e
 	move.w #0,$fffff6
 	move.w #$40,$fffff8
 	move.w #$10,$fffffa
-	move.w #$f00,$804040
+	move.w #$f00,Epprom_RW
 	WATCHDOG
 	lea loc_00096c(pc),a4
 	bra.w loc_000e32
@@ -651,11 +651,11 @@ EntryPoint:;91e
 loc_00096c:
 	move.w #$ffc0,$80410c
 	move.w #0,$80410e
-	move.w #$9000,cps0_gpuregistera
-	move.w #$9000,cps0_gpuregisterb
-	move.w #$9040,cps1_gpuregister
-	move.w #$9080,cps2_gpuregister
-	move.w #$90e0,raster_gpuregister
+	move.w #gl_cps00_pnt,cps0_gpuregistera
+	move.w #gl_cps00_pnt,cps0_gpuregisterb
+	move.w #gl_cps10_pnt,cps1_gpuregister
+	move.w #gl_cps20_pnt,cps2_gpuregister
+	move.w #gl_rstrb_pnt,raster_gpuregister
 	lea loc_0009ac(pc),a4
 	bra.w loc_000dd6
 
@@ -766,7 +766,7 @@ loc_000ad2:
 	bra.w loc_000d28
 
 loc_000ade:
-	move.w #$f08,$804040
+	move.w #$f08,Epprom_RW
 	lea Mes_QSRam(pc),a2
 	lea loc_000af2(pc),a5
 	bra.w loc_000d28
@@ -814,11 +814,11 @@ loc_000b54:
 	WATCHDOG
 	moveq #0,d0
 	lea $ff8000,a5
-	move.w #$9000,cps0_gpuregistera
-	move.w #$9000,cps0_gpuregisterb
-	move.w #$9040,cps1_gpuregister
-	move.w #$9080,cps2_gpuregister
-	move.w #$90e0,raster_gpuregister
+	move.w #gl_cps00_pnt,cps0_gpuregistera
+	move.w #gl_cps00_pnt,cps0_gpuregisterb
+	move.w #gl_cps10_pnt,cps1_gpuregister
+	move.w #gl_cps20_pnt,cps2_gpuregister
+	move.w #gl_rstrb_pnt,raster_gpuregister
 	move.w #Mainpalette,palette_gpuregister
 	move.w d0,$804110
 	move.w d0,$804112
@@ -859,7 +859,7 @@ loc_000b54:
 	move.w #$2461,($3a,a5)
 	move.w #$40,($3c,a5)
 	move.w #$10,($3e,a5)
-	move.w #$f08,$804040
+	move.w #$f08,Epprom_RW
 	move.w #$f00,($6a,a5)
 	move.b #$8,($88,a5)
 	move.b #0,($d1,a5)
@@ -869,7 +869,7 @@ loc_000b54:
 	move.w #$9040,($42,a5)
 	move.w #$9080,($44,a5)
 	move.w #$90e0,($46,a5)
-	move.w #Mainpalette,($48,a5)
+	move.w #Mainpalette,(sub_palram,a5)
 	move.w d0,($4a,a5)
 	move.w d0,($4c,a5)
 	move.w d0,($4e,a5)
@@ -880,6 +880,7 @@ loc_000b54:
 	jmp loc_000f7a
 
 ;----------------------------------------------
+;memory_check read and write
 loc_000cb6:
 	movea.l a0,a3
 	move.w #1,d1
@@ -935,7 +936,7 @@ loc_000d14:
 	WATCHDOG
 	bra.b loc_000d14
 
-;VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV/\/\/\
+;VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV
 loc_000d1c:
 	dc.l $00000000,$ffffffff
 
@@ -1243,20 +1244,20 @@ loc_00103c:
 	move.b #0,$619ffd
 	move.b #-1,$619fff
 	WATCHDOG
-	clr.b ($86,a5)
+	clr.b (NetworkEnabled,a5)
 
 ;Network Link Check
 	move.w QsoundVolume,d0
 	andi.w #$4000,d0
 	bne.b loc_00107a
-	st ($86,a5)
+	st (NetworkEnabled,a5)
 	jsr Loc_Test_Network
 
 loc_00107a:
 	move.w CPSinput02,d0
 	andi.w #$3304,d0
 	bne.b loc_0010b0
-	tst.b ($86,a5)
+	tst.b (NetworkEnabled,a5)
 	beq.b loc_001092
 	jsr loc_002e12
 
@@ -1279,7 +1280,7 @@ loc_0010b0
 	move.b d0,(-$7395,a5)
 	jsr loc_00188a
 	clr.b ($e5,a5)
-	clr.b ($a6,a5)
+	clr.b (Dip_BGM,a5)
 	clr.b ($bf,a5)
 	WATCHDOG
 	moveq #0,d1
@@ -1411,8 +1412,8 @@ loc_001278:
 ;==============================================
 loc_00128c:
 	move.w ($34,a5),$804170
-	move.w ($48,a5),palette_gpuregister
-	move.w (palrampointer,a5),($48,a5)
+	move.w (sub_palram,a5),palette_gpuregister
+	move.w (palrampointer,a5),(sub_palram,a5)
 	rts
 
 ;==============================================
@@ -1601,7 +1602,7 @@ loc_00141a:
 loc_00141c:
 	WATCHDOG
 	move.w #-$7f83,d1
-	move.b ($96,a5),d0
+	move.b (Dip_Monitor_Flip,a5),d0
 	lsl.w #8,d0
 	or.w ($30,a5),d0
 	move.w d0,$804122
@@ -1617,7 +1618,7 @@ loc_00143c:
 	andi.w #$7f33,d0
 	or.b ($88,a5),d0
 	or.b ($d1,a5),d0
-	move.w d0,$804040
+	move.w d0,Epprom_RW
 
 loc_001466:
 	move.w $804030,($68,a5)
@@ -2042,13 +2043,14 @@ loc_0018c0:
 	bsr.w loc_0021b2
 	bne.w loc_0020da
 
+;Loading epprom data 
 loc_0018d8:
 	WATCHDOG
 	moveq #0,d0
 	move.b d0,(Dip_Continue,a5)
 	move.b d0,($9c,a5)
 	move.b d0,($9d,a5)
-	lea (-$7394,a5),a4;Epprom
+	lea (main_epp_offset,a5),a4;Epprom
 	move.b (a4),d0
 	move.b d0,(Dip_Coin_Mode,a5)
 	cmpi.b #$12,d0
@@ -2074,14 +2076,14 @@ loc_00191a:
 	bra.b loc_001936
 
 loc_001930:
-	move.b (1,a4),(Dip_Continue,a5)
+	move.b (Save_Set_Continue,a4),(Dip_Continue,a5)
 
 loc_001936:
-	move.b (2,a4),($96,a5)
-	move.b (3,a4),(Dip_Demo_Sound,a5)
-	move.b (4,a4),(Dip_Sound_Mode,a5)
+	move.b (Save_Monitor_Flip,a4),(Dip_Monitor_Flip,a5)
+	move.b (Save_Demo_Sound,a4),(Dip_Demo_Sound,a5)
+	move.b (Save_Sound_Mode,a4),(Dip_Sound_Mode,a5)
 	moveq #0,d0
-	move.b (5,a4),d0
+	move.b (Save_Chutes,a4),d0
 	move.b d0,(Dip_Chutes,a5)
 	bsr.w loc_0024f0
 	move.b (6,a4),($bb,a5)
@@ -2108,10 +2110,10 @@ loc_001936:
 
 loc_0019ba:
 	move.b ($17,a4),(Dip_Join_in,a5)
-	move.l ($60,a4),($c0,a5)
-	move.l ($64,a4),($c4,a5)
-	move.l ($68,a4),($c8,a5)
-	move.l ($6c,a4),($d8,a5)
+	move.l ($60,a4),($c0,a5);Coin_count
+	move.l ($64,a4),($c4,a5);Service_count
+	move.l ($68,a4),($c8,a5);FreePlay_count
+	move.l ($6c,a4),($d8,a5);
 	move.l ($70,a4),($ea,a5)
 	move.b ($75,a4),(game_unlock,a5);Load Unlock Level
 	bra.w loc_00252a
@@ -2124,10 +2126,10 @@ loc_0019e8:
 	bsr.w loc_00234c
 	movem.l ($20,a0),d0-d3
 	moveq #0,d4
-	lea (-$7394,a5),a4
+	lea (main_epp_offset,a5),a4
 	move.b (Dip_Coin_Mode,a5),(a4)
 	move.b (Dip_Continue,a5),($1,a4)
-	move.b ($96,a5),($2,a4)
+	move.b (Dip_Monitor_Flip,a5),($2,a4)
 	move.b (Dip_Demo_Sound,a5),($3,a4)
 	move.b (Dip_Sound_Mode,a5),($4,a4)
 	move.b (Dip_Chutes,a5),($5,a4)
@@ -2149,7 +2151,7 @@ loc_0019e8:
 	lea ($30,a4),a4
 	move.b (Dip_Coin_Mode,a5),(a4)
 	move.b (Dip_Continue,a5),($1,a4)
-	move.b ($96,a5),($2,a4)
+	move.b (Dip_Monitor_Flip,a5),($2,a4)
 	move.b (Dip_Demo_Sound,a5),($3,a4)
 	move.b (Dip_Sound_Mode,a5),($4,a4)
 	move.b (Dip_Chutes,a5),($5,a4)
@@ -2178,7 +2180,7 @@ loc_001b12:
 	bsr.w loc_00234c
 	move.b (a0),(Dip_Coin_Mode,a5)
 	move.b (1,a0),(Dip_Continue,a5)
-	move.b (2,a0),($96,a5)
+	move.b (2,a0),(Dip_Monitor_Flip,a5)
 	move.b (3,a0),(Dip_Demo_Sound,a5)
 	move.b (4,a0),(Dip_Sound_Mode,a5)
 	move.b (5,a0),(Dip_Chutes,a5)
@@ -2201,7 +2203,7 @@ loc_001b12:
 ;==============================================
 loc_001b8e:
 	bsr.w loc_00234c
-	lea (-$7394,a5),a1
+	lea (main_epp_offset,a5),a1
 	moveq #$2f,d7
 
 loc_001b98:
@@ -2236,7 +2238,7 @@ loc_001bc2:
 	bne.w loc_001ca2
 
 	move.b (2,a0),d0
-	cmp.b ($96,a5),d0
+	cmp.b (Dip_Monitor_Flip,a5),d0
 	bne.w loc_001ca2
 
 	move.b (3,a0),d0
@@ -2386,7 +2388,7 @@ loc_001d22:
 ;==============================================
 loc_001d70:
 	addq.l #1,($c0,a5)
-	tst.b ($86,a5)
+	tst.b (NetworkEnabled,a5)
 	bne.b loc_001d98
 	move.l ($c0,a5),d0
 	cmp.l (-$7334,a5),d0
@@ -2402,7 +2404,7 @@ loc_001d98:
 ;==============================================
 loc_001d9a:
 	addq.l #1,($c4,a5)
-	tst.b ($86,a5)
+	tst.b (NetworkEnabled,a5)
 	bne.b loc_001dc2
 	move.l ($c4,a5),d0
 	cmp.l (-$7330,a5),d0
@@ -2420,7 +2422,7 @@ loc_001dc4:
 	tst.b ($9c,a5)
 	beq.b loc_001df2
 	addq.l #1,($c8,a5)
-	tst.b ($86,a5)
+	tst.b (NetworkEnabled,a5)
 	bne.b loc_001df2
 	move.l ($c8,a5),d0
 	cmp.l (-$732c,a5),d0
@@ -2442,7 +2444,7 @@ loc_001dfa:
 	clr.l ($d8,a5)
 
 loc_001dfe:
-	tst.b ($86,a5)
+	tst.b (NetworkEnabled,a5)
 	bne.b loc_001e22
 	move.l ($d8,a5),d0
 	cmp.l (-$7328,a5),d0
@@ -2499,7 +2501,7 @@ loc_001e7a:
 ;==============================================
 loc_001e7c:
 	bsr.w loc_00234c
-	lea (-$7394,a5),a1
+	lea (main_epp_offset,a5),a1
 	lea ($30,a1),a2
 	moveq #1,d0
 	cmpi.w #Hispanic_region,(Region,a5)
@@ -2725,7 +2727,7 @@ loc_0020b0:
 
 ;==============================================
 loc_0020b2:
-	lea (-$7394,a5),a1
+	lea (main_epp_offset,a5),a1
 	bsr.w loc_00234c
 	moveq #$17,d7
 
@@ -2773,11 +2775,11 @@ loc_002110:
 	move.b #$a,(-$7288,a5)
 
 loc_002116:
-	move.l #$ff0c6c,(-$7294,a5)
+	move.l #main_epprom,(-$7294,a5)
 	move.w (-$7290,a5),(-$728e,a5)
 	move.w (-$728c,a5),(-$728a,a5)
 	bsr.b loc_00214e
-	lea (-$7394,a5),a1
+	lea (main_epp_offset,a5),a1
 	lea ($30,a1),a2
 	moveq #$17,d7
 
@@ -2824,6 +2826,8 @@ loc_002178:
 	andi.w #$bfff,d2
 	bsr.w loc_002334
 	bsr.w loc_00232a
+
+;Writing eeprom into memory
 	move.w d0,(a0)+
 	addq.w #1,d4
 	dbra d5,loc_002170
@@ -2835,7 +2839,7 @@ loc_0021b2
 	move.b #$a,(-$7288,a5)
 
 loc_0021b8:
-	move.l #$ff0c6c,(-$7294,a5)
+	move.l #main_epprom,(-$7294,a5)
 	move.w (-$7290,a5),(-$728e,a5)
 	move.w (-$728c,a5),(-$728a,a5)
 	bsr.b loc_002216
@@ -2843,7 +2847,7 @@ loc_0021b8:
 	move.w (-$7290,a5),(-$728e,a5)
 	move.w (-$728c,a5),(-$728a,a5)
 	bsr.w loc_00214e
-	lea (-$7394,a5),a1
+	lea (main_epp_offset,a5),a1
 	lea (-$7314,a5),a2
 	move.w (-$728c,a5),d0
 	lea (a1,d0.w),a1
@@ -2971,6 +2975,7 @@ loc_00230a:
 	rts
 
 ;==============================================
+;System epprom read and write
 loc_00232a:
 	ori.w #$2000,d2
 	bsr.b loc_002334
@@ -2980,7 +2985,7 @@ loc_002334:
 	or.w ($6a,a5),d2
 	andi.w #$7f33,d2
 	or.b ($88,a5),d2
-	move.w d2,$804040
+	move.w d2,Epprom_RW
 	andi.w #$7000,d2
 	rts
 
@@ -3105,7 +3110,7 @@ loc_002e5e
 	lea $900e98,a1
 	moveq #$1e,d1
 	move.l (-$727e,a5),d0
-	tst.b ($86,a5)
+	tst.b (NetworkEnabled,a5)
 	bne.b loc_002e74
 	move.l ($c0,a5),d0
 
@@ -3114,13 +3119,13 @@ loc_002e74:
 	lea $900ea0,a1
 	moveq #$1e,d1
 	move.l (-$727a,a5),d0
-	tst.b ($86,a5)
+	tst.b (NetworkEnabled,a5)
 	bne.b loc_002e90
 	move.l ($c4,a5),d0
 
 loc_002e90:
 	jsr loc_01b252
-	tst.b ($86,a5)
+	tst.b (NetworkEnabled,a5)
 	beq.b loc_002ec4
 	lea $900eb0,a1
 	moveq #$1e,d1
@@ -3145,7 +3150,7 @@ loc_002ec4:
 	cmpi.w #Brazil_Region,(Region,a5)
 	beq.b loc_002ef0
 	move.l (-$726e,a5),d0
-	tst.b ($86,a5)
+	tst.b (NetworkEnabled,a5)
 	bne.b loc_002eea
 	move.l ($c8,a5),d0
 
@@ -3154,7 +3159,7 @@ loc_002eea:
 
 loc_002ef0:
 	move.l (-$726a,a5),d0
-	tst.b ($86,a5)
+	tst.b (NetworkEnabled,a5)
 	bne.b loc_002efe
 	move.l ($d8,a5),d0
 
@@ -3257,6 +3262,8 @@ loc_0030ae:
 	include "sound/sound.asm"
 
 ;==============================================
+;Splash Name and Build start
+;==============================================
 loc_003eba:
 	st.b ($e9,a5)
 	jsr loc_0172da
@@ -3287,9 +3294,13 @@ loc_003ef6:
 	clr.b ($bf,a5)
 	move.w #0,($22,a5)
 	move.w #$100,($24,a5)
-	tst.b ($86,a5)
+
+;link check
+	tst.b (NetworkEnabled,a5)
 	bne.b loc_003f1c
-	move.w #$01c3,(RngByte0,a5);Rng Seed
+
+;set rng seed
+	move.w #RngSeed,(RngByte0,a5)
 
 loc_003f1c:
 	jsr SetRegionBootPalette(pc)
@@ -3402,7 +3413,7 @@ loc_004036:
 	move.b #1,($83,a5)
 	moveq #0,d0
 	move.l d0,(0,a5)
-	move.w d0,(stageid,a5)
+	move.w d0,(Main_stageid,a5)
 	move.b d0,($8e,a5)
 	move.b d0,(Active_Player,a5)
 	move.b d0,($8d,a5)
@@ -3471,7 +3482,7 @@ loc_0040d6:
 Start_Attact_Mode:
 	addq.w #2,(0,a5)
 	move.w #$92a0,(palrampointer,a5)
-	move.w #$92a0,($48,a5)
+	move.w #$92a0,(sub_palram,a5)
 	tst.b ($e9,a5)
 	beq.b loc_004128
 	clr.b ($e9,a5)
@@ -3700,7 +3711,7 @@ loc_00438a:
 	bne.b loc_0043a0
 	addq.w #2,(4,a5)
 	move.w #$92a0,(palrampointer,a5)
-	move.w #$92a0,($48,a5)
+	move.w #$92a0,(sub_palram,a5)
 
 loc_0043a0:
 	rts
@@ -3785,7 +3796,7 @@ loc_004478:
 	move.w #$20c0,d1
 	moveq #$1f,d3
 	move.l (-$727e,a5),d0
-	tst.b ($86,a5)
+	tst.b (NetworkEnabled,a5)
 	bne.b loc_00449a
 	move.l ($c0,a5),d0
 
@@ -3795,7 +3806,7 @@ loc_00449a:
 	move.l (-$5d2a,a5),d4
 	bsr.b loc_0044f0
 	move.l (-$727a,a5),d0
-	tst.b ($86,a5)
+	tst.b (NetworkEnabled,a5)
 	bne.b loc_0044b8
 	move.l ($c4,a5),d0
 
@@ -3805,7 +3816,7 @@ loc_0044b8:
 	move.l (-$5d2a,a5),d4
 	bsr.b loc_0044f0
 	move.l (-$726a,a5),d0
-	tst.b ($86,a5)
+	tst.b (NetworkEnabled,a5)
 	bne.b loc_0044d6
 	move.l ($d8,a5),d0
 
@@ -3927,7 +3938,7 @@ loc_0045ea:
 	move.b #1,($83,a5)
 	move.b #$1f,($cd,a5)
 	move.w #$92a0,(palrampointer,a5)
-	move.w #$92a0,($48,a5)
+	move.w #$92a0,(sub_palram,a5)
 	jsr loc_01fcaa
 	jsr loc_01bdd6
 	jsr loc_01b0e6
@@ -4116,7 +4127,7 @@ loc_00485c:
 	move.l d0,($c,a5)
 	move.l d0,($10,a5)
 	move.l d0,($14,a5)
-	move.w d0,(stageid,a5)
+	move.w d0,(Main_stageid,a5)
 	move.b d0,($83,a5)
 	move.b d0,($8d,a5)
 	move.b d0,($8e,a5)
@@ -4229,7 +4240,7 @@ loc_004980:
 	move.b d0,($130,a5)
 	andi.w #$ffc0,($32,a5)
 	move.w #$92a0,(palrampointer,a5)
-	move.w #$92a0,($48,a5)
+	move.w #$92a0,(sub_palram,a5)
 	move.l #$90c000,($e0,a5)
 	jsr loc_01bdd6
 	move.b #7,($be,a5)
@@ -4241,9 +4252,9 @@ loc_004980:
 	jsr loc_01fc38
 	jsr loc_01fc54
 	jsr loc_01fc70
-	move.b #1,($200,a5)
-	move.b #1,(Camera_Data,a5)
-	move.b #1,($300,a5)
+	move.b #1,(W_Cps0_Start,a5)
+	move.b #1,(W_Cps1_Start,a5)
+	move.b #1,(W_Cps2_Start,a5)
 	move.w #3,($102,a5)
 	move.b #$13,(clock_counter,a5)
 	move.b #59,(Clock_frames,a5)
@@ -4343,7 +4354,7 @@ loc_004b58:
 loc_004b68:
 	add.w d0,d0
 	ext.w d0
-	move.w d0,(stageid,a5)
+	move.w d0,(Main_stageid,a5)
 	rts
 
 ;==============================================
@@ -4698,7 +4709,7 @@ loc_0050f4:
 	move.w (-$7166,a5),(palrampointer,a5)
 	move.w (-$7164,a5),d0
 	beq.b loc_00512c
-	move.w d0,($48,a5)
+	move.w d0,(sub_palram,a5)
 	clr.w (-$7164,a5)
 
 loc_00512c:
@@ -4746,7 +4757,7 @@ loc_0051aa:
 	move.w (-$715e,a5),(palrampointer,a5)
 	move.w (-$715c,a5),d0
 	beq.b loc_0051e2
-	move.w d0,($48,a5)
+	move.w d0,(sub_palram,a5)
 	clr.w (-$715c,a5)
 
 loc_0051e2:
@@ -5454,6 +5465,7 @@ loc_005a26:
 	dc.w $0090,$0170
 
 ;==============================================
+;sample 5bf0
 loc_005a2a:
 	rts
 
@@ -5470,13 +5482,13 @@ loc_005a2c:
 	move.w ($3a,a5),(-$716a,a5)
 	move.w (rasterram,a5),(-$7168,a5)
 	move.w (-$7176,a5),d0
-	lea ($200,a5),a0
+	lea (W_Cps0_Start,a5),a0
 	lea (-$7128,a5),a1
 	bsr.b loc_005a84
-	lea (Camera_Data,a5),a0
+	lea (W_Cps1_Start,a5),a0
 	lea (-$70f8,a5),a1
 	bsr.b loc_005a84
-	lea ($300,a5),a0
+	lea (W_Cps2_Start,a5),a0
 	lea (-$70c8,a5),a1
 
 loc_005a84:
@@ -5488,6 +5500,7 @@ loc_005a84:
 	rts
 
 ;==============================================
+;Rival battle 
 loc_005aa0:
 	move.w (-$7182,a5),d0
 	move.b d0,($16,a5)
@@ -5496,7 +5509,7 @@ loc_005aa0:
 	move.w loc_005acc(pc,d0.w),($dc,a5)
 	move.b loc_005acc+2(pc,d0.w),($17,a5)
 	move.b loc_005acc+3(pc,d0.w),d0
-	move.w d0,(stageid,a5)
+	move.w d0,(Main_stageid,a5)
 	move.w #2,($102,a5)
 	rts
 
@@ -5530,12 +5543,15 @@ loc_005acc:
 	dc.b $01
 	dc.b Claw_Stage
 
-	dc.w RMika_id,Zangief_id
+	dc.b RMika_id,Zangief_id
 	dc.b $00
 	dc.b Rmka_Stage
 
 loc_005aec:
-	dc.w $fff8,$ffe0,$ffe8,$ffe0,$ffe0,$ffe0,$0000,$0008
+	dc.w $fff8,$ffe0
+	dc.w $ffe8,$ffe0
+	dc.w $ffe0,$ffe0
+	dc.w $0000,$0008
 
 ;==============================================
 loc_005afc:
@@ -9723,7 +9739,7 @@ loc_008cce:
 
 loc_008d5c:
 	move.w #$92a0,(palrampointer,a5)
-	move.w #$92a0,($48,a5)
+	move.w #$92a0,(sub_palram,a5)
 	move.l #$90c000,($e0,a5)
 	move.b (Dip_Difficulty,a5),($be,a5)
 	move.b (Dip_1PRounds,a5),d0
@@ -9980,7 +9996,7 @@ loc_008ff6:
 	tst.b ($8c,a5)
 	bne.b loc_0090a0
 	move.w #Mainpalette,(palrampointer,a5)
-	move.w #$90c0,($48,a5)
+	move.w #$90c0,(sub_palram,a5)
 
 loc_0090a0:
 	move.l #$90c000,($e0,a5)
@@ -9988,7 +10004,7 @@ loc_0090a0:
 	addq.b #1,d0
 	move.b d0,($108,a5)
 	move.b (Dip_Continue,a5),($11f,a5)
-	move.w (StageID_Secondary,a5),(stageid,a5)
+	move.w (StageID_02,a5),(Main_stageid,a5)
 	move.w #9,($14c,a5)
 	tst.b ($bf,a5)
 	beq.b loc_0090d0
@@ -10102,7 +10118,7 @@ loc_0091e6:
 ;==============================================
 loc_0091f6:
 	clr.w ($138,a5)
-	jsr loc_01bf44
+	jsr ClearP3P4Mem
 	move.b #$1,(p1memory,a5)
 	move.b #$1,(p2memory,a5)
 	clr.b (p3memory,a5)
@@ -10433,8 +10449,8 @@ loc_0095a0:
 	move.b #$ff,($133,a5)
 	ori.w #$e,($32,a5)
 	move.w #Mainpalette,(palrampointer,a5)
-	move.w #$90c0,($48,a5)
-	move.l #$90c000,($e0,a5)
+	move.w #$90c0,(sub_palram,a5)
+	move.l #MainpaletteDirect,($e0,a5)
 	move.b #1,($401,a5)
 	move.b #1,($801,a5)
 	move.b d0,($514,a5)
@@ -10830,7 +10846,7 @@ loc_009a6e:
 	jsr loc_07cc1a
 	tst.b ($bf,a5)
 	beq.b loc_009ad4
-	tst.b ($86,a5)
+	tst.b (NetworkEnabled,a5)
 	beq.b loc_009ad4
 	jsr loc_01c2c8
 	beq.b loc_009ad4
@@ -10865,10 +10881,10 @@ loc_009af6:
 	move.b d0,($10e,a5)
 	move.b d0,($12c,a5)
 	move.b #1,($12d,a5)
-	move.w #$9280,($48,a5)
-	move.b #1,($200,a5)
-	move.b #1,(Camera_Data,a5)
-	move.b #1,($300,a5)
+	move.w #$9280,(sub_palram,a5)
+	move.b #1,(W_Cps0_Start,a5)
+	move.b #1,(W_Cps1_Start,a5)
+	move.b #1,(W_Cps2_Start,a5)
 	move.b d0,($559,a5)
 	move.b d0,($959,a5)
 	move.b d0,($d59,a5)
@@ -11801,7 +11817,7 @@ loc_00a436:
 	tst.b ($143,a5)
 	bne.w loc_00a55e
 	move.w #$92a0,(palrampointer,a5)
-	move.w #$92a0,($48,a5)
+	move.w #$92a0,(sub_palram,a5)
 	jsr loc_01bdd0
 	addq.w #1,($102,a5)
 	jsr loc_01fae2
@@ -11919,7 +11935,7 @@ loc_00a60c:
 	st.b ($bd,a5)
 	move.b #1,($125,a5)
 	move.w #Mainpalette,(palrampointer,a5)
-	move.w #$90c0,($48,a5)
+	move.w #$90c0,(sub_palram,a5)
 	move.l #$90c000,($e0,a5)
 	jsr loc_01bdc0
 	movea.w ($13a,a5),a6
@@ -12510,7 +12526,7 @@ loc_00ac40:
 	move.b d0,($15f,a5)
 	move.b d0,($10f,a5)
 	move.w #whiteflash,(palrampointer,a5)
-	move.w #whiteflash,($48,a5)
+	move.w #whiteflash,(sub_palram,a5)
 	tst.b ($ce,a5)
 	beq.b loc_00ac98
 	tst.b ($141,a5)
@@ -12553,7 +12569,7 @@ loc_00acd2:
 	move.b d0,($8f,a5)
 	move.b d0,($bd,a5)
 	move.w #Mainpalette,(palrampointer,a5)
-	move.w #$90c0,($48,a5)
+	move.w #$90c0,(sub_palram,a5)
 
 loc_00acf2:
 	rts
@@ -12645,7 +12661,7 @@ loc_00adde:
 	bsr.b loc_00ad92
 	st.b ($104,a5)
 	move.w #$92a0,(palrampointer,a5)
-	move.w #$92a0,($48,a5)
+	move.w #$92a0,(sub_palram,a5)
 	jsr loc_01bdd0
 	move.w #$270e,($32,a5)
 	move.w #$2641,($3a,a5)
@@ -13632,6 +13648,7 @@ GCrush_Flash_Function:
 	bne.w loc_00b776
 	st.b ($124,a5)
 
+;sample bae0
 ;guard Crush Flash
 	move.b #$b,($12b,a5)
 	move.b d0,($170,a5)
@@ -13708,11 +13725,11 @@ loc_00b7ee:
 	move.b ($102,a1),d0
 
 loc_00b7f2:
-	move.w (stageid,a5),(StageID_Secondary,a5)
+	move.w (Main_stageid,a5),(StageID_01,a5)
 	move.b d0,d1
 	bsr.w loc_00bb90
 	add.w d0,d0
-	move.w d0,(StageID_Secondary,a5)
+	move.w d0,(StageID_02,a5)
 	clr.b ($111,a5)
 	tst.b ($bf,a5)
 	bne.b loc_00b86c
@@ -13720,7 +13737,7 @@ loc_00b7f2:
 	beq.b loc_00b824
 	cmpi.w #5,(Arcade_Match,a5)
 	bne.b loc_00b86c
-	move.w #Boss_Stage,(StageID_Secondary,a5)
+	move.w #Boss_Stage,(StageID_02,a5)
 	rts
 
 loc_00b824:
@@ -13730,7 +13747,7 @@ loc_00b824:
 	beq.b loc_00b842
 	cmpi.w #$1a,(Arcade_Match,a5)
 	bne.b loc_00b86c
-	move.w #Boss_Stage,(StageID_Secondary,a5)
+	move.w #Boss_Stage,(StageID_02,a5)
 	rts
 
 loc_00b842:
@@ -13746,7 +13763,7 @@ loc_00b85c:
 	move.b loc_00b86e(pc,d0.w),d0
 	bmi.b loc_00b86c
 	add.w d0,d0
-	move.w d0,(StageID_Secondary,a5)
+	move.w d0,(StageID_02,a5)
 	st.b ($111,a5)
 
 loc_00b86c:
@@ -13774,9 +13791,9 @@ loc_00b86e:
 
 ;==============================================
 ;unused
-;Maybe set SF2_Chun stage
+;likely set SF2_Chun stage
 loc_00b8ae:
-	move.w #$24,(StageID_Secondary,a5)
+	move.w #$24,(StageID_02,a5)
 	rts
 
 ;==============================================
@@ -13885,10 +13902,13 @@ loc_00b9c4:
 	move.b (p3_charid,a5),d0
 	bra.w loc_00b7f2
 
+;Dramatic set enemy and ism list
 loc_00b9de:
-	move.l #$502151c,(-$707e,a5)
-	move.l #$b0a0000,(-$707a,a5)
-	move.l #$1ff0000,(-$705e,a5)
+	move.l #$0502151c,(-$707e,a5)
+	move.l #$0b0a0000,(-$707a,a5)
+
+	;Isms
+	move.l #$01ff0000,(-$705e,a5)
 	move.l #0,(-$705a,a5)
 	rts
 
@@ -14238,6 +14258,7 @@ loc_00bcb6:
 	jmp loc_0190d2
 
 ;VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV
+;bd3c
 SurvivalModeList:
 	dc.b $01,$03,$1a,$0f,$08,$04,$18,$0d,$07,$06,$1b,$10,$1e,$05
 	dc.b $1d,$0c,$16,$09,$0e,$19,$00,$11,$02,$15,$1c,$0b,$0a,$00
@@ -14722,8 +14743,8 @@ Set_Doll_IDs:
 	move.b #Juni_id,(p4_charid,a5)
 	move.b #Aism_ID,(p3_ism_choice,a5)
 	move.b #Aism_ID,(p4_ism_choice,a5)
-	move.w #Hid_Stage,(stageid,a5)
-	move.w #$2a,(StageID_Secondary,a5)
+	move.w #Hid_Stage,(Main_stageid,a5)
+	move.w #$2a,(StageID_02,a5)
 	rts
 
 ;VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV
@@ -14755,8 +14776,8 @@ loc_00d29c:
 	cmpi.b #$15,d1
 	bne.b loc_00d2de
 	st.b ($178,a5)
-	move.w #Boss_Stage,(stageid,a5)
-	move.w #$14,(StageID_Secondary,a5)
+	move.w #Boss_Stage,(Main_stageid,a5)
+	move.w #$14,(StageID_02,a5)
 	btst.b #5,($149,a6)
 	beq.b loc_00d320
 	move.b d1,($102,a1)
@@ -14773,8 +14794,8 @@ loc_00d2de:
 	move.b #$1f,(p4_charid,a5)
 	move.b #0,(p3_ism_choice,a5)
 	move.b #0,(p4_ism_choice,a5)
-	move.w #Hid_Stage,(stageid,a5)
-	move.w #$2a,(StageID_Secondary,a5)
+	move.w #Hid_Stage,(Main_stageid,a5)
+	move.w #$2a,(StageID_02,a5)
 	btst.b #5,($149,a6)
 	beq.b loc_00d320
 	clr.b ($178,a5)
@@ -17579,7 +17600,7 @@ loc_021a20:
 
 ;==============================================
 loc_021a22:
-	lea.l ($200,a5),a1
+	lea.l (W_Cps0_Start,a5),a1
 	move.w ($14,a6),d4
 	sub.w ($14,a1),d4
 	neg.w d4
@@ -22735,13 +22756,13 @@ loc_025964:
 	move.w #$2461,($3a,a5)
 	move.w #$f0,($a,a5)
 	jsr loc_0b464a
-	lea.l ($200,a5),a0
+	lea.l (W_Cps0_Start,a5),a0
 	move.w a0,($36,a4)
 	jmp loc_094644
 
 ;==============================================
 loc_02598e:
-	lea.l ($200,a5),a6
+	lea.l (W_Cps0_Start,a5),a6
 	bsr.w loc_0259d8
 	tst.b ($14,a5)
 	beq.b loc_0259ac
@@ -22786,7 +22807,7 @@ loc_025a0a:
 
 ;==============================================
 loc_025a0c:
-	lea.l ($200,a5),a6
+	lea.l (W_Cps0_Start,a5),a6
 	cmpi.w #$3c,($a,a5)
 	bne.b loc_025a24
 	move.l #$4440000,d0
@@ -23591,21 +23612,21 @@ loc_0263ac:
 	lea.l (-$50c4,a5),a4
 	tst.b (a4)
 	beq.w loc_0263be
-	lea.l ($200,a5),a6
+	lea.l (W_Cps0_Start,a5),a6
 	bsr.w loc_0263e4
 
 loc_0263be:
 	lea.l ($20,a4),a4
 	tst.b (a4)
 	beq.w loc_0263d0
-	lea.l (Camera_Data,a5),a6
+	lea.l (W_Cps1_Start,a5),a6
 	bsr.w loc_0263e4
 
 loc_0263d0:
 	lea.l ($20,a4),a4
 	tst.b (a4)
 	beq.w loc_0263e2
-	lea.l (Camera_Data,a5),a6
+	lea.l (W_Cps1_Start,a5),a6
 	bra.w loc_0263e4
 
 loc_0263e2:
@@ -23646,7 +23667,7 @@ loc_02640c:
 ;==============================================
 ;Stage ???
 loc_02643e:
-	move.w (stageid,a5),d0
+	move.w (Main_stageid,a5),d0
 	move.w loc_026478(pc,d0.w),d1
 	jsr loc_026478(pc,d1.w)
 	move.w (-$50ce,a5),d1
@@ -24208,22 +24229,22 @@ loc_02691e:
 ;==============================================
 loc_02694c:
 	move.w #$9240,(palrampointer,a5)
-	move.w (-$50e8,a5),(stageid,a5)
+	move.w (-$50e8,a5),(Main_stageid,a5)
 	cmpi.w #Japan_region,(Region,a5)
 	beq.w loc_026972
-	cmpi.w #EHd_Stage,(stageid,a5)
+	cmpi.w #EHd_Stage,(Main_stageid,a5)
 	bne.w loc_026972
-	move.w #Dan_Stage,(stageid,a5)
+	move.w #Dan_Stage,(Main_stageid,a5)
 
 loc_026972:
 	jsr loc_01a5e8
-	lea.l ($200,a5),a6
+	lea.l (W_Cps0_Start,a5),a6
 	clr.l (4,a6)
 	jsr loc_017514
-	lea.l (Camera_Data,a5),a6
+	lea.l (W_Cps1_Start,a5),a6
 	clr.l (4,a6)
 	jsr loc_017c4e
-	lea.l ($300,a5),a6
+	lea.l (W_Cps2_Start,a5),a6
 	clr.l (4,a6)
 	jsr loc_017f98
 	jsr loc_01884a
@@ -24321,7 +24342,7 @@ loc_026aa0:
 	move.w loc_026aae(pc,d0.w),d1
 	jmp loc_026aae(pc,d1.w)
 
-;/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\
+;VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV
 loc_026aae:
 	dc.w loc_026ab8-loc_026aae
 	dc.w loc_026aba-loc_026aae
@@ -24414,7 +24435,7 @@ loc_026b46:
 	lea.l ($10,a1),a1
 	rts
 
-;/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\
+;VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV
 loc_026b70:
 	dc.l loc_339774,loc_026ba4,loc_351f14,loc_32c094
 	dc.l loc_3329d4,loc_3383b4,loc_33c474,loc_33fd14
@@ -32090,7 +32111,7 @@ loc_02bea8:
 
 ;==============================================
 loc_02beca:
-	move.w (stageid,a5),d0
+	move.w (Main_stageid,a5),d0
 	move.b loc_02bed6+1(pc,d0.w),($e,a6)
 	rts
 
@@ -32107,7 +32128,7 @@ loc_02bed6:
 
 ;==============================================
 loc_02bf16:
-	move.w (stageid,a5),d0
+	move.w (Main_stageid,a5),d0
 	add.w d0,d0
 	move.w loc_02bf2a(pc,d0.w),($18,a6)
 	move.w loc_02bf2a+2(pc,d0.w),($d0,a6)
@@ -32166,7 +32187,7 @@ loc_02bfc4:
 	eori.b #1,($2c9,a6)
 
 loc_02bfe0:
-	move.w (stageid,a5),d0
+	move.w (Main_stageid,a5),d0
 	add.w d0,d0
 	move.w loc_02c02c(pc,d0.w),($10,a6)
 	move.w loc_02c02c+2(pc,d0.w),d1
@@ -32196,7 +32217,7 @@ loc_02c026:
 	add.w d0,($10,a6)
 	rts
 
-;VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV/\
+;VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV
 ;Stage Spawn
 loc_02c02c:
 	dc.w $0280,$0028
@@ -36258,7 +36279,7 @@ loc_0338d0:
 	moveq #0,d0
 	move.b d0,(1,a4)
 	move.b d0,($12,a6)
-	move.w #$9280,($48,a5)
+	move.w #$9280,(sub_palram,a5)
 
 loc_033906:
 	rts
@@ -36409,7 +36430,7 @@ loc_033a4c:
 	addq.b #2,(5,a6)
 	clr.w ($12,a6)
 	move.w #whiteflash,(palrampointer,a5)
-	move.w #$9280,($48,a5)
+	move.w #$9280,(sub_palram,a5)
 	lea.l loc_033fbe(pc),a0
 	lea.l ($20,a6),a4
 	moveq #5,d6
@@ -36518,7 +36539,7 @@ loc_033b6a:
 	move.b #$a,(5,a6)
 	move.b #$c,($12,a6)
 	move.w #whiteflash,(palrampointer,a5)
-	move.w #$9280,($48,a5)
+	move.w #$9280,(sub_palram,a5)
 	lea.l loc_033fbe(pc),a0
 	lea.l ($20,a6),a4
 	moveq #5,d6

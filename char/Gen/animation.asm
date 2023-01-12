@@ -1,4 +1,4 @@
-;/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\
+;VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV
 loc_229418:
 ;A-ism/Z-ism
 	dc.l loc_229478,loc_22a7ce,loc_22d530,loc_22b2b2
@@ -7,7 +7,7 @@ loc_229418:
 ;V-ism
 	dc.l loc_229478,loc_22a7ce,loc_22d530,loc_22b2b2
 
-;/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\
+;VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV
 loc_229448:
 ;A-ism/Z-ism
 	dc.l loc_229500,loc_22a830,loc_22d530,loc_22b2f0

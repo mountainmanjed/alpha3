@@ -4,7 +4,7 @@
 loc_051de2:
 	tst.b ($13f,a5)
 	bne.w loc_051e1c
-	cmpi.w #$1e,(stageid,a5)
+	cmpi.w #$1e,(Main_stageid,a5)
 	bne.w loc_051e1c
 	tst.w (-$7ec8,a6)
 	bne.w loc_051e1c
@@ -1178,7 +1178,7 @@ loc_052af8:
 	move.w loc_052b04(pc,d0.w),d1
 	jmp loc_052b04(pc,d1.w)
 
-;/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\
+;VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV
 loc_052b04:
 	dc.w loc_052b20-loc_052b04
 	dc.w loc_052b8c-loc_052b04
