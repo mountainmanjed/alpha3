@@ -71,7 +71,7 @@ pl_move_id = 0xaa ; byte
 ; = 0xab ; byte
 ; = 0xac
 
-;dramatic_active_player = 0xb9 ;byte
+; = 0xb9 ;byte
 
 ;= 0xba ;word
 pl_taunt_count = 0xbc

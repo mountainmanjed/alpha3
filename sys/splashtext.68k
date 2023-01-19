@@ -655,32 +655,3 @@ loc_01dec1:
 loc_01ded9:
 	dc.b $00
 
-;VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV
-loc_01deda:
-	dc.w CapcomWebsite-loc_01deda
-	dc.w Zero3Email-loc_01deda
-
-;Junk
-	dc.w loc_01df34-loc_01deda
-	dc.w loc_01df34-loc_01deda
-	dc.w loc_01df34-loc_01deda
-	dc.w loc_01df34-loc_01deda
-	dc.w loc_01df34-loc_01deda
-	dc.w loc_01df34-loc_01deda
-
-	dc.w loc_01df34-loc_01deda
-	dc.w loc_01df34-loc_01deda
-	dc.w loc_01df34-loc_01deda
-	dc.w loc_01df34-loc_01deda
-	dc.w loc_01df34-loc_01deda
-	dc.w loc_01df34-loc_01deda
-	dc.w loc_01df34-loc_01deda
-	dc.w loc_01df34-loc_01deda
-
-CapcomWebsite:
-	dc.b $0c,$70,$1f
-	dc.b 'http://www.capcom.co.jp/',$00
-
-Zero3Email:
-	dc.b $0b,$70,$1f
-	dc.b 'mailto:zero3@ capcom.co.jp',00
