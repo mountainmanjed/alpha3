@@ -2,7 +2,7 @@
 ;
 ;##############################################
 loc_06b760:
-	move.w ($138,a5),d0
+	move.w (Dramatic_Mode_Type,a5),d0
 	move.w loc_06b76c(pc,d0.w),d1
 	jmp loc_06b76c(pc,d1.w)
 
@@ -763,7 +763,7 @@ loc_06c032:
 loc_06c036:
 	bsr.w loc_06f088
 	beq.w loc_06c0d4
-	cmpi.w #6,($138,a5)
+	cmpi.w #6,(Dramatic_Mode_Type,a5)
 	beq.w loc_06c0d4
 	move.l a4,($70,a6)
 	bsr.w loc_06bce8

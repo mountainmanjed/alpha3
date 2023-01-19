@@ -27,7 +27,7 @@ pl_anim_flags = 0x33
 pl_renda_flag = 0x34 ;?
 ;= 0x36
 ;= 0x37
-;= 0x38
+pl_enemy = 0x38
 ;= 0x39
 ;= 0x3a
 ;= 0x3b
@@ -46,6 +46,8 @@ PL_HP_copy = 0x52;word
 
 ;pl ai flag 0x5b
 
+pl_combo = 0x5e; getting comboed
+pl_hitfreeze = 0x5f
 
 ; = 0x64
 ; = 0x68
@@ -69,7 +71,8 @@ pl_move_id = 0xaa ; byte
 ; = 0xab ; byte
 ; = 0xac
 
-;= 0xb9 ;byte
+;dramatic_active_player = 0xb9 ;byte
+
 ;= 0xba ;word
 pl_taunt_count = 0xbc
 
@@ -109,6 +112,7 @@ PL_Palnum = 0x128
 ; = 0x130
 Pl_Sakiyo_mode = 0x131
 PL_ism_choice = 0x132
+
 pl_arcade_progress = 0x140
 
 ;pl_survival_mode = 0x149
@@ -149,10 +153,20 @@ pl_inp_slot_9 = 0x1c8
 ;0x1d1
 ;0x1d2
 
-rolentowire = 0x1e4 ;word
-codyknife = 0x1e4 ;byte needs to be negative
-rosegthrow = 0x1e4 ; addr.w
-;>> 0x1fd
+;----------------------------------------------
+;Char specific
+;0x1e4
+PL_rolentowire = 0x1e4 ;
+
+PL_codyknife_eq = 0x1e4 ;byte if negative you have knife
+PL_codyover_knf = 0x1e5;
+
+PL_rose_groundthrow = 0x1e4 ;word extra sprite for the throw
+
+
+;----------------------------------------------
+;= 0x1fd
+
 
 ;ai_script = 0x205
 
@@ -185,9 +199,98 @@ Pl_JumpData_pnt = 0x2d4
 pl_inp_slot_a = 0x300
 pl_inp_slot_b = 0x308
 
-; = 0x32c ;byte
+pl_combo_copy = 0x329; you're comboing
 
+; = 0x32c ;byte
+pl_throw_id = 0x32f
 ; = 0x371
 ; = 0x378
 ; = 0x379
 ; = 0x37a
+
+;==============================================
+;Direct calls
+;==============================================
+PNT_P1_Memory = 0xff8400
+
+p1memory = 0x400
+p1_combo = pl_combo+p1memory
+p1_charid = PL_charid+p1memory
+P1_Palnum = PL_Palnum+p1memory
+p1_ism_choice = PL_ism_choice+p1memory
+p1_arcade_progress = pl_arcade_progress+p1memory
+p1_crushed_guard = pl_crushed_guard+p1memory
+
+;==============================================
+PNT_P2_Memory = 0xff8800
+
+p2memory = 0x800
+p2_combo = pl_combo+p2memory
+p2_charid = PL_charid+p2memory
+P2_Palnum = PL_Palnum+p2memory
+p2_ism_choice = PL_ism_choice+p2memory
+p2_arcade_progress = pl_arcade_progress+p2memory
+p2_crushed_guard = pl_crushed_guard+p2memory
+
+;==============================================
+PNT_P3_Memory = 0xff8C00
+
+p3memory = 0xc00
+p3_combo = pl_combo+p3memory
+p3_charid = PL_charid+p3memory
+P3_Palnum = PL_Palnum+p3memory
+p3_ism_choice = PL_ism_choice+p3memory
+p3_arcade_progress = pl_arcade_progress+p3memory
+p3_crushed_guard = pl_crushed_guard+p3memory
+
+;==============================================
+PNT_P4_Memory = 0xff9000
+
+p4memory = 0x1000
+p4_combo = pl_combo+p4memory
+p4_charid = PL_charid+p4memory
+P4_Palnum = PL_Palnum+p4memory
+p4_ism_choice = PL_ism_choice+p4memory
+p4_arcade_progress = pl_arcade_progress+p4memory
+p4_crushed_guard = pl_crushed_guard+p4memory
+
+;==============================================
+;Projectile Memory
+;memory 0xff9400 ~ 0xffacff
+;size 0x100
+;slots 0x14
+;==============================================
+
+
+;==============================================
+;Animation
+;==============================================
+;FrameCount = 0x00
+;0x01
+;0x02
+;0x03
+;SpriteTileMap = 0x04
+;0x08
+;0x09
+;0x0a
+;0x0b
+;0x0c
+;0x0d
+;0x0e
+;0x0f
+;0x10
+;0x11
+;0x12
+;0x13
+;0x14
+;0x15
+;0x16
+;0x17
+;0x18
+;0x19
+;0x1a
+;0x1b
+;0x1c
+;0x1d
+;0x1e
+;0x1f

@@ -4,7 +4,7 @@
 loc_05990e:
 	tst.b ($125,a6)
 	bne.b loc_05993a
-	cmpi.w #6,($138,a5)
+	cmpi.w #6,(Dramatic_Mode_Type,a5)
 	beq.b loc_05993a
 	cmpi.w #$1400,(PL_Buttons,a6)
 	bne.b loc_05993a

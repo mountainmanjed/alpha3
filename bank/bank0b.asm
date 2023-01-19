@@ -261,7 +261,7 @@ loc_0b05ca:
 	addq.w #2,d0
 
 loc_0b05ec:
-	add.b ($89,a5),d0
+	add.b (Dip_SFAlpha,a5),d0
 	jmp loc_09877a
 
 ;VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV
@@ -4787,7 +4787,7 @@ loc_0b4050:
 	move.w #$1d,(2,a4)
 	move.w #$b0,(4,a4)
 	move.w #$28,(6,a4)
-	tst.w ($138,a5)
+	tst.w (Dramatic_Mode_Type,a5)
 	bne.b loc_0b4098
 	movea.w (left_hud_pointer,a5),a3
 	tst.b ($f0,a3)
@@ -4801,7 +4801,7 @@ loc_0b4098:
 	move.w #$1d,(2,a4)
 	move.w #$c0,(4,a4)
 	move.w #$28,(6,a4)
-	tst.w ($138,a5)
+	tst.w (Dramatic_Mode_Type,a5)
 	bne.b loc_0b40cc
 	movea.w (right_hud_pointer,a5),a3
 	tst.b ($f0,a3)
@@ -5981,7 +5981,7 @@ loc_0b4f6a:
 	bra.w loc_0b504a
 
 loc_0b4fba:
-	move.w ($138,a5),d0
+	move.w (Dramatic_Mode_Type,a5),d0
 	move.w loc_0b4fc6(pc,d0.w),d1
 	jmp loc_0b4fc6(pc,d1.w)
 
@@ -6100,7 +6100,7 @@ loc_0b50e4:
 	move.w #$1d,($12,a4)
 
 loc_0b5128:
-	move.w ($138,a5),d0
+	move.w (Dramatic_Mode_Type,a5),d0
 	move.w loc_0b5134(pc,d0.w),d1
 	jmp loc_0b5134(pc,d1.w)
 
@@ -6358,7 +6358,7 @@ loc_0b53aa:
 	bra.w loc_0b5684
 
 loc_0b547a:
-	move.w ($138,a5),d0
+	move.w (Dramatic_Mode_Type,a5),d0
 	move.w loc_0b5486(pc,d0.w),d1
 	jmp loc_0b5486(pc,d1.w)
 
@@ -6547,7 +6547,7 @@ loc_0b56a2:
 	bra.w loc_0b5780
 
 loc_0b56f0:
-	move.w ($138,a5),d0
+	move.w (Dramatic_Mode_Type,a5),d0
 	move.w loc_0b56fc(pc,d0.w),d1
 	jmp loc_0b56fc(pc,d1.w)
 
@@ -6660,7 +6660,7 @@ loc_0b5810:
 	move.w #$1d,($12,a4)
 
 loc_0b5854:
-	move.w ($138,a5),d0
+	move.w (Dramatic_Mode_Type,a5),d0
 	move.w loc_0b5860(pc,d0.w),d1
 	jmp loc_0b5860(pc,d1.w)
 
@@ -6909,7 +6909,7 @@ loc_0b5abe:
 	bra.w loc_0b5e52
 
 loc_0b5b8a:
-	move.w ($138,a5),d0
+	move.w (Dramatic_Mode_Type,a5),d0
 	move.w loc_0b5b96(pc,d0.w),d1
 	jmp loc_0b5b96(pc,d1.w)
 
@@ -7347,7 +7347,7 @@ loc_0b616e:
 	adda.l d0,a1
 
 loc_0b61a2:
-	tst.b ($89,a5)
+	tst.b (Dip_SFAlpha,a5)
 	beq.b loc_0b61ae
 	adda.l #$50,a1
 
@@ -7431,7 +7431,7 @@ loc_0b625a:
 	adda.l d0,a1
 
 loc_0b628e:
-	tst.b ($89,a5)
+	tst.b (Dip_SFAlpha,a5)
 	beq.b loc_0b629a
 	adda.l #$50,a1
 
@@ -8021,7 +8021,7 @@ loc_0b8f64:
 	move.b #1,(1,a6)
 	movea.w (left_hud_pointer,a5),a4
 	move.w ($50,a4),($28,a6)
-	move.w ($138,a5),d0
+	move.w (Dramatic_Mode_Type,a5),d0
 	move.w loc_0b8f80(pc,d0.w),d1
 	jmp loc_0b8f80(pc,d1.w)
 
@@ -8112,7 +8112,7 @@ loc_0b906c:
 loc_0b9078:
 	movea.w (right_hud_pointer,a5),a4
 	move.w ($50,a4),($2c,a6)
-	move.w ($138,a5),d0
+	move.w (Dramatic_Mode_Type,a5),d0
 	move.w loc_0b908e(pc,d0.w),d1
 	jmp loc_0b908e(pc,d1.w)
 
@@ -8466,7 +8466,7 @@ loc_0b9454:
 loc_0b946c:
 	moveq #0,d2
 	move.b ($102,a4),d2
-	cmpi.w #4,($138,a5)
+	cmpi.w #4,(Dramatic_Mode_Type,a5)
 	bne.b loc_0b9488
 	move.w #$280c,d0
 	move.w #3,d2
@@ -8502,7 +8502,7 @@ loc_0b94ae:
 loc_0b94c4:
 	moveq #0,d2
 	move.b ($102,a4),d2
-	cmpi.w #2,($138,a5)
+	cmpi.w #2,(Dramatic_Mode_Type,a5)
 	bne.b loc_0b94de
 	move.w #$280c,d0
 	move.w #$13f,d2
@@ -8589,7 +8589,7 @@ loc_0b957a:
 ;-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 loc_0b958c:
 	lea.l ($46,a6),a1
-	move.w ($138,a5),d0
+	move.w (Dramatic_Mode_Type,a5),d0
 	move.w loc_0b959c(pc,d0.w),d1
 	jmp loc_0b959c(pc,d1.w)
 
@@ -8640,7 +8640,7 @@ loc_0b95e2:
 loc_0b95fa:
 	lsl.w #3,d0
 	lea.l (a0,d0.w),a0
-	move.w ($138,a5),d0
+	move.w (Dramatic_Mode_Type,a5),d0
 	add.w d0,d0
 	add.b ($101,a4),d0
 	move.b loc_0b9622(pc,d0.w),($d,a4)
@@ -8661,7 +8661,7 @@ loc_0b9622:
 
 ;-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 loc_0b9632:
-	move.w ($138,a5),d0
+	move.w (Dramatic_Mode_Type,a5),d0
 	move.w loc_0b963e(pc,d0.w),d1
 	jmp loc_0b963e(pc,d1.w)
 
@@ -8719,7 +8719,7 @@ loc_0b96b4:
 loc_0b96cc:
 	lsl.w #3,d0
 	lea.l (a0,d0.w),a0
-	move.w ($138,a5),d0
+	move.w (Dramatic_Mode_Type,a5),d0
 	add.w d0,d0
 	add.b ($101,a4),d0
 	move.b loc_0b96f4(pc,d0.w),($d,a4)
@@ -8769,7 +8769,7 @@ loc_0b972c:
 loc_0b9746:
 	lsl.w #3,d0
 	lea.l (a0,d0.w),a0
-	move.w ($138,a5),d0
+	move.w (Dramatic_Mode_Type,a5),d0
 	add.w d0,d0
 	add.b ($101,a3),d0
 	move.b loc_0b976e(pc,d0.w),($d,a3)
@@ -9209,7 +9209,7 @@ loc_0bb342:
 	move.w #4,($50,a6)
 	move.w #$36,($52,a6)
 	move.w #$33,($54,a6)
-	tst.w ($138,a5)
+	tst.w (Dramatic_Mode_Type,a5)
 	bne.w loc_0bbada
 	bra.w loc_0bbb1c
 
@@ -9240,7 +9240,7 @@ loc_0bb3da:
 ;==============================================
 loc_0bb3dc:
 	move.b #1,(1,a6)
-	tst.w ($138,a5)
+	tst.w (Dramatic_Mode_Type,a5)
 	beq.b loc_0bb3ea
 	rts
 

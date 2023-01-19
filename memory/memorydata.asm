@@ -99,7 +99,7 @@ INP_P2_repeat = 0x5e
 NetworkEnabled = 0x86
 ;0x87 Epprom write status
 ;0x88
-;0x89
+Dip_SFAlpha = 0x89; sets names and voices to sf alpha and a-ism
 ;0x8a
 Region = 0x90
 ;0x93
@@ -125,14 +125,16 @@ Dip_BGM = 0xa6
 ;==============================================
 ;
 ;==============================================
-Active_Player = 0xa8
-; = 0xac
+Active_Player = 0xa8;during character select
+Active_Player_01 = 0xac;after selecting ism
 ; = 0xad
 RngByte0 = 0xae
 RngByte1 = 0xaf
 
 ; = 0xb4
 ; = 0xb5
+
+Active_Player_02 = 0xb9;during stage presentation
 
 Dip_Regulation = 0xbb
 ; = 0xbd
@@ -191,13 +193,20 @@ Dev_Turbo = 0x116
 ; = 0x125
 
 ; = 0x12b
-
+; = 0x12c
+; = 0x12d
 ; = 0x12e
 ; = 0x130
 ; = 0x133
 ; = 0x134
 ; = 0x137
-; = 0x138 Dramatic mode
+
+Dramatic_Mode_Type = 0x138 ; word
+    ;00 Regular Match
+    ;02 p1 vs p3&p4
+    ;04 p2 vs p3&p4
+    ;06 p1&p2 vs p3
+
 ; = 0x13c
 
 ; = 0x141
@@ -234,12 +243,11 @@ StageId_02 = 0x174
 ;cps0 200 8x8
 ;cps1 280 16x16
 ;cps2 300 32x32
-;==============================================
 
-;==============================================
+;----------------------------------------------
 W_Cps0_Start = 0x200
 
-;==============================================
+;----------------------------------------------
 W_Cps1_Start = 0x280
 ;0x288
 ;0x28c
@@ -254,13 +262,14 @@ camera_y = 0x2a4
 cam_ybound = 0x40
 cam_xbound = 0x44
 
-;==============================================
+;----------------------------------------------
 W_Cps2_Start = 0x300
 ;0x310
 ;0x312
 ;0x314
 ;0x316
 
+;==============================================
 ;0x398
 
 
@@ -284,34 +293,6 @@ Sound_Buffer_Start = 0x5e80
 ;==============================================
 ;Player Data
 ;==============================================
-p1memory = 0x400
-p1_charid = 0x502
-P1_Palnum = 0x528
-p1_ism_choice = 0x532
-p1_arcade_progress = 0x540
-p1_crushed_guard = 0x66e
-
-;==============================================
-p2memory = 0x800
-p2_charid = 0x902
-P2_Palnum = 0x928
-p2_ism_choice = 0x932
-p2_arcade_progress = 0x940
-p2_crushed_guard = 0xa6e
-;==============================================
-p3memory = 0xc00
-p3_charid = 0xd02
-P3_Palnum = 0xd28
-p3_ism_choice = 0xd32
-p3_crushed_guard = 0xe6e
-
-;==============================================
-p4memory = 0x1000
-p4_charid = 0x1102
-P4_Palnum = 0x1128
-p4_ism_choice = 0x1132
-p4_crushed_guard = 0x126e
-
 
 ;==============================================
 ;unknown direct

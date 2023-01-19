@@ -1090,7 +1090,7 @@ loc_0a0caa:
 	move.b (3,a6),d1
 	lsl.w #3,d1
 	moveq #$b,d0
-	add.b ($89,a5),d0
+	add.b (Dip_SFAlpha,a5),d0
 	jsr loc_09877a
 
 loc_0a0cea:
@@ -1265,7 +1265,7 @@ loc_0a0e12:
 	move.w d0,($26,a6)
 	move.w d0,($24,a6)
 	move.b #8,($3a,a6)
-	move.b ($89,a5),d0
+	move.b (Dip_SFAlpha,a5),d0
 	lsl.w #2,d0
 	add.b (3,a6),d0
 	add.w d0,d0
@@ -1321,7 +1321,7 @@ loc_0a0ebc:
 	moveq #0,d0
 	move.w d0,($40,a6)
 	move.w d0,($44,a6)
-	move.b ($89,a5),d0
+	move.b (Dip_SFAlpha,a5),d0
 	lsl.w #2,d0
 	add.b (3,a6),d0
 	lsl.w #5,d0
@@ -2059,7 +2059,7 @@ loc_0a1646:
 	move.w d0,($12,a6)
 	move.w d0,($52,a6)
 	move.b ($3c,a6),d0
-	tst.b ($89,a5)
+	tst.b (Dip_SFAlpha,a5)
 	beq.b loc_0a1664
 	addq.w #6,d0
 
@@ -2165,7 +2165,7 @@ loc_0a181e:
 	move.w d3,d1
 	lsl.w #3,d1
 	moveq #1,d0
-	add.b ($89,a5),d0
+	add.b (Dip_SFAlpha,a5),d0
 	add.w d0,d0
 	lea.l loc_0a2b90(pc),a0
 	add.w (a0,d0.w),d1
@@ -2250,7 +2250,7 @@ loc_0a18c4:
 	bsr.w loc_0a1a96
 	bsr.w loc_0a1e16
 	moveq #3,d0
-	add.b ($89,a5),d0
+	add.b (Dip_SFAlpha,a5),d0
 	lea.l loc_0a2b90(pc),a0
 	jmp loc_01b6e0
 
@@ -2280,7 +2280,7 @@ loc_0a1946:
 ;+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-
 loc_0a1948:
 	moveq #5,d6
-	tst.b ($89,a5)
+	tst.b (Dip_SFAlpha,a5)
 	beq.b loc_0a1952
 	moveq #$a,d6
 
@@ -2337,7 +2337,7 @@ loc_0a19cc:
 	cmpi.w #$3f,d5
 	beq.b loc_0a19ec
 	move.w #$3f,d5
-	tst.b ($89,a5)
+	tst.b (Dip_SFAlpha,a5)
 	beq.b loc_0a19e8
 	move.w #$7ff,d5
 
@@ -2356,7 +2356,7 @@ loc_0a19f4:
 loc_0a19f6:
 	moveq #0,d5
 	moveq #5,d6
-	tst.b ($89,a5)
+	tst.b (Dip_SFAlpha,a5)
 	beq.b loc_0a1a04
 	moveq #$c,d5
 	moveq #$a,d6
@@ -2389,7 +2389,7 @@ loc_0a1a2a:
 ;-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 loc_0a1a4c:
 	moveq #0,d5
-	tst.b ($89,a5)
+	tst.b (Dip_SFAlpha,a5)
 	beq.b loc_0a1a56
 	moveq #$c,d5
 
@@ -2421,7 +2421,7 @@ loc_0a1a7e:
 
 ;-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 loc_0a1a96:
-	tst.b ($89,a5)
+	tst.b (Dip_SFAlpha,a5)
 	bne.w loc_0a1bce
 	move.w (-$447c,a5),d0
 	subi.w #$24,d0
@@ -2650,7 +2650,7 @@ loc_0a1bce:
 
 ;-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 loc_0a1e16:
-	tst.b ($89,a5)
+	tst.b (Dip_SFAlpha,a5)
 	bne.w loc_0a1f4e
 
 	move.w (-$4424,a5),d0
@@ -2943,7 +2943,7 @@ loc_0a21f4:
 	moveq #0,d0
 	move.b (3,a6),d0
 	add.w d0,d0
-	add.b ($89,a5),d0
+	add.b (Dip_SFAlpha,a5),d0
 	lsl.w #2,d0
 	move.w loc_0a2210(pc,d0.w),($10,a6)
 	move.w loc_0a2210+2(pc,d0.w),($14,a6)
@@ -2975,7 +2975,7 @@ loc_0a2258:
 	moveq #0,d0
 	move.b (3,a6),d0
 	add.w d0,d0
-	add.b ($89,a5),d0
+	add.b (Dip_SFAlpha,a5),d0
 	lsl.w #2,d0
 	move.w loc_0a229c(pc,d0.w),d1
 	movea.l loc_0a228c(pc,d1.w),a0
@@ -7016,7 +7016,7 @@ loc_0a5788:
 loc_0a578a:
 	cmpi.w #$1e,(Main_stageid,a5)
 	bne.w loc_0a57f4
-	tst.w ($138,a5)
+	tst.w (Dramatic_Mode_Type,a5)
 	bne.w loc_0a57f4
 	moveq #0,d6
 	lea.l (p1memory,a5),a1
@@ -23709,7 +23709,7 @@ loc_0b01b2:
 	move.w loc_0b0202(pc,d0.w),($14,a6)
 	move.w loc_0b0202+2(pc,d0.w),($48,a6)
 	moveq #5,d0
-	add.b ($89,a5),d0
+	add.b (Dip_SFAlpha,a5),d0
 	moveq #0,d1
 	jmp loc_08733e
 
@@ -23747,7 +23747,7 @@ loc_0b0238:
 	andi.w #$7f0,d1
 	lsr.w #1,d1
 	moveq #5,d0
-	add.b ($89,a5),d0
+	add.b (Dip_SFAlpha,a5),d0
 	jsr loc_08733e
 	bra.w loc_0b0368
 

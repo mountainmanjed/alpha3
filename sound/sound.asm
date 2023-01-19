@@ -827,7 +827,7 @@ loc_003a10:
 ;==============================================
 Set_Stage_BGM:
 	lea (p3memory,a5),a4
-	tst.w ($138,a5)
+	tst.w (Dramatic_Mode_Type,a5)
 	bne.b loc_003a48
 	lea (p1memory,a5),a4
 	tst.b ($130,a5)
@@ -1109,7 +1109,10 @@ loc_003cae:
 	jmp loc_0038d8
 
 ;==============================================
-loc_003cc8:
+;random fight praise
+;loc 0x3cc8
+;==============================================
+Play_Fight_Praise:
 	jsr loc_0032a4
 	jsr RNGFunction
 	andi.w #$f,d0
@@ -1120,26 +1123,32 @@ loc_003cc8:
 
 loc_003ce4:
 	move.w d0,(-$718c,a5)
-	move.l #$120,d1
+	move.l #$120,d1;start of praise sounds
 	add.w d0,d1
 	move.l #$1000,d2
 	moveq #0,d3
 	jmp loc_0038d8
 
 ;==============================================
-loc_003cfe:
+;Play "This is Street Fighter" on splash
+;loc 0x3cfe
+;==============================================
+Set_Splash_SFXID:
 	jsr loc_0032a4
-	move.l #$102,d1
-	add.b ($89,a5),d1
+	move.l #$102,d1;This is Street Fighter
+	add.b (Dip_SFAlpha,a5),d1
 	move.l #$1000,d2
 	moveq #0,d3
 	jmp loc_0038d8
 
 ;==============================================
-loc_003d1c:
+;Play Street Fighter title name
+;loc 0x3d1c
+;==============================================
+Set_TitleScrn_SFXID:
 	jsr loc_0032a4
 	move.l #$100,d1
-	add.b ($89,a5),d1
+	add.b (Dip_SFAlpha,a5),d1
 	move.l #$1000,d2
 	moveq #0,d3
 	jmp loc_0038d8

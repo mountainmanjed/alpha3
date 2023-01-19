@@ -26,1166 +26,9 @@
 	dc.l loc_00014e,loc_00014e,loc_00014e,loc_00014e
 
 ;==============================================
-BusError:
-	move.w #0,$ff0000
-	lea (8,a7),a7
-	bra.w loc_000150
-
-AddrError:
-	move.w #1,$ff0000
-	lea (8,a7),a7
-	bra.b loc_000150
-
-IllegalInst:
-	ori.w #$2600,sr
-	move.w #2,$ff0000
-	bra.b loc_000150
-
-DivbyZero:
-	ori.w #$2600,sr
-	move.w #3,$ff0000
-	bra.b loc_000150
-
-CHKinst:
-	ori.w #$2600,sr
-	move.w #4,$ff0000
-	bra.b loc_000150
-
-TrapVinst:
-	ori.w #$2600,sr
-	move.w #5,$ff0000
-	bra.b loc_000150
-
-PrivVilation:
-	ori.w #$2600,sr
-	move.w #6,$ff0000
-	bra.b loc_000150
-
-TraceOn:
-	ori.w #$2600,sr
-	move.w #7,$ff0000
-	bra.b loc_000150
-
-Line_A_error:
-	ori.w #$2600,sr
-	move.w #8,$ff0000
-	bra.b loc_000150
-
-Line_F_error:
-	ori.w #$2600,sr
-	move.w #9,$ff0000
-	bra.b loc_000150
-
-loc_00014e:
-	rte
-
-loc_000150:
-	lea (6,a7),a7
-	move.l a7,$ff0054
-	lea $ff0054,a7
-	movem.l d0-d7/a0-a6,-(a7)
-	bra.w loc_000600
-
-;===============================================
-loc_000168:
-	lea $ff8000,a5
-	move.l usp,a0
-	move.l a0,(-$7fa8,a5)
-	moveq #0,d0
-	move.w d0,(-$7ffe,a5)
-	move.w d0,(-$7ffc,a5)
-	move.l #$ff8000,(-$7ff0,a5)
-	move.w d0,(-$7fec,a5)
-	move.w d0,(-$7fea,a5)
-	lea (-$7da4,a5),a7
-	move.w (gfxram8x8,a5),(-$7ffa,a5)
-	move.w (palrampointer,a5),(-$7ff8,a5)
-	move.w ($32,a5),(-$7ff6,a5)
-	move.w ($22,a5),(-$7ff4,a5)
-	move.w ($24,a5),(-$7ff2,a5)
-	lea $91e400,a0
-	lea ($90e,pc),a1
-	movem.l (a1),d0-d3
-	movem.l d0-d3,(a0)
-	bsr.w loc_000500
-	bsr.w loc_000354
-	bsr.w loc_000272
-	move #$2000,sr
-
-loc_0001d2:
-	tst.b (-$7b9c,a5)
-	beq.b loc_0001d2
-	clr.b (-$7b9c,a5)
-	move.w (-$7ffe,a5),d0
-	move.w loc_0001ea(pc,d0.w),d1
-	jsr loc_0001ea(pc,d1.w)
-	bra.b loc_0001d2
-
-;VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV
-loc_0001ea:
-	dc.w loc_0001ee-loc_0001ea
-	dc.w loc_00025a-loc_0001ea
-
-;----------------------------------------------
-loc_0001ee:
-	bsr.w loc_000560
-	btst #$c,d0
-	bne.b loc_000200
-	bsr.w loc_0002ca
-	bra.w loc_0004ce
-
-loc_000200:
-	move.w #2,(-$7ffe,a5)
-	move.w (-$7ffa,a5),(gfxram8x8,a5)
-	move.w (-$7ff8,a5),(palrampointer,a5)
-	move.w (-$7ff6,a5),($32,a5)
-	move.w (-$7ff4,a5),($22,a5)
-	move.w (-$7ff2,a5),($24,a5)
-	move.w #0,$708002
-	eori.b #1,($94,a5)
-	move.b ($94,a5),OBJram_Bank1
-	nop
-	nop
-	move.w #0,$708002
-	eori.b #1,($94,a5)
-	move.b ($94,a5),OBJram_Bank1
-	nop
-	nop
-	rts
-
-;----------------------------------------------
-loc_00025a:
-	bsr.w loc_000560
-	btst #$a,d0
-	beq.b loc_00026a
-	eori.b #1,($94,a5)
-
-loc_00026a:
-	btst #$c,d0
-	bne.b loc_000272
-	rts
-
-loc_000272:
-	clr.w (-$7ffe,a5)
-	move.w #$92c0,(gfxram8x8,a5)
-	move.w #$12c2,($32,a5)
-	move.w #0,($22,a5)
-	move.w #$100,($24,a5)
-	move.w #-$6e20,(palrampointer,a5)
-	move.w #$8000,$708002
-	eori.b #1,($94,a5)
-	move.b ($94,a5),OBJram_Bank1
-	nop
-	nop
-	move.w #$8000,$708002
-	eori.b #1,($94,a5)
-	move.b ($94,a5),OBJram_Bank1
-	nop
-	nop
-	rts
-
-;##############################################
-loc_0002ca:
-	bsr.w loc_000560
-	moveq #$10,d1
-	move.l (-$7ff0,a5),d2
-	move.w (INP_P1_repeat,a5),d3
-	not.w d3
-	and.w (INP_P1,a5),d3
-	btst #9,d3
-	bne.w loc_000324
-	btst #8,d0
-	beq.b loc_0002f2
-	move.l #$100,d1
-
-loc_0002f2:
-	btst #2,d0
-	beq.b loc_000308
-	sub.l d1,d2
-	cmpi.l #$ff0000,d2
-	bcc.b loc_000308
-	move.l #$ff0000,d2
-
-loc_000308:
-	btst #3,d0
-	beq.b loc_00031e
-	add.l d1,d2
-	cmpi.l #$ffff80,d2
-	bls.b loc_00031e
-	move.l #$ffff80,d2
-
-loc_00031e:
-	move.l d2,(-$7ff0,a5)
-	rts
-
-;==============================================
-loc_000324:
-	addq.w #4,(-$7ffc,a5)
-	andi.w #$c,(-$7ffc,a5)
-	move.w (-$7ffc,a5),d1
-	move.l Debug_Memory_Shortcuts(pc,d1.w),d2
-	bne.b loc_00031e
-	move.l (-$7fb0,a5),d2
-	andi.l #$fffff0,d2
-	bra.b loc_00031e
-
-;##############################################
-Debug_Memory_Shortcuts:
-	dc.l $00ff8000,$00ff8400,$00ff8800,$00000000
-
-;----------------------------------------------
-loc_000354:
-	moveq #0,d0
-	bsr.w loc_000592
-	moveq #1,d0
-	add.w (-$8000,a5),d0
-	bsr.w loc_000592
-
-	lea $92c230,a1
-	move.l (-$7fe8,a5),d0
-	bsr.w loc_00052c
-
-	lea $92c234,a1
-	move.l (-$7fe4,a5),d0
-	bsr.w loc_00052c
-
-	lea $92c238,a1
-	move.l (-$7fe0,a5),d0
-	bsr.w loc_00052c
-
-	lea $92c23c,a1
-	move.l (-$7fdc,a5),d0
-	bsr.w loc_00052c
-
-	lea $92c830,a1
-	move.l (-$7fd8,a5),d0
-	bsr.w loc_00052c
-
-	lea $92c834,a1
-	move.l (-$7fd4,a5),d0
-	bsr.w loc_00052c
-
-	lea $92c838,a1
-	move.l (-$7fd0,a5),d0
-	bsr.w loc_00052c
-
-	lea $92c83c,a1
-	move.l (-$7fcc,a5),d0
-	bsr.w loc_00052c
-
-	lea $92ce30,a1
-	move.l (-$7fc8,a5),d0
-	bsr.w loc_00052c
-
-	lea $92ce34,a1
-	move.l (-$7fc4,a5),d0
-	bsr.w loc_00052c
-
-	lea $92ce38,a1
-	move.l (-$7fc0,a5),d0
-	bsr.w loc_00052c
-
-	lea $92ce3c,a1
-	move.l (-$7fbc,a5),d0
-	bsr.w loc_00052c
-
-	lea $92d430,a1
-	move.l (-$7fb8,a5),d0
-	bsr.w loc_00052c
-
-	lea $92d434,a1
-	move.l (-$7fb4,a5),d0
-	bsr.w loc_00052c
-
-	lea $92d438,a1
-	move.l (-$7fb0,a5),d0
-	bsr.w loc_00052c
-
-	lea $92d43c,a1
-	move.l (-$7fac,a5),d0
-	bsr.w loc_00052c
-
-	lea $92cdc0,a1
-	move.l (-$7fac,a5),d0
-	bsr.w loc_00052c
-
-	lea $92d440,a1
-	move.l (-$7fa8,a5),d0
-	bsr.w loc_00052c
-
-	movea.l (-$7fac,a5),a3
-	lea $92c840,a1
-	move.w (-6,a3),d0
-	bsr.w loc_000532
-
-	move.l (-4,a3),d0
-	lea $92c894,a1
-	bsr.w loc_00052c
-	cmpi.w #2,(-$8000,a5)
-	bcc.b loc_0004c4
-	move.l (-$c,a3),d0
-	lea $92c898,a1
-	bsr.w loc_00052c
-	move.l (-$e,a3),d3
-	moveq #$b,d0
-	btst #4,d3
-	bne.b loc_0004a4
-	moveq #$c,d0
-
-loc_0004a4:
-	bsr.w loc_000592
-	moveq #$d,d0
-	btst #3,d3
-	bne.b loc_0004b2
-	moveq #$e,d0
-
-loc_0004b2:
-	bsr.w loc_000592
-	andi.w #$0007,d3
-	moveq #0,d0
-	move.b loc_0004c6(pc,d3.w),d0
-	bpl.w loc_000592
-
-loc_0004c4:
-	rts
-
-;VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV
-loc_0004c6:
-	dc.b $ff,$0f,$10,$ff,$ff,$11,$12,$13
-
-;==============================================
-loc_0004ce:
-	movea.l (-$7ff0,a5),a0
-	lea $92c04c,a2
-	moveq #7,d6
-
-loc_0004da:
-	lea (a2),a1
-	move.l a0,d0
-	bsr.w loc_00052c
-	lea ($80,a1),a1
-	moveq #7,d3
-
-loc_0004e8:
-	move.w (a0)+,d0
-	bsr.w loc_000532
-	lea ($80,a1),a1
-	dbra d3,loc_0004e8
-	lea (4,a2),a2
-	dbra d6,loc_0004da
-	rts
-
-;==============================================
-loc_000500:
-	lea $930000,a0
-	move.l #$200000,d0
-	move.l d0,d1
-	move.l d0,d2
-	move.l d0,d3
-	move.w #$ff,d6
-
-loc_000516:
-	movem.l d0-d3,-(a0)
-	movem.l d0-d3,-(a0)
-	movem.l d0-d3,-(a0)
-	movem.l d0-d3,-(a0)
-	dbra d6,loc_000516
-	rts
-
-;==============================================
-loc_00052c:
-	swap d0
-	bsr.b loc_000532
-	swap d0
-
-loc_000532:
-	move.w d0,d2
-	lsr.w #8,d0
-	bsr.b loc_00053a
-	move.w d2,d0
-
-loc_00053a:
-	move.b d0,d1
-	lsr.b #4,d0
-	bsr.b loc_000542
-	move.b d1,d0
-
-loc_000542:
-	andi.w #$f,d0
-	cmpi.w #$a,d0
-	bcs.b loc_00054e
-	addq.w #7,d0
-
-loc_00054e:
-	addi.w #$30,d0
-	move.w d0,(a1)
-	move.w #0,(2,a1)
-	lea ($80,a1),a1
-	rts
-
-;==============================================
-loc_000560:
-	move.w (INP_P1_repeat,a5),d0
-	beq.b loc_000580
-	cmpi.b #$20,(-$7fec,a5)
-	blt.b loc_000586
-	bsr.b loc_00058a
-	andi.w #$1400,d0
-	move.w (INP_P1,a5),d1
-	andi.w #$ebfe,d1
-	or.w d1,d0
-	rts
-
-loc_000580:
-	move.b #0,(-$7fec,a5)
-
-loc_000586:
-	addq.b #1,(-$7fec,a5)
-
-loc_00058a:
-	not.w d0
-	and.w (INP_P1,a5),d0 
-	rts
-
-;==============================================
-loc_000592:
-	moveq #0,d2
-	add.b d0,d0
-	bcc.b loc_00059a
-	moveq #-1,d2
-
-loc_00059a
-	move.w loc_0005d8(pc,d0.w),d0
-	lea loc_0005d8(pc,d0.w),a0
-
-loc_0005a2
-	moveq #0,d0
-	lea Palettebank3,a1
-	move.b (a0)+,d0
-	lsl.w #7,d0
-	add.b (a0)+,d0
-	lea (a1,d0.w),a1
-	moveq #0,d1
-	move.b (a0)+,d1
-
-loc_0005b8:
-	moveq #0,d0
-	move.b (a0)+,d0
-	beq.b loc_0005d6
-	bmi.b loc_0005a2
-	tst.b d2
-	beq.b loc_0005c6
-	moveq #$20,d0
-
-loc_0005c6:
-	addi.w #0,d0
-	move.w d0,(a1)
-	move.w d1,(2,a1)
-	lea ($80,a1),a1
-	bra.b loc_0005b8
-
-loc_0005d6:
-	rts
-
-loc_0005d8:
-	dc.w $0052,$01aa,$01be,$01d6,$01f4,$020a,$0224,$0240
-	dc.w $025e,$026e,$0286,$029e,$02a6,$02b0,$02c4,$02d4
-	dc.w $02e2,$02f2,$0306,$031c 
-
-;===============================================
-loc_000600:
-	move #$2700,sr
-	moveq #0,d0
-	moveq #0,d1
-	moveq #0,d2
-	moveq #0,d3
-	moveq #0,d4
-	moveq #0,d5
-	moveq #0,d6
-	moveq #0,d7
-	movea.l d0,a0
-	movea.l d0,a1
-	movea.l d0,a2
-	movea.l d0,a3
-	movea.l d0,a4
-	movea.l d0,a5
-	movea.l d0,a6
-	movea.l d0,a7
-	jmp EntryPoint
-
-;VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV
-CrashText:;62a
-	dc.b $01,$14,$00
-	dc.b 'PROGRAM COUNTER:',$ff
-
-	dc.b $01,$18,$00
-	dc.b 'ACCESS ADDRESS :',$ff
-
-
-	dc.b $01,$1c,$00
-	dc.b 'CYCLE          :',$ff
-
-
-	dc.b $01,$20,$00
-	dc.b 'ACCESS         :',$ff
-
-	dc.b $01,$24,$00
-	dc.b 'FUNCTION CODE  :',$ff
-
-	dc.b $01,$30,$00
-	dc.b 'D0:         D4:         A0:         A4:',$ff
-
-
-	dc.b $01,$34,$00
-	dc.b 'D1:         D5:         A1:         A5:',$ff
-
-
-	dc.b $01,$38,$00
-	dc.b 'D2:         D6:         A2:         A6:',$ff
-
-	dc.b $01,$3c,$00
-	dc.b 'D3:         D7:         A3:         A7:',$ff
-
-	dc.b $0d,$40,$00
-	dc.b 'SR:       SSP:         USP:',$ff
-
-	dc.b $09,$48,$00
-	dc.b '+0   +2   +4   +6   +8   +A   +C   +E',$00
-	even
-
-	dc.b $01,$0c,$00
-	dc.b '---BUS ERROR---',$00
-	even
-
-	dc.b $01,$0c,$00
-	dc.b '---ADDRESS ERROR---',$00
-	even
-
-	dc.b $01,$0c,$00
-	dc.b '---ILLEGAL INSTRUCTION---',$00
-	even
-
-	dc.b $01,$0c,$00
-	dc.b '---ZERO DIVIDE---',$00
-	even
-
-	dc.b $01,$0c,$00
-	dc.b '---CHK INSTRUCTION---',$00
-	even
-
-	dc.b $01,$0c,$00
-	dc.b '---TRAPV INSTRUCTION---',$00
-	even
-
-	dc.b $01,$0c,$00
-	dc.b '---PRIVILEGE VIOLATION---',$00
-	even
-
-	dc.b $01,$0c,$00
-	dc.b '---TRACE---',$00
-	even
-
-	dc.b $01,$0c,$00
-	dc.b '---1010 EMULATOR---',$00
-	even
-
-	dc.b $01,$0c,$00
-	dc.b '---1111 EMULATOR---',$00
-	even
-
-	dc.b $11,$1c,$00
-	dc.b 'READ',$00
-	even
-
-	dc.b $11,$1c,$00
-	dc.b 'WRITE',$00
-	even
-
-	dc.b $11,$20,$00
-	dc.b 'NOT INSTRUCTION',$00
-	even
-
-	dc.b $11,$20,$00
-	dc.b 'INSTRUCTION',$00
-	even
-
-	dc.b $11,$24,$00
-	dc.b 'USER DATA',$00
-	even
-
-	dc.b $11,$24,$00
-	dc.b 'USER PROGRAM',$00
-	even
-
-	dc.b $11,$24,$00
-	dc.b 'SUPERVISOR DATA',$00
-	even
-
-	dc.b $11,$24,$00
-	dc.b 'SUPERVISOR PROGRAM',$00
-	even
-
-	dc.b $11,$24,$00
-	dc.b 'INTERRUPT ACKNOWLEDGE',$00
-	even
-
-;90e
-	dc.w $f000,$0000,$f88f,$f88f,$f88f,$f88f,$f88f,$f88f
-
-
-;==============================================
-EntryPoint:;91e
-	move.w #$7000,$fffff0
-	move.w #0,$8040a0
-	move.w #-$7f83,$fffff2
-	move.w #$2461,$fffff4
-	move.w #0,$fffff6
-	move.w #$40,$fffff8
-	move.w #$10,$fffffa
-	move.w #$f00,Epprom_RW
-	WATCHDOG
-	lea loc_00096c(pc),a4
-	bra.w loc_000e32
-
-;==============================================
-loc_00096c:
-	move.w #$ffc0,$80410c
-	move.w #0,$80410e
-	move.w #gl_cps00_pnt,cps0_gpuregistera
-	move.w #gl_cps00_pnt,cps0_gpuregisterb
-	move.w #gl_cps10_pnt,cps1_gpuregister
-	move.w #gl_cps20_pnt,cps2_gpuregister
-	move.w #gl_rstrb_pnt,raster_gpuregister
-	lea loc_0009ac(pc),a4
-	bra.w loc_000dd6
-
-loc_0009ac:
-	lea loc_0009b4(pc),a4
-	bra.w loc_000d7a
-
-loc_0009b4:
-	lea loc_0009bc(pc),a4
-	bra.w loc_000d8e
-
-loc_0009bc:
-	lea loc_0009c4(pc),a4
-	bra.w loc_000da2
-
-loc_0009c4:
-	move.w #$e,$804122
-	move.w #$1b02,$804166
-	move.w #$3f,$804170
-	move.w #Mainpalette,palette_gpuregister
-	lea Mes_workram(pc),a2
-	lea loc_0009f0(pc),a5
-	bra.w loc_000d28
-
-loc_0009f0:
-	lea $ff0000,a0
-	lea (a0),a1
-	adda.l #$fffe,a1
-	lea Mes_workram_ng(pc),a2
-	lea loc_000a0a(pc),a6
-	bra.w loc_000cb6
-
-loc_000a0a:
-	lea Mes_workram_ok(pc),a2
-	lea loc_000a16(pc),a5
-	bra.w loc_000d28
-
-loc_000a16:
-	lea Mes_cps0ram(pc),a2
-	lea loc_000a22(pc),a5
-	bra.w loc_000d28
-
-loc_000a22:
-	lea $900000,a0
-	lea (a0),a1
-	adda.l #$fffe,a1
-	lea Mes_cps0ram_ng(pc),a2
-	lea loc_000a3c(pc),a6
-	bra.w loc_000cb6
-
-loc_000a3c:
-	lea Mes_cps0ram_ok(pc),a2
-	lea loc_000a48(pc),a5
-	bra.w loc_000d28
-
-loc_000a48:
-	lea Mes_cps1ram(pc),a2
-	lea loc_000a54(pc),a5
-	bra.w loc_000d28
-
-loc_000a54:
-	lea $910000,a0
-	lea (a0),a1
-	adda.l #$fffe,a1
-	lea Mes_cps1ram_ng(pc),a2
-	lea loc_000a6e(pc),a6
-	bra.w loc_000cb6
-
-loc_000a6e:
-	lea Mes_cps1ram_ok(pc),a2
-	lea loc_000a7a(pc),a5
-	bra.w loc_000d28
-
-loc_000a7a:
-	lea Mes_cps2ram(pc),a2
-	lea loc_000a86(pc),a5
-	bra.w loc_000d28
-
-loc_000a86:
-	lea $920000,a0
-	lea (a0),a1
-	adda.l #$fffe,a1
-	lea Mes_cps2ram_ng(pc),a2
-	lea loc_000aa0(pc),a6
-	bra.w loc_000cb6
-
-loc_000aa0:
-	lea Mes_cps2ram_ok(pc),a2
-	lea loc_000aac(pc),a5
-	bra.w loc_000d28
-
-loc_000aac:
-	lea Mes_objram(pc),a2
-	lea loc_000ab8(pc),a5
-	bra.w loc_000d28
-
-loc_000ab8:
-	lea ObjectRam,a0
-	lea (a0),a1
-	adda.l #$1ffe,a1
-	lea Mes_objram_ng(pc),a2
-	lea loc_000ad2(pc),a6
-	bra.w loc_000cb6
-
-loc_000ad2:
-	lea Mes_objram_ok(pc),a2
-	lea loc_000ade(pc),a5
-	bra.w loc_000d28
-
-loc_000ade:
-	move.w #$f08,Epprom_RW
-	lea Mes_QSRam(pc),a2
-	lea loc_000af2(pc),a5
-	bra.w loc_000d28
-
-loc_000af2:
-	WATCHDOG
-	cmpi.b #$77,Sound_END
-	bne.b loc_000af2
-	lea Soundram,a0
-	lea ($1ffe,a0),a1
-	lea Mes_QSRam_NG(pc),a2
-	lea loc_000b18(pc),a6
-	bra.w loc_000ce0
-
-loc_000b18:
-	lea Mes_QSRam_OK(pc),a2
-	lea loc_000b24(pc),a5
-	bra.w loc_000d28
-
-loc_000b24:
-	lea loc_000b2c(pc),a4
-	bra.w loc_000d5e
-
-loc_000b2c:
-	lea loc_000b34(pc),a4
-	bra.w loc_000d8e
-
-loc_000b34:
-	lea loc_000b3c(pc),a4
-	bra.w loc_000da2
-
-loc_000b3c:
-	lea loc_000b44(pc),a4
-	bra.w loc_000dd6
-
-loc_000b44:
-	lea loc_000b4c(pc),a4
-	bra.w QSRam_FF_Fill
-
-loc_000b4c:
-	lea loc_000b54(pc),a4
-	bra.w loc_000db6
-
-loc_000b54:
-	WATCHDOG
-	moveq #0,d0
-	lea $ff8000,a5
-	move.w #gl_cps00_pnt,cps0_gpuregistera
-	move.w #gl_cps00_pnt,cps0_gpuregisterb
-	move.w #gl_cps10_pnt,cps1_gpuregister
-	move.w #gl_cps20_pnt,cps2_gpuregister
-	move.w #gl_rstrb_pnt,raster_gpuregister
-	move.w #Mainpalette,palette_gpuregister
-	move.w d0,$804110
-	move.w d0,$804112
-	move.w d0,$804114
-	move.w d0,$804116
-	move.w d0,$804120
-	move.w #$f,$804122
-	move.w #$1b02,$804166
-	move.w #$3f,$804170
-
-;Set Sprite Data
-	move.w #$7000,$fffff0
-	move.w #$807d,$fffff2
-	move.w #$2461,$fffff4
-	move.w #$40,$fffff8
-	move.w #$10,$fffffa
-
-;Set Main Pointers
-	move.w #$9000,(gfxram8x8,a5)
-	move.w #$9040,(gfxram16x16,a5)
-	move.w #$9080,(gfxram32x32,a5)
-	move.w #$90e0,(rasterram,a5)
-	move.w #Mainpalette,(palrampointer,a5)
-
-;Clear
-	move.w d0,($22,a5)
-	move.w d0,($24,a5)
-	move.w d0,($26,a5)
-	move.w d0,($28,a5)
-	move.w d0,($2a,a5)
-	move.w d0,($2c,a5)
-	move.w d0,($2e,a5)
-	move.w #$f,($30,a5)
-	move.w #$1b02,($32,a5)
-	move.w #$3f,($34,a5)
-	move.w #$7000,($36,a5)
-	move.w #-$7f83,($38,a5)
-	move.w #$2461,($3a,a5)
-	move.w #$40,($3c,a5)
-	move.w #$10,($3e,a5)
-	move.w #$f08,Epprom_RW
-	move.w #$f00,($6a,a5)
-	move.b #$8,($88,a5)
-	move.b #0,($d1,a5)
-
-;Set Secondary
-	move.w #$9000,($40,a5)
-	move.w #$9040,($42,a5)
-	move.w #$9080,($44,a5)
-	move.w #$90e0,($46,a5)
-	move.w #Mainpalette,(sub_palram,a5)
-	move.w d0,($4a,a5)
-	move.w d0,($4c,a5)
-	move.w d0,($4e,a5)
-	move.w d0,($50,a5)
-	move.w d0,($52,a5)
-	move.w d0,($54,a5)
-	WATCHDOG
-	jmp loc_000f7a
-
-;----------------------------------------------
-;memory_check read and write
-loc_000cb6:
-	movea.l a0,a3
-	move.w #1,d1
-	moveq #0,d3
-
-loc_000cbe:
-	move.l loc_000d1c(pc,d3.w),d0
-	lea (a3),a0
-
-loc_000cc4:
-	WATCHDOG
-	move.l (a0),d2
-	move.l d0,(a0)
-	cmp.l (a0),d0
-	bne.b loc_000d0c
-	move.l d2,(a0)+
-	cmpa.l a1,a0
-	bls.b loc_000cc4
-	addq.w #4,d3
-	dbra d1,loc_000cbe
-	jmp (a6)
-
-;==============================================
-loc_000ce0:
-	movea.l a0,a3
-
-loc_000ce2:
-	move.w #1,d1
-	moveq #0,d3
-
-loc_000ce8:
-	move.w loc_000d24(pc,d3.w),d0
-	lea (a3),a0
-
-loc_000cee:
-	WATCHDOG
-	move.w d0,(a0)
-	cmp.b (1,a0),d0
-	bne.b loc_000d0c
-	lea (2,a0),a0
-	cmpa.l a1,a0
-	bls.b loc_000cee
-	addq.w #2,d3
-	dbra d1,loc_000ce8
-	jmp (a6)
-
-;==============================================
-loc_000d0c:
-	lea loc_000d14(pc),a5
-	bra.w loc_000d28
-
-loc_000d14:
-	WATCHDOG
-	bra.b loc_000d14
-
-;VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV
-loc_000d1c:
-	dc.l $00000000,$ffffffff
-
-loc_000d24:
-	dc.w $0000,$5555
-
-;==============================================
-loc_000d28:
-	lea (a2),a0
-	moveq #0,d0
-	move.b (a0)+,d0
-	lsl.w #7,d0
-	add.b (a0)+,d0
-	movea.l #$900000,a1
-	lea (a1,d0.w),a1
-	moveq #0,d1
-	move.b (a0)+,d1
-
-loc_000d40:
-	moveq #0,d0
-	move.b (a0)+,d0
-	beq.b loc_000d5c
-	WATCHDOG
-	addi.w #0,d0
-	move.w d0,(a1)
-	move.w d1,(2,a1)
-	lea ($80,a1),a1
-	bra.b loc_000d40
-
-loc_000d5c:
-	jmp (a5)
-
-;==============================================
-loc_000d5e:
-	lea $ff0000,a0
-	move.w #$1ffd,d4
-	moveq #0,d0
-
-loc_000d6a:
-	WATCHDOG
-	move.l d0,(a0)+
-	move.l d0,(a0)+
-	dbra d4,loc_000d6a
-	jmp (a4)
-
-;==============================================
-loc_000d7a:
-	lea $900000,a0
-	lea $903fff,a1
-	move.w #$20,d0
-	moveq #0,d1
-	bra.b loc_000dc6
-
-loc_000d8e:
-	lea $904000,a0
-	lea $907fff,a1
-	move.w #$6c20,d0
-	moveq #0,d1
-	bra.b loc_000dc6
-
-loc_000da2:
-	lea $908000,a0
-	lea $90bfff,a1
-	move.w #$b00,d0
-	moveq #0,d1
-	bra.b loc_000dc6
-
-loc_000db6:
-	lea $910000,a0
-	lea $92ffff,a1
-	moveq #0,d0
-	moveq #0,d1
-
-loc_000dc6:
-	WATCHDOG
-	move.w d0,(a0)+
-	move.w d1,(a0)+
-	cmpa.l a1,a0
-	bls.b loc_000dc6
-	jmp (a4)
-
-;==============================================
-loc_000dd6:
-	moveq #0,d0
-	move.w #0,OBJram_Bank0
-	lea ObjectRam,a0
-	move.w #$7ff,d7
-
-loc_000dea:
-	WATCHDOG
-	move.l d0,(a0)+
-	dbra d7,loc_000dea
-	move.w #1,OBJram_Bank0
-	lea ObjectRam,a0
-	move.w #$7ff,d7
-
-loc_000e08:
-	WATCHDOG
-	move.l d0,(a0)+
-	dbra d7,loc_000e08
-	jmp (a4)
-
-;==============================================
-QSRam_FF_Fill:
-	lea Soundram,a0
-	lea Sound_Test_end,a1
-	moveq #-1,d0
-
-QSRam_FF_Fill_Repeat:
-	WATCHDOG
-	move.w d0,(a0)+
-	cmpa.l a1,a0
-	bls.b QSRam_FF_Fill_Repeat
-	jmp (a4)
-
-;==============================================
-loc_000e32:
-	movea.l #loc_33c4b4,a0
-	lea $90c400,a1
-	lea loc_000e46(pc),a2
-	bra.w loc_000e98
-
-loc_000e46:
-	movea.l #loc_340994,a0
-	lea $90c800,a1
-	lea loc_000e5a(pc),a2
-	bra.w loc_000e98
-
-loc_000e5a:
-	movea.l #loc_3477f4,a0
-	lea $90cc00,a1
-	lea loc_000e6e(pc),a2
-	bra.w loc_000e98
-
-loc_000e6e:
-	movea.l #loc_33bc74,a0
-	lea $90d000,a1
-	lea loc_000e82(pc),a2
-	bra.w loc_000e98
-
-loc_000e82:
-	movea.l #loc_33bc74,a0
-	lea $90d400,a1
-	lea loc_000e96(pc),a2
-	bra.w loc_000e98
-
-loc_000e96:
-	jmp (a4)
-
-;==============================================
-loc_000e98:
-	moveq #$1f,d7
-	move.l #$f000f000,d0
-
-loc_000ea0:
-	WATCHDOG
-	move.l (a0)+,(a1)
-	or.l d0,(a1)+
-	move.l (a0)+,(a1)
-	or.l d0,(a1)+
-	move.l (a0)+,(a1)
-	or.l d0,(a1)+
-	move.l (a0)+,(a1)
-	or.l d0,(a1)+
-	move.l (a0)+,(a1)
-	or.l d0,(a1)+
-	move.l (a0)+,(a1)
-	or.l d0,(a1)+
-	move.l (a0)+,(a1)
-	or.l d0,(a1)+
-	move.l (a0)+,(a1)
-	or.l d0,(a1)+
-	dbra d7,loc_000ea0
-	jmp (a2)
-
-;VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV
-Mes_workram:
-	dc.b $11,$30,$00
-	dc.b 'WORK',$00
-
-Mes_workram_ng:
-	dc.b $1a,$30,$00
-	dc.b 'RAM NG',$00
-
-Mes_workram_ok:
-	dc.b $1a,$30,$00
-	dc.b 'RAM OK',$00
-
-Mes_cps0ram:
-	dc.b $11,$38,$00
-	dc.b 'CPS0',$00
-
-Mes_cps0ram_ng:
-	dc.b $1a,$38,$00
-	dc.b 'RAM NG',$00
-
-Mes_cps0ram_ok:
-	dc.b $1a,$38,$00
-	dc.b 'RAM OK',$00
-
-Mes_cps1ram:
-	dc.b $11,$40,$00
-	dc.b 'CPS1',$00
-
-Mes_cps1ram_ng:
-	dc.b $1a,$40,$00
-	dc.b 'RAM NG',$00
-
-Mes_cps1ram_ok:
-	dc.b $1a,$40,$00
-	dc.b 'RAM OK',$00
-
-Mes_cps2ram:
-	dc.b $11,$48,$00
-	dc.b 'CPS2',$00
-
-Mes_cps2ram_ng:
-	dc.b $1a,$48,$00
-	dc.b 'RAM NG',$00
-
-Mes_cps2ram_ok:
-	dc.b $1a,$48,$00
-	dc.b 'RAM OK',$00
-
-Mes_objram:
-	dc.b $11,$50,$00
-	dc.b 'OBJECT',$00
-
-Mes_objram_ng:
-	dc.b $1a,$50,$00
-	dc.b 'RAM NG',$00
-
-Mes_objram_ok:
-	dc.b $1a,$50,$00
-	dc.b 'RAM OK',$00
-
-Mes_QSRam:
-	dc.b $11,$58,$00
-	dc.b 'Q SOUND',$00
-
-Mes_QSRam_NG:
-	dc.b $1a,$58,$00
-	dc.b 'RAM NG',$00
-
-Mes_QSRam_OK:
-	dc.b $1a,$58,$00
-	dc.b 'RAM OK',$00
-	even
-
+	include "sys/crash_debugger.68k"
+	include "sys/init_ram_check.68k"
+	include "sys/settings.68k"
 
 ;==============================================
 loc_000f7a:
@@ -1227,16 +70,17 @@ loc_000ffa:
 	lea ($80,a0),a0
 	lea ($20,a6),a6
 	dbra d7,loc_000ffa
+
 	WATCHDOG
 	jsr loc_025a60
 	move.w #Europe_Region,(Region,a5)
-	move.b #0,($89,a5)
+	move.b #0,(Dip_SFAlpha,a5)
 	move.w (Region,a5),d0
 	lsr.w #1,d0
 	move.b #$6e,d1
 	btst d0,d1
 	beq.b loc_00103c
-	move.b #1,($89,a5)
+	move.b #1,(Dip_SFAlpha,a5)
 
 loc_00103c:
 	WATCHDOG
@@ -3260,151 +2104,7 @@ loc_0030ae:
 
 ;==============================================
 	include "sound/sound.asm"
-
-;==============================================
-;Splash Name and Build start
-;==============================================
-loc_003eba:
-	st.b ($e9,a5)
-	jsr loc_0172da
-	jsr loc_01b0e6
-	jsr loc_017320
-
-loc_003ed0:
-	move.w (0,a5),d0
-	move.w loc_003eec(pc,d0.w),d0
-	jsr loc_003eec(pc,d0.w)
-	jsr loc_00182e
-	moveq #1,d0
-	jsr loc_001370
-	bra.b loc_003ed0
-
-;VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV
-loc_003eec:
-	dc.w loc_003ef6-loc_003eec
-	dc.w loc_003f28-loc_003eec
-	dc.w loc_003f54-loc_003eec
-	dc.w loc_003f8e-loc_003eec
-	dc.w loc_003fa6-loc_003eec
-
-;==============================================
-loc_003ef6:
-	addq.w #2,(0,a5)
-	move.b #1,($83,a5)
-	clr.b ($bf,a5)
-	move.w #0,($22,a5)
-	move.w #$100,($24,a5)
-
-;link check
-	tst.b (NetworkEnabled,a5)
-	bne.b loc_003f1c
-
-;set rng seed
-	move.w #RngSeed,(RngByte0,a5)
-
-loc_003f1c:
-	jsr SetRegionBootPalette(pc)
-	nop
-	jmp loc_0088dc
-
-;==============================================
-loc_003f28:
-	addq.w #2,(0,a5)
-	move.w #$b4,(2,a5)
-	jsr loc_003cfe
-	move.w (Region,a5),d0
-	move.w loc_003f46(pc,d0.w),d0
-	jmp loc_01c3e8
-
-;VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV
-loc_003f46:
-	dc.w $0000,$0001,$0002,$0003,$0004,$0005,$0006
-
-;==============================================
-loc_003f54:
-	bsr.w Input_P1Shot_check
-	bne.b loc_003f60
-	subq.w #1,(2,a5)
-	bpl.b loc_003f7e
-
-loc_003f60:
-	addq.w #2,(0,a5)
-	move.w #$b4,(2,a5)
-	jsr loc_01b0e6
-	move.w (Region,a5),d0
-	move.w loc_003f80(pc,d0.w),d0
-	jmp loc_01c3e8
-
-loc_003f7e:
-	rts
-
-;VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV
-loc_003f80:
-	dc.w $0007,$0008,$0009,$000a,$000b,$000c,$000d
-
-;==============================================
-loc_003f8e:
-	bsr.w Input_P1Shot_check
-	bne.b loc_003f9a
-	subq.w #1,(2,a5)
-	bpl.b loc_003fa4
-
-loc_003f9a:
-	addq.w #2,(0,a5)
-	jmp loc_01b0e6
-
-loc_003fa4:
-	rts
-
-;==============================================
-loc_003fa6:
-	moveq #0,d0
-	move.l d0,(0,a5)
-	move.l d0,(4,a5)
-	move.l d0,(8,a5)
-	move.l d0,($c,a5)
-	move.l d0,($10,a5)
-	move.l d0,($14,a5)
-	jsr loc_003048
-	jsr loc_01b0e6
-	jsr loc_01f792
-	move.w #$40,d0
-	movea.l #loc_004036,a0
-	jsr loc_001302
-	jmp loc_001324
-
-;==============================================
-SetRegionBootPalette:
-	move.w (Region,a5),d0
-	add.w d0,d0
-	move.l BootFontPalettes(pc,d0.w),d0
-	move.l #$f000f000,d1
-	lea $90c420,a0
-	move.l d1,(a0)+
-	move.l d0,(a0)+
-	move.l d0,(a0)+
-	move.l d0,(a0)+
-	move.l d1,(a0)+
-	move.l d1,(a0)+
-	move.l d1,(a0)+
-	move.l d1,(a0)+
-	rts
-
-;VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV
-BootFontPalettes:
-	dc.w $ffff,$ffff;00 Japan
-	dc.w $ff00,$ff00;02 Usa
-	dc.w $f0f0,$f0f0;04 Hispanic
-	dc.w $ff90,$ff90;06 Oceania
-	dc.w $fff0,$fff0;08 Asia
-	dc.w $f00f,$f00f;0a Europe
-	dc.w $ff0f,$ff0f;0c Brazil
-
-;==============================================
-Input_P1Shot_check:
-	move.w (INP_P1,a5),d0
-	btst #8,d0
-	rts
+	include "sys/splash.68k"
 
 ;==============================================
 loc_004036:
@@ -4024,7 +2724,7 @@ loc_004678:
 	move.w #$1e0e,($32,a5)
 	move.w #$4261,($3a,a5)
 	move.w #Mainpalette,(palrampointer,a5)
-	jsr loc_003d1c
+	jsr Set_TitleScrn_SFXID
 	jsr loc_03330e
 	jsr loc_0336d6
 	jmp loc_020c4a
@@ -4235,7 +2935,7 @@ loc_004980:
 	move.b d0,($104,a5)
 	move.b d0,($bd,a5)
 	move.b d0,($12d,a5)
-	move.w d0,($138,a5)
+	move.w d0,(Dramatic_Mode_Type,a5)
 	move.b d0,(Dramatic_Mode_flag,a5)
 	move.b d0,($130,a5)
 	andi.w #$ffc0,($32,a5)
@@ -7045,7 +5745,7 @@ loc_006cbe:
 	addq.b #2,(-$717b,a5)
 	move.b #$ff,(-$7178,a5)
 	move.b #$f,($17,a5)
-	jsr loc_003d1c
+	jsr Set_TitleScrn_SFXID
 	bsr.w loc_007a98
 	jmp loc_00442e
 
@@ -7252,7 +5952,7 @@ loc_006f88:
 	move.b #$ff,(-$7178,a5)
 	move.w #$90c0,(-$7166,a5)
 	move.b #$f,($17,a5)
-	jsr loc_003d1c
+	jsr Set_TitleScrn_SFXID
 	bsr.w loc_007a98
 	jmp loc_00442e
 
@@ -7345,7 +6045,7 @@ loc_00703a:
 	move.w d0,(-$70b6,a5)
 	move.w #$90e0,(-$7168,a5)
 	moveq #6,d6
-	tst.b ($89,a5)
+	tst.b (Dip_SFAlpha,a5)
 	beq.b loc_007090
 	moveq #$b,d6
 
@@ -7430,7 +6130,7 @@ loc_007190:
 
 loc_0071a6:
 	moveq #$3f,d0
-	tst.b ($89,a5)
+	tst.b (Dip_SFAlpha,a5)
 	beq.b loc_0071b2
 	move.w #$7ff,d0
 
@@ -7526,7 +6226,7 @@ loc_0072a0:
 
 loc_007310:
 	move.b #$f,($17,a5)
-	jsr loc_003d1c
+	jsr Set_TitleScrn_SFXID
 	bsr.w loc_007a98
 	jmp loc_00442e
 
@@ -10047,8 +8747,8 @@ loc_009124:
 
 loc_009142:
 	jsr loc_00d1b6
-	move.b ($ac,a5),d0
-	move.b d0,($b9,a5)
+	move.b (Active_Player_01,a5),d0
+	move.b d0,(Active_Player_02,a5)
 	cmpi.b #3,d0
 	bne.b loc_00915c
 	move.b #1,($110,a5)
@@ -10117,7 +8817,7 @@ loc_0091e6:
 
 ;==============================================
 loc_0091f6:
-	clr.w ($138,a5)
+	clr.w (Dramatic_Mode_Type,a5)
 	jsr ClearP3P4Mem
 	move.b #$1,(p1memory,a5)
 	move.b #$1,(p2memory,a5)
@@ -10167,7 +8867,7 @@ loc_009292:
 	bne.w loc_009350
 	btst.b #1,($ac,a5)
 	bne.w loc_0092cc
-	move.w #2,($138,a5)
+	move.w #2,(Dramatic_Mode_Type,a5)
 	move.b #1,(p1memory,a5)
 	clr.b (p2memory,a5)
 	lea.l (p1memory,a5),a0
@@ -10178,7 +8878,7 @@ loc_009292:
 	bra.b loc_0092f2
 
 loc_0092cc:
-	move.w #4,($138,a5)
+	move.w #4,(Dramatic_Mode_Type,a5)
 	clr.b (p1memory,a5)
 	move.b #1,(p2memory,a5)
 	lea.l (p2memory,a5),a0
@@ -10217,7 +8917,7 @@ loc_00934e:
 	rts
 
 loc_009350:
-	move.w #$6,($138,a5)
+	move.w #$6,(Dramatic_Mode_Type,a5)
 	move.w #$5,($14c,a5)
 	move.b #$1,(p1memory,a5)
 	move.b #$1,(p2memory,a5)
@@ -11005,7 +9705,7 @@ loc_009c98:
 
 ;==============================================
 loc_009c9a:
-	cmpi.w #6,($138,a5)
+	cmpi.w #6,(Dramatic_Mode_Type,a5)
 	beq.w loc_009da6
 	btst.b #0,($10c,a5)
 	bne.b loc_009cae
@@ -11081,7 +9781,7 @@ loc_009d62:
 	move.b ($102,a1),d0
 	jsr loc_00bbc8
 	bset d0,d2
-	tst.w ($138,a5)
+	tst.w (Dramatic_Mode_Type,a5)
 	beq.b loc_009d88
 	move.b (p4_charid,a5),d0
 	jsr loc_00bbc8
@@ -11183,7 +9883,7 @@ loc_009e92:
 
 ;==============================================
 loc_009e94:
-	move.w ($138,a5),d0
+	move.w (Dramatic_Mode_Type,a5),d0
 	move.w loc_009ea0(pc,d0.w),d0
 	jmp loc_009ea0(pc,d0.w)
 
@@ -11218,7 +9918,7 @@ loc_009ec6:
 ;==============================================
 loc_009ed0
 	moveq #0,d0
-	move.w ($138,a5),d1
+	move.w (Dramatic_Mode_Type,a5),d1
 	move.w loc_009ede(pc,d1.w),d1
 	jmp loc_009ede(pc,d1.w)
 
@@ -11308,7 +10008,7 @@ loc_009f58:
 	bne.w loc_009faa
 	movea.w ($13a,a5),a0
 	movea.w ($13c,a5),a1
-	cmpi.w #6,($138,a5)
+	cmpi.w #6,(Dramatic_Mode_Type,a5)
 	beq.w loc_009f9e
 	clr.b ($500,a5)
 	clr.b ($900,a5)
@@ -11343,7 +10043,7 @@ loc_009fda:
 
 ;==============================================
 loc_009fdc:
-	tst.w ($138,a5)
+	tst.w (Dramatic_Mode_Type,a5)
 	bne.b loc_00a04c
 	tst.b ($15d,a5)
 	bne.b loc_00a04c
@@ -11407,7 +10107,7 @@ loc_00a060:
 	tst.b ($10d,a5)
 	bne.b loc_00a096
 	movea.w ($13a,a5),a6
-	move.w ($138,a5),d0
+	move.w (Dramatic_Mode_Type,a5),d0
 	move.w loc_00a09a(pc,d0.w),d0
 	jsr loc_00a09a(pc,d0.w)
 
@@ -11454,7 +10154,7 @@ loc_00a0e6:
 loc_00a0e8:
 	cmpi.b #4,($12c,a5)
 	bne.b loc_00a0fe
-	move.w ($138,a5),d0
+	move.w (Dramatic_Mode_Type,a5),d0
 	move.w loc_00a100(pc,d0.w),d0
 	cmp.b ($10b,a5),d0
 	beq.b loc_00a108
@@ -11497,7 +10197,7 @@ loc_00a12e:
 loc_00a14e:
 	tst.b ($15a,a5)
 	bne.b loc_00a18c
-	cmpi.w #6,($138,a5)
+	cmpi.w #6,(Dramatic_Mode_Type,a5)
 	bne.b loc_00a166
 	btst.b #1,($101,a6)
 	bne.b loc_00a18c
@@ -11560,7 +10260,7 @@ loc_00a1d6:
 	bne.w loc_00a274
 	moveq #0,d6
 	move.w ($50,a6),d6
-	cmpi.w #6,($138,a5)
+	cmpi.w #6,(Dramatic_Mode_Type,a5)
 	bne.b loc_00a20e
 	add.w ($850,a5),d6
 	asr.w #1,d6
@@ -11607,7 +10307,7 @@ loc_00a24a:
 
 loc_00a274:
 	move.b ($115,a6),d0
-	cmpi.w #6,($138,a5)
+	cmpi.w #6,(Dramatic_Mode_Type,a5)
 	bne.b loc_00a28e
 	move.b ($515,a5),d0
 	move.b ($915,a5),d1
@@ -11834,7 +10534,7 @@ loc_00a4dc:
 	bsr.w loc_00ab80
 	tst.b (Dip_EventMode,a5)
 	bne.w loc_00a522
-	cmpi.w #6,($138,a5)
+	cmpi.w #6,(Dramatic_Mode_Type,a5)
 	beq.w loc_00a5a6
 	jsr loc_00ba66
 	movea.w ($13a,a5),a0
@@ -11870,7 +10570,7 @@ loc_00a55e:
 	move.l d1,($14,a5)
 	move.b #1,($10f,a5)
 	move.b d1,($137,a5)
-	move.w d1,($138,a5)
+	move.w d1,(Dramatic_Mode_Type,a5)
 	move.b #1,($525,a5)
 	move.b #1,($925,a5)
 	move.b d1,($401,a5)
@@ -11956,7 +10656,7 @@ loc_00a68a:
 	jsr loc_0039e0
 	tst.b ($b8,a5)
 	bne.b loc_00a69e
-	jsr loc_003cc8
+	jsr Play_Fight_Praise
 
 loc_00a69e
 	tst.b ($15d,a5)
@@ -12032,7 +10732,7 @@ loc_00a72a
 	move.l d0,($10,a5)
 	move.l d0,($14,a5)
 	move.b d0,($15f,a5)
-	move.w d0,($138,a5)
+	move.w d0,(Dramatic_Mode_Type,a5)
 	move.b #1,($8f,a5)
 	rts
 
@@ -12114,7 +10814,7 @@ loc_00a7fe:
 
 ;==============================================
 loc_00a846:
-	move.w ($138,a5),d0
+	move.w (Dramatic_Mode_Type,a5),d0
 	move.w loc_00a852(pc,d0.w),d1
 	jmp loc_00a852(pc,d1.w)
 
@@ -13114,7 +11814,7 @@ loc_00b20e:
 
 ;==============================================
 loc_00b220:
-	move.w ($138,a5),d0
+	move.w (Dramatic_Mode_Type,a5),d0
 	move.w loc_00b22c(pc,d0.w),d1
 	jmp loc_00b22c(pc,d1.w)
 
@@ -13282,7 +11982,7 @@ loc_00b3be:
 ;==============================================
 loc_00b3c0:
 	move.l #$3fff3fff,d6
-	move.w ($138,a5),d0
+	move.w (Dramatic_Mode_Type,a5),d0
 	move.w loc_00b3ee(pc,d0.w),d0
 	jsr loc_00b3ee(pc,d0.w)
 	lea.l $90c2a0,a1
@@ -14019,7 +12719,7 @@ loc_00ba94:
 	move.w d0,(Arcade_Match,a5)
 	cmp.w ($14c,a5),d0
 	bhi.b loc_00baca
-	tst.w ($138,a5)
+	tst.w (Dramatic_Mode_Type,a5)
 	beq.b loc_00bab4
 	lea.l (p2memory,a5),a1
 	btst.b #0,($ac,a5)
@@ -15350,7 +14050,7 @@ loc_02031a:
 
 ;==============================================
 loc_02031c:
-	tst.w ($138,a5)
+	tst.w (Dramatic_Mode_Type,a5)
 	bne.w loc_0203ac
 	cmpi.b #3,($ac,a5)
 	beq.b loc_02036a
@@ -15362,7 +14062,7 @@ loc_02031c:
 ;==============================================
 loc_02033c:
 	move.w #$780,(-$5d12,a5)
-	tst.w ($138,a5)
+	tst.w (Dramatic_Mode_Type,a5)
 	bne.w loc_0203ac
 	cmpi.b #3,($ac,a5)
 	beq.b loc_02036a
@@ -15405,7 +14105,7 @@ loc_02039c:
 
 ;==============================================
 loc_0203ac:
-	move.w ($138,a5),d0
+	move.w (Dramatic_Mode_Type,a5),d0
 	move.w loc_0203b8(pc,d0.w),d1
 	jmp loc_0203b8(pc,d1.w)
 
@@ -15460,7 +14160,7 @@ loc_02040a:
 loc_020424:
 	move.b ($15f,a0),($f1,a1)
 	move.b ($15f,a1),($f1,a0)
-	tst.w ($138,a5)
+	tst.w (Dramatic_Mode_Type,a5)
 	beq.b loc_020442
 	move.b ($15f,a0),($cf1,a5)
 	move.b ($15f,a0),($10f1,a5)
@@ -15572,12 +14272,12 @@ loc_020522:
 	moveq #$1f,d0
 	tst.b ($f1,a1)
 	bne.b loc_020556
-	cmpi.w #6,($138,a5)
+	cmpi.w #6,(Dramatic_Mode_Type,a5)
 	beq.b loc_020556
 	move.w ($12e,a5),d0
-	cmpi.w #2,($138,a5)
+	cmpi.w #2,(Dramatic_Mode_Type,a5)
 	beq.b loc_020554
-	cmpi.w #4,($138,a5)
+	cmpi.w #4,(Dramatic_Mode_Type,a5)
 	bne.b loc_020556
 
 loc_020554:
@@ -15807,7 +14507,7 @@ loc_02077a:
 	beq.w loc_020844
 	cmpi.w #Brazil_Region,(Region,a5)
 	beq.w loc_020844
-	tst.w ($138,a5)
+	tst.w (Dramatic_Mode_Type,a5)
 	bne.w loc_020844
 	tst.b ($55f,a5)
 	bne.w loc_020844
@@ -16073,7 +14773,7 @@ loc_020d02:
 ;==============================================
 loc_020daa:
 	lea.l ($6ffe,a5),a3
-	move.w ($138,a5),d0
+	move.w (Dramatic_Mode_Type,a5),d0
 	move.w loc_020dba(pc,d0.w),d1
 	jmp loc_020dba(pc,d1.w)
 
@@ -18026,7 +16726,7 @@ loc_021c90:
 loc_022490:
 	tst.b ($124,a5)
 	bne.w loc_022544
-	move.w ($138,a5),d0
+	move.w (Dramatic_Mode_Type,a5),d0
 	move.w loc_0224a4(pc,d0.w),d1
 	jmp loc_0224a4(pc,d1.w)
 
@@ -18785,7 +17485,7 @@ loc_022eda:
 	bsr.w loc_022f54
 
 loc_022eea:
-	move.w ($138,a5),d0
+	move.w (Dramatic_Mode_Type,a5),d0
 	move.w loc_022ef6(pc,d0.w),d1
 	jmp loc_022ef6(pc,d1.w)
 
@@ -19834,7 +18534,7 @@ loc_0239a6:
 
 ;==============================================
 guard_damage_func:
-	tst.w ($138,a5)
+	tst.w (Dramatic_Mode_Type,a5)
 	bne.w loc_023a7e
 	tst.b (pl_classic_game,a1)
 	bne.w loc_023a7e
@@ -20532,7 +19232,7 @@ loc_024016:
 ;==============================================
 ;Juni&Juli Boss Icon
 loc_024026:
-	move.w ($138,a5),d1
+	move.w (Dramatic_Mode_Type,a5),d1
 	move.w loc_024032(pc,d1.w),d1
 	jmp loc_024032(pc,d1.w)
 
@@ -21597,7 +20297,7 @@ loc_0249a4:
 
 ;==============================================
 loc_0249cc:
-	move.w ($138,a5),d0
+	move.w (Dramatic_Mode_Type,a5),d0
 	move.w loc_0249d8(pc,d0.w),d1
 	jmp loc_0249d8(pc,d1.w)
 
@@ -22307,7 +21007,7 @@ loc_025076:
 loc_025078:
 	cmpi.b #1,(a6)
 	bne.w loc_02508c
-	move.w ($138,a5),d0
+	move.w (Dramatic_Mode_Type,a5),d0
 	move.w loc_02508e(pc,d0.w),d1
 	jmp loc_02508e(pc,d1.w)
 
@@ -22551,12 +21251,15 @@ loc_0252da:
 
 ;VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV
 loc_025318:
-	dc.l $00ff8400,$00ff8800,$00ff8c00,$00ff9000
+	dc.l PNT_P1_Memory
+	dc.l PNT_P2_Memory
+	dc.l PNT_P3_Memory
+	dc.l PNT_P4_Memory
 
 loc_025328:
 	dc.w $0000
 
-loc_02532a
+loc_02532a:
 	dc.b $00,$00,$01,$01,$01,$01,$02,$02
 	dc.b $02,$02,$03,$03,$03,$03,$04,$04
 	dc.b $04,$04,$05,$05,$05,$05,$06,$06
@@ -25229,7 +23932,10 @@ loc_0277dc:
 
 ;VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV
 loc_0277de:
-	dc.l $00ff8400,$00ff8800,$00ff8c00,$00ff9000
+	dc.l PNT_P1_Memory
+	dc.l PNT_P2_Memory
+	dc.l PNT_P3_Memory
+	dc.l PNT_P4_Memory
 
 ;==============================================
 loc_0277ee:
@@ -25257,7 +23963,7 @@ loc_027884:
 	movea.l ($41c,a5),a0
 	tst.b (9,a0)
 	bne.b loc_0278a6
-	tst.w ($138,a5)
+	tst.w (Dramatic_Mode_Type,a5)
 	bne.b loc_02789e
 	clr.b ($a5a,a5)
 
@@ -25271,7 +23977,7 @@ loc_0278a6:
 	movea.l ($81c,a5),a0
 	tst.b (9,a0)
 	bne.b loc_0278c8
-	tst.w ($138,a5)
+	tst.w (Dramatic_Mode_Type,a5)
 	bne.b loc_0278c0
 	clr.b ($65b,a5)
 
@@ -25344,7 +24050,7 @@ loc_027958:
 
 ;==============================================
 loc_02795e:
-	move.w ($138,a5),d0
+	move.w (Dramatic_Mode_Type,a5),d0
 	move.w loc_02796a(pc,d0.w),d1
 	jmp loc_02796a(pc,d1.w)
 
@@ -25412,7 +24118,7 @@ loc_0279f6:
 
 ;==============================================
 loc_0279f8:
-	move.w ($138,a5),d0
+	move.w (Dramatic_Mode_Type,a5),d0
 	move.w loc_027a04(pc,d0.w),d1
 	jmp loc_027a04(pc,d1.w)
 
@@ -25560,7 +24266,7 @@ loc_027b2c:
 
 ;==============================================
 loc_027b2e:
-	cmpi.w #6,($138,a5)
+	cmpi.w #6,(Dramatic_Mode_Type,a5)
 	bne.b loc_027b3c
 	move.w ($51e,a5),($91e,a5)
 
@@ -25646,7 +24352,7 @@ loc_027bf6:
 	bsr.w loc_02bea8
 	move.b #-1,($c,a6)
 	jsr loc_02f15c
-	cmpi.w #6,($138,a5)
+	cmpi.w #6,(Dramatic_Mode_Type,a5)
 	bne.b loc_027c6e
 
 loc_027c3c:
@@ -25829,7 +24535,7 @@ loc_027dea:
 
 ;==============================================
 loc_027dec:
-	cmpi.w #6,($138,a5)
+	cmpi.w #6,(Dramatic_Mode_Type,a5)
 	bne.b loc_027e0e
 	cmpi.b #1,($101,a6)
 	bne.b loc_027e0e
@@ -27074,7 +25780,7 @@ loc_028b70:
 	beq.b loc_028bb6
 	clr.w ($ba,a6)
 	clr.b ($b9,a6)
-	cmpi.w #6,($138,a5)
+	cmpi.w #6,(Dramatic_Mode_Type,a5)
 	bne.b loc_028baa
 	cmpi.b #1,($101,a6)
 	bne.b loc_028baa
@@ -28629,7 +27335,7 @@ loc_029c82:
 	beq.b loc_029cbc
 	clr.w ($ba,a6)
 	clr.b ($b9,a6)
-	cmpi.w #6,($138,a5)
+	cmpi.w #6,(Dramatic_Mode_Type,a5)
 	bne.b loc_029cb0
 	cmpi.b #1,($101,a6)
 	bne.b loc_029cb0
@@ -30329,7 +29035,7 @@ loc_02aca0:
 	beq.b loc_02ace0
 	clr.w ($ba,a6)
 	clr.b ($b9,a6)
-	cmpi.w #6,($138,a5)
+	cmpi.w #6,(Dramatic_Mode_Type,a5)
 	bne.b loc_02acd4
 	cmpi.b #1,($101,a6)
 	bne.b loc_02acd4
@@ -30578,7 +29284,7 @@ loc_02af50:
 	tst.b ($107,a5)
 	bne.b loc_02af70
 	clr.b ($5e,a6)
-	tst.w ($138,a5)
+	tst.w (Dramatic_Mode_Type,a5)
 	beq.b loc_02af70
 	move.b #1,($263,a6)
 	move.b #1,($2af,a6)
@@ -30591,7 +29297,7 @@ loc_02af70:
 
 ;==============================================
 loc_02af7a:
-	move.w ($138,a5),d0
+	move.w (Dramatic_Mode_Type,a5),d0
 	move.w loc_02af9e(pc,d0.w),d0
 	jsr loc_02af9e(pc,d0.w)
 	cmpi.w #$20c,(4,a0)
@@ -30703,7 +29409,7 @@ loc_02b060:
 
 ;==============================================
 loc_02b074:
-	move.w ($138,a5),d0
+	move.w (Dramatic_Mode_Type,a5),d0
 	move.w loc_02b080(pc,d0.w),d0
 	jmp loc_02b080(pc,d0.w)
 
@@ -30826,7 +29532,7 @@ loc_02b148:
 loc_02b16a:
 	jsr loc_02e8c0
 	move.b #4,($114,a0)
-	tst.b ($89,a5)
+	tst.b (Dip_SFAlpha,a5)
 	beq.b loc_02b182
 	move.b #$a,($114,a0)
 
@@ -31662,7 +30368,7 @@ loc_02b99c:
 loc_02b9a2:
 	tst.b ($bf,a5)
 	bne.b loc_02b984
-	cmpi.w #6,($138,a5)
+	cmpi.w #6,(Dramatic_Mode_Type,a5)
 	beq.b loc_02b984
 	tst.b ($15d,a5)
 	bne.b loc_02b984
@@ -32036,7 +30742,7 @@ loc_02bdc6:
 ;Set stun and guard values
 ;==============================================
 loc_02bdd6:
-	move.w ($138,a5),d0
+	move.w (Dramatic_Mode_Type,a5),d0
 	add.w d0,d0
 	add.b ($101,a6),d0
 	move.b loc_02bda6(pc,d0.w),($59,a6)
@@ -32179,7 +30885,7 @@ loc_02bfaa:
 	clr.b ($2c9,a6)
 
 loc_02bfc4:
-	cmpi.w #4,($138,a5)
+	cmpi.w #4,(Dramatic_Mode_Type,a5)
 	bcs.b loc_02bfe0
 	btst.b #0,($ac,a5)
 	bne.b loc_02bfe0
@@ -32194,7 +30900,7 @@ loc_02bfe0:
 	move.w d1,($14,a6)
 	move.w d1,($64,a6)
 	moveq #-96,d0
-	cmpi.w #6,($138,a5)
+	cmpi.w #6,(Dramatic_Mode_Type,a5)
 	bne.b loc_02c00e
 	cmpi.b #1,($101,a6)
 	bne.b loc_02c01e
@@ -32202,7 +30908,7 @@ loc_02bfe0:
 	bra.b loc_02c01e
 
 loc_02c00e:
-	tst.w ($138,a5)
+	tst.w (Dramatic_Mode_Type,a5)
 	beq.b loc_02c01e
 	cmpi.b #2,($101,a6)
 	bne.b loc_02c01e
@@ -32255,7 +30961,7 @@ loc_02c02c:
 
 ;==============================================
 loc_02c0ac:
-	move.w ($138,a5),d0
+	move.w (Dramatic_Mode_Type,a5),d0
 	add.w d0,d0
 	add.b ($101,a6),d0
 	move.b loc_02c0be(pc,d0.w),($d,a6)
@@ -33384,56 +32090,64 @@ loc_02e8de:
 	rts
 
 ;==============================================
+;Copying combo hits to the character/team doing the combo
 loc_02e8e0:
-	move.w ($138,a5),d0
+	move.w (Dramatic_Mode_Type,a5),d0
 	move.w loc_02e8ec(pc,d0.w),d0
 	jmp loc_02e8ec(pc,d0.w)
 
 ;VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV
 loc_02e8ec:
-	dc.w loc_02e8f4-loc_02e8ec
-	dc.w loc_02e90a-loc_02e8ec
-	dc.w loc_02e924-loc_02e8ec
-	dc.w loc_02e93e-loc_02e8ec
+	dc.w loc_02e8f4-loc_02e8ec ; 00 Regular Match
+	dc.w loc_02e90a-loc_02e8ec ; 02 p1 vs p3&p4
+	dc.w loc_02e924-loc_02e8ec ; 04 p2 vs p3&p4
+	dc.w loc_02e93e-loc_02e8ec ; 06 p1&p2 vs p3
 
 ;----------------------------------------------
+;Regular Match
 loc_02e8f4:
 	lea.l (p1memory,a5),a1
 	lea.l (p2memory,a5),a2
-	move.b ($5e,a1),($329,a2)
-	move.b ($5e,a2),($329,a1)
+	move.b (pl_combo,a1),(pl_combo_copy,a2)
+	move.b (pl_combo,a2),(pl_combo_copy,a1)
 	rts
 
 ;----------------------------------------------
+;p1 vs p3 & p4
 loc_02e90a:
 	movea.w (right_hud_pointer,a5),a1
-	move.b ($45e,a5),($329,a1)
+	move.b (p1_combo,a5),(pl_combo_copy,a1)
 	movea.w (left_hud_pointer,a5),a2
-	move.b ($c5e,a5),d0
-	add.b ($105e,a5),d0
+	move.b (p3_combo,a5),d0
+	add.b (p4_combo,a5),d0
 	bra.w loc_02e95e
 
 ;----------------------------------------------
+;p2 vs p3 & p4
 loc_02e924:
 	movea.w (left_hud_pointer,a5),a1
-	move.b ($85e,a5),($329,a1)
+	move.b (p2_combo,a5),(pl_combo_copy,a1)
 	movea.w (right_hud_pointer,a5),a2
-	move.b ($c5e,a5),d0
-	add.b ($105e,a5),d0
+	move.b (p3_combo,a5),d0
+	add.b (p4_combo,a5),d0
 	bra.w loc_02e95e
 
 ;----------------------------------------------
+;p1 & p2 vs p3
 loc_02e93e:
 	movea.w (left_hud_pointer,a5),a1
 	movea.w (right_hud_pointer,a5),a2
-	btst.b #0,($b9,a5)
+
+;
+	btst.b #0,(Active_Player_02,a5)
 	bne.b loc_02e950
+
 	exg.l a1,a2
 
 loc_02e950:
-	move.b ($c5e,a5),($329,a1)
-	move.b ($45e,a5),d0
-	add.b ($85e,a5),d0
+	move.b (p3_combo,a5),(pl_combo_copy,a1)
+	move.b (p1_combo,a5),d0
+	add.b (p2_combo,a5),d0
 
 loc_02e95e:
 	cmpi.b #$63,d0
@@ -33441,14 +32155,19 @@ loc_02e95e:
 	moveq #$63,d0
 
 loc_02e966:
-	move.b d0,($329,a2)
+	move.b d0,(pl_combo_copy,a2)
 	rts
 
 ;==============================================
+;location 0x2e96c
+;
+;==============================================
+;Zangief and Rolento Jump here
 loc_02e96c:
 	moveq #1,d2
 	bra.b loc_02e972
 
+;most of the cast here
 loc_02e970:
 	moveq #0,d2
 
@@ -33803,8 +32522,6 @@ ReversalCheck:
 	bne.w loc_02ed00
 	bra.w loc_02edf4
 
-
-
 ;==============================================
 loc_02ecd8:
 	moveq #$30,d0
@@ -33959,7 +32676,7 @@ loc_02ee08:
 	bsr.w loc_02ef6c
 	bsr.w loc_02e8c0
 	move.b #4,($114,a0)
-	tst.b ($89,a5)
+	tst.b (Dip_SFAlpha,a5)
 	beq.b loc_02ee66
 	move.b #$a,($114,a0)
 
@@ -34096,7 +32813,7 @@ loc_02efb0:
 	moveq #1,d0
 
 loc_02efc0:
-	tst.w ($138,a5)
+	tst.w (Dramatic_Mode_Type,a5)
 	bne.w loc_02f004
 	swap d0
 	move.w ($11e,a6),d0
@@ -34126,7 +32843,7 @@ loc_02f002:
 	rts
 
 loc_02f004:
-	cmpi.w #6,($138,a5)
+	cmpi.w #6,(Dramatic_Mode_Type,a5)
 	beq.b loc_02f040
 	btst.b #1,($101,a6)
 	bne.b loc_02f026
@@ -34577,7 +33294,7 @@ loc_02f41c:
 
 ;==============================================
 loc_02f44e:
-	tst.w ($138,a5)
+	tst.w (Dramatic_Mode_Type,a5)
 	bne.b loc_02f48e
 	lea.l (p1memory,a5),a1
 	tst.b d1
@@ -34804,7 +33521,7 @@ loc_02f640:
 
 ;==============================================
 loc_02f64a:
-	move.w ($138,a5),d0
+	move.w (Dramatic_Mode_Type,a5),d0
 	move.w loc_02f656(pc,d0.w),d1
 	jmp loc_02f656(pc,d1.w)
 
@@ -35434,7 +34151,7 @@ loc_02fcf4:
 
 ;==============================================
 loc_02fcf8:
-	move.w ($138,a5),d0
+	move.w (Dramatic_Mode_Type,a5),d0
 	move.w loc_02fd04(pc,d0.w),d1
 	jmp loc_02fd04(pc,d1.w)
 
@@ -36146,7 +34863,7 @@ loc_033780:
 	move.b d0,($10,a6)
 	move.b #$a,($11,a6)
 	lea.l (p3memory,a5),a0
-	cmpi.w #6,($138,a5)
+	cmpi.w #6,(Dramatic_Mode_Type,a5)
 	beq.b loc_0337cc
 	lea.l (p1memory,a5),a0
 	tst.b ($130,a5)
@@ -36173,7 +34890,7 @@ loc_0337da:
 	bra.b loc_03380e
 
 loc_033800:
-	tst.b ($89,a5)
+	tst.b (Dip_SFAlpha,a5)
 	beq.b loc_03380e
 	cmpi.b #$e,d0
 	bne.b loc_03380e
@@ -36204,7 +34921,7 @@ loc_03383a:
 	bne.b loc_03385a
 	moveq #$3,d4
 	moveq #$4f,d5
-	tst.b ($89,a5)
+	tst.b (Dip_SFAlpha,a5)
 	beq.b loc_03385a
 	moveq #9,d4
 

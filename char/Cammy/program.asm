@@ -3895,7 +3895,7 @@ loc_05d944:
 loc_05d952:
 	jsr RNGFunction
 	andi.w #$f,d0
-	cmpi.w #6,($138,a5)
+	cmpi.w #6,(Dramatic_Mode_Type,a5)
 	bne.b loc_05d96a
 	addi.w #$20,d0
 	bra.b loc_05d976
@@ -3936,7 +3936,7 @@ loc_05d9c2:
 	addq.b #2,(7,a6)
 	move.b #$3c,($3a,a6)
 	move.b ($2c9,a6),($b,a6)
-	cmpi.w #6,($138,a5)
+	cmpi.w #6,(Dramatic_Mode_Type,a5)
 	bne.b loc_05d9ee
 	cmpi.b #4,($2c4,a6)
 	beq.b loc_05d9ea

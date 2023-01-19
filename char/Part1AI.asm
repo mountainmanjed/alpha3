@@ -89,7 +89,7 @@ loc_0307d0:
 	bne.w loc_030924
 	tst.b ($24e,a6)
 	bne.w loc_030924
-	move.w ($138,a5),d0
+	move.w (Dramatic_Mode_Type,a5),d0
 	move.w loc_0307ec(pc,d0.w),d1
 	jmp loc_0307ec(pc,d1.w)
 
@@ -3443,7 +3443,7 @@ loc_032812:
 
 ;==============================================
 loc_03284e:
-	tst.w ($138,a5)
+	tst.w (Dramatic_Mode_Type,a5)
 	bne.b loc_032896
 	moveq #0,d0
 	lea.l loc_032d9c(pc),a1

@@ -4452,18 +4452,18 @@ loc_0934a4:
 ;+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-
 loc_0934ac:
 	lea.l (p1memory,a5),a4
-	bsr.w loc_093518
+	bsr.w Cdy_Knife_loc_check
 	bne.w loc_093506
 	lea.l (p2memory,a5),a4
-	bsr.w loc_093518
+	bsr.w Cdy_Knife_loc_check
 	bne.w loc_093506
-	tst.w ($138,a5)
+	tst.w (Dramatic_Mode_Type,a5)
 	beq.b loc_0934e2
 	lea.l (p3memory,a5),a4
-	bsr.w loc_093518
+	bsr.w Cdy_Knife_loc_check
 	bne.w loc_093506
 	lea.l (p4memory,a5),a4
-	bsr.w loc_093518
+	bsr.w Cdy_Knife_loc_check
 	bne.w loc_093506
 
 loc_0934e2:
@@ -4486,19 +4486,23 @@ loc_093506:
 	rts
 
 ;-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
-loc_093518:
+;93518
+Cdy_Knife_loc_check:
+;Check if player is active
 	tst.b (a4)
 	beq.b loc_09354c
+
+;If player is using Cody
 	cmpi.b #Cody_id,(PL_Charid,a4)
 	bne.b loc_09354c
-	clr.b ($1e5,a4)
-	move.w ($10,a6),d0
-	sub.w ($10,a4),d0
+	clr.b (PL_codyover_knf,a4)
+	move.w (PL_X,a6),d0;Opponent X location
+	sub.w (PL_X,a4),d0;Cody Player X location
 	addi.w #$28,d0
 	cmpi.w #$50,d0
 	bhi.b loc_09354c
-	st.b ($1e5,a4)
-	movea.l ($1c,a4),a0
+	st.b (PL_codyover_knf,a4)
+	movea.l (PL_Anim_Pnt,a4),a0
 	tst.b ($13,a0)
 	beq.b loc_09354c
 	moveq #1,d0
@@ -5858,7 +5862,7 @@ loc_094486:
 	movea.l (-$5c48,a5),a0
 	move.b ($f,a0),d0
 	addq.b #1,d0
-	tst.b ($89,a5)
+	tst.b (Dip_SFAlpha,a5)
 	beq.b loc_0944b8
 	addq.b #6,d0
 
@@ -11490,7 +11494,7 @@ loc_09864e:
 
 loc_098662:
 	moveq #2,d0
-	add.b ($89,a5),d0
+	add.b (Dip_SFAlpha,a5),d0
 	bra.w loc_09877a
 
 ;----------------------------------------------
@@ -11573,7 +11577,7 @@ loc_0986fe:
 
 loc_098712:
 	moveq #6,d0
-	add.b ($89,a5),d0
+	add.b (Dip_SFAlpha,a5),d0
 	bra.b loc_09877a
 
 ;----------------------------------------------

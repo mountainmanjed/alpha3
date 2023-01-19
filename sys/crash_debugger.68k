@@ -1,0 +1,613 @@
+;==============================================
+;Crash Debugger Code
+;location 0xC0
+;It's all here just a branch
+;prevents it from being used
+;==============================================
+BusError:
+	move.w #0,$ff0000
+	lea (8,a7),a7
+	bra.w loc_000150
+
+AddrError:
+	move.w #1,$ff0000
+	lea (8,a7),a7
+	bra.b loc_000150
+
+IllegalInst:
+	ori.w #$2600,sr
+	move.w #2,$ff0000
+	bra.b loc_000150
+
+DivbyZero:
+	ori.w #$2600,sr
+	move.w #3,$ff0000
+	bra.b loc_000150
+
+CHKinst:
+	ori.w #$2600,sr
+	move.w #4,$ff0000
+	bra.b loc_000150
+
+TrapVinst:
+	ori.w #$2600,sr
+	move.w #5,$ff0000
+	bra.b loc_000150
+
+PrivVilation:
+	ori.w #$2600,sr
+	move.w #6,$ff0000
+	bra.b loc_000150
+
+TraceOn:
+	ori.w #$2600,sr
+	move.w #7,$ff0000
+	bra.b loc_000150
+
+Line_A_error:
+	ori.w #$2600,sr
+	move.w #8,$ff0000
+	bra.b loc_000150
+
+Line_F_error:
+	ori.w #$2600,sr
+	move.w #9,$ff0000
+	bra.b loc_000150
+
+loc_00014e:
+	rte
+
+loc_000150:
+	lea (6,a7),a7
+	move.l a7,$ff0054
+	lea $ff0054,a7
+	movem.l d0-d7/a0-a6,-(a7)
+
+;Just comment this branch out to enable crash debugger
+	bra.w clr_reg_and_reset
+
+;Display the debugger
+	lea $ff8000,a5
+	move.l usp,a0
+	move.l a0,(-$7fa8,a5)
+	moveq #0,d0
+	move.w d0,(-$7ffe,a5)
+	move.w d0,(-$7ffc,a5)
+	move.l #$ff8000,(-$7ff0,a5)
+	move.w d0,(-$7fec,a5)
+	move.w d0,(-$7fea,a5)
+	lea (-$7da4,a5),a7
+	move.w (gfxram8x8,a5),(-$7ffa,a5)
+	move.w (palrampointer,a5),(-$7ff8,a5)
+	move.w ($32,a5),(-$7ff6,a5)
+	move.w ($22,a5),(-$7ff4,a5)
+	move.w ($24,a5),(-$7ff2,a5)
+	lea $91e400,a0
+	lea ($90e,pc),a1
+	movem.l (a1),d0-d3
+	movem.l d0-d3,(a0)
+	bsr.w loc_000500
+	bsr.w loc_000354
+	bsr.w loc_000272
+	move #$2000,sr
+
+loc_0001d2:
+	tst.b (-$7b9c,a5)
+	beq.b loc_0001d2
+	clr.b (-$7b9c,a5)
+	move.w (-$7ffe,a5),d0
+	move.w loc_0001ea(pc,d0.w),d1
+	jsr loc_0001ea(pc,d1.w)
+	bra.b loc_0001d2
+
+;VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV
+loc_0001ea:
+	dc.w loc_0001ee-loc_0001ea
+	dc.w loc_00025a-loc_0001ea
+
+;----------------------------------------------
+loc_0001ee:
+	bsr.w loc_000560
+	btst #$c,d0
+	bne.b loc_000200
+	bsr.w loc_0002ca
+	bra.w loc_0004ce
+
+loc_000200:
+	move.w #2,(-$7ffe,a5)
+	move.w (-$7ffa,a5),(gfxram8x8,a5)
+	move.w (-$7ff8,a5),(palrampointer,a5)
+	move.w (-$7ff6,a5),($32,a5)
+	move.w (-$7ff4,a5),($22,a5)
+	move.w (-$7ff2,a5),($24,a5)
+	move.w #0,$708002
+	eori.b #1,($94,a5)
+	move.b ($94,a5),OBJram_Bank1
+	nop
+	nop
+	move.w #0,$708002
+	eori.b #1,($94,a5)
+	move.b ($94,a5),OBJram_Bank1
+	nop
+	nop
+	rts
+
+;----------------------------------------------
+loc_00025a:
+	bsr.w loc_000560
+	btst #$a,d0
+	beq.b loc_00026a
+	eori.b #1,($94,a5)
+
+loc_00026a:
+	btst #$c,d0
+	bne.b loc_000272
+	rts
+
+loc_000272:
+	clr.w (-$7ffe,a5)
+	move.w #$92c0,(gfxram8x8,a5)
+	move.w #$12c2,($32,a5)
+	move.w #0,($22,a5)
+	move.w #$100,($24,a5)
+	move.w #-$6e20,(palrampointer,a5)
+	move.w #$8000,$708002
+	eori.b #1,($94,a5)
+	move.b ($94,a5),OBJram_Bank1
+	nop
+	nop
+	move.w #$8000,$708002
+	eori.b #1,($94,a5)
+	move.b ($94,a5),OBJram_Bank1
+	nop
+	nop
+	rts
+
+;##############################################
+loc_0002ca:
+	bsr.w loc_000560
+	moveq #$10,d1
+	move.l (-$7ff0,a5),d2
+	move.w (INP_P1_repeat,a5),d3
+	not.w d3
+	and.w (INP_P1,a5),d3
+	btst #9,d3
+	bne.w loc_000324
+	btst #8,d0
+	beq.b loc_0002f2
+	move.l #$100,d1
+
+loc_0002f2:
+	btst #2,d0
+	beq.b loc_000308
+	sub.l d1,d2
+	cmpi.l #$ff0000,d2
+	bcc.b loc_000308
+	move.l #$ff0000,d2
+
+loc_000308:
+	btst #3,d0
+	beq.b loc_00031e
+	add.l d1,d2
+	cmpi.l #$ffff80,d2
+	bls.b loc_00031e
+	move.l #$ffff80,d2
+
+loc_00031e:
+	move.l d2,(-$7ff0,a5)
+	rts
+
+;==============================================
+loc_000324:
+	addq.w #4,(-$7ffc,a5)
+	andi.w #$c,(-$7ffc,a5)
+	move.w (-$7ffc,a5),d1
+	move.l Debug_Memory_Shortcuts(pc,d1.w),d2
+	bne.b loc_00031e
+	move.l (-$7fb0,a5),d2
+	andi.l #$fffff0,d2
+	bra.b loc_00031e
+
+;##############################################
+Debug_Memory_Shortcuts:
+	dc.l $00ff8000,PNT_P1_Memory,PNT_P2_Memory,$00000000
+
+;----------------------------------------------
+loc_000354:
+	moveq #0,d0
+	bsr.w loc_000592
+	moveq #1,d0
+	add.w (-$8000,a5),d0
+	bsr.w loc_000592
+
+	lea $92c230,a1
+	move.l (-$7fe8,a5),d0
+	bsr.w loc_00052c
+
+	lea $92c234,a1
+	move.l (-$7fe4,a5),d0
+	bsr.w loc_00052c
+
+	lea $92c238,a1
+	move.l (-$7fe0,a5),d0
+	bsr.w loc_00052c
+
+	lea $92c23c,a1
+	move.l (-$7fdc,a5),d0
+	bsr.w loc_00052c
+
+	lea $92c830,a1
+	move.l (-$7fd8,a5),d0
+	bsr.w loc_00052c
+
+	lea $92c834,a1
+	move.l (-$7fd4,a5),d0
+	bsr.w loc_00052c
+
+	lea $92c838,a1
+	move.l (-$7fd0,a5),d0
+	bsr.w loc_00052c
+
+	lea $92c83c,a1
+	move.l (-$7fcc,a5),d0
+	bsr.w loc_00052c
+
+	lea $92ce30,a1
+	move.l (-$7fc8,a5),d0
+	bsr.w loc_00052c
+
+	lea $92ce34,a1
+	move.l (-$7fc4,a5),d0
+	bsr.w loc_00052c
+
+	lea $92ce38,a1
+	move.l (-$7fc0,a5),d0
+	bsr.w loc_00052c
+
+	lea $92ce3c,a1
+	move.l (-$7fbc,a5),d0
+	bsr.w loc_00052c
+
+	lea $92d430,a1
+	move.l (-$7fb8,a5),d0
+	bsr.w loc_00052c
+
+	lea $92d434,a1
+	move.l (-$7fb4,a5),d0
+	bsr.w loc_00052c
+
+	lea $92d438,a1
+	move.l (-$7fb0,a5),d0
+	bsr.w loc_00052c
+
+	lea $92d43c,a1
+	move.l (-$7fac,a5),d0
+	bsr.w loc_00052c
+
+	lea $92cdc0,a1
+	move.l (-$7fac,a5),d0
+	bsr.w loc_00052c
+
+	lea $92d440,a1
+	move.l (-$7fa8,a5),d0
+	bsr.w loc_00052c
+
+	movea.l (-$7fac,a5),a3
+	lea $92c840,a1
+	move.w (-6,a3),d0
+	bsr.w loc_000532
+
+	move.l (-4,a3),d0
+	lea $92c894,a1
+	bsr.w loc_00052c
+	cmpi.w #2,(-$8000,a5)
+	bcc.b loc_0004c4
+	move.l (-$c,a3),d0
+	lea $92c898,a1
+	bsr.w loc_00052c
+	move.l (-$e,a3),d3
+	moveq #$b,d0
+	btst #4,d3
+	bne.b loc_0004a4
+	moveq #$c,d0
+
+loc_0004a4:
+	bsr.w loc_000592
+	moveq #$d,d0
+	btst #3,d3
+	bne.b loc_0004b2
+	moveq #$e,d0
+
+loc_0004b2:
+	bsr.w loc_000592
+	andi.w #$0007,d3
+	moveq #0,d0
+	move.b loc_0004c6(pc,d3.w),d0
+	bpl.w loc_000592
+
+loc_0004c4:
+	rts
+
+;VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV
+loc_0004c6:
+	dc.b $ff,$0f,$10,$ff,$ff,$11,$12,$13
+
+;==============================================
+loc_0004ce:
+	movea.l (-$7ff0,a5),a0
+	lea $92c04c,a2
+	moveq #7,d6
+
+loc_0004da:
+	lea (a2),a1
+	move.l a0,d0
+	bsr.w loc_00052c
+	lea ($80,a1),a1
+	moveq #7,d3
+
+loc_0004e8:
+	move.w (a0)+,d0
+	bsr.w loc_000532
+	lea ($80,a1),a1
+	dbra d3,loc_0004e8
+	lea (4,a2),a2
+	dbra d6,loc_0004da
+	rts
+
+;==============================================
+loc_000500:
+	lea $930000,a0
+	move.l #$200000,d0
+	move.l d0,d1
+	move.l d0,d2
+	move.l d0,d3
+	move.w #$ff,d6
+
+loc_000516:
+	movem.l d0-d3,-(a0)
+	movem.l d0-d3,-(a0)
+	movem.l d0-d3,-(a0)
+	movem.l d0-d3,-(a0)
+	dbra d6,loc_000516
+	rts
+
+;==============================================
+loc_00052c:
+	swap d0
+	bsr.b loc_000532
+	swap d0
+
+loc_000532:
+	move.w d0,d2
+	lsr.w #8,d0
+	bsr.b loc_00053a
+	move.w d2,d0
+
+loc_00053a:
+	move.b d0,d1
+	lsr.b #4,d0
+	bsr.b loc_000542
+	move.b d1,d0
+
+loc_000542:
+	andi.w #$f,d0
+	cmpi.w #$a,d0
+	bcs.b loc_00054e
+	addq.w #7,d0
+
+loc_00054e:
+	addi.w #$30,d0
+	move.w d0,(a1)
+	move.w #0,(2,a1)
+	lea ($80,a1),a1
+	rts
+
+;==============================================
+loc_000560:
+	move.w (INP_P1_repeat,a5),d0
+	beq.b loc_000580
+	cmpi.b #$20,(-$7fec,a5)
+	blt.b loc_000586
+	bsr.b loc_00058a
+	andi.w #$1400,d0
+	move.w (INP_P1,a5),d1
+	andi.w #$ebfe,d1
+	or.w d1,d0
+	rts
+
+loc_000580:
+	move.b #0,(-$7fec,a5)
+
+loc_000586:
+	addq.b #1,(-$7fec,a5)
+
+loc_00058a:
+	not.w d0
+	and.w (INP_P1,a5),d0 
+	rts
+
+;==============================================
+loc_000592:
+	moveq #0,d2
+	add.b d0,d0
+	bcc.b loc_00059a
+	moveq #-1,d2
+
+loc_00059a
+	move.w loc_0005d8(pc,d0.w),d0
+	lea loc_0005d8(pc,d0.w),a0
+
+loc_0005a2
+	moveq #0,d0
+	lea Palettebank3,a1
+	move.b (a0)+,d0
+	lsl.w #7,d0
+	add.b (a0)+,d0
+	lea (a1,d0.w),a1
+	moveq #0,d1
+	move.b (a0)+,d1
+
+loc_0005b8:
+	moveq #0,d0
+	move.b (a0)+,d0
+	beq.b loc_0005d6
+	bmi.b loc_0005a2
+	tst.b d2
+	beq.b loc_0005c6
+	moveq #$20,d0
+
+loc_0005c6:
+	addi.w #0,d0
+	move.w d0,(a1)
+	move.w d1,(2,a1)
+	lea ($80,a1),a1
+	bra.b loc_0005b8
+
+loc_0005d6:
+	rts
+
+loc_0005d8:
+	dc.w $0052,$01aa,$01be,$01d6,$01f4,$020a,$0224,$0240
+	dc.w $025e,$026e,$0286,$029e,$02a6,$02b0,$02c4,$02d4
+	dc.w $02e2,$02f2,$0306,$031c 
+
+;===============================================
+;600
+clr_reg_and_reset:
+	move #$2700,sr
+	moveq #0,d0
+	moveq #0,d1
+	moveq #0,d2
+	moveq #0,d3
+	moveq #0,d4
+	moveq #0,d5
+	moveq #0,d6
+	moveq #0,d7
+	movea.l d0,a0
+	movea.l d0,a1
+	movea.l d0,a2
+	movea.l d0,a3
+	movea.l d0,a4
+	movea.l d0,a5
+	movea.l d0,a6
+	movea.l d0,a7
+	jmp EntryPoint
+
+;VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV
+CrashText:;62a
+	dc.b $01,$14,$00
+	dc.b 'PROGRAM COUNTER:',$ff
+
+	dc.b $01,$18,$00
+	dc.b 'ACCESS ADDRESS :',$ff
+
+
+	dc.b $01,$1c,$00
+	dc.b 'CYCLE          :',$ff
+
+
+	dc.b $01,$20,$00
+	dc.b 'ACCESS         :',$ff
+
+	dc.b $01,$24,$00
+	dc.b 'FUNCTION CODE  :',$ff
+
+	dc.b $01,$30,$00
+	dc.b 'D0:         D4:         A0:         A4:',$ff
+
+
+	dc.b $01,$34,$00
+	dc.b 'D1:         D5:         A1:         A5:',$ff
+
+
+	dc.b $01,$38,$00
+	dc.b 'D2:         D6:         A2:         A6:',$ff
+
+	dc.b $01,$3c,$00
+	dc.b 'D3:         D7:         A3:         A7:',$ff
+
+	dc.b $0d,$40,$00
+	dc.b 'SR:       SSP:         USP:',$ff
+
+	dc.b $09,$48,$00
+	dc.b '+0   +2   +4   +6   +8   +A   +C   +E',$00
+	even
+
+	dc.b $01,$0c,$00
+	dc.b '---BUS ERROR---',$00
+	even
+
+	dc.b $01,$0c,$00
+	dc.b '---ADDRESS ERROR---',$00
+	even
+
+	dc.b $01,$0c,$00
+	dc.b '---ILLEGAL INSTRUCTION---',$00
+	even
+
+	dc.b $01,$0c,$00
+	dc.b '---ZERO DIVIDE---',$00
+	even
+
+	dc.b $01,$0c,$00
+	dc.b '---CHK INSTRUCTION---',$00
+	even
+
+	dc.b $01,$0c,$00
+	dc.b '---TRAPV INSTRUCTION---',$00
+	even
+
+	dc.b $01,$0c,$00
+	dc.b '---PRIVILEGE VIOLATION---',$00
+	even
+
+	dc.b $01,$0c,$00
+	dc.b '---TRACE---',$00
+	even
+
+	dc.b $01,$0c,$00
+	dc.b '---1010 EMULATOR---',$00
+	even
+
+	dc.b $01,$0c,$00
+	dc.b '---1111 EMULATOR---',$00
+	even
+
+	dc.b $11,$1c,$00
+	dc.b 'READ',$00
+	even
+
+	dc.b $11,$1c,$00
+	dc.b 'WRITE',$00
+	even
+
+	dc.b $11,$20,$00
+	dc.b 'NOT INSTRUCTION',$00
+	even
+
+	dc.b $11,$20,$00
+	dc.b 'INSTRUCTION',$00
+	even
+
+	dc.b $11,$24,$00
+	dc.b 'USER DATA',$00
+	even
+
+	dc.b $11,$24,$00
+	dc.b 'USER PROGRAM',$00
+	even
+
+	dc.b $11,$24,$00
+	dc.b 'SUPERVISOR DATA',$00
+	even
+
+	dc.b $11,$24,$00
+	dc.b 'SUPERVISOR PROGRAM',$00
+	even
+
+	dc.b $11,$24,$00
+	dc.b 'INTERRUPT ACKNOWLEDGE',$00
+	even
+
+;90e
+	dc.w $f000,$0000,$f88f,$f88f,$f88f,$f88f,$f88f,$f88f

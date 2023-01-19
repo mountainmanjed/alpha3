@@ -3319,7 +3319,7 @@ loc_0699cc:
 	move.w a4,($2a,a6)
 
 loc_069a20:
-	tst.w ($138,a5)
+	tst.w (Dramatic_Mode_Type,a5)
 	bne.b loc_069a5e
 	tst.w ($102,a5)
 	bne.b loc_069a5e

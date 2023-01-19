@@ -1,0 +1,146 @@
+;==============================================
+;Splash screen
+;
+;location 0x3eba
+;==============================================
+loc_003eba:
+	st.b ($e9,a5)
+	jsr loc_0172da
+	jsr loc_01b0e6
+	jsr loc_017320
+
+loc_003ed0:
+	move.w (0,a5),d0
+	move.w loc_003eec(pc,d0.w),d0
+	jsr loc_003eec(pc,d0.w)
+	jsr loc_00182e
+	moveq #1,d0
+	jsr loc_001370
+	bra.b loc_003ed0
+
+;VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV
+loc_003eec:
+	dc.w loc_003ef6-loc_003eec
+	dc.w loc_003f28-loc_003eec
+	dc.w loc_003f54-loc_003eec
+	dc.w loc_003f8e-loc_003eec
+	dc.w loc_003fa6-loc_003eec
+
+;==============================================
+loc_003ef6:
+	addq.w #2,(0,a5)
+	move.b #1,($83,a5)
+	clr.b ($bf,a5)
+	move.w #0,($22,a5)
+	move.w #$100,($24,a5)
+
+;link check
+	tst.b (NetworkEnabled,a5)
+	bne.b loc_003f1c
+
+;set rng seed
+	move.w #RngSeed,(RngByte0,a5)
+
+loc_003f1c:
+	jsr SetRegionBootPalette(pc)
+	nop
+	jmp loc_0088dc
+
+;==============================================
+loc_003f28:
+	addq.w #2,(0,a5)
+	move.w #$b4,(2,a5);set timer
+	jsr Set_Splash_SFXID
+	move.w (Region,a5),d0
+	move.w loc_003f46(pc,d0.w),d0
+	jmp loc_01c3e8
+
+;VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV
+loc_003f46:
+	dc.w $0000,$0001,$0002,$0003,$0004,$0005,$0006
+
+;==============================================
+loc_003f54:
+	bsr.w Input_P1Shot_check
+	bne.b loc_003f60
+	subq.w #1,(2,a5)
+	bpl.b loc_003f7e
+
+loc_003f60:
+	addq.w #2,(0,a5)
+	move.w #$b4,(2,a5)
+	jsr loc_01b0e6
+	move.w (Region,a5),d0
+	move.w loc_003f80(pc,d0.w),d0
+	jmp loc_01c3e8
+
+loc_003f7e:
+	rts
+
+;VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV
+loc_003f80:
+	dc.w $0007,$0008,$0009,$000a,$000b,$000c,$000d
+
+;==============================================
+loc_003f8e:
+	bsr.w Input_P1Shot_check
+	bne.b loc_003f9a
+	subq.w #1,(2,a5)
+	bpl.b loc_003fa4
+
+loc_003f9a:
+	addq.w #2,(0,a5)
+	jmp loc_01b0e6
+
+loc_003fa4:
+	rts
+
+;==============================================
+loc_003fa6:
+	moveq #0,d0
+	move.l d0,(0,a5)
+	move.l d0,(4,a5)
+	move.l d0,(8,a5)
+	move.l d0,($c,a5)
+	move.l d0,($10,a5)
+	move.l d0,($14,a5)
+	jsr loc_003048
+	jsr loc_01b0e6
+	jsr loc_01f792
+	move.w #$40,d0
+	movea.l #loc_004036,a0
+	jsr loc_001302
+	jmp loc_001324
+
+;==============================================
+SetRegionBootPalette:
+	move.w (Region,a5),d0
+	add.w d0,d0
+	move.l BootFontPalettes(pc,d0.w),d0
+	move.l #$f000f000,d1
+	lea $90c420,a0
+	move.l d1,(a0)+
+	move.l d0,(a0)+
+	move.l d0,(a0)+
+	move.l d0,(a0)+
+	move.l d1,(a0)+
+	move.l d1,(a0)+
+	move.l d1,(a0)+
+	move.l d1,(a0)+
+	rts
+
+;VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV
+BootFontPalettes:
+	dc.w $ffff,$ffff;00 Japan
+	dc.w $ff00,$ff00;02 Usa
+	dc.w $f0f0,$f0f0;04 Hispanic
+	dc.w $ff90,$ff90;06 Oceania
+	dc.w $fff0,$fff0;08 Asia
+	dc.w $f00f,$f00f;0a Europe
+	dc.w $ff0f,$ff0f;0c Brazil
+
+;==============================================
+Input_P1Shot_check:
+	move.w (INP_P1,a5),d0
+	btst #8,d0
+	rts

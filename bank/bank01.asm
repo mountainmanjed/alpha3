@@ -2713,7 +2713,7 @@ loc_018626:
 
 ;==============================================
 loc_018654:
-	move.w ($138,a5),d0
+	move.w (Dramatic_Mode_Type,a5),d0
 	move.w loc_018660(pc,d0.w),d1
 	jmp loc_018660(pc,d1.w)
 
@@ -2869,7 +2869,7 @@ loc_018770:
 ;==============================================
 ;camera?????
 loc_01877c:
-	move.w ($138,a5),d0
+	move.w (Dramatic_Mode_Type,a5),d0
 	move.w loc_018788(pc,d0.w),d1
 	jmp loc_018788(pc,d1.w)
 
@@ -7243,6 +7243,8 @@ loc_01c3c2:
 	rts
 
 ;==============================================
+;Display Boot Splash Text
+;==============================================
 loc_01c3e8:
 	moveq #0,d2
 	add.b d0,d0
@@ -8181,7 +8183,8 @@ loc_01cdd0:
 	rts
 
 ;VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV
-	include "bootuptext.asm"
+	include "sys/splashtext.68k"
+	include "sys/urltext.68k"
 
 ;VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV
 loc_01df34:
@@ -9422,7 +9425,7 @@ loc_01ece0:
 	bsr.w loc_01e256
 	tst.b $618023
 	bne.b loc_01ecf2
-	jsr loc_003cc8
+	jsr Play_Fight_Praise
 
 loc_01ecf2:
 	move.w #$9000,(gfxram8x8,a5)
@@ -9490,7 +9493,7 @@ loc_01ed98:
 	exg.l a1,a2
 
 loc_01edce:
-	cmpi.w #6,($138,a5)
+	cmpi.w #6,(Dramatic_Mode_Type,a5)
 	bne.b loc_01eddc
 	movea.l a2,a3
 	lea.l (p3memory,a5),a2
@@ -9525,7 +9528,7 @@ loc_01eddc:
 	move.w #$1307,(2,a4)
 	move.w a1,($38,a4)
 	move.b #0,($a,a4)
-	cmpi.w #6,($138,a5)
+	cmpi.w #6,(Dramatic_Mode_Type,a5)
 	bne.b loc_01ee84
 	jsr loc_01c2c8
 	addq.b #1,(a4)
@@ -9547,7 +9550,7 @@ loc_01ee84:
 	addq.b #1,(a4)
 	move.w #$1301,(2,a4)
 	move.w a1,($38,a4)
-	cmpi.w #6,($138,a5)
+	cmpi.w #6,(Dramatic_Mode_Type,a5)
 	bne.b loc_01eeda
 	jsr loc_01c2c8
 	addq.b #1,(a4)
@@ -9820,7 +9823,7 @@ loc_01f1d0:
 	andi.w #3,d6
 	movea.w (left_hud_pointer,a5),a1
 	movea.w (right_hud_pointer,a5),a2
-	cmpi.w #2,($138,a5)
+	cmpi.w #2,(Dramatic_Mode_Type,a5)
 	bne.b loc_01f214
 	lea.l (p1memory,a5),a1
 	lea.l (p2memory,a5),a3
@@ -9830,7 +9833,7 @@ loc_01f1d0:
 	exg.l a2,a3
 
 loc_01f214:
-	cmpi.w #4,($138,a5)
+	cmpi.w #4,(Dramatic_Mode_Type,a5)
 	bne.b loc_01f232
 	lea.l (p1memory,a5),a3
 	lea.l (p2memory,a5),a1
@@ -9840,7 +9843,7 @@ loc_01f214:
 	exg.l a2,a3
 
 loc_01f232:
-	cmpi.w #6,($138,a5)
+	cmpi.w #6,(Dramatic_Mode_Type,a5)
 	bne.b loc_01f250
 	lea.l (p1memory,a5),a1
 	lea.l (p2memory,a5),a3
@@ -9858,7 +9861,7 @@ loc_01f250:
 	addq.b #1,(a4)
 	move.w #$e03,(2,a4)
 	move.w a2,($38,a4)
-	cmpi.w #6,($138,a5)
+	cmpi.w #6,(Dramatic_Mode_Type,a5)
 	bne.b loc_01f28e
 	jsr loc_01c2c8
 	addq.b #1,(a4)
@@ -9887,7 +9890,7 @@ loc_01f28e:
 	move.w #$e02,(2,a4)
 	move.b d6,($a,a4)
 	move.w a2,($38,a4)
-	cmpi.w #6,($138,a5)
+	cmpi.w #6,(Dramatic_Mode_Type,a5)
 	bne.b loc_01f30a
 	jsr loc_01c2c8
 	addq.b #1,(a4)
@@ -9906,7 +9909,7 @@ loc_01f30a:
 	move.w #$e00,(2,a4)
 	move.b d6,($a,a4)
 	move.w a2,($38,a4)
-	cmpi.w #6,($138,a5)
+	cmpi.w #6,(Dramatic_Mode_Type,a5)
 	bne.b loc_01f354
 	jsr loc_01c2c8
 	addq.b #1,(a4)
@@ -10473,7 +10476,7 @@ loc_01f8b8:
 
 ;==============================================
 loc_01f8c6:
-	move.w ($138,a5),d0
+	move.w (Dramatic_Mode_Type,a5),d0
 	move.w loc_01f8d2(pc,d0.w),d1
 	jmp loc_01f8d2(pc,d1.w)
 
@@ -10692,7 +10695,7 @@ loc_01fb08:
 
 ;==============================================
 loc_01fb16:
-	move.w ($138,a5),d0
+	move.w (Dramatic_Mode_Type,a5),d0
 	move.w loc_01fb22(pc,d0.w),d1
 	jmp loc_01fb22(pc,d1.w)
 

@@ -5280,7 +5280,7 @@ loc_084090:
 	tst.b ($35,a6)
 	beq.w loc_0841ba
 	moveq #$14,d1
-	move.w ($138,a5),d0
+	move.w (Dramatic_Mode_Type,a5),d0
 	btst d0,d1
 	beq.b loc_084196
 	move.l #$c0000000,d1
@@ -5678,7 +5678,7 @@ loc_0845a0:
 loc_0845a4:
 	move.w #$f4,d1
 	move.w #$1c,d2
-	cmpi.w #6,($138,a5)
+	cmpi.w #6,(Dramatic_Mode_Type,a5)
 	bne.b loc_0845c2
 	move.b ($101,a4),d2
 	lsl.w #2,d2
@@ -5713,7 +5713,7 @@ loc_0845fa:
 	move.w loc_084638+6(pc,d0.w),($48,a6)
 	move.w ($42,a6),($10,a6)
 	moveq #$1c,d1
-	cmpi.w #6,($138,a5)
+	cmpi.w #6,(Dramatic_Mode_Type,a5)
 	bne.b loc_08462e
 	move.b ($101,a4),d1
 	add.w d1,d1
@@ -5788,7 +5788,7 @@ loc_08468a:
 	add.w d0,d0
 	move.w loc_0846f0(pc,d0.w),($10,a6)
 	moveq #$1f,d1
-	cmpi.w #6,($138,a5)
+	cmpi.w #6,(Dramatic_Mode_Type,a5)
 	bne.b loc_0846de
 	move.b ($101,a4),d1
 	add.w d1,d1
@@ -5864,7 +5864,7 @@ loc_08476c:
 	moveq #0,d1
 	move.b ($102,a4),d1
 	moveq #$14,d2
-	move.w ($138,a5),d3
+	move.w (Dramatic_Mode_Type,a5),d3
 	btst d3,d2
 	beq.b loc_084790
 	move.l #$c0000000,d2
@@ -5975,7 +5975,7 @@ loc_084828:
 	move.w loc_0848d4+6(pc,d0.w),($48,a6)
 	move.w ($42,a6),($10,a6)
 	move.w #$2d,($14,a6)
-	cmpi.w #6,($138,a5)
+	cmpi.w #6,(Dramatic_Mode_Type,a5)
 	bne.b loc_084892
 	move.w #$35,($14,a6)
 
@@ -6002,7 +6002,7 @@ loc_0848c2:
 	ext.w d1
 	addq.w #1,d1
 	moveq #1,d0
-	add.b ($89,a5),d0
+	add.b (Dip_SFAlpha,a5),d0
 	bra.w loc_084b0a
 
 ;VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV
@@ -6346,7 +6346,7 @@ loc_084c2e:
 	bsr.w loc_084c5a
 	move.w d0,d1
 	move.w d0,d3
-	cmpi.w #6,($138,a5)
+	cmpi.w #6,(Dramatic_Mode_Type,a5)
 	bne.b loc_084c58
 	move.b ($101,a4),d3
 	btst #1,d3
@@ -6363,11 +6363,11 @@ loc_084c58:
 
 ;==============================================
 loc_084c5a:
-	move.w ($138,a5),d0
+	move.w (Dramatic_Mode_Type,a5),d0
 	add.w d0,d0
 	add.b ($101,a4),d0
 	move.b loc_084c80(pc,d0.w),d0
-	cmpi.w #6,($138,a5)
+	cmpi.w #6,(Dramatic_Mode_Type,a5)
 	bne.b loc_084c7c
 	btst #0,($ac,a5)
 	bne.b loc_084c7c
@@ -9107,7 +9107,7 @@ loc_0869a4:
 	move.w ($42,a6),($10,a6)
 	add.w d0,d0
 	addq.b #4,d0
-	add.b ($89,a5),d0
+	add.b (Dip_SFAlpha,a5),d0
 	bra.w loc_0872fc
 
 loc_086a12:
@@ -9509,7 +9509,7 @@ loc_086dca:
 	tst.b ($101,a4)
 	beq.b loc_086dec
 	moveq #5,d0
-	add.b ($89,a5),d0
+	add.b (Dip_SFAlpha,a5),d0
 
 loc_086dec:
 	tst.b ($a,a6)
@@ -9842,7 +9842,7 @@ loc_0870f8:
 	moveq #0,d0
 	move.b ($101,a4),d0
 	add.w d0,d0
-	add.b ($89,a5),d0
+	add.b (Dip_SFAlpha,a5),d0
 	addi.w #$c,d0
 	bra.w loc_087308
 
@@ -14402,7 +14402,7 @@ loc_08b8e0:
 	move.w d0,($c,a6)
 	move.b d0,($b,a6)
 	moveq #$24,d0
-	add.b ($89,a5),d0
+	add.b (Dip_SFAlpha,a5),d0
 	movea.l #loc_08bd92,a0
 	jsr loc_01b6e0
 	move.w #$12,($10,a6)
@@ -14449,7 +14449,7 @@ loc_08b95c:
 	move.b d0,($b,a6)
 	move.b #$f,($3a,a6)
 	moveq #$26,d0
-	add.b ($89,a5),d0
+	add.b (Dip_SFAlpha,a5),d0
 	movea.l #loc_08bd92,a0
 	jsr loc_01b6e0
 	move.w #0,($10,a6)
@@ -14518,7 +14518,7 @@ loc_08ba20:
 	move.b d0,($b,a6)
 	move.b #$f,($3a,a6)
 	moveq #$24,d0
-	add.b ($89,a5),d0
+	add.b (Dip_SFAlpha,a5),d0
 	movea.l #loc_08bd92,a0
 	jsr loc_01b6e0
 	move.w #$180,($10,a6)
@@ -14651,7 +14651,7 @@ loc_08bbaa:
 ;##############################################
 loc_08bbb0:
 	movea.w ($13a,a5),a3
-	cmpi.w #6,($138,a5)
+	cmpi.w #6,(Dramatic_Mode_Type,a5)
 	bne.b loc_08bbd2
 	btst #1,($101,a3)
 	bne.b loc_08bbd2
@@ -16370,7 +16370,7 @@ loc_08dff2:
 	move.l d0,($14,a6)
 	move.l #$ffff0000,($44,a6)
 	jsr loc_084c5a
-	cmpi.w #6,($138,a5)
+	cmpi.w #6,(Dramatic_Mode_Type,a5)
 	bne.b loc_08e03e
 	tst.b ($101,a4)
 	beq.b loc_08e03e
@@ -17420,7 +17420,7 @@ loc_08eb28:
 	bne.b loc_08ebc2
 	jsr loc_084c5a
 	moveq #0,d3
-	cmpi.w #6,($138,a5)
+	cmpi.w #6,(Dramatic_Mode_Type,a5)
 	bne.b loc_08eb7e
 	move.b ($101,a4),d1
 	add.b ($ac,a5),d1

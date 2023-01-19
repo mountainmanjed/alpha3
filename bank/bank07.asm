@@ -2369,7 +2369,7 @@ loc_07df30:
 ;----------------------------------------------
 loc_07df3c:
 	movea.w ($13a,a5),a4
-	cmpi.w #6,($138,a5)
+	cmpi.w #6,(Dramatic_Mode_Type,a5)
 	bne.b loc_07df54
 	btst.b #0,($ac,a5)
 	bne.b loc_07df54

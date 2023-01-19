@@ -302,7 +302,7 @@ loc_065226:
 	movea.w ($38,a6),a4
 	cmpi.b #7,($102,a4)
 	bne.b loc_06524c
-	tst.b ($125,a6)
+	tst.b (PL_cpucontrol,a6)
 	sne.b d0
 	tst.b ($125,a4)
 	sne.b d1
@@ -449,7 +449,7 @@ loc_0653d8:
 	clr.b ($2c8,a6)
 	tst.b ($81,a6)
 	bne.w loc_06547c
-	tst.b ($1e4,a6)
+	tst.b (PL_codyknife_eq,a6)
 	bmi.w loc_065710
 	move.b (7,a6),d0
 	move.w loc_065400(pc,d0.w),d1
@@ -620,7 +620,7 @@ loc_06558e:
 	move.b #1,($2c8,a6)
 	tst.b ($81,a6)
 	bne.w loc_0655a4
-	tst.b ($1e4,a6)
+	tst.b (PL_codyknife_eq,a6)
 	bmi.w loc_065710
 
 loc_0655a4:
@@ -645,13 +645,13 @@ loc_0655bc:
 	jsr loc_02aebc
 	tst.b ($81,a6)
 	bne.b loc_0655ee
-	tst.b ($125,a6)
+	tst.b (PL_cpucontrol,a6)
 	bne.b loc_0655e6
 	jsr loc_02dfbe
 	beq.b loc_0655ee
 
 loc_0655e6:
-	tst.b ($1e5,a6)
+	tst.b (PL_codyover_knf,a6)
 	bne.w loc_065624
 
 loc_0655ee:
@@ -690,9 +690,9 @@ loc_06563e:
 
 ;----------------------------------------------
 loc_065644:
-	tst.b ($1e4,a6)
+	tst.b (PL_codyknife_eq,a6)
 	bpl.b loc_065688
-	tst.b ($125,a6)
+	tst.b (PL_cpucontrol,a6)
 	bne.b loc_065674
 	move.b ($378,a6),d0
 	andi.b #7,d0
@@ -821,9 +821,9 @@ loc_06577c:
 	move.b ($82,a6),d0
 	lsr.b #1,d0
 	jsr loc_02ef6c
-	tst.b ($81,a6)
+	tst.b (PL_Attacktype,a6)
 	bne.b loc_0657ae
-	tst.b ($1e4,a6)
+	tst.b (PL_codyknife_eq,a6)
 	bmi.b loc_0657d0
 
 loc_0657ae:
@@ -1724,7 +1724,7 @@ loc_0660b8:
 	addq.b #3,d0
 	jsr loc_02ef6c
 	jsr loc_020674
-	tst.b ($1e4,a6)
+	tst.b (PL_codyknife_eq,a6)
 	bpl.b loc_0660f6
 	move.b #8,(7,a6)
 	move.b #1,($ce,a6)
@@ -1840,7 +1840,7 @@ loc_066214:
 	move.w a4,($a4,a6)
 	addq.b #1,($238,a6)
 	bsr.w loc_066284
-	move.b #1,($1e4,a6)
+	move.b #1,(PL_codyknife_eq,a6)
 	bsr.w loc_066298
 
 loc_066282:
@@ -2554,7 +2554,7 @@ loc_06693e:
 
 ;----------------------------------------------
 loc_066944:
-	tst.b ($1e4,a6)
+	tst.b (PL_codyknife_eq,a6)
 	bpl.b loc_06696c
 	move.b #4,(7,a6)
 	move.b #1,($ce,a6)
@@ -2580,7 +2580,7 @@ loc_066988:
 	tst.b ($35,a6)
 	beq.w loc_067488
 	clr.b ($35,a6)
-	tst.b ($125,a6)
+	tst.b (PL_cpucontrol,a6)
 	bne.b loc_0669b0
 	btst #7,(PL_Buttons,a6)
 	beq.b loc_0669b0
@@ -3400,7 +3400,7 @@ loc_0671ba:
 loc_0671cc:
 	jsr loc_02e3fe
 	beq.w loc_067240
-	tst.b ($125,a6)
+	tst.b (PL_cpucontrol,a6)
 	beq.b loc_067200
 	jsr loc_01bd5c
 	clr.b ($b,a6)
@@ -3609,7 +3609,7 @@ loc_067408:
 	moveq #$23,d0
 	jsr loc_02e636
 	beq.w loc_06746c
-	tst.b ($125,a6)
+	tst.b (PL_cpucontrol,a6)
 	beq.b loc_067446
 	jsr loc_01bd5c
 	clr.b ($b,a6)
@@ -3786,7 +3786,7 @@ loc_06762c:
 ;
 ;##############################################
 loc_06762e:
-	move.b #0,($1e4,a6)
+	move.b #0,(PL_codyknife_eq,a6)
 	tst.b ($13e,a5)
 	bne.b loc_067650
 	jsr loc_01c2c8

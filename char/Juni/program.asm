@@ -2,7 +2,7 @@
 ;
 ;##############################################
 loc_06f15c:
-	move.w ($138,a5),d0
+	move.w (Dramatic_Mode_Type,a5),d0
 	move.w loc_06f168(pc,d0.w),d1
 	jmp loc_06f168(pc,d1.w)
 
