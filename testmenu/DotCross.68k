@@ -1,0 +1,83 @@
+
+;==============================================
+;DotCross
+;==============================================
+DotCrossTest_Main:
+	move.w (8,a5),d0
+	move.w loc_00e96e(pc,d0.w),d1
+	jmp loc_00e96e(pc,d1.w)
+
+;VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV
+loc_00e96e:
+	dc.w loc_00e974-loc_00e96e
+	dc.w loc_00e9aa-loc_00e96e
+	dc.w loc_00ea44-loc_00e96e
+
+;==============================================
+loc_00e974:
+	addq.w #2,(8,a5)
+	jsr loc_01b0e6
+	bsr.w loc_010cc2
+	moveq #0,d0
+	move.w d0,($22,a5)
+	move.w #$100,($24,a5)
+	move.w d0,($26,a5)
+	move.w #$300,($28,a5)
+	move.w #$ffff,$90c800
+	move.w #$ff00,$90c820
+	rts
+
+;==============================================
+loc_00e9aa:
+	addq.w #2,(8,a5)
+	lea.l $904004,a1
+	move.l #$6dfd0001,(a1)+
+	moveq #$b,d1
+	move.l #$6df00001,d0
+
+loc_00e9c2:
+	move.l d0,(a1)+
+	dbra d1,loc_00e9c2
+	move.l #$6dfe0001,(a1)+
+	lea.l (8,a1),a1
+	moveq #$14,d2
+
+loc_00e9d4:
+	move.l #$6dfe0001,(a1)+
+	moveq #$a,d1
+	move.l #$6dfd0000,d0
+
+loc_00e9e2:
+	move.l d0,(a1)+
+	dbra d1,loc_00e9e2
+	move.l #$6dfe0000,(a1)+
+	move.l #$6dfe0001,(a1)+
+	lea.l (8,a1),a1
+	dbra d2,loc_00e9d4
+	move.l #$6dfe0001,(a1)+
+	moveq #$a,d1
+	move.l #$6df00000,d0
+
+loc_00ea0a:
+	move.l d0,(a1)+
+	dbra d1,loc_00ea0a
+	move.l #$6dff0000,(a1)+
+	move.l #$6dfe0001,(a1)+
+	lea.l (8,a1),a1
+	moveq #$c,d1
+	move.l #$6df00001,d0
+
+loc_00ea28:
+	move.l d0,(a1)+
+	dbra d1,loc_00ea28
+	move.l #$6dff0001,(a1)+
+	moveq #$a,d0
+	jsr loc_01557c
+	moveq #$17,d0
+	jmp loc_01557c
+
+;==============================================
+loc_00ea44:
+	bsr.w loc_010eec
+	moveq #3,d7
+	bra.w loc_010c08

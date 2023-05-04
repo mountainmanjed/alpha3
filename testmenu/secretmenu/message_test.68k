@@ -1,0 +1,372 @@
+;==============================================
+;Message Test Leftovers
+;==============================================
+loc_0135d8:
+	move.w (8,a5),d0
+	move.w loc_0135e4(pc,d0.w),d1
+	jmp loc_0135e4(pc,d1.w)
+
+;VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV
+loc_0135e4:
+	dc.w loc_0135e8-loc_0135e4
+	dc.w loc_013672-loc_0135e4
+
+;==============================================
+loc_0135e8:
+	addq.w #2,(8,a5)
+	jsr loc_01bdd6
+	jsr loc_01b0e6
+	moveq #0,d0
+	move.w d0,($22,a5)
+	move.w #$100,($24,a5)
+	move.b d0,($160,a5)
+	lea.l (p1memory,a5),a6
+	move.b ($93,a5),($3c,a6)
+	move.b d0,($52,a6)
+	move.b d0,($53,a6)
+	move.b d0,($50,a6)
+	moveq #1,d0
+	moveq #0,d1
+	lea.l $908000,a1
+	jsr loc_01babc
+	move.w #$1b0e,($32,a5)
+	move.w #$2461,($3a,a5)
+	moveq #0,d0
+	bsr.w loc_013854
+	jsr loc_01c3ac
+	beq.w loc_0137ce
+	addq.b #1,(a4)
+	move.b #1,(2,a4)
+	move.w #$40,($10,a4)
+	move.w #$40,($14,a4)
+	move.w #$ff,($3a,a4)
+	move.w a4,($36,a6)
+	bsr.w loc_013718
+	jmp loc_01fc26
+
+;==============================================
+loc_013672:
+	jsr loc_01b096
+	bsr.w loc_0137b2
+	lea.l (p1memory,a5),a6
+	bsr.w loc_013694
+	bsr.w loc_0137d0
+	jsr loc_0336d6
+	jmp loc_020c4a
+
+loc_013694:
+	move.b ($378,a6),d0
+	btst #0,d0
+	bne.w loc_013790
+	btst #1,d0
+	bne.w loc_013774
+	move.b ($11b,a6),d0
+	andi.b #$f,d0
+	beq.w loc_0137ce
+	move.b ($379,a6),d0
+	andi.w #$f,d0
+	beq.w loc_0137ce
+	lea.l loc_013994(pc),a0
+	move.b (a0,d0.w),d0
+	move.w loc_0136d0(pc,d0.w),d1
+	jmp loc_0136d0(pc,d1.w)
+
+;VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV
+loc_0136d0:
+	dc.w $00fe,$0012,$0012,$002e
+	dc.w $0016,$0016,$0016,$0032
+	dc.w $0012
+
+;==============================================
+loc_0136e2:
+	moveq #1,d0
+	bra.b loc_0136ea
+
+loc_0136e6:
+	move.b #-1,d0
+
+loc_0136ea:
+	add.b ($102,a6),d0
+	andi.b #$1f,d0
+	move.b d0,($102,a6)
+	clr.b ($52,a6)
+	bra.w loc_013718
+
+loc_0136fe:
+	moveq #1,d0
+	bra.b loc_013706
+
+loc_013702:
+	move.b #-1,d0
+
+loc_013706:
+	add.b ($52,a6),d0
+	bpl.b loc_013710
+	add.b ($53,a6),d0
+
+loc_013710:
+	move.b d0,($52,a6)
+	bra.w loc_013744
+
+;==============================================
+loc_013718:
+	lea.l loc_013944(pc),a0
+	move.b ($50,a6),d0
+	ext.w d0
+	movea.l (a0,d0.w),a0
+	move.b ($3c,a6),d0
+	add.b d0,d0
+	movea.l (a0,d0.w),a0
+	move.b ($102,a6),d0
+	ext.w d0
+	lsl.w #2,d0
+	movea.l (a0,d0.w),a0
+	move.l a0,($54,a6)
+	bsr.w loc_0137a2
+
+loc_013744:
+	movea.l ($54,a6),a0
+	move.b ($52,a6),d0
+	ext.w d0
+	add.w d0,d0
+	move.w (a0,d0.w),d0
+	bne.b loc_01375c
+	clr.b ($52,a6)
+	move.w (a0),d0
+
+loc_01375c:
+	lea.l (a0,d0.w),a0
+	movea.w ($36,a6),a4
+	move.l a0,($36,a4)
+	move.w #$ff,($3a,a4)
+	clr.l ($4,a4)
+	rts
+
+;==============================================
+loc_013774:
+	tst.b ($92,a5)
+	beq.b loc_01378a
+	addq.b #2,($3c,a6)
+	andi.b #6,($3c,a6)
+	bne.b loc_01378a
+	addq.b #2,($3c,a6)
+
+loc_01378a:
+	clr.b ($52,a6)
+	bra.b loc_013718
+
+;==============================================
+loc_013790:
+	addq.b #4,($50,a6)
+	andi.b #$c,($50,a6)
+	clr.b ($52,a6)
+	bra.w loc_013718
+
+;==============================================
+loc_0137a2:
+	moveq #0,d0
+
+loc_0137a4:
+	tst.w (a0)+
+	beq.b loc_0137ac
+	addq.b #1,d0
+	bra.b loc_0137a4
+
+loc_0137ac:
+	move.b d0,($53,a6)
+	rts
+
+;==============================================
+loc_0137b2:
+	lea.l (p1memory,a5),a3
+	bsr.w loc_0137be
+	lea.l (p2memory,a5),a3
+
+loc_0137be:
+	move.w ($11c,a3),d0
+	not.w d0
+	and.w ($11a,a3),d0
+	move.w d0,($378,a3)
+	rts
+
+;==============================================
+loc_0137ce:
+	rts
+
+;==============================================
+loc_0137d0:
+	move.b ($50,a6),d0
+	ext.w d0
+	lsr.w #2,d0
+	addq.w #1,d0
+	bsr.w loc_013854
+	move.b ($3c,a6),d0
+	ext.w d0
+	lsr.w #1,d0
+	addq.w #5,d0
+	bsr.w loc_013854
+	lea.l $900830,a1
+	move.b ($53,a6),d0
+	subq.b #1,d0
+	bsr.w loc_013818
+	lea.l $9006b0,a1
+	move.b ($52,a6),d0
+	bsr.w loc_013818
+	lea.l $9004ac,a1
+	move.b ($102,a6),d0
+	bra.w loc_013818
+
+loc_013818:
+	move.w d0,d2
+	lsr.w #4,d2
+	andi.w #$f,d2
+	cmpi.w #$a,d2
+	bcs.b loc_01382a
+	addi.w #$57,d2
+
+loc_01382a:
+	addi.w #0,d2
+	move.w d2,(a1)
+	move.w d1,(2,a1)
+	lea.l ($80,a1),a1
+	andi.w #$f,d0
+	cmpi.w #$a,d0
+	bcs.b loc_013846
+	addi.w #$57,d0
+
+loc_013846:
+	addi.w #0,d0
+	movem.w d0-d1,(a1)
+	lea.l ($80,a1),a1
+	rts
+
+;==============================================
+loc_013854:
+	moveq #0,d2
+	add.b d0,d0
+	bcc.b loc_01385c
+	moveq #-1,d2
+
+loc_01385c:
+	move.w loc_01389c(pc,d0.w),d0
+	lea.l loc_01389c(pc,d0.w),a0
+
+loc_013864:
+	moveq #0,d0
+	lea.l $900000,a1
+	move.b (a0)+,d0
+	lsl.w #7,d0
+	add.b (a0)+,d0
+	lea.l (a1,d0.w),a1
+	moveq #0,d1
+	move.b (a0)+,d1
+
+loc_01387a:
+	moveq #0,d0
+	move.b (a0)+,d0
+	beq.b loc_01389a
+	bmi.b loc_013864
+	addi.w #0,d0
+	tst.b d2
+	beq.b loc_01388e
+	move.w #$20,d0
+
+loc_01388e:
+	move.w d0,(a1)
+	move.w d1,(2,a1)
+	lea.l ($80,a1),a1
+	bra.b loc_01387a
+
+loc_01389a:
+	rts
+
+;VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV
+;Message Test Text
+loc_01389c:
+	dc.w loc_0138ae-loc_01389c;$0012
+	dc.w loc_0138e4-loc_01389c;$0048
+	dc.w loc_0138ee-loc_01389c;$0052
+	dc.w loc_0138f8-loc_01389c;$005c
+	dc.w loc_013902-loc_01389c;$0066
+	dc.w loc_01390c-loc_01389c;$0070
+	dc.w loc_01391a-loc_01389c;$007e
+	dc.w loc_013928-loc_01389c;$008c
+	dc.w loc_013936-loc_01389c;$009a
+
+loc_0138ae:
+	dc.b $00,$24,$1f
+	dc.b 'Kind:'
+	dc.b $ff,$00
+	
+	dc.b $28,$1f
+	dc.b 'Language:'
+	dc.b $ff,$00
+
+	dc.b $2c,$1f
+	dc.b 'PL_TYPE:'
+	dc.b $ff,$00
+
+	dc.b $30,$1f
+	dc.b 'Message No.:   /'
+	dc.b $00
+
+loc_0138e4:
+	dc.b $06,$24,$1f
+	dc.b 'Win   '
+	dc.b $00
+
+loc_0138ee:
+	dc.b $06,$24,$1f
+	dc.b 'Open  '
+	dc.b $00
+
+loc_0138f8:
+	dc.b $06,$24,$1f
+	dc.b 'Ending'
+	dc.b $00
+
+loc_013902:
+	dc.b $06,$24,$1f
+	dc.b 'Boss  '
+	dc.b $00
+
+loc_01390c:
+	dc.b $0b,$28,$1f
+	dc.b 'Japanese  '
+	dc.b $00
+
+loc_01391a:
+	dc.b $0b,$28,$1f
+	dc.b 'English   '
+	dc.b $00
+
+loc_013928:
+	dc.b $0b,$28,$1f
+	dc.b 'Spanish   '
+	dc.b $00
+
+loc_013936:
+	dc.b $0b,$28,$1f
+	dc.b 'Portuguese'
+	dc.b $00
+
+loc_013944:
+	dc.l loc_013954,loc_013984,loc_013974,loc_013964
+
+loc_013954:
+	dc.l EnglishWinQuotes,EnglishWinQuotes,EnglishWinQuotes,EnglishWinQuotes
+
+loc_013964:
+	dc.l EnglishWinQuotes,loc_0cde08,loc_0cde08,loc_0cde08
+
+loc_013974:
+	dc.l EnglishWinQuotes,loc_0d5c4c,loc_0d5c4c,loc_0d5c4c
+
+loc_013984:
+	dc.l EnglishWinQuotes,loc_0cc7e0,loc_0cc7e0,loc_0cc7e0
+
+loc_013994:
+	dc.w $0006,$0e00
+	dc.w $0a08,$0c00
+	dc.w $0204,$1000
+	dc.w $0000,$0000

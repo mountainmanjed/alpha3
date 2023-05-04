@@ -1,0 +1,190 @@
+;==============================================
+;Input test
+;a3 loc: 0x00dfca
+;sample loc: 0x00ee2c
+;==============================================
+InputTest_Main:
+	move.w (8,a5),d0
+	move.w loc_00dfd6(pc,d0.w),d1
+	jmp loc_00dfd6(pc,d1.w)
+
+;VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV
+loc_00dfd6:
+	dc.w loc_00dfda-loc_00dfd6
+	dc.w loc_00e004-loc_00dfd6
+
+;----------------------------------------------
+;ee3c
+loc_00dfda:
+	addq.w #2,($8,a5)
+	jsr loc_01b0e6
+	bsr.w loc_010cc2
+	moveq #0,d0
+	move.w d0,($22,a5)
+	move.w #$100,($24,a5)
+	moveq #1,d0
+	jsr loc_01557c
+
+;Add Dipswitch display
+;	tst.b ($85,a5)
+;	beq.b Inptest_Pass_Debug
+;	moveq #2,d0
+;	jsr loc_01557c
+
+Inptest_Pass_Debug:
+	moveq #$17,d0
+	jmp loc_01557c
+
+;----------------------------------------------
+;Render the inputs
+loc_00e004:
+	move.b ($64,a5),d7
+	lea.l $900898,a1
+	moveq #0,d0
+	lsl.b #6,d7
+	roxl.b #1,d0
+	bsr.w loc_00e12c
+	lea.l $90089c,a1
+	moveq #0,d0
+	lsl.b #1,d7
+	roxl.b #1,d0
+	bsr.w loc_00e12c
+	move.b ($60,a5),d7
+	ror.b #4,d7
+	lea.l $9008a8,a1
+	moveq #0,d0
+	lsr.b #1,d7
+	roxl.b #1,d0
+	bsr.w loc_00e12c
+	lea.l $9010a8,a1
+	moveq #0,d0
+	lsr.b #1,d7
+	roxl.b #1,d0
+	bsr.w loc_00e12c
+	lea.l $9008ac,a1
+	moveq #0,d0
+	lsr.b #3,d7
+	roxl.b #1,d0
+	bsr.w loc_00e12c
+	lea.l $9010ac,a1
+	moveq #0,d0
+	lsr.b #1,d7
+	roxl.b #1,d0
+	bsr.w loc_00e12c
+	lea.l $9007b4,a0
+	move.w (INP_P1,a5),d7
+	bsr.b loc_00e092
+	lea.l $900fb4,a0
+	move.w (INP_P2,a5),d7
+	bsr.b loc_00e092
+
+;	bsr.b InpTest_DipRender
+	bsr.w loc_010eec;for the unlock code
+	moveq #0,d7
+	bra.w loc_010c08
+
+;---------------------------------------------
+;render dipswitches
+;sam_00eefc:
+;InpTest_DipRender:
+;	tst.b (Dip_Debug_mode,a5)
+;	beq.b sam_00ef38
+;	lea $900954,a1
+;	move.b (G_DebugDip_A,a5),d5
+;	bsr.b sam_00ef24
+;	lea $900958,a1
+;	move.b (G_DebugDip_B,a5),d5
+;	bsr.b sam_00ef24
+;	lea $90095c,a1
+;	move.b (G_DebugDip_C,a5),d5
+
+;sam_00ef24:
+;	moveq #$7,d6
+;	moveq #0,d0
+;	lsl.b #1,d5
+;	roxl.b #1,d0
+;	bsr.w loc_00e12c
+;	lea ($80,a1),a1
+
+;sam_00ef38:
+	rts
+
+;==============================================
+loc_00e092:
+	move.w d7,d6
+	andi.w #$f,d6
+	move.b loc_00e09e(pc,d6.w),d5
+	bra.b loc_00e0ae
+
+;VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV
+loc_00e09e:
+	dc.b $00,$08,$10,$18,$02,$01,$04,$05,$40,$20,$80,$a0,$42,$21,$84,$a5
+
+;==============================================
+loc_00e0ae:
+	lea.l (a0),a1
+	moveq #2,d6
+
+loc_00e0b2:
+	moveq #0,d0
+	lsl.b #1,d5
+	roxl.b #1,d0
+	bsr.w loc_00e12c
+	lea.l ($80,a1),a1
+	dbra d6,loc_00e0b2
+	lea.l (4,a0),a1
+	moveq #1,d6
+
+loc_00e0ca:
+	moveq #0,d0
+	lsl.b #1,d5
+	roxl.b #1,d0
+	bsr.w loc_00e12c
+	lea.l ($100,a1),a1
+	dbra d6,loc_00e0ca
+	lea.l (8,a0),a1
+	moveq #2,d6
+
+loc_00e0e2:
+	moveq #0,d0
+	lsl.b #1,d5
+	roxl.b #1,d0
+	bsr.w loc_00e12c
+	lea.l ($80,a1),a1
+	dbra d6,loc_00e0e2
+	move.w d7,d5
+	lsr.w #8,d5
+	lea.l ($10,a0),a1
+	moveq #2,d6
+
+loc_00e0fe:
+	moveq #0,d0
+	lsr.b #1,d5
+	roxl.b #1,d0
+	bsr.w loc_00e12c
+	lea.l ($80,a1),a1
+	dbra d6,loc_00e0fe
+	lsr.b #1,d5
+	lea.l ($14,a0),a1
+	moveq #2,d6
+
+loc_00e118:
+	moveq #0,d0
+	lsr.b #1,d5
+	roxl.b #1,d0
+	bsr.w loc_00e12c
+	lea.l ($80,a1),a1
+	dbra d6,loc_00e118
+	rts
+
+;==============================================
+loc_00e12c:
+	moveq #$1e,d1
+	tst.b d0
+	beq.b loc_00e134
+	moveq #$1d,d1
+
+loc_00e134:
+	move.w d0,(a1)
+	move.w d1,(2,a1)
+	rts

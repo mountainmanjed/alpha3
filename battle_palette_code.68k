@@ -419,7 +419,7 @@ loc_030306:
 	rts
 
 ;==============================================
-;Mainpalette
+;Mainpalette load
 loc_030326:
 	movea.l #loc_32c094,a0
 	add.w d2,d2

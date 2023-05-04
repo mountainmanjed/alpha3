@@ -1,0 +1,248 @@
+
+;==============================================
+;Memory Check
+;==============================================
+MemoryandRomCheck_Main:
+	move.w (8,a5),d0
+	move.w loc_0108ee(pc,d0.w),d1
+	jmp loc_0108ee(pc,d1.w)
+
+;VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV
+loc_0108ee:
+	dc.w loc_0108f6-loc_0108ee
+	dc.w loc_01090c-loc_0108ee
+	dc.w loc_010938-loc_0108ee
+	dc.w loc_010942-loc_0108ee
+
+;==============================================
+loc_0108f6:
+	addq.w #2,(8,a5)
+	jsr loc_01b0e6
+	bsr.w loc_010cc2
+	moveq #$16,d0
+	jmp loc_01557c
+
+;==============================================
+loc_01090c:
+	moveq #1,d0
+	jsr loc_0013f8
+	clr.b ($14,a5)
+	bsr.b loc_010944
+	moveq #0,d0
+	jsr loc_0013f8
+	addq.w #2,(8,a5)
+	move.w #$40,($a,a5)
+	tst.b ($14,a5)
+	beq.b loc_010936
+	addq.w #2,(8,a5)
+
+loc_010936:
+	rts
+
+;==============================================
+loc_010938:
+	subq.w #1,($a,a5)
+	beq.w loc_010c88
+	rts
+
+;==============================================
+loc_010942:
+	rts
+
+;==============================================
+loc_010944:
+	lea.l $ff0000,a0
+	lea.l $fffff0,a1
+	lea.l $900f1c,a2
+	moveq #0,d6
+	bsr.w loc_010aa0
+
+	lea.l $900000,a0
+	lea.l $930000,a1
+	lea.l $900f24,a2
+	moveq #0,d6
+	bsr.w loc_010aa0
+
+	clr.b ($15,a5)
+	lea.l $708000,a0
+	lea.l $70a000,a1
+	moveq #2,d6
+	bsr.w loc_010aa0
+	eori.w #1,OBJram_Bank0
+	lea.l $708000,a0
+	lea.l $70a000,a1
+	moveq #2,d6
+	bsr.w loc_010aa0
+	eori.w #1,OBJram_Bank0
+	lea.l $900f2c,a2
+	tst.b ($15,a5)
+	bne.b loc_0109c0
+	moveq #0,d6
+	bsr.w loc_010ad6
+	bra.b loc_0109c6
+
+loc_0109c0:
+	moveq #0,d6
+	bsr.w loc_010af6
+
+loc_0109c6:
+	move.b #0,$619ffb
+	lea.l $618000,a0
+	lea.l $61a000,a1
+	lea.l $900f34,a2
+	moveq #1,d6
+	bsr.w loc_010aa0
+	move.b #$88,$619ffb
+	jsr loc_001ca4
+	bne.b loc_010a04
+	moveq #0,d6
+	lea.l $900f3c,a2
+	bsr.w loc_010ad6
+	bra.b loc_010a10
+
+loc_010a04:
+	moveq #0,d6
+	lea.l $900f3c,a2
+	bsr.w loc_010af6
+
+;rom3
+loc_010a10:
+	moveq #0,d6
+	moveq #0,d2
+	lea.l $0.w,a0
+	lea.l $900f44,a2
+	bsr.w loc_010b2c
+
+;rom4
+	moveq #2,d2
+	lea.l $80000,a0
+	lea.l $900f48,a2
+	bsr.w loc_010b2c
+
+;rom5
+	moveq #4,d2
+	lea.l $100000,a0
+	lea.l $900f4c,a2
+	bsr.w loc_010b2c
+
+;rom6
+	moveq #6,d2
+	lea.l $180000,a0
+	lea.l $900f50,a2
+	bsr.w loc_010b2c
+
+;rom7
+	moveq #8,d2
+	lea.l $200000,a0
+	lea.l $900f54,a2
+	bsr.w loc_010b2c
+
+;rom8
+	moveq #$a,d2
+	lea.l $280000,a0
+	lea.l $900f58,a2
+	bsr.w loc_010b2c
+
+;rom9
+	moveq #$c,d2
+	lea.l $300000,a0
+	lea.l $900f5c,a2
+	bsr.w loc_010b2c
+
+;rom10
+	moveq #$e,d2
+	lea.l $380000,a0
+	lea.l $900f60,a2
+	bra.w loc_010b2c
+
+;==============================================
+loc_010aa0:
+	moveq #3,d1
+	moveq #0,d2
+
+loc_010aa4:
+	move.w (a0),d5
+	move.w loc_010b24(pc,d2.w),d0
+	btst #0,d6
+	beq.b loc_010aba
+	move.w d0,(a0)
+	cmp.b (1,a0),d0
+	bne.b loc_010af6
+	bra.b loc_010ac0
+
+loc_010aba:
+	move.w d0,(a0)
+	cmp.w (a0),d0
+	bne.b loc_010af6
+
+loc_010ac0:
+	move.w d5,(a0)
+	addq.w #2,d2
+	WATCHDOG
+	dbra d1,loc_010aa4
+	lea.l (2,a0),a0
+	cmpa.l a0,a1
+	bne.b loc_010aa0
+
+loc_010ad6:
+	btst #1,d6
+	bne.b loc_010af4
+	move.w #$4f,(a2)
+	move.w #$1b,(2,a2)
+	lea.l ($80,a2),a2
+	move.w #$4b,(a2)
+	move.w #$1b,(2,a2)
+
+loc_010af4:
+	rts
+
+loc_010af6:
+	st.b ($14,a5)
+	btst #1,d6
+	bne.b loc_010b1e
+	move.w #$4e,(a2)
+	move.w #$1d,(2,a2)
+	lea.l ($80,a2),a2
+	move.w #$47,(a2)
+	move.w #$1d,(2,a2)
+	clr.b ($15,a5)
+	rts
+
+loc_010b1e:
+	st.b ($15,a5)
+	rts
+
+;VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV
+loc_010b24:
+	dc.w $0000,$5555,$aaaa,$ffff
+
+;==============================================
+loc_010b2c:
+	moveq #0,d0
+	lea.l (a0),a1
+	adda.l #$80000,a1
+
+loc_010b36:
+	WATCHDOG
+	moveq #0,d1
+	move.b (a0),d1
+	add.l d1,d0
+	lea.l ($fff,a0),a0
+	cmpa.l a1,a0
+	bcs.b loc_010b36
+	lea.l loc_010b54(pc,d2.w),a0
+	cmp.w (a0),d0
+	beq.b loc_010ad6
+	bra.b loc_010af6
+
+;VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV
+;Rom Checksums
+loc_010b54:
+	dc.w $1f22
+	dc.w $3cf1
+	dc.w $176f
+	dc.w $1686
+	dc.w $19fc
+	dc.w $11fe
+	dc.w $184b
+	dc.w $42e6

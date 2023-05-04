@@ -65,6 +65,7 @@ palrampointer = 0x20
 ;0x2c
 
 ;0x32
+;0x38
 ;0x3a
 
 sub_palram = 0x48
@@ -90,18 +91,24 @@ INP_P2_repeat = 0x5e
 ;0x72
 ;0x73
 
-
+frame_count_const = 0x80
+frame_count_game = 0x81
 
 ;==============================================
 ;
 ;==============================================
+;0x82
 ;0x83
+Dip_Debug_mode = 0x85
 NetworkEnabled = 0x86
 ;0x87 Epprom write status
 ;0x88
 Dip_SFAlpha = 0x89; sets names and voices to sf alpha and a-ism
 ;0x8a
+;0x8b
+
 Region = 0x90
+
 ;0x93
 
 ;==============================================
@@ -216,7 +223,8 @@ Dramatic_Mode_Type = 0x138 ; word
 ; = 0x146
 left_hud_pointer = 0x156
 right_hud_pointer = 0x158
-; = 0x15d
+pause_flag = 0x15c
+; = 0x15d event mode gameover?
 
 ; = 0x163
 Dramatic_Mode_flag = 0x168
@@ -232,42 +240,28 @@ StageId_02 = 0x174
 ;==============================================
 ;
 ;==============================================
-;0x182
-;0x183
-;0x184 long
-;0x1c8
+;0x182 ; byte
+;0x183 ; byte
+;0x184 ; long
+
+GDebugAll = 0x1c0
+G_DebugDip_A = 0x1c0
+G_DebugDip_B = 0x1c1
+G_DebugDip_C = 0x1c2
+;unuseddebig = 0x1c3
+
+;input01 1c4
+;input01 1c5
 
 
-;==============================================
-;Background Background
-;cps0 200 8x8
-;cps1 280 16x16
-;cps2 300 32x32
+;0x1c8 ; word copy of -$5126,a5
 
-;----------------------------------------------
-W_Cps0_Start = 0x200
+;0x1f6 ; long
+;0x1fa ; word
+;0x1fc ; byte
 
-;----------------------------------------------
-W_Cps1_Start = 0x280
-;0x288
-;0x28c
-;0x290
-;0x292
-;0x294
-;0x296
-camera_x = 0x2a0
-camera_y = 0x2a4
-
-;Camera Data is in cps1
-cam_ybound = 0x40
-cam_xbound = 0x44
-
-;----------------------------------------------
-W_Cps2_Start = 0x300
-;0x310
-;0x312
-;0x314
-;0x316
+;unused
+;0x1fd~0x1ff
 
 ;==============================================
 ;0x398
@@ -285,6 +279,9 @@ Sound_Buffer_Start = 0x5e80
 ;-0x43ea
 ;-0x43ec
 ;-0x50ce
+
+;-0x5126
+
 ;-0x5162
 
 ;Arcade Progression?

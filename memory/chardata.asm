@@ -21,7 +21,7 @@ PL_spritebank = 0x1a ;word
 PL_Anim_Pnt = 0x1c
 
 ;= 0x30
-;= 0x31
+pl_in_air = 0x31;?
 pl_cell_frame_count = 0x32
 pl_anim_flags = 0x33
 pl_renda_flag = 0x34 ;?
@@ -44,7 +44,9 @@ pl_y_drag = 0x4c
 PL_HP = 0x50;word
 PL_HP_copy = 0x52;word
 
-;pl ai flag 0x5b
+;= 0x55; byte
+
+;unk = 0x5b;
 
 pl_combo = 0x5e; getting comboed
 pl_hitfreeze = 0x5f
@@ -64,7 +66,9 @@ pl_col_legs_pnt = 0x98
 pl_col_push_pnt = 0x9c
 pl_col_attk_pnt = 0xa0
 ; = 0xa4 ; word
+
 ; = 0xa6 ; word
+
 ; = 0xa8 ; byte
 ; = 0xa9 ; byte
 pl_move_id = 0xaa ; byte
@@ -75,6 +79,9 @@ pl_move_id = 0xaa ; byte
 
 ;= 0xba ;word
 pl_taunt_count = 0xbc
+
+;0xcc
+;0xcd
 
 pl_sakiyo_game = 0xeb
 pl_serious_game = 0xec
@@ -95,12 +102,13 @@ PL_charid = 0x102
 ;unused = 0x109
 
 ; = 0x10a
+; 0x10b
 
 ; = 0x114
 PL_Buttons = 0x11a
 PL_meter = 0x11e
 
-; = 0x123 ;byte
+; = 0x123 ;
 ;0x124 ;byte
 PL_cpucontrol = 0x125
 ; = 0x126
@@ -176,6 +184,10 @@ PL_rose_groundthrow = 0x1e4 ;word extra sprite for the throw
 
 pl_dist_away = 0x21c
 
+;0x248
+;0x249
+;0x24a
+
 pl_guard_bar_max = 0x24c
 pl_guard_bar = 0x24d
 
@@ -186,15 +198,24 @@ pl_crushed_guard = 0x26e
 
 
 pl_collsion_counter = 0x280
+
+;= 0x28a;
+;= 0x28d;
+
 pl_blockstring_counter = 0x297
 
+plflash_timer = 0x2ad
+plflash_status = 0x2ae
+
 ;0x2c0
+
+;0x2c8
 pl_sidecheck = 0x2c9
 PL_Stun = 0x2cc
 pl_stun_max = 0x2cd
 
 Pl_WalkSpeed_pnt = 0x2d0
-Pl_JumpData_pnt = 0x2d4
+Pl_JumpData_pnt = 0x2d4;0x28692,0x2a98c
 
 pl_inp_slot_a = 0x300
 pl_inp_slot_b = 0x308
@@ -214,6 +235,8 @@ pl_throw_id = 0x32f
 PNT_P1_Memory = 0xff8400
 
 p1memory = 0x400
+p1_x = PL_X+p1memory
+
 p1_combo = pl_combo+p1memory
 p1_charid = PL_charid+p1memory
 P1_Palnum = PL_Palnum+p1memory
@@ -225,6 +248,8 @@ p1_crushed_guard = pl_crushed_guard+p1memory
 PNT_P2_Memory = 0xff8800
 
 p2memory = 0x800
+p2_x = PL_X+p2memory
+
 p2_combo = pl_combo+p2memory
 p2_charid = PL_charid+p2memory
 P2_Palnum = PL_Palnum+p2memory
@@ -236,6 +261,8 @@ p2_crushed_guard = pl_crushed_guard+p2memory
 PNT_P3_Memory = 0xff8C00
 
 p3memory = 0xc00
+p3_x = PL_X+p3memory
+
 p3_combo = pl_combo+p3memory
 p3_charid = PL_charid+p3memory
 P3_Palnum = PL_Palnum+p3memory
@@ -247,6 +274,8 @@ p3_crushed_guard = pl_crushed_guard+p3memory
 PNT_P4_Memory = 0xff9000
 
 p4memory = 0x1000
+p4_x = PL_X+p4memory
+
 p4_combo = pl_combo+p4memory
 p4_charid = PL_charid+p4memory
 P4_Palnum = PL_Palnum+p4memory

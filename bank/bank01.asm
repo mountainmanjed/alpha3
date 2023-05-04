@@ -1036,7 +1036,7 @@ loc_01750c:
 	bsr.w loc_017c4e
 
 loc_017514:
-	lea.l (W_Cps0_Start,a5),a6
+	lea.l (W_layer0_start,a5),a6
 	move.w (Main_stageid,a5),d0
 	move.w loc_017532(pc,d0.w),d1
 	jsr loc_017532(pc,d1.w)
@@ -1914,7 +1914,7 @@ loc_017c20:
 
 ;==============================================
 loc_017f98:
-	lea.l (W_Cps2_Start,a5),a6
+	lea.l (W_layer2_start,a5),a6
 	move.w (Main_stageid,a5),d0
 	move.w loc_018000(pc,d0.w),d1
 	jsr loc_018000(pc,d1.w)
@@ -3049,6 +3049,7 @@ loc_018876:
 	dc.w $3600,$6241;
 
 ;==============================================
+;8x8 Block Code
 loc_0188f6:
 	move.b #0,($3a,a6)
 	move.b #$c,($3b,a6)
@@ -3512,6 +3513,7 @@ Stage_Bounds:
 	dc.w $0010,$0000,$0100,$0280
 
 ;==============================================
+;16x16 tile blocks?
 loc_018f20:
 	andi.l #$000000ff,d0
 	move.w d0,d1
@@ -3535,11 +3537,12 @@ loc_018f3e:
 
 
 ;==============================================
+;32x32 blocks
 loc_018f56:
 	move.w (Main_stageid,a5),d0
 	lea.l loc_019462,a1
 	move.b (1,a1,d0.w),(3,a6)
-	lea.l loc_0194a2,a0
+	lea.l loc_0194a2,a0;
 	move.w (a0,d0.w),d0
 	lea.l (a0,d0.w),a0
 	lea.l (-$5dae,a5),a1
@@ -3614,6 +3617,7 @@ loc_018fd2:
 	dc.l $ffffffff,$ffffffff
 
 ;==============================================
+;Set up block for 32x32
 loc_0190d2:
 	andi.l #$000000ff,d0
 	move.w d0,d1
@@ -3674,6 +3678,7 @@ loc_019106:
 	dc.w $0000
 
 ;VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV
+;8x8 block ids
 loc_019146:
 	dc.w loc_019186-loc_019146;Ryu
 	dc.w loc_01918a-loc_019146;Ken
@@ -5352,6 +5357,7 @@ loc_01b0c4:
 	rts
 
 ;==============================================
+;Sam_021a38
 loc_01b0e6:
 	movea.l #$904000,a0
 	move.w #$ff,d4
@@ -6659,6 +6665,7 @@ loc_01bdd0:
 	bra.b loc_01bdea
 
 ;==============================================
+;sam_02271c
 loc_01bdd6:
 	bsr.w ClearP1P2P3Mem
 	bsr.w loc_01bfd0
@@ -6826,9 +6833,9 @@ loc_01bfba:
 ;==============================================
 loc_01bfd0:
 	st.b ($a9,a5)
-	lea.l (W_Cps0_Start,a5),a0
-	lea.l (W_Cps1_Start,a5),a1
-	lea.l (W_Cps2_Start,a5),a2
+	lea.l (W_layer0_start,a5),a0
+	lea.l (W_layer1_start,a5),a1
+	lea.l (W_layer2_start,a5),a2
 	lea.l ($380,a5),a3
 	move.w #$1f,d7
 	moveq #0,d1
@@ -7593,7 +7600,7 @@ loc_01c838:
 	beq.b loc_01c86c
 	moveq #$38,d3
 	moveq #2,d6
-	lea.l (W_Cps0_Start,a5),a6
+	lea.l (W_layer0_start,a5),a6
 
 loc_01c848:
 	move.w ($10,a6),d0
@@ -8865,6 +8872,8 @@ loc_01e722:
 
 ;VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV
 ;Character Select IDtable
+;loc 0x1e724
+;VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV
 Char_ID_SEL_TBL:
 	dc.b $ff,$ff,$ff,$0a,$ff,$ff,$ff,$ff
 	dc.b $ff,$a0,$03,$04,$0b,$62,$ff,$ff
@@ -10582,7 +10591,7 @@ loc_01f9d6:
 	bra.w loc_01fad0
 
 ;==============================================
-;Stage load?
+;Stage palette load
 ;==============================================
 loc_01f9e8:
 	move.w (Main_stageid,a5),d0

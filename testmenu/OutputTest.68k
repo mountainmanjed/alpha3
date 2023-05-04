@@ -1,0 +1,78 @@
+
+;==============================================
+;Output Test
+;==============================================
+OutputTest_Main:
+	move.w (8,a5),d0
+	move.w loc_00e148(pc,d0.w),d1
+	jmp loc_00e148(pc,d1.w)
+
+;VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV
+loc_00e148:
+	dc.w loc_00e14c-loc_00e148
+	dc.w loc_00e19a-loc_00e148
+
+;==============================================
+loc_00e14c:
+	addq.w #2,(8,a5)
+	jsr loc_01b0e6
+	bsr.w loc_010cc2
+	moveq #0,d0
+	move.w d0,($22,a5)
+	move.w #$100,($24,a5)
+	andi.b #$cc,($6b,a5)
+	moveq #3,d0
+	jsr loc_01557c
+	cmpi.w #Hispanic_region,(Region,a5)
+	beq.b loc_00e184
+	cmpi.w #Brazil_Region,(Region,a5)
+	bne.b loc_00e192
+
+loc_00e184:
+	tst.b ($ce,a5)
+	beq.b loc_00e192
+	moveq #4,d0
+	jsr loc_01557c
+
+loc_00e192:
+	moveq #$17,d0
+	jmp loc_01557c
+
+;==============================================
+loc_00e19a:
+	move.w (INP_P1_repeat,a5),d1
+	move.w (INP_P2_repeat,a5),d2
+	not.w d1
+	not.w d2
+	and.w (INP_P1,a5),d1
+	and.w (INP_P2,a5),d2
+	bclr.b #0,($6b,a5)
+	btst #8,d1
+	beq.b loc_00e1c0
+	bchg.b #4,($6b,a5)
+
+loc_00e1c0:
+	btst #8,d2
+	beq.b loc_00e1cc
+	bchg.b #5,($6b,a5)
+
+loc_00e1cc:
+	btst.b #1,(INP_P1,a5)
+	beq.b loc_00e1da
+	bset.b #0,($6b,a5)
+
+loc_00e1da:
+	cmpi.w #Hispanic_region,(Region,a5)
+	beq.b loc_00e1ea
+	cmpi.w #Brazil_Region,(Region,a5)
+	bne.b loc_00e1fc
+
+loc_00e1ea:
+	tst.b ($ce,a5)
+	beq.b loc_00e1fc
+	btst #9,d2
+	beq.b loc_00e1fc
+	move.b #1,($d0,a5)
+
+loc_00e1fc:
+	bra.w loc_010c7a

@@ -1,6 +1,6 @@
 ;Cps1/16x16 Layer Programming
 loc_017c4e:
-	lea.l (W_Cps1_Start,a5),a6
+	lea.l (W_layer1_start,a5),a6
 	move.w (Main_stageid,a5),d0
 	move.w loc_017c6c(pc,d0.w),d1
 	jsr loc_017c6c(pc,d1.w)

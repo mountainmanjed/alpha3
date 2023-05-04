@@ -133,38 +133,38 @@ loc_0dcace:
 
 ;VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV
 loc_0dcad2:
-	dc.w $0018
-	dc.w $0018
-	dc.w $0018
-	dc.w $0020
-	dc.w $0018
-	dc.w $0020
-	dc.w $0020
-	dc.w $0018
-	dc.w $0020
-	dc.w $0018
-	dc.w $0020
-	dc.w $0020
-	dc.w $0018
-	dc.w $0018
-	dc.w $0018
-	dc.w $0018
-	dc.w $0018
-	dc.w $0018
-	dc.w $0018
-	dc.w $0018
-	dc.w $0018
-	dc.w $0018
-	dc.w $0018
-	dc.w $0018
-	dc.w $0018
-	dc.w $0018
-	dc.w $0018
-	dc.w $0018
-	dc.w $0018
-	dc.w $0018
-	dc.w $0018
-	dc.w $0018
+	dc.w $0018;Ryu
+	dc.w $0018;Ken
+	dc.w $0018;Akuma
+	dc.w $0020;Charlie
+	dc.w $0018;Chun
+	dc.w $0020;Adon
+	dc.w $0020;Sodom
+	dc.w $0018;Guy
+	dc.w $0020;Birdie
+	dc.w $0018;Rose
+	dc.w $0020;Dict
+	dc.w $0020;Sagat
+	dc.w $0018;Dan
+	dc.w $0018;Sakura
+	dc.w $0018;Rolento
+	dc.w $0018;Dhalsim
+	dc.w $0018;Zangief
+	dc.w $0018;Gen
+	dc.w $0018;0x12
+	dc.w $0018;Gen
+	dc.w $0018;0x14
+	dc.w $0018;Boxer
+	dc.w $0018;Cammy
+	dc.w $0018;0x17
+	dc.w $0018;E.Honda
+	dc.w $0018;Blanka
+	dc.w $0018;R.Mika
+	dc.w $0018;Cody
+	dc.w $0018;Vega
+	dc.w $0018;Karin
+	dc.w $0018;Juli
+	dc.w $0018;Juni
 
 ;VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV
 loc_0dcb12:
@@ -1399,11 +1399,40 @@ loc_0df892:
 	dc.l loc_14186c,loc_144516,loc_132fa2,loc_132fa2
 
 ;VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV
-loc_0df912:
-	dc.b $28,$28,$22,$28,$28,$28,$2e,$28
-	dc.b $30,$28,$28,$28,$28,$28,$28,$28
-	dc.b $32,$28,$28,$28,$2e,$28,$28,$28
-	dc.b $2c,$2b,$28,$28,$28,$28,$28,$28
+;0xdf912
+Max_Stun_Tbl:
+	dc.b $28;Ryu
+	dc.b $28;Ken
+	dc.b $22;Akuma
+	dc.b $28;Charlie
+	dc.b $28;Chun
+	dc.b $28;Adon
+	dc.b $2e;Sodom
+	dc.b $28;Guy
+	dc.b $30;Birdie
+	dc.b $28;Rose
+	dc.b $28;Dict
+	dc.b $28;Sagat
+	dc.b $28;Dan
+	dc.b $28;Sakura
+	dc.b $28;Rolento
+	dc.b $28;Dhalsim
+	dc.b $32;Zangief
+	dc.b $28;Gen
+	dc.b $28;0x12
+	dc.b $28;Gen
+	dc.b $2e;0x14
+	dc.b $28;Boxer
+	dc.b $28;Cammy
+	dc.b $28;0x17
+	dc.b $2c;E.Honda
+	dc.b $2b;Blanka
+	dc.b $28;R.Mika
+	dc.b $28;Cody
+	dc.b $28;Vega
+	dc.b $28;Karin
+	dc.b $28;Juli
+	dc.b $28;Juni
 
 ;Guard Meter Values
 ;0xdf932
@@ -1454,10 +1483,38 @@ loc_0df972:
 	dc.b $03,$03,$02,$03,$02,$02,$02,$02
 
 loc_0df992:
-	dc.b $02,$02,$04,$02,$00,$02,$02,$02
-	dc.b $02,$00,$04,$04,$02,$00,$02,$02
-	dc.b $02,$04,$00,$04,$02,$02,$02,$02
-	dc.b $02,$02,$02,$02,$02,$00,$00,$00
+	dc.b $02;Ryu
+	dc.b $02;Ken
+	dc.b $04;Akuma
+	dc.b $02;Charlie
+	dc.b $00;Chun
+	dc.b $02;Adon
+	dc.b $02;Sodom
+	dc.b $02;Guy
+	dc.b $02;Birdie
+	dc.b $00;Rose
+	dc.b $04;Dict
+	dc.b $04;Sagat
+	dc.b $02;Dan
+	dc.b $00;Sakura
+	dc.b $02;Rolento
+	dc.b $02;Dhalsim
+	dc.b $02;Zangief
+	dc.b $04;Gen
+	dc.b $00;0x12
+	dc.b $04;Gen
+	dc.b $02;0x14
+	dc.b $02;Boxer
+	dc.b $02;Cammy
+	dc.b $02;0x17
+	dc.b $02;E.Honda
+	dc.b $02;Blanka
+	dc.b $02;R.Mika
+	dc.b $02;Cody
+	dc.b $02;Vega
+	dc.b $00;Karin
+	dc.b $00;Juli
+	dc.b $00;Juni
 
 loc_0df9b2:
 	dc.b $32,$32,$32,$32,$32,$32,$32,$32

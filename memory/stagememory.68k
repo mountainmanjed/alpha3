@@ -1,0 +1,48 @@
+;==============================================
+;Background Background
+;layer0 200 usually 8x8 cps0
+;layer1 280 usually 32x32 cps2
+;layer2 300 usually 16x16 cps1
+
+;----------------------------------------------
+W_layer0_Start = 0x200
+layer0_active = 0x00
+
+layer0_xoffset = 0x08
+layer0_yoffset = 0x0c
+
+;----------------------------------------------
+W_layer1_Start = 0x280
+layer1_active = W_layer1_Start+0
+
+layer1_xoffset = 0x08
+layer1_yoffset = 0x0c
+
+
+;0x288
+;0x28c
+;0x290
+;0x292
+;0x294
+;0x296
+
+camera_x = 0x2a0
+camera_y = 0x2a4
+
+;----------------------------------------------
+;Camera Data is in layer1
+cam_ybound = 0x40
+cam_xbound = 0x44
+
+;----------------------------------------------
+W_layer2_Start = 0x300
+layer2_active = 0x00
+
+layer2_xoffset = 0x08
+layer2_yoffset = 0x0c
+
+
+;0x310
+;0x312
+;0x314
+;0x316

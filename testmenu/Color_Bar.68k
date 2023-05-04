@@ -1,0 +1,93 @@
+
+;==============================================
+;Color
+;==============================================
+ColorBarTest_Main:
+	move.w (8,a5),d0
+	move.w loc_00e836(pc,d0.w),d1
+	jmp loc_00e836(pc,d1.w)
+
+;VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV
+loc_00e836:
+	dc.w loc_00e83c-loc_00e836
+	dc.w loc_00e8f4-loc_00e836
+	dc.w loc_00e958-loc_00e836
+
+
+;==============================================
+loc_00e83c
+	addq.w #2,(8,a5)
+	jsr loc_01b0e6
+	bsr.w loc_010cc2
+	moveq #0,d0
+	move.w d0,($22,a5)
+	move.w #$100,($24,a5)
+	lea.l ColorBarPalettes(pc),a0
+	lea.l $90c400,a1
+	moveq #3,d7
+
+loc_00e862:
+	movem.l (a0)+,d0-d6/a2
+	movem.l d0-d6/a2,(a1)
+	lea.l ($20,a1),a1
+	dbra d7,loc_00e862
+	rts
+
+;VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV
+ColorBarPalettes:
+;Red
+	dc.w $ff00,$fe00,$fd00,$fc00,$fb00,$fa00,$f900,$f800
+	dc.w $f700,$f600,$f500,$f400,$f300,$f200,$f100,$f000
+;Green
+	dc.w $f0f0,$f0e0,$f0d0,$f0c0,$f0b0,$f0a0,$f090,$f080
+	dc.w $f070,$f060,$f050,$f040,$f030,$f020,$f010,$f000
+;Blue
+	dc.w $f00f,$f00e,$f00d,$f00c,$f00b,$f00a,$f009,$f008
+	dc.w $f007,$f006,$f005,$f004,$f003,$f002,$f001,$f000
+;White
+	dc.w $ffff,$feee,$fddd,$fccc,$fbbb,$faaa,$f999,$f888
+	dc.w $f777,$f666,$f555,$f444,$f333,$f222,$f111,$f000
+
+;==============================================
+loc_00e8f4:
+	addq.w #2,(8,a5)
+	lea.l $900520,a1
+	moveq #0,d1
+	bsr.b loc_00e930
+	lea.l $900534,a1
+	moveq #1,d1
+	bsr.b loc_00e930
+	lea.l $900548,a1
+	moveq #2,d1
+	bsr.b loc_00e930
+	lea.l $90055c,a1
+	moveq #3,d1
+	bsr.b loc_00e930
+	moveq #9,d0
+	jsr loc_01557c
+	moveq #$17,d0
+	jmp loc_01557c
+
+loc_00e930:
+	moveq #$f,d6
+	move.w #$1f,d0
+
+loc_00e936:
+	moveq #3,d5
+	lea.l (a1),a0
+
+loc_00e93a:
+	movem.w d0-d1,(a0)
+	movem.w d0-d1,($80,a0)
+	lea.l (4,a0),a0
+	dbra d5,loc_00e93a
+	subq.w #1,d0
+	lea.l ($100,a1),a1
+	dbra d6,loc_00e936
+	rts
+
+;==============================================
+loc_00e958:
+	bsr.w loc_010eec
+	moveq #1,d7
+	bra.w loc_010c08

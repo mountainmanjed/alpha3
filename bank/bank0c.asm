@@ -582,6 +582,7 @@ loc_0c605a:
 	incbin "bins/c605adata.bin"
 
 ;VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV
+;Guard Damage Bonus
 loc_0c70da:
 	dc.b $00,$00,$00,$00,$00,$00,$00,$00
 	dc.b $00,$00,$00,$00,$00,$00,$00,$00

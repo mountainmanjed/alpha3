@@ -707,39 +707,41 @@ loc_10024c:
     dc.w $0e02,$0000,$0404,$0100
     dc.w $0012,$0000,$0000,$0000
 
+;==============================================
+;Throw Data
 loc_10138e:
-    dc.w loc_1013ce-loc_10138e
-    dc.w loc_1013ce-loc_10138e
-    dc.w loc_1013ce-loc_10138e
-    dc.w loc_1014d6-loc_10138e
-    dc.w loc_1015de-loc_10138e
-    dc.w loc_1016e6-loc_10138e
-    dc.w loc_1017ee-loc_10138e
-    dc.w loc_1018f6-loc_10138e
-    dc.w loc_1019fe-loc_10138e
-    dc.w loc_101b06-loc_10138e
-    dc.w loc_101c0e-loc_10138e
-    dc.w loc_101d16-loc_10138e
-    dc.w loc_1013ce-loc_10138e
-    dc.w loc_101e1e-loc_10138e
-    dc.w loc_101f26-loc_10138e
-    dc.w loc_10202e-loc_10138e
-    dc.w loc_102136-loc_10138e
-    dc.w loc_10223e-loc_10138e
-    dc.w loc_1015de-loc_10138e
-    dc.w loc_10223e-loc_10138e
-    dc.w loc_1017ee-loc_10138e
-    dc.w loc_102346-loc_10138e
-    dc.w loc_10244e-loc_10138e
-    dc.w loc_1013ce-loc_10138e
-    dc.w loc_102556-loc_10138e
-    dc.w loc_10265e-loc_10138e
-    dc.w loc_102766-loc_10138e
-    dc.w loc_10286e-loc_10138e
-    dc.w loc_102976-loc_10138e
-    dc.w loc_102a7e-loc_10138e
-    dc.w loc_10244e-loc_10138e
-    dc.w loc_10244e-loc_10138e
+    dc.w loc_1013ce-loc_10138e;00 Ryu
+    dc.w loc_1013ce-loc_10138e;01 Ken
+    dc.w loc_1013ce-loc_10138e;02 Akuma
+    dc.w loc_1014d6-loc_10138e;03 Charlie
+    dc.w loc_1015de-loc_10138e;04 Chun
+    dc.w loc_1016e6-loc_10138e;05 Adon
+    dc.w loc_1017ee-loc_10138e;06 Sodom
+    dc.w loc_1018f6-loc_10138e;07 Guy
+    dc.w loc_1019fe-loc_10138e;08 Birdie
+    dc.w loc_101b06-loc_10138e;09 Rose
+    dc.w loc_101c0e-loc_10138e;0a Dictator
+    dc.w loc_101d16-loc_10138e;0b Sagat
+    dc.w loc_1013ce-loc_10138e;0c Dan
+    dc.w loc_101e1e-loc_10138e;0d Sakura
+    dc.w loc_101f26-loc_10138e;0e Rolento
+    dc.w loc_10202e-loc_10138e;0f Dhalsim
+    dc.w loc_102136-loc_10138e;10 Zangief
+    dc.w loc_10223e-loc_10138e;11 Gen
+    dc.w loc_1015de-loc_10138e;12 
+    dc.w loc_10223e-loc_10138e;13 
+    dc.w loc_1017ee-loc_10138e;14 
+    dc.w loc_102346-loc_10138e;15 Boxer
+    dc.w loc_10244e-loc_10138e;16 Cammy
+    dc.w loc_1013ce-loc_10138e;17 
+    dc.w loc_102556-loc_10138e;18 EHonda
+    dc.w loc_10265e-loc_10138e;19 Blanka
+    dc.w loc_102766-loc_10138e;1a RMika
+    dc.w loc_10286e-loc_10138e;1b Cody
+    dc.w loc_102976-loc_10138e;1c Claw
+    dc.w loc_102a7e-loc_10138e;1d Karin
+    dc.w loc_10244e-loc_10138e;1e Juli
+    dc.w loc_10244e-loc_10138e;1f Juni
 
 loc_1013ce:
     dc.w $ffdb,$0000,$8001,$0000
@@ -1546,7 +1548,7 @@ loc_102a7e:
     dc.w $002b,$008f,$8002,$008c
     dc.w $0070,$0017,$8001,$00dc
 
-
+;VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV
 loc_102b86:
     dc.b $1a,$41
     dc.b $1a,$41
