@@ -26,7 +26,7 @@ loc_00dfda:
 	jsr loc_01557c
 
 ;Add Dipswitch display
-;	tst.b ($85,a5)
+;	tst.b (Dip_Debug_mode,a5)
 ;	beq.b Inptest_Pass_Debug
 ;	moveq #2,d0
 ;	jsr loc_01557c

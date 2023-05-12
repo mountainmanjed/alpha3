@@ -19068,7 +19068,7 @@ loc_0ad18c:
 	subq.w #1,($e,a5)
 	bpl.b loc_0ad1c6
 	addq.w #2,($c,a5)
-	clr.b ($124,a5)
+	clr.b (Set_GC_Flash_BG,a5)
 	moveq #2,d0
 	jsr loc_095ba2
 	move.w #$1b0e,($32,a5)
@@ -19201,7 +19201,7 @@ loc_0ad2da:
 	move.w #$1e,($e,a5)
 	move.w #$1b0e,($32,a5)
 	move.w #$2461,($3a,a5)
-	clr.b ($124,a5)
+	clr.b (Set_GC_Flash_BG,a5)
 	bsr.w loc_0ad4e8
 	move.w #$92a0,(palrampointer,a5)
 	moveq #2,d0
@@ -19301,7 +19301,7 @@ loc_0ad446:
 	and.w d0,d1
 	beq.b loc_0ad454
 	move.w #4,(8,a5)
-	clr.b ($124,a5)
+	clr.b (Set_GC_Flash_BG,a5)
 
 loc_0ad454:
 	rts
@@ -19338,14 +19338,14 @@ loc_0ad48e:
 loc_0ad49e:
 	moveq #$f,d0
 	moveq #0,d1
-	lea.l Cps0BackG0,a1
+	lea.l Scroll0BackG0,a1
 	jmp loc_01ba92
 
 ;-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 loc_0ad4ae:
 	moveq #$f,d0
 	moveq #0,d1
-	lea.l Cps0BackG0,a1
+	lea.l Scroll0BackG0,a1
 	jmp loc_01babc
 
 ;-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
@@ -22170,7 +22170,7 @@ loc_0af032:
 
 loc_0af036:
 	lea.l ($60,a6),a0
-	lea.l CPS0PaletteDirect,a1
+	lea.l Scroll0PaletteDirect,a1
 	moveq #$c,d7
 
 loc_0af042:
@@ -22611,7 +22611,7 @@ loc_0af57c:
 	lea.l loc_363ef4,a0
 	add.w ($20,a0),d0
 	lea.l (a0,d0.w),a0
-	lea.l Cps2PaletteDirect,a1
+	lea.l Scroll2PaletteDirect,a1
 	lea.l (a1,d1.w),a1
 	moveq #0,d7
 	jmp loc_01b7c0

@@ -7798,7 +7798,7 @@ loc_095b2e:
 
 ;----------------------------------------------
 loc_095b4e:
-	tst.b ($124,a5)
+	tst.b (Set_GC_Flash_BG,a5)
 	beq.w loc_095b92
 	jsr loc_01b692
 	jmp loc_01b4ec
@@ -7824,7 +7824,7 @@ loc_095b7a:
 
 ;----------------------------------------------
 loc_095b84:
-	tst.b ($124,a5)
+	tst.b (Set_GC_Flash_BG,a5)
 	beq.w loc_095b9c
 	jmp loc_01b4ec
 
@@ -9219,7 +9219,7 @@ loc_096d68:
 	move.w ($10,a4),($10,a6)
 	tst.b (a4)
 	beq.w loc_096d88
-	tst.b ($124,a5)
+	tst.b (Set_GC_Flash_BG,a5)
 	bne.w loc_096d8e
 	jmp loc_01b4ec
 

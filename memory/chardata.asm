@@ -21,14 +21,14 @@ PL_spritebank = 0x1a ;word
 PL_Anim_Pnt = 0x1c
 
 ;= 0x30
-pl_in_air = 0x31;?
+pl_in_air = 0x31
 pl_cell_frame_count = 0x32
 pl_anim_flags = 0x33
 pl_renda_flag = 0x34 ;?
+;= 0x35
 ;= 0x36
 ;= 0x37
 pl_enemy = 0x38
-;= 0x39
 ;= 0x3a
 ;= 0x3b
 ;= 0x3c
@@ -46,13 +46,17 @@ PL_HP_copy = 0x52;word
 
 ;= 0x55; byte
 
+;= 0x59
+;= 0x5a
+
 ;unk = 0x5b;
 
 pl_combo = 0x5e; getting comboed
 pl_hitfreeze = 0x5f
 
-; = 0x64
+; = 0x64 ;Deals with Y Word
 ; = 0x68
+
 ;NeutralState? = 0x80
 PL_Attacktype = 0x81 ;0 = Punches , 2 = Kicks
 PL_ButtonStrength = 0x82 ;0 = L,2 = M,4 = H
@@ -70,21 +74,29 @@ pl_col_attk_pnt = 0xa0
 ; = 0xa6 ; word
 
 ; = 0xa8 ; byte
-; = 0xa9 ; byte
+pl_attk_active = 0xa9 ; byte attk_active
 pl_move_id = 0xaa ; byte
 ; = 0xab ; byte
 ; = 0xac
 
-; = 0xb9 ;byte
+; = 0xb8
+
+;byte activates the cancel mechanics and hurtstun
+pl_cc_cancelflag = 0xb9; side note it's 142 in sfa2
 
 ;= 0xba ;word
 pl_taunt_count = 0xbc
 
 ;0xcc
 ;0xcd
+;0xce special
+
+;0xe4
 
 pl_sakiyo_game = 0xeb
 pl_serious_game = 0xec
+;unk = 0xee
+;unk = 0xef
 pl_classic_game = 0xf0
 ; = 0xf1 ;copy of $15f
 
@@ -106,6 +118,8 @@ PL_charid = 0x102
 
 ; = 0x114
 PL_Buttons = 0x11a
+; = 0x11b
+
 PL_meter = 0x11e
 
 ; = 0x123 ;
@@ -121,11 +135,13 @@ PL_Palnum = 0x128
 Pl_Sakiyo_mode = 0x131
 PL_ism_choice = 0x132
 
+;134
+
 pl_arcade_progress = 0x140
 
 ;pl_survival_mode = 0x149
 ;pl_survival_mode = 0x14b
-
+;0x14c ;deals with character palette data
 
 PL_PalRam_pnt = 0x150
 
@@ -176,14 +192,44 @@ PL_rose_groundthrow = 0x1e4 ;word extra sprite for the throw
 ;= 0x1fd
 
 
-;ai_script = 0x205
+;==============================================
+;AI Scripting Data
+;==============================================
+;= 0x200
+;= 0x201
+;= 0x202
+;= 0x203
+;= 0x204
+;= 0x205
+;= 0x206
+;= 0x207
+;= 0x208
+;= 0x209
+;= 0x20a
+;= 0x20b 
+;= 0x20c
+;= 0x20d
+;= 0x20e
+;= 0x20f
+;= 0x210 ; 20d manip
+;= 0x211 ; 20c manip
+;= 0x212
+;= 0x213
+;= 0x214
+;= 0x215
 
-;??= 0x212
-;??= 0x213
-;??= 0x214
+;= 0x216
+;= 0x217
+;= 0x218 ; copy word at 0x206
+;= 0x21a ; word
 
 pl_dist_away = 0x21c
 
+;21f
+
+;0x238
+
+;0x246
 ;0x248
 ;0x249
 ;0x24a
@@ -191,7 +237,10 @@ pl_dist_away = 0x21c
 pl_guard_bar_max = 0x24c
 pl_guard_bar = 0x24d
 
+PL_byte255 = 0x255
 PL_Reversal_Window = 0x256
+
+pl_invinciblity_timer = 0x25d
 
 pl_crushed_guard = 0x26e
 ;0x27a
@@ -204,12 +253,14 @@ pl_collsion_counter = 0x280
 
 pl_blockstring_counter = 0x297
 
+;0x2a6
+
 plflash_timer = 0x2ad
 plflash_status = 0x2ae
 
 ;0x2c0
 
-;0x2c8
+pl_crouching = 0x2c8
 pl_sidecheck = 0x2c9
 PL_Stun = 0x2cc
 pl_stun_max = 0x2cd
@@ -235,6 +286,9 @@ pl_throw_id = 0x32f
 PNT_P1_Memory = 0xff8400
 
 p1memory = 0x400
+
+p1_render = PL_Render+p1memory
+
 p1_x = PL_X+p1memory
 
 p1_combo = pl_combo+p1memory
@@ -248,6 +302,9 @@ p1_crushed_guard = pl_crushed_guard+p1memory
 PNT_P2_Memory = 0xff8800
 
 p2memory = 0x800
+
+p2_render = PL_Render+p2memory
+
 p2_x = PL_X+p2memory
 
 p2_combo = pl_combo+p2memory
@@ -261,6 +318,9 @@ p2_crushed_guard = pl_crushed_guard+p2memory
 PNT_P3_Memory = 0xff8C00
 
 p3memory = 0xc00
+
+p3_render = PL_Render+p3memory
+
 p3_x = PL_X+p3memory
 
 p3_combo = pl_combo+p3memory
@@ -274,6 +334,7 @@ p3_crushed_guard = pl_crushed_guard+p3memory
 PNT_P4_Memory = 0xff9000
 
 p4memory = 0x1000
+p4_render = PL_Render+p4memory
 p4_x = PL_X+p4memory
 
 p4_combo = pl_combo+p4memory

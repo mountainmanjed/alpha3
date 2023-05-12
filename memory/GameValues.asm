@@ -26,7 +26,7 @@ Brazil_Region = 0x0c
 ;0x08 16x16 grid
 ;0x04 32x32 grid
 ;0x02 add 1 to p2 character id when reseting fight
-;0x01 Cpu Usage?
+;0x01 Deals with Sprite Rendering
 
 ;----------------------------------------------
 ;Debug B
@@ -126,3 +126,6 @@ Rmka_Stage = 0x34; Japan (Seaside)
 Cdy_Stage  = 0x36; USA (Prison)
 Claw_Stage = 0x38; Spain
 Kar_Stage  = 0x3A; Japan (Market at Night)
+;3c
+;3e
+;40

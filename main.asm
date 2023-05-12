@@ -205,11 +205,11 @@ loc_001198:
 	movem.l d0-d7/a0-a6,-(a7)
 	lea $ff8000,a5
 	bsr.w loc_0012a4
-	move.w ($40,a5),cps0_gpuregisterb
+	move.w ($40,a5),Scroll0_gpuregisterb
 	move.w (gfxram8x8,a5),($40,a5)
-	move.w ($42,a5),cps1_gpuregister
+	move.w ($42,a5),Scroll1_gpuregister
 	move.w (gfxram16x16,a5),($42,a5)
-	move.w ($44,a5),cps2_gpuregister
+	move.w ($44,a5),Scroll2_gpuregister
 	move.w (gfxram32x32,a5),($44,a5)
 	move.w ($46,a5),raster_gpuregister
 	move.w (rasterram,a5),($46,a5)
@@ -224,16 +224,16 @@ loc_001198:
 	jsr Sound_Transfer
 	jsr loc_001662
 	jsr loc_0017f6
-	bsr.w loc_0015dc
+	bsr.w Set_Debug_Mode
 	jsr loc_002e40
 	jsr loc_0015a2
 	jsr loc_0015e4
-	tst.b ($80,a5)
+	tst.b (frame_count_const,a5)
 	bne.b loc_001250
 	jsr loc_002c48
 
 loc_001250:
-	addq.b #1,($80,a5)
+	addq.b #1,(frame_count_const,a5)
 	st (-$7b9c,a5)
 	clr.b ($84,a5)
 	clr.b ($95,a5)
@@ -266,10 +266,10 @@ loc_0012a4:
 	tst.b ($a9,a5)
 	beq.b loc_0012c6
 	clr.b ($a9,a5)
-	move.w #-$7000,(gfxram8x8,a5)
-	move.w #-$6fc0,(gfxram16x16,a5)
-	move.w #-$6f80,(gfxram32x32,a5)
-	move.w #-$6f20,(rasterram,a5)
+	move.w #gl_scroll00_pnt,(gfxram8x8,a5)
+	move.w #gl_scroll10_pnt,(gfxram16x16,a5)
+	move.w #gl_scroll20_pnt,(gfxram32x32,a5)
+	move.w #gl_rstrb_pnt,(rasterram,a5)
 
 loc_0012c6:
 	rts
@@ -430,8 +430,10 @@ loc_001406
 	rte
 
 ;==============================================
+;Sprite Render Debug
+;==============================================
 loc_00140c:
-	move.w #$6f,d0
+	move.w #$6f,d0;ascii o
 	moveq #$1f,d1
 	bra.b loc_00141a
 
@@ -439,14 +441,27 @@ loc_001414:
 	move.w #$20,d0
 	moveq #0,d1
 
+;Render the bar
 loc_00141a:
-	rts
+;	tst.b (Dip_Debug_mode,a5)
+;	beq.b end
+;	btst #$0,(G_DebugDip_A,a5);
+;	beq.b end
+;	lea $900000,a0
+;	moveq #$1f,d1
 
+;loop
+;	move.w d0,(a0)+
+;	move.w d1,(a0)+
+;	dbra d2,loop
+
+;end
+	rts
 
 ;==============================================
 loc_00141c:
 	WATCHDOG
-	move.w #-$7f83,d1
+	move.w #$807d,d1;
 	move.b (Dip_Monitor_Flip,a5),d0
 	lsl.w #8,d0
 	or.w ($30,a5),d0
@@ -629,9 +644,15 @@ loc_0015da:
 	rts
 
 ;==============================================
-loc_0015dc:
+;Set Debug Mode
+;loc 15dc
+;sam 1670
+;==============================================
+Set_Debug_Mode:
 	moveq #0,d0
-	move.b d0,($85,a5)
+;	move.b (G_DebugDip_C,a5),d0
+;	andi.b #$1,d0
+	move.b d0,(Dip_Debug_mode,a5)
 	rts
 
 ;==============================================
@@ -2690,7 +2711,7 @@ loc_0045ea:
 	move.b d0,($8f,a5)
 	move.b d0,($bd,a5)
 	move.b d0,($8d,a5)
-	move.b d0,($ac,a5)
+	move.b d0,(Active_Player_01,a5)
 	move.b d0,($ad,a5)
 	move.b d0,($ab,a5)
 	move.w d0,($128,a5)
@@ -2982,7 +3003,7 @@ loc_004980:
 	addq.w #2,($c,a5)
 	moveq #0,d0
 	move.w d0,($80,a5)
-	move.b d0,($ac,a5)
+	move.b d0,(Active_Player_01,a5)
 	move.b d0,($8f,a5)
 	move.b d0,($8a,a5)
 	move.b d0,($8b,a5)
@@ -3048,8 +3069,8 @@ loc_004a90:
 loc_004a98:
 	jsr loc_0276e2
 	jsr loc_017462
-	move.b #1,($401,a5)
-	move.b #1,($801,a5)
+	move.b #1,(p1_render,a5)
+	move.b #1,(p2_render,a5)
 	ori.w #$e,($32,a5)
 	move.w #Mainpalette,(palrampointer,a5)
 	rts
@@ -3068,8 +3089,8 @@ loc_004abe:
 loc_004ade:
 	addq.w #2,($8,a5)
 	moveq #0,d0
-	move.b d0,($401,a5)
-	move.b d0,($801,a5)
+	move.b d0,(p1_render,a5)
+	move.b d0,(p2_render,a5)
 	move.b #1,($10e,a5)
 	move.w #$92a0,(palrampointer,a5)
 	rts
@@ -8470,7 +8491,7 @@ loc_008cce:
 	move.b d0,($bd,a5)
 	move.b d0,($8a,a5)
 	move.b d0,($8b,a5)
-	move.b d0,($ac,a5)
+	move.b d0,(Active_Player_01,a5)
 	move.b d0,($ad,a5)
 	move.b d0,($b4,a5)
 	move.l d0,($b0,a5)
@@ -8517,14 +8538,14 @@ loc_008d98:
 	lsl.b #2,d1
 	add.b d1,d0
 	add.b d0,d0
-	move.b d0,($121,a5)
+	move.b d0,(Arc_Rng_Chr_Offset,a5)
 	jsr RNGFunction
 	andi.b #$f,d0
 	move.b d0,d1
 	lsl.b #2,d1
 	add.b d1,d0
 	add.b d0,d0
-	move.b d0,($122,a5)
+	move.b d0,(Arc_Rng_Ism_Offset,a5)
 	jsr RNGFunction
 	andi.b #3,d0
 	move.b d0,d1
@@ -8673,13 +8694,13 @@ loc_008f9a:
 	addq.w #2,(4,a5)
 	move.b #1,($ab,a5)
 	moveq #0,d0
-	move.b d0,($124,a5)
+	move.b d0,(Set_GC_Flash_BG,a5)
 	move.b d0,($12d,a5)
 	move.b d0,($13f,a5)
-	move.b d0,($401,a5)
-	move.b d0,($801,a5)
-	move.b d0,($c01,a5)
-	move.b d0,($1001,a5)
+	move.b d0,(p1_render,a5)
+	move.b d0,(p2_render,a5)
+	move.b d0,(p3_render,a5)
+	move.b d0,(p4_render,a5)
 	jmp loc_01bdd0
 
 ;==============================================
@@ -8732,7 +8753,7 @@ loc_008ff6:
 	move.b d0,($10b,a5)
 	move.b d0,($12a,a5)
 	move.b d0,($12c,a5)
-	move.b d0,($124,a5)
+	move.b d0,(Set_GC_Flash_BG,a5)
 	move.b d0,($162,a5)
 	move.b d0,($11c,a5)
 	move.b d0,($11d,a5)
@@ -8740,7 +8761,7 @@ loc_008ff6:
 	move.b d0,($15f,a5)
 	move.b d0,($143,a5)
 	move.b d0,($125,a5)
-	move.b d0,($170,a5)
+	move.b d0,(Reset_GaurdTag,a5)
 	move.b d0,($163,a5)
 	move.b d0,($140,a5)
 	move.b d0,($146,a5)
@@ -8763,6 +8784,8 @@ loc_0090a0:
 	addq.b #1,d0
 	move.b d0,($108,a5)
 	move.b (Dip_Continue,a5),($11f,a5)
+
+;Stage Id Write
 	move.w (StageID_02,a5),(Main_stageid,a5)
 	move.w #9,($14c,a5)
 	tst.b ($bf,a5)
@@ -8777,7 +8800,7 @@ loc_0090d0:
 	bne.w loc_009142
 	lea.l (p1memory,a5),a0
 	lea.l (p2memory,a5),a1
-	cmpi.b #3,($ac,a5)
+	cmpi.b #3,(Active_Player_01,a5)
 	bne.b loc_00911a
 	move.b (Dip_2PRounds,a5),d0
 	addq.b #1,d0
@@ -8791,7 +8814,7 @@ loc_0090d0:
 	bra.b loc_009142
 
 loc_00911a:
-	btst.b #0,($ac,a5)
+	btst.b #0,(Active_Player_01,a5)
 	bne.b loc_009124
 	exg.l a0,a1
 
@@ -8924,7 +8947,7 @@ loc_009290:
 loc_009292:
 	tst.b (Dramatic_Mode_flag,a5)
 	bne.w loc_009350
-	btst.b #1,($ac,a5)
+	btst.b #1,(Active_Player_01,a5)
 	bne.w loc_0092cc
 	move.w #2,(Dramatic_Mode_Type,a5)
 	move.b #1,(p1memory,a5)
@@ -8995,13 +9018,13 @@ loc_009350:
 	move.w #$8c00,($838,a5)
 	move.w #$8400,(left_hud_pointer,a5)
 	move.w #$8c00,(right_hud_pointer,a5)
-	btst.b #0,($ac,a5)
+	btst.b #0,(Active_Player_01,a5)
 	bne.b loc_0093c0
 	move.w #$8800,(right_hud_pointer,a5)
 	move.w #$8c00,(left_hud_pointer,a5)
 
 loc_0093c0:
-	clr.b ($c01,a5)
+	clr.b (p3_render,a5)
 	move.b #0,($c02,a5)
 	move.b #2,($d01,a5)
 	move.b #1,(p3memory,a5)
@@ -9183,9 +9206,9 @@ loc_0095a0:
 	move.b d0,($107,a5)
 	move.b d0,($126,a5)
 	move.b d0,($12c,a5)
-	move.b d0,($124,a5)
+	move.b d0,(Set_GC_Flash_BG,a5)
 	move.b d0,($162,a5)
-	move.b d0,($170,a5)
+	move.b d0,(Reset_GaurdTag,a5)
 	move.b d0,($135,a5)
 	move.b d0,($15a,a5)
 	move.b d0,($10d,a5)
@@ -9210,8 +9233,8 @@ loc_0095a0:
 	move.w #Mainpalette,(palrampointer,a5)
 	move.w #$90c0,(sub_palram,a5)
 	move.l #MainpaletteDirect,($e0,a5)
-	move.b #1,($401,a5)
-	move.b #1,($801,a5)
+	move.b #1,(p1_render,a5)
+	move.b #1,(p2_render,a5)
 	move.b d0,($514,a5)
 	move.b d0,($914,a5)
 	move.b d0,($d14,a5)
@@ -9342,7 +9365,7 @@ loc_00979e:
 	move.l #$90c000,($e0,a5)
 	lea.l (p1memory,a5),a0
 	lea.l (p2memory,a5),a1
-	btst.b #0,($ac,a5)
+	btst.b #0,(Active_Player_01,a5)
 	bne.b loc_0097d6
 	exg.l a0,a1
 
@@ -9400,7 +9423,7 @@ loc_00985c:
 	move.l #$90c000,($e0,a5)
 	lea.l (p1memory,a5),a0
 	lea.l (p2memory,a5),a1
-	btst.b #0,($ac,a5)
+	btst.b #0,(Active_Player_01,a5)
 	bne.b loc_009894
 	exg.l a0,a1
 
@@ -9460,7 +9483,7 @@ loc_009916:
 loc_00991e:
 	move.b ($13f,a5),d0
 	lea.l (p1memory,a5),a6
-	btst.b #0,($ac,a5)
+	btst.b #0,(Active_Player_01,a5)
 	bne.b loc_009932
 	lea.l (p2memory,a5),a6
 
@@ -9548,7 +9571,7 @@ loc_0099ec:
 	move.l #$90c000,($e0,a5)
 	lea.l (p1memory,a5),a0
 	lea.l (p2memory,a5),a1
-	btst.b #0,($ac,a5)
+	btst.b #0,(Active_Player_01,a5)
 	bne.b loc_009a24
 	exg.l a0,a1
 
@@ -9711,7 +9734,7 @@ loc_009be2:
 	move.b d0,($10c,a5)
 	bne.b loc_009c1c
 	move.b ($125,a5),d0
-	or.b ($124,a5),d0
+	or.b (Set_GC_Flash_BG,a5),d0
 	bne.b loc_009c1c
 	subq.b #1,(Clock_frames,a5)
 	bne.b loc_009c1c
@@ -9727,7 +9750,7 @@ loc_009c1c:
 	beq.w loc_009c98
 	cmpi.b #3,d0
 	bne.b loc_009c36
-	clr.b ($124,a5)
+	clr.b (Set_GC_Flash_BG,a5)
 	move.b #1,($15a,a5)
 	bra.b loc_009c3e
 
@@ -9850,7 +9873,7 @@ loc_009d88:
 	move.l d2,($140,a0)
 	tst.b ($163,a5)
 	bne.b loc_009da4
-	move.w (Arcade_Match,a5),d0
+	move.w (Arcade_Match_Var,a5),d0
 	cmp.w ($14c,a5),d0
 	bne.b loc_009da4
 	st.b ($14a,a5)
@@ -9931,7 +9954,7 @@ loc_009e5e:
 	move.l d2,($940,a5)
 	tst.b ($163,a5)
 	bne.b loc_009e92
-	move.w (Arcade_Match,a5),d0
+	move.w (Arcade_Match_Var,a5),d0
 	cmp.w ($14c,a5),d0
 	bne.b loc_009e92
 	st.b ($14a,a5)
@@ -10072,7 +10095,7 @@ loc_009f58:
 	clr.b ($500,a5)
 	clr.b ($900,a5)
 	move.b ($101,a1),d0
-	bclr.b d0,($ac,a5)
+	bclr.b d0,(Active_Player_01,a5)
 	clr.b ($15b,a1)
 	tst.b ($125,a0)
 	bne.w loc_009faa
@@ -10086,7 +10109,7 @@ loc_009f9e
 
 loc_009faa:
 	moveq #0,d0
-	move.b d0,($ac,a5)
+	move.b d0,(Active_Player_01,a5)
 	move.b #1,($b8,a5)
 	move.b d0,($500,a5)
 	move.b d0,($900,a5)
@@ -10109,11 +10132,11 @@ loc_009fdc:
 	tst.b ($141,a5)
 	bne.b loc_00a04c
 	move.w ($14c,a5),d0
-	cmp.w (Arcade_Match,a5),d0
+	cmp.w (Arcade_Match_Var,a5),d0
 	bne.b loc_00a04c
 	lea.l (p1memory,a5),a6
 	lea.l (p2memory,a5),a1
-	btst.b #0,($ac,a5)
+	btst.b #0,(Active_Player_01,a5)
 	bne.b loc_00a00a
 	exg.l a1,a6
 
@@ -10155,7 +10178,7 @@ loc_00a05a
 
 ;==============================================
 loc_00a060:
-	tst.b ($124,a5)
+	tst.b (Set_GC_Flash_BG,a5)
 	bne.w loc_00ab9a
 	addq.w #2,($10,a5)
 	move.w #$97,($12,a5)
@@ -10323,7 +10346,7 @@ loc_00a1d6:
 	bne.b loc_00a20e
 	add.w ($850,a5),d6
 	asr.w #1,d6
-	btst.b #0,($ac,a5)
+	btst.b #0,(Active_Player_01,a5)
 	bne.b loc_00a20e
 	lea.l (p2memory,a5),a6
 
@@ -10491,7 +10514,7 @@ loc_00a38c:
 loc_00a394:
 	move.b ($13f,a5),d0
 	lea.l (p1memory,a5),a6
-	btst.b #0,($ac,a5)
+	btst.b #0,(Active_Player_01,a5)
 	bne.b loc_00a3a8
 	lea.l (p2memory,a5),a6
 
@@ -10556,10 +10579,10 @@ loc_00a436:
 	move.b d0,($10e,a5)
 	move.b d0,($10b,a5)
 	move.b d0,(pause_flag,a5)
-	move.b d0,($401,a5)
-	move.b d0,($801,a5)
-	move.b d0,($c01,a5)
-	move.b d0,($1001,a5)
+	move.b d0,(p1_render,a5)
+	move.b d0,(p2_render,a5)
+	move.b d0,(p3_render,a5)
+	move.b d0,(p4_render,a5)
 	move.b #$63,(clock_counter,a5)
 	bsr.w Set_TimerSpeed
 	bsr.w loc_00aaa6
@@ -10613,10 +10636,10 @@ loc_00a522:
 	move.b d1,($137,a5)
 	move.b #1,($525,a5)
 	move.b #1,($925,a5)
-	move.b d1,($401,a5)
-	move.b d1,($801,a5)
-	move.b d1,($c01,a5)
-	move.b d1,($1001,a5)
+	move.b d1,(p1_render,a5)
+	move.b d1,(p2_render,a5)
+	move.b d1,(p3_render,a5)
+	move.b d1,(p4_render,a5)
 	rts
 
 loc_00a55e:
@@ -10632,10 +10655,10 @@ loc_00a55e:
 	move.w d1,(Dramatic_Mode_Type,a5)
 	move.b #1,($525,a5)
 	move.b #1,($925,a5)
-	move.b d1,($401,a5)
-	move.b d1,($801,a5)
-	move.b d1,($c01,a5)
-	move.b d1,($1001,a5)
+	move.b d1,(p1_render,a5)
+	move.b d1,(p2_render,a5)
+	move.b d1,(p3_render,a5)
+	move.b d1,(p4_render,a5)
 	rts
 
 loc_00a5a6:
@@ -10686,10 +10709,10 @@ loc_00a60c:
 	moveq #0,d0
 	move.b d0,($10f,a5)
 	move.b d0,($15f,a5)
-	move.b d0,($401,a5)
-	move.b d0,($801,a5)
-	move.b d0,($c01,a5)
-	move.b d0,($1001,a5)
+	move.b d0,(p1_render,a5)
+	move.b d0,(p2_render,a5)
+	move.b d0,(p3_render,a5)
+	move.b d0,(p4_render,a5)
 	move.b #1,($8f,a5)
 	st.b ($bd,a5)
 	move.b #1,($125,a5)
@@ -10708,7 +10731,7 @@ loc_00a60c:
 	bne.b loc_00a68a
 	jsr RNGFunction
 	andi.w #3,d0
-	move.w d0,($176,a5)
+	move.w d0,(Char_Sel_PalID,a5)
 
 loc_00a68a:
 	moveq #$c,d0
@@ -10744,7 +10767,7 @@ loc_00a6d4:
 	addq.w #2,($c,a5)
 	move.w #$168,($e,a5)
 	move.b #1,($8f,a5)
-	tst.b ($ac,a5)
+	tst.b (Active_Player_01,a5)
 	beq.b loc_00a6f2
 	clr.b ($8f,a5)
 	clr.b ($bd,a5)
@@ -10833,10 +10856,10 @@ loc_00a79a
 	move.b #1,($a9,a5)
 	move.b #1,($8f,a5)
 	st.b ($bd,a5)
-	move.b d0,($401,a5)
-	move.b d0,($801,a5)
-	move.b d0,($c01,a5)
-	move.b d0,($1001,a5)
+	move.b d0,(p1_render,a5)
+	move.b d0,(p2_render,a5)
+	move.b d0,(p3_render,a5)
+	move.b d0,(p4_render,a5)
 	rts
 
 loc_00a7ce:
@@ -10959,16 +10982,16 @@ loc_00a8e6:
 	move.b #1,($10f,a5)
 	move.b #1,($8f,a5)
 	move.b d0,($bd,a5)
-	move.b d0,($ac,a5)
+	move.b d0,(Active_Player_01,a5)
 	move.b d0,($b8,a5)
 	move.b #1,($106,a5)
 	move.b d0,($181,a5)
 	move.b d0,($182,a5)
-	move.b d0,($124,a5)
+	move.b d0,(Set_GC_Flash_BG,a5)
 	move.b d0,($162,a5)
 	move.b ($132,a5),($1c6,a5)
-	move.b #1,($401,a5)
-	move.b #1,($801,a5)
+	move.b #1,(p1_render,a5)
+	move.b #1,(p2_render,a5)
 	move.b d0,($500,a5)
 	move.b d0,($900,a5)
 	move.b d0,($55b,a5)
@@ -10976,15 +10999,15 @@ loc_00a8e6:
 	tst.b (Dramatic_Mode_flag,a5)
 	beq.b loc_00a962
 	move.b #4,($149,a5)
-	move.b d0,($401,a5)
-	move.b d0,($801,a5)
+	move.b d0,(p1_render,a5)
+	move.b d0,(p2_render,a5)
 
 loc_00a962:
 	tst.b ($15d,a5)
 	beq.b loc_00a976
 	move.b #6,($149,a5)
-	move.b d0,($401,a5)
-	move.b d0,($801,a5)
+	move.b d0,(p1_render,a5)
+	move.b d0,(p2_render,a5)
 
 loc_00a976:
 	tst.b ($ce,a5)
@@ -11028,7 +11051,7 @@ loc_00a9c2:
 	moveq #0,d0
 	move.b d0,($8a,a5)
 	move.b d0,($8b,a5)
-	move.b d0,($ac,a5)
+	move.b d0,(Active_Player_01,a5)
 	move.b d0,($ad,a5)
 	move.b d0,($b4,a5)
 	move.b d0,($b8,a5)
@@ -11038,7 +11061,7 @@ loc_00a9c2:
 	move.b d0,($bd,a5)
 	move.b d0,(Active_Player,a5)
 	move.b d0,($8d,a5)
-	move.b d0,($ac,a5)
+	move.b d0,(Active_Player_01,a5)
 	move.b d0,($12d,a5)
 	move.b d0,(Dev_Turbo,a5)
 	move.b d0,($105,a5)
@@ -11048,7 +11071,7 @@ loc_00a9c2:
 	move.b d0,($10f,a5)
 	move.b d0,($12a,a5)
 	move.b d0,($12c,a5)
-	move.b d0,($124,a5)
+	move.b d0,(Set_GC_Flash_BG,a5)
 	move.b d0,($162,a5)
 	move.b d0,($11c,a5)
 	move.b d0,($11d,a5)
@@ -11057,7 +11080,7 @@ loc_00a9c2:
 	move.b d0,($123,a5)
 	move.b d0,($13e,a5)
 	move.b d0,($125,a5)
-	move.b d0,($170,a5)
+	move.b d0,(Reset_GaurdTag,a5)
 	move.b d0,($143,a5)
 	move.b d0,($178,a5)
 	move.b d0,($163,a5)
@@ -11070,7 +11093,7 @@ loc_00a9c2:
 	st.b ($130,a5)
 	move.b (Dip_Continue,a5),($11f,a5)
 	move.w #9,($14c,a5)
-	move.w #8,(Arcade_Match,a5)
+	move.w #8,(Arcade_Match_Var,a5)
 	moveq #0,d1
 	moveq #0,d2
 	lea.l (p1memory,a5),a6
@@ -11204,7 +11227,7 @@ loc_00ab94:
 
 ;==============================================
 loc_00ab9a:
-	subq.b #1,($124,a5)
+	subq.b #1,(Set_GC_Flash_BG,a5)
 	bne.b loc_00abac
 	move.l #$20000ff,d0
 	jmp loc_00321a
@@ -11215,7 +11238,7 @@ loc_00abac:
 ;==============================================
 loc_00abae:
 	clr.b (-$708e,a5)
-	tst.b ($85,a5)
+	tst.b (Dip_Debug_mode,a5)
 	beq.b loc_00abec
 	btst.b #2,($1c0,a5)
 	beq.b loc_00abec
@@ -11530,13 +11553,13 @@ loc_00af22:
 	move.b ($61,a5),d1
 	not.b d1
 	and.b ($60,a5),d1
-	btst.b #0,($ac,a5)
+	btst.b #0,(Active_Player_01,a5)
 	beq.b loc_00af3a
 	btst #0,d1
 	bne.b loc_00af4c
 
 loc_00af3a:
-	btst.b #1,($ac,a5)
+	btst.b #1,(Active_Player_01,a5)
 	beq.b loc_00af48
 	btst #1,d1
 	bne.b loc_00af4c
@@ -11553,12 +11576,12 @@ loc_00af4c:
 loc_00af50:
 	moveq #0,d0
 	moveq #0,d1
-	btst.b #0,($ac,a5)
+	btst.b #0,(Active_Player_01,a5)
 	beq.b loc_00af60
 	bsr.w loc_00afc4
 
 loc_00af60:
-	btst.b #1,($ac,a5)
+	btst.b #1,(Active_Player_01,a5)
 	beq.b loc_00af6c
 	bsr.w loc_00afe6
 
@@ -11569,7 +11592,7 @@ loc_00af6c:
 
 ;==============================================
 loc_00af70:
-	tst.b ($ac,a5)
+	tst.b (Active_Player_01,a5)
 	bne.b loc_00af50
 
 loc_00af76:
@@ -11590,7 +11613,7 @@ loc_00af92
 
 ;==============================================
 loc_00af96:
-	cmpi.b #3,($ac,a5)
+	cmpi.b #3,(Active_Player_01,a5)
 	bne.b loc_00af50
 	moveq #0,d0
 	moveq #0,d1
@@ -11652,7 +11675,7 @@ loc_00b012:
 	tst.b ($bf,a5)
 	bne.w loc_00b06e
 	move.b ($101,a0),d0
-	btst d0,($ac,a5)
+	btst d0,(Active_Player_01,a5)
 	beq.w loc_00b06e
 	btst d0,($60,a5)
 	beq.w loc_00b06e
@@ -11816,7 +11839,7 @@ loc_00b16e:
 ;==============================================
 loc_00b180:
 	lea.l loc_00bf22(pc),a1
-	move.w (Arcade_Match,a5),d0
+	move.w (Arcade_Match_Var,a5),d0
 	move.b (a1,d0.w),d0
 	ext.w d0
 	lsl.w #5,d0
@@ -11826,7 +11849,7 @@ loc_00b180:
 	andi.w #$1f,d0
 	move.b (a1,d0.w),d1
 	lea.l loc_00bdc8(pc),a1
-	move.w (Arcade_Match,a5),d0
+	move.w (Arcade_Match_Var,a5),d0
 	add.w d0,d0
 	move.w (a1,d0.w),d0
 	lea.l (a1,d0.w),a1
@@ -12284,47 +12307,62 @@ loc_00b5f6:
 loc_00b624:
 	andi.w #$1f,d0
 	move.b loc_00b632(pc,d0.w),d0
-	move.w d0,($176,a5)
+	move.w d0,(Char_Sel_PalID,a5)
 	rts
 
 ;VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV
 loc_00b632:
-	dc.b $00,$00,$00,$01;Ryu,Ken,Gki,Nsh
-	dc.b $03,$01,$02,$00;Chn,Adn,Sdm,Guy
-	dc.b $01,$03,$04,$01;Brd,Rse,Dic,Sag
-	dc.b $00,$03,$01,$02;Dan,Sak,Rol,Sim
-	dc.b $00,$02,$00,$02;Zan,Gen,???,Gen
-	dc.b $00,$04,$03,$00;???,Box,Cam,???
-	dc.b $02,$02,$03,$02;EHD,Blk,Rmk,Cdy
-	dc.b $02,$03,$04,$04;Clw,Kar,Jli,Jni
+	dc.b $00,$00,$00,$01	;Ryu,Ken,Gki,Nsh
+	dc.b $03,$01,$02,$00	;Chn,Adn,Sdm,Guy
+	dc.b $01,$03,$04,$01	;Brd,Rse,Dic,Sag
+	dc.b $00,$03,$01,$02	;Dan,Sak,Rol,Sim
+	dc.b $00,$02,$00,$02	;Zan,Gen,???,Gen
+	dc.b $00,$04,$03,$00	;???,Box,Cam,017
+	dc.b $02,$02,$03,$02	;EHD,Blk,Rmk,Cdy
+	dc.b $02,$03,$04,$04	;Clw,Kar,Jli,Jni
+
+;a3 upper table
+;	dc.b $00,$00,$00,$01	;Ryu,Ken,Gki,Nsh
+;	dc.b $03,$01,$02,$00	;Chn,Adn,Sdm,Guy
+;	dc.b $01,$03,$04,$01	;Brd,Rse,Dic,Sag
+;	dc.b $00,$03,$01,$02	;Dan,Sak,Rol,Sim
+;	dc.b $00,$02,$00,$02	;Zan,Gen,???,Gen
+;	dc.b $00,$01,$03,$00	;???,Box,Cam,ERy
+;	dc.b $02,$02,$03,$02	;EHD,Blk,Rmk,Cdy
+;	dc.b $02,$03,$03,$03	;Clw,Kar,Jli,Jni
+;	dc.b $01,$02,$02,$01	;Gle,Fei,Dee,Thk
+;	dc.b $00,$01,$01,$03	;ShA,BxU,Egl,Mak
+;	dc.b $02,$03			;Yun,Ing
 
 ;==============================================
 loc_00b652:
-	st.b ($124,a5)
+	st.b (Set_GC_Flash_BG,a5)
 	move.b #$b,($12b,a5)
-	clr.b ($401,a5)
-	clr.b ($801,a5)
-	clr.b ($c01,a5)
-	clr.b ($1001,a5)
+	clr.b (p1_render,a5)
+	clr.b (p2_render,a5)
+	clr.b (p3_render,a5)
+	clr.b (p4_render,a5)
 	move.w #$ffff,d0
 	bra.w loc_00b710
 
 ;==============================================
 loc_00b674:
-	cmpi.b #$ff,($124,a5)
+	cmpi.b #$ff,(Set_GC_Flash_BG,a5)
 	bne.b loc_00b680
-	clr.b ($124,a5)
+	clr.b (Set_GC_Flash_BG,a5)
 
 loc_00b680:
-	move.b #1,($401,a5)
-	move.b #1,($801,a5)
-	move.b #1,($c01,a5)
-	move.b #1,($1001,a5)
+	move.b #1,(p1_render,a5)
+	move.b #1,(p2_render,a5)
+	move.b #1,(p3_render,a5)
+	move.b #1,(p4_render,a5)
 	rts
 
 ;==============================================
+;Clear Player Render Flags
+;==============================================
 loc_00b69a:
-	st.b ($124,a5)
+	st.b (Set_GC_Flash_BG,a5)
 	move.b #$b,($12b,a5)
 	moveq #0,d0
 	move.b ($101,a6),d0
@@ -12340,25 +12378,25 @@ loc_00b6b4:
 
 ;==============================================
 loc_00b6ba:
-	clr.b ($401,a5)
+	clr.b (p1_render,a5)
 	rts
 
 ;==============================================
 loc_00b6c0:
-	clr.b ($801,a5)
+	clr.b (p2_render,a5)
 	rts
 
 ;==============================================
 loc_00b6c6:
-	clr.b ($c01,a5)
-	clr.b ($1001,a5)
+	clr.b (p3_render,a5)
+	clr.b (p4_render,a5)
 	rts
 
 ;==============================================
 loc_00b6d0:
-	cmpi.b #$ff,($124,a5)
+	cmpi.b #$ff,(Set_GC_Flash_BG,a5)
 	bne.b loc_00b6dc
-	clr.b ($124,a5)
+	clr.b (Set_GC_Flash_BG,a5)
 
 loc_00b6dc:
 	moveq #0,d0
@@ -12375,18 +12413,18 @@ loc_00b6ec:
 
 ;==============================================
 Activate_Player1:
-	move.b #1,($401,a5)
+	move.b #1,(p1_render,a5)
 	rts
 
 ;==============================================
 Activate_Player2:
-	move.b #1,($801,a5)
+	move.b #1,(p2_render,a5)
 	rts
 
 ;==============================================
 Activate_Player3and4:
-	move.b #1,($c01,a5)
-	move.b #1,($1001,a5)
+	move.b #1,(p3_render,a5)
+	move.b #1,(p4_render,a5)
 	rts
 
 ;==============================================
@@ -12401,16 +12439,16 @@ GCrush_Flash_Function:
 	or.b (p3_crushed_guard,a5),d0
 	or.b (p4_crushed_guard,a5),d0
 	beq.w loc_00b776
-	tst.b ($170,a5)
+	tst.b (Reset_GaurdTag,a5)
 	bne.b loc_00b756
-	tst.b ($124,a5)
+	tst.b (Set_GC_Flash_BG,a5)
 	bne.w loc_00b776
-	st.b ($124,a5)
+	st.b (Set_GC_Flash_BG,a5)
 
-;sample bae0
+;sample 0xbae0
 ;guard Crush Flash
 	move.b #$b,($12b,a5)
-	move.b d0,($170,a5)
+	move.b d0,(Reset_GaurdTag,a5)
 	move.b #$f,(GCrush_Timer,a5)
 	move.w #$f00f,$90cfe0;Palette write
 
@@ -12421,8 +12459,8 @@ loc_00b756:
 ;If GCrush_timer > 0 then
 ;Reset crush flags
 	moveq #0,d0
-	move.b d0,($124,a5)
-	move.b d0,($170,a5)
+	move.b d0,(Set_GC_Flash_BG,a5)
+	move.b d0,(Reset_GaurdTag,a5)
 	move.b d0,(p1_crushed_guard,a5)
 	move.b d0,(p2_crushed_guard,a5)
 	move.b d0,(p3_crushed_guard,a5)
@@ -12437,7 +12475,7 @@ loc_00b778:
 	bne.w loc_00b94c
 	lea.l (p1memory,a5),a0
 	lea.l (p2memory,a5),a1
-	cmpi.b #3,($ac,a5)
+	cmpi.b #3,(Active_Player_01,a5)
 	bne.b loc_00b7b4
 	cmpi.b #3,($8d,a5)
 	bne.b loc_00b7a2
@@ -12456,7 +12494,7 @@ loc_00b7ac:
 	bra.b loc_00b7ee
 
 loc_00b7b4:
-	btst.b #0,($ac,a5)
+	btst.b #0,(Active_Player_01,a5)
 	bne.b loc_00b7be
 	exg.l a0,a1
 
@@ -12464,7 +12502,7 @@ loc_00b7be:
 	bsr.w loc_00b8b6
 	moveq #-$1,d0
 	move.l ($140,a0),d2
-	lea.l (-$707e,a5),a2
+	lea.l (Arcade_Opp_List0,a5),a2
 
 loc_00b7cc:
 	addq.w #1,d0
@@ -12475,9 +12513,9 @@ loc_00b7cc:
 	bne.b loc_00b7cc
 
 loc_00b7dc:
-	move.w d0,(Arcade_Match,a5)
+	move.w d0,(Arcade_Match_Var,a5)
 	move.b d1,($102,a1)
-	lea.l (-$705e,a5),a2
+	lea.l (Arcade_Ism_List0,a5),a2
 	move.b (a2,d0.w),($132,a1)
 
 loc_00b7ee:
@@ -12494,17 +12532,17 @@ loc_00b7f2:
 	bne.b loc_00b86c
 	tst.b (Dramatic_Mode_flag,a5)
 	beq.b loc_00b824
-	cmpi.w #5,(Arcade_Match,a5)
+	cmpi.w #5,(Arcade_Match_Var,a5)
 	bne.b loc_00b86c
 	move.w #Boss_Stage,(StageID_02,a5)
 	rts
 
 loc_00b824:
-	cmpi.b #3,($ac,a5)
+	cmpi.b #3,(Active_Player_01,a5)
 	beq.b loc_00b86c
 	tst.b ($14b,a0)
 	beq.b loc_00b842
-	cmpi.w #$1a,(Arcade_Match,a5)
+	cmpi.w #$1a,(Arcade_Match_Var,a5)
 	bne.b loc_00b86c
 	move.w #Boss_Stage,(StageID_02,a5)
 	rts
@@ -12512,10 +12550,10 @@ loc_00b824:
 loc_00b842:
 	moveq #0,d0
 	move.b ($102,a0),d0
-	cmpi.w #8,(Arcade_Match,a5)
+	cmpi.w #8,(Arcade_Match_Var,a5)
 	beq.b loc_00b85c
 	addi.w #$20,d0
-	cmpi.w #9,(Arcade_Match,a5)
+	cmpi.w #9,(Arcade_Match_Var,a5)
 	bne.b loc_00b86c
 
 loc_00b85c:
@@ -12556,45 +12594,50 @@ loc_00b8ae:
 	rts
 
 ;==============================================
+;sample bbf6
+;A0 Player
+;A1 Computer
+;==============================================
 loc_00b8b6:
 	tst.b ($14b,a0)
 	bne.b loc_00b914
 	move.b ($101,a0),($130,a5)
-	lea.l loc_00c09e(pc),a2
+	lea.l Arcade_mode_List1(pc),a2
+
 	tst.b ($bf,a5)
 	beq.b loc_00b8d0
-	lea.l loc_00d07e(pc),a2
+	lea.l Arcade_Mode_List2(pc),a2
 
 loc_00b8d0:
 	moveq #0,d0
 	moveq #0,d1
-	move.b ($121,a5),d0
-	move.b ($102,a0),d1
+	move.b (Arc_Rng_Chr_Offset,a5),d0
+	move.b (PL_charid,a0),d1
 	add.w d1,d1
 	move.w (a2,d1.w),d1
 	add.w d1,d0
-	move.l (a2,d0.w),(-$707e,a5)
-	move.l (4,a2,d0.w),(-$707a,a5)
-	move.w (8,a2,d0.w),(-$7076,a5)
+	move.l (a2,d0.w),(Arcade_Opp_List0,a5)
+	move.l (4,a2,d0.w),(Arcade_Opp_List1,a5)
+	move.w (8,a2,d0.w),(Arcade_Opp_List2,a5)
 	moveq #0,d0
-	move.b ($122,a5),d0
+	move.b (Arc_Rng_Ism_Offset,a5),d0
 	lea.l loc_00bffe(pc),a2
-	move.l (a2,d0.w),(-$705e,a5)
-	move.l (4,a2,d0.w),(-$705a,a5)
-	move.w (8,a2,d0.w),(-$7056,a5)
+	move.l (a2,d0.w),(Arcade_Ism_List0,a5)
+	move.l (4,a2,d0.w),(Arcade_Ism_List1,a5)
+	move.w (8,a2,d0.w),(Arcade_ism_List2,a5)
 	rts
 
 loc_00b914:
 	move.w #$1a,($14c,a5)
 	move.b ($101,a0),($130,a5)
-	lea.l (-$707e,a5),a2
+	lea.l (Arcade_Opp_List0,a5),a2
 	lea.l SurvivalModeList(pc),a3
 	moveq #$1a,d1
 
 loc_00b92a:
 	move.b (a3)+,(a2)+
 	dbra d1,loc_00b92a
-	lea.l (-$705e,a5),a2
+	lea.l (Arcade_Ism_List0,a5),a2
 	lea.l loc_00bd58(pc),a3
 	moveq #0,d0
 	move.b ($15e,a5),d0
@@ -12611,7 +12654,7 @@ loc_00b94c:
 	move.w #5,($14c,a5)
 	lea.l (p1memory,a5),a0
 	lea.l (p2memory,a5),a1
-	cmpi.b #3,($ac,a5)
+	cmpi.b #3,(Active_Player_01,a5)
 	bne.b loc_00b980
 	cmpi.b #3,($8d,a5)
 	bne.b loc_00b974
@@ -12627,7 +12670,7 @@ loc_00b974:
 	bra.b loc_00b98e
 
 loc_00b980
-	btst.b #0,($ac,a5)
+	btst.b #0,(Active_Player_01,a5)
 	bne.b loc_00b98a
 	exg.l a0,a1
 
@@ -12643,7 +12686,7 @@ loc_00b98e:
 	move.l d2,(p2_arcade_progress,a5)
 	bsr.w loc_00b9de
 	moveq #-1,d0
-	lea.l (-$707e,a5),a2
+	lea.l (Arcade_Opp_List0,a5),a2
 
 loc_00b9b4:
 	addq.w #1,d0
@@ -12654,21 +12697,21 @@ loc_00b9b4:
 	bne.b loc_00b9b4
 
 loc_00b9c4:
-	move.w d0,(Arcade_Match,a5)
+	move.w d0,(Arcade_Match_Var,a5)
 	move.b d1,(p3_charid,a5)
-	lea.l (-$705e,a5),a2
+	lea.l (Arcade_Ism_List0,a5),a2
 	move.b (a2,d0.w),(p3_ism_choice,a5)
 	move.b (p3_charid,a5),d0
 	bra.w loc_00b7f2
 
 ;Dramatic set enemy and ism list
 loc_00b9de:
-	move.l #$0502151c,(-$707e,a5)
-	move.l #$0b0a0000,(-$707a,a5)
+	move.l #$0502151c,(Arcade_Opp_List0,a5)
+	move.l #$0b0a0000,(Arcade_Opp_List1,a5)
 
 	;Isms
-	move.l #$01ff0000,(-$705e,a5)
-	move.l #0,(-$705a,a5)
+	move.l #$01ff0000,(Arcade_Ism_List0,a5)
+	move.l #0,(Arcade_Ism_List1,a5)
 	rts
 
 ;VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV
@@ -12761,10 +12804,10 @@ loc_00ba66:
 	tst.b (PL_cpucontrol,a0)
 	bne.w loc_00baca
 	move.l (pl_arcade_progress,a0),d2
-	move.w #$ffff,(Arcade_Match,a5)
+	move.w #$ffff,(Arcade_Match_Var,a5)
 	bsr.w loc_00b8b6
-	move.w (Arcade_Match,a5),d0
-	lea.l (-$707e,a5),a2
+	move.w (Arcade_Match_Var,a5),d0
+	lea.l (Arcade_Opp_List0,a5),a2
 
 loc_00ba84:
 	addq.w #1,d0
@@ -12775,19 +12818,19 @@ loc_00ba84:
 	bne.b loc_00ba84
 
 loc_00ba94:
-	move.w d0,(Arcade_Match,a5)
+	move.w d0,(Arcade_Match_Var,a5)
 	cmp.w ($14c,a5),d0
 	bhi.b loc_00baca
 	tst.w (Dramatic_Mode_Type,a5)
 	beq.b loc_00bab4
 	lea.l (p2memory,a5),a1
-	btst.b #0,($ac,a5)
+	btst.b #0,(Active_Player_01,a5)
 	bne.b loc_00bab4
 	lea.l (p1memory,a5),a1
 
 loc_00bab4:
 	move.b d1,($102,a1)
-	lea.l (-$705e,a5),a2
+	lea.l (Arcade_Ism_List0,a5),a2
 	move.b (a2,d0.w),($132,a1)
 	move.b ($102,a1),d0
 	bra.w loc_00b7f2
@@ -12803,10 +12846,10 @@ loc_00bacc:
 	or.l ($940,a5),d2
 	move.l d2,($540,a5)
 	move.l d2,($940,a5)
-	move.w #$ffff,(Arcade_Match,a5)
+	move.w #$ffff,(Arcade_Match_Var,a5)
 	bsr.w loc_00b9de
-	move.w (Arcade_Match,a5),d0
-	lea.l (-$707e,a5),a2
+	move.w (Arcade_Match_Var,a5),d0
+	lea.l (Arcade_Opp_List0,a5),a2
 
 loc_00baf8
 	addq.w #1,d0
@@ -12817,11 +12860,11 @@ loc_00baf8
 	bne.b loc_00baf8
 
 loc_00bb08:
-	move.w d0,(Arcade_Match,a5)
+	move.w d0,(Arcade_Match_Var,a5)
 	cmp.w ($14c,a5),d0
 	bhi.b loc_00bb28
 	move.b d1,($102,a1)
-	lea.l (-$705e,a5),a2
+	lea.l (Arcade_Ism_List0,a5),a2
 	move.b (a2,d0.w),($132,a1)
 	move.b (p3_charid,a5),d0
 	bra.w loc_00b7f2
@@ -12875,7 +12918,7 @@ loc_00bb70:
 ;==============================================
 loc_00bb90:
 	ext.w d0
-	move.b loc_00bba8(pc,d0.w),d0
+	move.b Stage_ID_Table(pc,d0.w),d0
 	cmpi.w #Asia_Region,(Region,a5)
 	bne.b loc_00bba6
 	cmpi.b #Ehonda_id,d0
@@ -12886,7 +12929,7 @@ loc_00bba6:
 	rts
 
 ;VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV
-loc_00bba8:
+Stage_ID_Table:
 	dc.b $00,$01,$02,$03
 	dc.b $04,$05,$06,$07
 	dc.b $08,$09,$15,$0b
@@ -13098,85 +13141,167 @@ loc_00bffe:
 	dc.w $ff01,$0001,$0000,$0101,$00ff,$0001,$ff00,$0000
 
 ;VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV
-loc_00c09e:
-	dc.w $0040,$00e0,$0180,$0220,$02c0,$0360,$0400,$04a0
-	dc.w $0540,$05e0,$0680,$0720,$07c0,$0860,$0900,$09a0
-	dc.w $0a40,$0ae0,$02c0,$0ae0,$0400,$0680,$0b80,$0040
-	dc.w $0c20,$0cc0,$0d60,$0e00,$0ea0,$0f40,$0680,$0680
-	dc.w $0705,$0c18,$090f,$020b,$010a,$0f10,$160d,$0903
-	dc.w $060b,$010a,$0407,$100c,$0902,$0e0b,$010a,$161a
-	dc.w $181c,$0908,$110b,$010a,$051c,$0706,$091a,$0b02
-	dc.w $010a,$190c,$0d1b,$091c,$0b1d,$010a,$1a04,$0e08
-	dc.w $090b,$1003,$010a,$1118,$061d,$090b,$1619,$010a
-	dc.w $1c0f,$0302,$0905,$1d10,$010a,$1b0d,$0516,$091d
-	dc.w $041c,$010a,$181d,$1a10,$090e,$1905,$010a,$0806
-	dc.w $0411,$0907,$0d1b,$010a,$0c1b,$020f,$091d,$1a18
-	dc.w $010a,$0d0e,$0819,$0916,$030f,$010a,$0611,$1904
-	dc.w $091b,$1802,$010a,$0308,$110e,$090c,$070d,$010a
-	dc.w $061c,$0b07,$1d16,$0503,$0d0a,$1802,$0c16,$1d1a
-	dc.w $0908,$0d0a,$1004,$0e1a,$1d18,$0f19,$0d0a,$1607
-	dc.w $1018,$1d06,$111b,$0d0a,$1a0b,$1606,$1d10,$031c
-	dc.w $0d0a,$0e0c,$1a05,$1d03,$0802,$0d0a,$0c0e,$1809
-	dc.w $1d08,$1904,$0d0a,$0b10,$060f,$1d19,$1b07,$0d0a
-	dc.w $0216,$0511,$1d1b,$1c0b,$0d0a,$041a,$0903,$1d1c
-	dc.w $020c,$0d0a,$0718,$0f08,$1d02,$040e,$0d0a,$1b06
-	dc.w $1119,$1d04,$0710,$0d0a,$1c05,$031b,$1d07,$0b16
-	dc.w $0d0a,$1909,$081c,$1d0b,$0c1a,$0d0a,$080f,$1902
-	dc.w $1d0c,$0e18,$0d0a,$0311,$1b04,$1d0e,$1006,$0d0a
-	dc.w $1a03,$101b,$050d,$0e00,$070a,$1b08,$1a10,$050f
-	dc.w $0c11,$070a,$1006,$090c,$051b,$0818,$070a,$0e0c
-	dc.w $1603,$051a,$0619,$070a,$0c00,$1906,$0510,$031c
-	dc.w $070a,$0618,$1108,$050e,$0016,$070a,$0819,$010e
-	dc.w $050c,$111d,$070a,$0311,$001a,$0508,$1801,$070a
-	dc.w $001d,$180f,$0506,$1904,$070a,$1116,$1d0b,$0503
-	dc.w $1c09,$070a,$1801,$1c1d,$0511,$160b,$070a,$1c09
-	dc.w $0b04,$0519,$1d0d,$070a,$190b,$041c,$0516,$010f
+Arcade_mode_List1:
+	dc.w loc_00c0de-Arcade_mode_List1;00 Ryu
+	dc.w loc_00c17e-Arcade_mode_List1;01 Ken
+	dc.w loc_00c21e-Arcade_mode_List1;02 Akuma
+	dc.w loc_00c2be-Arcade_mode_List1;03 Nash
+	dc.w loc_00c35e-Arcade_mode_List1;04 Chun
+	dc.w loc_00c3fe-Arcade_mode_List1;05 Adon
+	dc.w loc_00c49e-Arcade_mode_List1;06 Sodom
+	dc.w loc_00c53e-Arcade_mode_List1;07 Guy
+	dc.w loc_00c5de-Arcade_mode_List1;08 Birdie
+	dc.w loc_00c67e-Arcade_mode_List1;09 Rose
+	dc.w loc_00c71e-Arcade_mode_List1;0a Dic
+	dc.w loc_00c7be-Arcade_mode_List1;0b Sagat
+	dc.w loc_00c85e-Arcade_mode_List1;0c Dan
+	dc.w loc_00c8fe-Arcade_mode_List1;0d Sakura
+	dc.w loc_00c99e-Arcade_mode_List1;0e Rolento
+	dc.w loc_00ca3e-Arcade_mode_List1;0f Dhalsim
+	dc.w loc_00cade-Arcade_mode_List1;10 Zangief
+	dc.w loc_00cb7e-Arcade_mode_List1;11 Gen
+	dc.w loc_00c35e-Arcade_mode_List1;12
+	dc.w loc_00cb7e-Arcade_mode_List1;13 Gen Stance
+	dc.w loc_00c49e-Arcade_mode_List1;14
+	dc.w loc_00c71e-Arcade_mode_List1;15 Boxer
+	dc.w loc_00cc1e-Arcade_mode_List1;16 Cammy
+	dc.w loc_00c0de-Arcade_mode_List1;17
+	dc.w loc_00ccbe-Arcade_mode_List1;18 E Honda
+	dc.w loc_00cd5e-Arcade_mode_List1;19 Blanka
+	dc.w loc_00cdfe-Arcade_mode_List1;1a R Mika
+	dc.w loc_00ce9e-Arcade_mode_List1;1b Cody
+	dc.w loc_00cf3e-Arcade_mode_List1;1c Claw
+	dc.w loc_00cfde-Arcade_mode_List1;1d Karin
+	dc.w loc_00c71e-Arcade_mode_List1;1e Juli
+	dc.w loc_00c71e-Arcade_mode_List1;1f Juni
 
-;c29e
-	dc.w $070a,$160d,$0f18,$0501,$041b,$070a,$1d04,$1b00
-	dc.w $050d,$091a,$070a,$040f,$0e0d,$0509,$0b10,$070a
-	dc.w $0f07,$1d10,$1605,$0d06,$0e0a,$1118,$010f,$1609
-	dc.w $0c07,$0e0a,$0d1a,$050c,$160b,$1108,$0e0a,$0c1c
-	dc.w $0b0d,$1610,$0f18,$0e0a,$0200,$0f11,$160d,$0619
-	dc.w $0e0a,$0102,$110b,$160c,$071a,$0e0a,$0009,$0d05
-	dc.w $1611,$081b,$0e0a,$1d10,$0c00,$160f,$181c,$0e0a
-	dc.w $1c0b,$101a,$1606,$191d,$0e0a,$1b01,$091c,$1608
-	dc.w $1a00,$0e0a,$1a05,$0218,$1619,$1b01,$0e0a,$191d
-	dc.w $0007,$161b,$1c02,$0e0a,$181b,$1c06,$1601,$1d05
-	dc.w $0e0a,$0719,$1a08,$161d,$0009,$0e0a,$0608,$1819
-	dc.w $1602,$010b,$0e0a,$0806,$071b,$1609,$0210,$0e0a
-	dc.w $0f02,$190d,$0806,$0c1d,$160a,$1000,$1811,$080b
-	dc.w $0e1c,$160a,$0b1d,$0109,$0810,$071b,$160a,$061c
-	dc.w $0d02,$080f,$051a,$160a,$001b,$1106,$080c,$1d19
-	dc.w $160a,$021a,$090b,$080e,$1c18,$160a,$0919,$0210
-	dc.w $0807,$1b01,$160a,$1118,$000f,$0805,$1a0d,$160a
-	dc.w $0d01,$0605,$0800,$1911,$160a,$010d,$0b0c,$081d
-	dc.w $1809,$160a,$1811,$100e,$081c,$0102,$160a,$1a09
-	dc.w $0f07,$081b,$0d00,$160a,$190f,$0c1d,$081a,$1106
-	dc.w $160a,$1b06,$0e1c,$0819,$090b,$160a,$1c0b,$071b
-	dc.w $0818,$0210,$160a,$1d10,$051a,$0801,$000f,$160a
-	dc.w $030c,$1900,$011c,$110b,$090a,$040d,$0008,$010e
-	dc.w $070b,$090a,$0703,$0806,$010f,$040b,$090a,$1107
-	dc.w $061a,$0110,$030b,$090a,$101a,$181c,$0111,$0b1d
-	dc.w $090a,$0f1d,$1a0e,$0103,$0b1b,$090a,$0e1b,$1c0f
-	dc.w $010b,$0c19,$090a,$1c19,$0e10,$010b,$0d00,$090a
-	dc.w $1a00,$0f11,$0104,$1d08,$090a,$1808,$1003,$0107
-	dc.w $1b06,$090a,$061c,$1104,$010c,$1918,$090a,$0818
-	dc.w $0307,$010d,$001a,$090a,$0006,$040c,$0118,$081c
-	dc.w $090a,$1b10,$070d,$011d,$060e,$090a,$190e,$0c1d
-	dc.w $011b,$180f,$090a,$1d0f,$0d1b,$0119,$1a10,$090a
+loc_00c0de:
+	dc.b $07,$05,$0c,$18,$09,$0f,$02,$0b,$01,$0a
+	dc.b $0f,$10,$16,$0d,$09,$03,$06,$0b,$01,$0a
+	dc.b $04,$07,$10,$0c,$09,$02,$0e,$0b,$01,$0a
+	dc.b $16,$1a,$18,$1c,$09,$08,$11,$0b,$01,$0a
+	dc.b $05,$1c,$07,$06,$09,$1a,$0b,$02,$01,$0a
+	dc.b $19,$0c,$0d,$1b,$09,$1c,$0b,$1d,$01,$0a
+	dc.b $1a,$04,$0e,$08,$09,$0b,$10,$03,$01,$0a
+	dc.b $11,$18,$06,$1d,$09,$0b,$16,$19,$01,$0a
+	dc.b $1c,$0f,$03,$02,$09,$05,$1d,$10,$01,$0a
+	dc.b $1b,$0d,$05,$16,$09,$1d,$04,$1c,$01,$0a
+	dc.b $18,$1d,$1a,$10,$09,$0e,$19,$05,$01,$0a
+	dc.b $08,$06,$04,$11,$09,$07,$0d,$1b,$01,$0a
+	dc.b $0c,$1b,$02,$0f,$09,$1d,$1a,$18,$01,$0a
+	dc.b $0d,$0e,$08,$19,$09,$16,$03,$0f,$01,$0a
+	dc.b $06,$11,$19,$04,$09,$1b,$18,$02,$01,$0a
+	dc.b $03,$08,$11,$0e,$09,$0c,$07,$0d,$01,$0a
 
-;c49e
-	dc.w $0108,$181d,$0e07,$1610,$040a,$0209,$1a18,$0e03
-	dc.w $1119,$040a,$1c0b,$100d,$0e02,$0f0c,$040a,$030d
-	dc.w $190b,$0e1c,$001b,$040a,$081d,$0c09,$0e01,$051a
-	dc.w $040a,$0718,$1b08,$0e16,$101d,$040a,$091a,$1d07
-	dc.w $0e11,$1918,$040a,$0b1b,$0103,$0e0f,$0c0d,$040a
-	dc.w $180c,$1c02,$0e00,$1b0b,$040a,$1d19,$0d1c,$0e05
-	dc.w $1a09,$040a,$0d10,$0b01,$0e18,$1d08,$040a,$1a05
-	dc.w $0916,$0e10,$1807,$040a,$0c0f,$0811,$0e19,$0d03
-	dc.w $040a,$1b00,$070f,$0e0c,$0b02,$040a,$1911,$0300
-	dc.w $0e1b,$091c,$040a,$1016,$0205,$0e1a,$0801,$040a
+loc_00c17e:
+	dc.b $06,$1c,$0b,$07,$1d,$16,$05,$03,$0d,$0a
+	dc.b $18,$02,$0c,$16,$1d,$1a,$09,$08,$0d,$0a
+	dc.b $10,$04,$0e,$1a,$1d,$18,$0f,$19,$0d,$0a
+	dc.b $16,$07,$10,$18,$1d,$06,$11,$1b,$0d,$0a
+	dc.b $1a,$0b,$16,$06,$1d,$10,$03,$1c,$0d,$0a
+	dc.b $0e,$0c,$1a,$05,$1d,$03,$08,$02,$0d,$0a
+	dc.b $0c,$0e,$18,$09,$1d,$08,$19,$04,$0d,$0a
+	dc.b $0b,$10,$06,$0f,$1d,$19,$1b,$07,$0d,$0a
+	dc.b $02,$16,$05,$11,$1d,$1b,$1c,$0b,$0d,$0a
+	dc.b $04,$1a,$09,$03,$1d,$1c,$02,$0c,$0d,$0a
+	dc.b $07,$18,$0f,$08,$1d,$02,$04,$0e,$0d,$0a
+	dc.b $1b,$06,$11,$19,$1d,$04,$07,$10,$0d,$0a
+	dc.b $1c,$05,$03,$1b,$1d,$07,$0b,$16,$0d,$0a
+	dc.b $19,$09,$08,$1c,$1d,$0b,$0c,$1a,$0d,$0a
+	dc.b $08,$0f,$19,$02,$1d,$0c,$0e,$18,$0d,$0a
+	dc.b $03,$11,$1b,$04,$1d,$0e,$10,$06,$0d,$0a
+
+loc_00c21e:
+	dc.b $1a,$03,$10,$1b,$05,$0d,$0e,$00,$07,$0a
+	dc.b $1b,$08,$1a,$10,$05,$0f,$0c,$11,$07,$0a
+	dc.b $10,$06,$09,$0c,$05,$1b,$08,$18,$07,$0a
+	dc.b $0e,$0c,$16,$03,$05,$1a,$06,$19,$07,$0a
+	dc.b $0c,$00,$19,$06,$05,$10,$03,$1c,$07,$0a
+	dc.b $06,$18,$11,$08,$05,$0e,$00,$16,$07,$0a
+	dc.b $08,$19,$01,$0e,$05,$0c,$11,$1d,$07,$0a
+	dc.b $03,$11,$00,$1a,$05,$08,$18,$01,$07,$0a
+	dc.b $00,$1d,$18,$0f,$05,$06,$19,$04,$07,$0a
+	dc.b $11,$16,$1d,$0b,$05,$03,$1c,$09,$07,$0a
+	dc.b $18,$01,$1c,$1d,$05,$11,$16,$0b,$07,$0a
+	dc.b $1c,$09,$0b,$04,$05,$19,$1d,$0d,$07,$0a
+	dc.b $19,$0b,$04,$1c,$05,$16,$01,$0f,$07,$0a
+	dc.b $16,$0d,$0f,$18,$05,$01,$04,$1b,$07,$0a
+	dc.b $1d,$04,$1b,$00,$05,$0d,$09,$1a,$07,$0a
+	dc.b $04,$0f,$0e,$0d,$05,$09,$0b,$10,$07,$0a
+
+loc_00c2be:
+	dc.b $0f,$07,$1d,$10,$16,$05,$0d,$06,$0e,$0a
+	dc.b $11,$18,$01,$0f,$16,$09,$0c,$07,$0e,$0a
+	dc.b $0d,$1a,$05,$0c,$16,$0b,$11,$08,$0e,$0a
+	dc.b $0c,$1c,$0b,$0d,$16,$10,$0f,$18,$0e,$0a
+	dc.b $02,$00,$0f,$11,$16,$0d,$06,$19,$0e,$0a
+	dc.b $01,$02,$11,$0b,$16,$0c,$07,$1a,$0e,$0a
+	dc.b $00,$09,$0d,$05,$16,$11,$08,$1b,$0e,$0a
+	dc.b $1d,$10,$0c,$00,$16,$0f,$18,$1c,$0e,$0a
+	dc.b $1c,$0b,$10,$1a,$16,$06,$19,$1d,$0e,$0a
+	dc.b $1b,$01,$09,$1c,$16,$08,$1a,$00,$0e,$0a
+	dc.b $1a,$05,$02,$18,$16,$19,$1b,$01,$0e,$0a
+	dc.b $19,$1d,$00,$07,$16,$1b,$1c,$02,$0e,$0a
+	dc.b $18,$1b,$1c,$06,$16,$01,$1d,$05,$0e,$0a
+	dc.b $07,$19,$1a,$08,$16,$1d,$00,$09,$0e,$0a
+	dc.b $06,$08,$18,$19,$16,$02,$01,$0b,$0e,$0a
+	dc.b $08,$06,$07,$1b,$16,$09,$02,$10,$0e,$0a
+
+loc_00c35e:
+	dc.b $0f,$02,$19,$0d,$08,$06,$0c,$1d,$16,$0a
+	dc.b $10,$00,$18,$11,$08,$0b,$0e,$1c,$16,$0a
+	dc.b $0b,$1d,$01,$09,$08,$10,$07,$1b,$16,$0a
+	dc.b $06,$1c,$0d,$02,$08,$0f,$05,$1a,$16,$0a
+	dc.b $00,$1b,$11,$06,$08,$0c,$1d,$19,$16,$0a
+	dc.b $02,$1a,$09,$0b,$08,$0e,$1c,$18,$16,$0a
+	dc.b $09,$19,$02,$10,$08,$07,$1b,$01,$16,$0a
+	dc.b $11,$18,$00,$0f,$08,$05,$1a,$0d,$16,$0a
+	dc.b $0d,$01,$06,$05,$08,$00,$19,$11,$16,$0a
+	dc.b $01,$0d,$0b,$0c,$08,$1d,$18,$09,$16,$0a
+	dc.b $18,$11,$10,$0e,$08,$1c,$01,$02,$16,$0a
+	dc.b $1a,$09,$0f,$07,$08,$1b,$0d,$00,$16,$0a
+	dc.b $19,$0f,$0c,$1d,$08,$1a,$11,$06,$16,$0a
+	dc.b $1b,$06,$0e,$1c,$08,$19,$09,$0b,$16,$0a
+	dc.b $1c,$0b,$07,$1b,$08,$18,$02,$10,$16,$0a
+	dc.b $1d,$10,$05,$1a,$08,$01,$00,$0f,$16,$0a
+
+loc_00c3fe:
+	dc.b $03,$0c,$19,$00,$01,$1c,$11,$0b,$09,$0a
+	dc.b $04,$0d,$00,$08,$01,$0e,$07,$0b,$09,$0a
+	dc.b $07,$03,$08,$06,$01,$0f,$04,$0b,$09,$0a
+	dc.b $11,$07,$06,$1a,$01,$10,$03,$0b,$09,$0a
+	dc.b $10,$1a,$18,$1c,$01,$11,$0b,$1d,$09,$0a
+	dc.b $0f,$1d,$1a,$0e,$01,$03,$0b,$1b,$09,$0a
+	dc.b $0e,$1b,$1c,$0f,$01,$0b,$0c,$19,$09,$0a
+	dc.b $1c,$19,$0e,$10,$01,$0b,$0d,$00,$09,$0a
+	dc.b $1a,$00,$0f,$11,$01,$04,$1d,$08,$09,$0a
+	dc.b $18,$08,$10,$03,$01,$07,$1b,$06,$09,$0a
+	dc.b $06,$1c,$11,$04,$01,$0c,$19,$18,$09,$0a
+	dc.b $08,$18,$03,$07,$01,$0d,$00,$1a,$09,$0a
+	dc.b $00,$06,$04,$0c,$01,$18,$08,$1c,$09,$0a
+	dc.b $1b,$10,$07,$0d,$01,$1d,$06,$0e,$09,$0a
+	dc.b $19,$0e,$0c,$1d,$01,$1b,$18,$0f,$09,$0a
+	dc.b $1d,$0f,$0d,$1b,$01,$19,$1a,$10,$09,$0a
+
+loc_00c49e:
+	dc.b $01,$08,$18,$1d,$0e,$07,$16,$10,$04,$0a
+	dc.b $02,$09,$1a,$18,$0e,$03,$11,$19,$04,$0a
+	dc.b $1c,$0b,$10,$0d,$0e,$02,$0f,$0c,$04,$0a
+	dc.b $03,$0d,$19,$0b,$0e,$1c,$00,$1b,$04,$0a
+	dc.b $08,$1d,$0c,$09,$0e,$01,$05,$1a,$04,$0a
+	dc.b $07,$18,$1b,$08,$0e,$16,$10,$1d,$04,$0a
+	dc.b $09,$1a,$1d,$07,$0e,$11,$19,$18,$04,$0a
+	dc.b $0b,$1b,$01,$03,$0e,$0f,$0c,$0d,$04,$0a
+	dc.b $18,$0c,$1c,$02,$0e,$00,$1b,$0b,$04,$0a
+	dc.b $1d,$19,$0d,$1c,$0e,$05,$1a,$09,$04,$0a
+	dc.b $0d,$10,$0b,$01,$0e,$18,$1d,$08,$04,$0a
+	dc.b $1a,$05,$09,$16,$0e,$10,$18,$07,$04,$0a
+	dc.b $0c,$0f,$08,$11,$0e,$19,$0d,$03,$04,$0a
+	dc.b $1b,$00,$07,$0f,$0e,$0c,$0b,$02,$04,$0a
+	dc.b $19,$11,$03,$00,$0e,$1b,$09,$1c,$04,$0a
+	dc.b $10,$16,$02,$05,$0e,$1a,$08,$01,$04,$0a
+
+loc_00c53e:
 	dc.w $1b19,$000d,$1d03,$0c02,$110a,$160e,$0103,$1d1b
 	dc.w $0604,$110a,$0f0b,$1a1b,$1d16,$1005,$110a,$0301
 	dc.w $0816,$1d0f,$0018,$110a,$081a,$0d0f,$1d0c,$021c
@@ -13187,6 +13312,8 @@ loc_00c09e:
 	dc.w $0204,$1d19,$0b0d,$110a,$1806,$0405,$1d0e,$0103
 	dc.w $110a,$1c10,$0518,$1d00,$1a1b,$110a,$0400,$181c
 	dc.w $1d1a,$0816,$110a,$0205,$1c10,$1d08,$0d0f,$110a
+
+loc_00c5de:
 	dc.w $0711,$060c,$1809,$1c16,$190a,$0500,$030d,$1804
 	dc.w $1c16,$190a,$0402,$1d1b,$181c,$0016,$190a,$0906
 	dc.w $0c1a,$181c,$0216,$190a,$0b03,$0d10,$1805,$0616
@@ -13197,10 +13324,10 @@ loc_00c09e:
 	dc.w $040e,$1816,$1b1c,$190a,$0601,$050f,$1802,$1a1c
 	dc.w $190a,$0309,$0711,$1806,$101c,$190a,$0204,$0e00
 	dc.w $1803,$0b1c,$190a,$0005,$0f02,$181d,$011c,$190a
+
+loc_00c67e:
 	dc.w $0f08,$1618,$070e,$0c04,$1c0a,$1905,$1b00,$0710
 	dc.w $0816,$1c0a,$1102,$1a01,$0719,$051b,$1c0a,$1000
-
-;c69e
 	dc.w $1d03,$0711,$021a,$1c0a,$0b04,$1806,$070f,$001d
 	dc.w $1c0a,$0e16,$0d0b,$070c,$0418,$1c0a,$031b,$010e
 	dc.w $0708,$160d,$1c0a,$061a,$0310,$0705,$1b01,$1c0a
@@ -13209,6 +13336,8 @@ loc_00c09e:
 	dc.w $100c,$0704,$0d0e,$1c0a,$1b06,$1908,$0716,$0110
 	dc.w $1c0a,$1a01,$1105,$071b,$0319,$1c0a,$040e,$0f02
 	dc.w $071a,$0611,$1c0a,$1610,$0c04,$071d,$0b0f,$1c0a
+
+loc_00c71e:
 	dc.w $180e,$0f11,$0208,$0c04,$0b00,$1a0f,$0c19,$021c
 	dc.w $1003,$0b00,$0f0c,$101a,$0205,$1109,$0b00,$1910
 	dc.w $1118,$0206,$0416,$0b00,$1011,$191b,$0207,$0301
@@ -13219,6 +13348,8 @@ loc_00c09e:
 	dc.w $1c06,$0203,$0904,$0b00,$1c08,$051d,$020e,$1b07
 	dc.w $0b00,$081c,$0607,$020f,$1d0d,$0b00,$0105,$070d
 	dc.w $020c,$160e,$0b00,$1606,$0d0e,$0210,$010f,$0b00
+
+loc_00c7be:
 	dc.w $0e01,$1110,$0c03,$0605,$000a,$0902,$160f,$0c04
 	dc.w $0705,$000a,$0703,$1c19,$0c08,$0905,$000a,$0604
 	dc.w $1d18,$0c0d,$0e05,$000a,$1b08,$0601,$0c1a,$0510
@@ -13229,18 +13360,20 @@ loc_00c09e:
 	dc.w $1d1b,$0c0e,$0f04,$000a,$181d,$1006,$0c11,$1908
 	dc.w $000a,$191c,$0f07,$0c16,$180d,$000a,$0f16,$1909
 	dc.w $0c1c,$011a,$000a,$1011,$180e,$0c1d,$021b,$000a
+
+loc_00c85e:
 	dc.w $0816,$060d,$041b,$051d,$0b0a,$0719,$0d10,$041a
 	dc.w $061d,$0b0a,$050d,$0711,$0400,$1d16,$0b0a,$0d18
 	dc.w $0816,$041d,$0719,$0b0a,$0d1c,$0919,$041d,$0818
 	dc.w $0b0a,$020d,$0e18,$0401,$1d1c,$0b0a,$031b,$0d1c
-
-;c89e
 	dc.w $0402,$091d,$0b0a,$011a,$0f0d,$0403,$0e1d,$0b0a
 	dc.w $1a00,$110d,$0405,$0f1b,$0b0a,$0001,$0d1b,$0406
 	dc.w $101a,$0b0a,$1b0d,$101a,$0407,$1100,$0b0a,$0d02
 	dc.w $1c00,$0408,$1601,$0b0a,$1803,$1b01,$0409,$191d
 	dc.w $0b0a,$1c05,$1602,$040e,$181d,$0b0a,$1911,$1803
 	dc.w $040f,$1d02,$0b0a,$1606,$1905,$041d,$1c03,$0b0a
+
+loc_00c8fe:
 	dc.w $191a,$0b1d,$180c,$0516,$000a,$0f10,$1b1d,$1806
 	dc.w $1101,$000a,$1c19,$051d,$180f,$0304,$000a,$1a09
 	dc.w $021d,$181b,$110c,$000a,$1b05,$1d0e,$1804,$0607
@@ -13251,6 +13384,8 @@ loc_00c09e:
 	dc.w $0e05,$1816,$1906,$000a,$1d03,$0609,$1808,$0b0f
 	dc.w $000a,$1d08,$0204,$1807,$1a09,$000a,$1d07,$0f1b
 	dc.w $1802,$081c,$000a,$1d01,$0419,$180b,$160e,$000a
+
+loc_00c99e:
 	dc.w $0400,$1811,$060b,$0507,$1b0a,$0109,$0219,$0608
 	dc.w $0703,$1b0a,$0008,$1102,$0607,$0316,$1b0a,$1c01
 	dc.w $1d0f,$0609,$0807,$1b0a,$0804,$001a,$0619,$071d
@@ -13261,18 +13396,20 @@ loc_00c09e:
 	dc.w $0d03,$060f,$0011,$1b0a,$0216,$081a,$061d,$0418
 	dc.w $1b0a,$0c05,$0709,$0610,$0d1c,$1b0a,$1d0d,$0b03
 	dc.w $0605,$1901,$1b0a,$0318,$0f0b,$060c,$0211,$1b0a
+
+loc_00ca3e:
 	dc.w $1d1c,$0703,$0900,$020b,$080a,$101d,$0319,$090d
 	dc.w $0b11,$080a,$0616,$1d1b,$090b,$0c0e,$080a,$0d07
 	dc.w $001d,$0906,$1c02,$080a,$051a,$010c,$0918,$0e10
 	dc.w $080a,$0103,$160d,$090e,$1104,$080a,$1b05,$1906
 	dc.w $0902,$040c,$080a,$0c1c,$0b0e,$0901,$001d,$080a
 	dc.w $1904,$1802,$0911,$0d1b,$080a,$030e,$0605,$091c
-
-;ca9e
 	dc.w $0716,$080a,$1a06,$0216,$091b,$1000,$080a,$0401
 	dc.w $1a11,$090b,$1b19,$080a,$0e1b,$071c,$0910,$050d
 	dc.w $080a,$1116,$0c01,$0900,$1a18,$080a,$1819,$1110
 	dc.w $0916,$0b1a,$080a,$0702,$0006,$0903,$0c05,$080a
+
+loc_00cade:
 	dc.w $011d,$0507,$0e1b,$0600,$040a,$0f02,$180b,$0e05
 	dc.w $0d16,$040a,$1a03,$0111,$0e1c,$0009,$040a,$0c1b
 	dc.w $1d06,$0e0b,$1605,$040a,$081a,$1b02,$0e00,$180d
@@ -13283,6 +13420,8 @@ loc_00c09e:
 	dc.w $061a,$0e11,$0119,$040a,$0b09,$001c,$0e02,$0f1b
 	dc.w $040a,$110d,$1c19,$0e08,$1d03,$040a,$091a,$190c
 	dc.w $0e18,$0711,$040a,$001c,$0f06,$0e0b,$0301,$040a
+
+loc_00cb7e:
 	dc.w $0109,$0e05,$0008,$0304,$020a,$0918,$1d0f,$0010
 	dc.w $0504,$020a,$1601,$090e,$000d,$0704,$020a,$060f
 	dc.w $160c,$000e,$0804,$020a,$181a,$011b,$0007,$041d
@@ -13293,6 +13432,8 @@ loc_00c09e:
 	dc.w $0f1a,$0006,$0d09,$020a,$0719,$0b16,$0005,$1d0e
 	dc.w $020a,$0c1c,$1a0d,$0009,$0f1b,$020a,$1003,$1c1d
 	dc.w $0018,$0c05,$020a,$1a18,$0c19,$001d,$0807,$020a
+
+loc_00cc1e:
 	dc.w $0005,$0b1a,$0f04,$030d,$1c0a,$080c,$1004,$0f1d
 	dc.w $0d07,$1c0a,$0600,$031d,$0f0d,$1b0e,$1c0a,$0902
 	dc.w $001b,$0f03,$0518,$1c0a,$0408,$1910,$0f1a,$0e00
@@ -13301,10 +13442,10 @@ loc_00c09e:
 	dc.w $050c,$090e,$0f08,$0604,$1c0a,$070b,$1d0d,$0f02
 	dc.w $1019,$1c0a,$1a01,$1b09,$0f11,$0b1d,$1c0a,$180e
 	dc.w $0d01,$0f1b,$0210,$1c0a,$0b18,$0c11,$0f07,$1902
-
-;cc9e
 	dc.w $1c0a,$0310,$1106,$0f19,$0105,$1c0a,$0e04,$0818
 	dc.w $0f00,$0c09,$1c0a,$0d11,$190c,$0f06,$0901,$1c0a
+
+loc_00ccbe:
 	dc.w $0805,$1a11,$000c,$100b,$060a,$1902,$0805,$001b
 	dc.w $0f01,$060a,$0711,$0310,$0008,$0b09,$060a,$160d
 	dc.w $021a,$000c,$0111,$060a,$0e09,$0d02,$001a,$071c
@@ -13315,6 +13456,8 @@ loc_00c09e:
 	dc.w $1d11,$0004,$1b10,$060a,$0116,$0304,$001d,$0819
 	dc.w $060a,$091c,$0405,$000e,$161b,$060a,$1c04,$0f1d
 	dc.w $0003,$0e08,$060a,$040d,$0c08,$0007,$0316,$060a
+
+loc_00cd5e:
 	dc.w $1d00,$0705,$0c0d,$1b11,$100a,$060f,$1c0d,$0c05
 	dc.w $1a09,$100a,$181d,$0002,$0c11,$0306,$100a,$091c
 	dc.w $0d0e,$0c1a,$0516,$100a,$0106,$1a00,$0c0f,$0b07
@@ -13325,6 +13468,8 @@ loc_00c09e:
 	dc.w $1618,$0c04,$0201,$100a,$0b09,$1b1c,$0c02,$0e0d
 	dc.w $100a,$1603,$0508,$0c1c,$091d,$100a,$071b,$0e11
 	dc.w $0c06,$1804,$100a,$1b08,$061a,$0c0d,$1c02,$100a
+
+loc_00cdfe:
 	dc.w $190e,$0b01,$1d04,$0218,$100a,$0f00,$0c1b,$1d16
 	dc.w $031c,$100a,$0e19,$0803,$1d02,$040f,$100a,$1809
 	dc.w $0002,$1d1c,$0c0b,$100a,$0401,$190d,$1d0f,$1b07
@@ -13336,7 +13481,7 @@ loc_00c09e:
 	dc.w $100a,$0704,$020e,$1d00,$1603,$100a,$1c0f,$0318
 	dc.w $1d08,$0716,$100a,$111b,$0805,$1d01,$1804,$100a
 
-;ce9e
+loc_00ce9e:
 	dc.w $1d19,$1105,$080e,$0102,$070a,$1105,$0419,$0809
 	dc.w $1006,$070a,$0011,$1c09,$080c,$0d1a,$070a,$0f1d
 	dc.w $0c02,$0804,$0603,$070a,$1618,$000d,$0810,$0b0e
@@ -13347,6 +13492,8 @@ loc_00c09e:
 	dc.w $0310,$0816,$0205,$070a,$0100,$0f04,$0818,$060d
 	dc.w $070a,$0d1a,$0b1d,$0806,$160f,$070a,$0304,$100f
 	dc.w $0802,$1d09,$070a,$1a0b,$180e,$0800,$0c16,$070a
+
+loc_00cf3e:
 	dc.w $0902,$0618,$100d,$070b,$160a,$000f,$0206,$101a
 	dc.w $030b,$160a,$0e00,$090d,$1004,$180b,$160a,$0607
 	dc.w $0f00,$1019,$1a0b,$160a,$1d1a,$050f,$101b,$0b09
@@ -13357,6 +13504,8 @@ loc_00c09e:
 	dc.w $110c,$1008,$1d01,$160a,$0319,$1b1d,$100e,$041a
 	dc.w $160a,$1b08,$0918,$100c,$0706,$160a,$1918,$1b05
 	dc.w $1011,$1d0d,$160a,$040e,$081a,$1007,$0903,$160a
+
+loc_00cfde:
 	dc.w $1804,$1c0c,$1903,$1101,$0d0a,$0e0b,$100c,$190f
 	dc.w $0802,$0d0a,$051b,$060c,$1907,$1a00,$0d0a,$0900
 	dc.w $1a0c,$191b,$0118,$0d0a,$1107,$0c06,$191c,$1809
@@ -13367,6 +13516,10 @@ loc_00c09e:
 	dc.w $0c02,$1916,$0818,$0d0a,$1b03,$0509,$1910,$1611
 	dc.w $0d0a,$1c0b,$041b,$1906,$0e10,$0d0a,$040c,$1107
 	dc.w $191a,$0b01,$0d0a,$0610,$0308,$191b,$0902,$0d0a
+
+;Character List 2
+Arcade_Mode_List2:
+
 
 ;==============================================
 loc_00d07e:
@@ -13466,7 +13619,7 @@ loc_00d1b6:
 	bne.w loc_00d212
 	lea.l (p1memory,a5),a6
 	lea.l (p2memory,a5),a1
-	btst.b #0,($ac,a5)
+	btst.b #0,(Active_Player_01,a5)
 	bne.b loc_00d1d8
 	exg.l a1,a6
 
@@ -13480,11 +13633,11 @@ loc_00d1d8:
 loc_00d1ec:
 	tst.b (Dramatic_Mode_flag,a5)
 	bne.w loc_00d336
-	cmpi.w #4,(Arcade_Match,a5)
+	cmpi.w #4,(Arcade_Match_Var,a5)
 	beq.w loc_00d342
-	cmpi.w #8,(Arcade_Match,a5)
+	cmpi.w #8,(Arcade_Match_Var,a5)
 	beq.w loc_00d370
-	cmpi.w #9,(Arcade_Match,a5)
+	cmpi.w #9,(Arcade_Match_Var,a5)
 	beq.w loc_00d274
 
 loc_00d212:
@@ -13503,7 +13656,7 @@ Set_Doll_IDs:
 	move.b #Aism_ID,(p3_ism_choice,a5)
 	move.b #Aism_ID,(p4_ism_choice,a5)
 	move.w #Hid_Stage,(Main_stageid,a5)
-	move.w #$2a,(StageID_02,a5)
+	move.w #Hid_Stage,(StageID_02,a5)
 	rts
 
 ;VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV
@@ -13536,7 +13689,7 @@ loc_00d29c:
 	bne.b loc_00d2de
 	st.b ($178,a5)
 	move.w #Boss_Stage,(Main_stageid,a5)
-	move.w #$14,(StageID_02,a5)
+	move.w #Boss_Stage,(StageID_02,a5)
 	btst.b #5,($149,a6)
 	beq.b loc_00d320
 	move.b d1,($102,a1)
@@ -13554,7 +13707,7 @@ loc_00d2de:
 	move.b #0,(p3_ism_choice,a5)
 	move.b #0,(p4_ism_choice,a5)
 	move.w #Hid_Stage,(Main_stageid,a5)
-	move.w #$2a,(StageID_02,a5)
+	move.w #Hid_Stage,(StageID_02,a5)
 	btst.b #5,($149,a6)
 	beq.b loc_00d320
 	clr.b ($178,a5)
@@ -13634,7 +13787,7 @@ loc_00d3b6:
 	move.b d0,($145,a5)
 	move.w #$ffff,($112,a5)
 	lea.l (p1memory,a5),a6
-	btst.b #0,($ac,a5)
+	btst.b #0,(Active_Player_01,a5)
 	bne.b loc_00d3dc
 	lea.l (p2memory,a5),a6
 
@@ -13712,7 +13865,7 @@ loc_00d4ba:
 
 loc_00d4cc:
 	lea.l (p1memory,a5),a6
-	btst.b #0,($ac,a5)
+	btst.b #0,(Active_Player_01,a5)
 	bne.b loc_00d4dc
 	lea.l (p2memory,a5),a6
 
@@ -14111,7 +14264,7 @@ loc_02031a:
 loc_02031c:
 	tst.w (Dramatic_Mode_Type,a5)
 	bne.w loc_0203ac
-	cmpi.b #3,($ac,a5)
+	cmpi.b #3,(Active_Player_01,a5)
 	beq.b loc_02036a
 	bsr.w loc_0204a4
 	bsr.w loc_020560
@@ -14123,7 +14276,7 @@ loc_02033c:
 	move.w #$780,(-$5d12,a5)
 	tst.w (Dramatic_Mode_Type,a5)
 	bne.w loc_0203ac
-	cmpi.b #3,($ac,a5)
+	cmpi.b #3,(Active_Player_01,a5)
 	beq.b loc_02036a
 	moveq #$10,d0
 	tst.b ($525,a5)
@@ -14208,11 +14361,11 @@ loc_0203f6:
 
 ;==============================================
 loc_02040a:
-	cmpi.b #3,($ac,a5)
+	cmpi.b #3,(Active_Player_01,a5)
 	beq.b loc_020456
 	lea.l (p1memory,a5),a0
 	lea.l (p2memory,a5),a1
-	btst.b #0,($ac,a5)
+	btst.b #0,(Active_Player_01,a5)
 	bne.b loc_020424
 	exg.l a0,a1
 
@@ -14279,7 +14432,7 @@ loc_0204b0:
 	lsl.w #5,d0
 	lea.l loc_020876(pc),a0
 	lea.l (a0,d0.w),a0
-	move.w (Arcade_Match,a5),d0
+	move.w (Arcade_Match_Var,a5),d0
 	tst.b ($15d,a5)
 	beq.b loc_0204d2
 	lea.l loc_020976(pc),a1
@@ -14395,7 +14548,7 @@ loc_0205a4:
 
 ;==============================================
 loc_0205be:
-	cmpi.b #3,($ac,a5)
+	cmpi.b #3,(Active_Player_01,a5)
 	beq.w loc_02031a
 	moveq #$10,d0
 	cmpi.b #$50,(clock_counter,a5)
@@ -14456,7 +14609,7 @@ loc_020650:
 
 ;==============================================
 loc_02065c:
-	cmpi.b #3,($ac,a5)
+	cmpi.b #3,(Active_Player_01,a5)
 	beq.w loc_02031a
 	tst.b ($125,a6)
 	bne.w loc_02031a
@@ -14464,7 +14617,7 @@ loc_02065c:
 	bra.w loc_02055c
 
 loc_020674:
-	cmpi.b #3,($ac,a5)
+	cmpi.b #3,(Active_Player_01,a5)
 	beq.w loc_02031a
 	tst.b ($125,a6)
 	bne.w loc_02031a
@@ -14473,7 +14626,7 @@ loc_020674:
 
 loc_02068c:
 	move.b #1,($216,a6)
-	cmpi.b #3,($ac,a5)
+	cmpi.b #3,(Active_Player_01,a5)
 	beq.w loc_02031a
 	tst.b ($125,a6)
 	bne.w loc_02031a
@@ -14482,7 +14635,7 @@ loc_02068c:
 	bra.w loc_02055c
 
 loc_0206ae:
-	cmpi.b #3,($ac,a5)
+	cmpi.b #3,(Active_Player_01,a5)
 	beq.w loc_02031a
 	tst.b ($125,a6)
 	bne.w loc_02031a
@@ -14490,7 +14643,7 @@ loc_0206ae:
 	bra.w loc_02055c
 
 loc_0206c6:
-	cmpi.b #3,($ac,a5)
+	cmpi.b #3,(Active_Player_01,a5)
 	beq.w loc_02031a
 	tst.b ($125,a6)
 	beq.w loc_02031a
@@ -14509,7 +14662,7 @@ loc_020704:
 	bra.w loc_02055c
 
 loc_02070a:
-	cmpi.b #3,($ac,a5)
+	cmpi.b #3,(Active_Player_01,a5)
 	beq.w loc_02031a
 	tst.b ($125,a6)
 	beq.w loc_02031a
@@ -14585,7 +14738,7 @@ loc_02077a:
 loc_0207d8:
 	lsl.w #4,d1
 	lea.l (a0,d1.w),a0
-	move.w (Arcade_Match,a5),d0
+	move.w (Arcade_Match_Var,a5),d0
 	tst.b ($15d,a5)
 	beq.b loc_0207f2
 	lea.l loc_020976(pc),a1
@@ -14733,6 +14886,8 @@ loc_020a4a:
 	dc.w $0000,$0000,$0000,$0000,$0000,$0000,$0000,$0000
 	dc.w $0000,$0000,$0000,$0000,$0000,$0000,$0000,$0000
 
+;==============================================
+;Sprite Render code
 ;==============================================
 loc_020c4a:
 	tst.b ($83,a5)
@@ -16143,14 +16298,14 @@ loc_02187a:
 
 ;==============================================
 loc_02187c:
-	tst.b ($124,a5)
+	tst.b (Set_GC_Flash_BG,a5)
 	beq.b loc_021888
-	tst.b ($170,a5)
+	tst.b (Reset_GaurdTag,a5)
 	beq.b loc_0218a8
 
 loc_021888:
 	moveq #6,d6
-	lea.l ($5000,a5),a6
+	lea.l (Hud_start,a5),a6
 
 loc_02188e:
 	tst.b (a6)
@@ -16162,7 +16317,7 @@ loc_02188e:
 	bsr.b loc_0218d8
 
 loc_0218a0:
-	lea.l ($200,a6),a6
+	lea.l (Hud_offset,a6),a6
 	dbra d6,loc_02188e
 
 loc_0218a8:
@@ -16170,14 +16325,14 @@ loc_0218a8:
 
 ;==============================================
 loc_0218aa:
-	tst.b ($124,a5)
+	tst.b (Set_GC_Flash_BG,a5)
 	beq.b loc_0218b6
-	tst.b ($170,a5)
+	tst.b (Reset_GaurdTag,a5)
 	beq.b loc_0218d6
 
 loc_0218b6:
 	moveq #6,d6
-	lea.l ($5000,a5),a6
+	lea.l (Hud_start,a5),a6
 
 loc_0218bc:
 	tst.b (a6)
@@ -16196,6 +16351,8 @@ loc_0218d6:
 	rts
 
 ;==============================================
+;Hud Rendering
+;==============================================
 loc_0218d8:
 	move.l #$400100,d4
 	sub.w ($14,a6),d4
@@ -16208,14 +16365,14 @@ loc_0218d8:
 
 ;VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV
 loc_0218f6:
-	dc.w loc_021906-loc_0218f6
-	dc.w loc_021944-loc_0218f6
-	dc.w loc_021982-loc_0218f6
-	dc.w loc_0219c2-loc_0218f6
-	dc.w loc_021a22-loc_0218f6
-	dc.w loc_0219ca-loc_0218f6
-	dc.w loc_021a90-loc_0218f6
-	dc.w loc_021a98-loc_0218f6
+	dc.w loc_021906-loc_0218f6;00
+	dc.w loc_021944-loc_0218f6;02
+	dc.w loc_021982-loc_0218f6;04 Lifebar
+	dc.w loc_0219c2-loc_0218f6;06
+	dc.w loc_021a22-loc_0218f6;08
+	dc.w loc_0219ca-loc_0218f6;0a
+	dc.w loc_021a90-loc_0218f6;0c
+	dc.w loc_021a98-loc_0218f6;0e
 
 ;==============================================
 loc_021906:
@@ -16783,7 +16940,7 @@ loc_021c90:
 
 ;==============================================
 loc_022490:
-	tst.b ($124,a5)
+	tst.b (Set_GC_Flash_BG,a5)
 	bne.w loc_022544
 	move.w (Dramatic_Mode_Type,a5),d0
 	move.w loc_0224a4(pc,d0.w),d1
@@ -22235,8 +22392,8 @@ loc_0261e0:
 loc_0261f0:
 	tst.b (-$50fd,a5)
 	beq.w loc_026204
-	clr.b ($401,a5)
-	clr.b ($801,a5)
+	clr.b (p1_render,a5)
+	clr.b (p2_render,a5)
 	clr.b (-$50fd,a5)
 
 loc_026204:
@@ -28999,7 +29156,7 @@ loc_02ab24:
 	bne.w loc_02ac0c
 	btst.b #0,($37d,a6)
 	bne.b loc_02ab4e
-	tst.b ($85,a5)
+	tst.b (Dip_Debug_mode,a5)
 	beq.w loc_02ac0c
 	btst.b #5,($1c1,a5)
 	beq.w loc_02ac0c
@@ -29123,7 +29280,7 @@ loc_02ac60:
 	moveq #0,d2
 	move.l #$2000c00,d1
 	moveq #$15,d0
-	tst.b ($85,a5)
+	tst.b (Dip_Debug_mode,a5)
 	beq.b loc_02ac82
 	btst.b #5,($1c1,a5)
 	bne.b loc_02ac94
@@ -31000,7 +31157,7 @@ loc_02bfaa:
 loc_02bfc4:
 	cmpi.w #4,(Dramatic_Mode_Type,a5)
 	bcs.b loc_02bfe0
-	btst.b #0,($ac,a5)
+	btst.b #0,(Active_Player_01,a5)
 	bne.b loc_02bfe0
 	eori.b #1,($b,a6)
 	eori.b #1,($2c9,a6)
@@ -32726,7 +32883,7 @@ loc_02eda0:
 	bne.b loc_02edf4
 	tst.b ($162,a5)
 	beq.b loc_02edbc
-	tst.b ($124,a5)
+	tst.b (Set_GC_Flash_BG,a5)
 	beq.b loc_02edc2
 
 loc_02edbc:
@@ -34357,7 +34514,7 @@ loc_02ff6a:
 	include "battle_palette_code.68k"
 
 ;==============================================
-	include "char/Part1AI.asm"
+	include "Cpu/Part1AI.asm"
 
 ;==============================================
 ;Projectile code
@@ -34897,7 +35054,7 @@ loc_0336c2:
 ;==============================================
 ;Title Screen
 loc_0336d6:
-	lea.l ($5000,a5),a6
+	lea.l (Hud_start,a5),a6
 	move.b #7,($b5,a5)
 
 loc_0336e0:
@@ -35476,7 +35633,7 @@ loc_033c74:
 loc_033c7a:
 	addq.b #2,(5,a6)
 	move.b #1,(1,a6)
-	move.w ($176,a5),d0
+	move.w (Char_Sel_PalID,a5),d0
 	add.w d0,d0
 	move.w loc_033c4c(pc,d0.w),d0
 	movea.l #loc_35cc34,a0

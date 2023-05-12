@@ -2371,7 +2371,7 @@ loc_07df3c:
 	movea.w ($13a,a5),a4
 	cmpi.w #6,(Dramatic_Mode_Type,a5)
 	bne.b loc_07df54
-	btst.b #0,($ac,a5)
+	btst.b #0,(Active_Player_01,a5)
 	bne.b loc_07df54
 	lea.l (p2memory,a5),a4
 
@@ -2693,7 +2693,7 @@ loc_07e504:
 
 ;##############################################
 loc_07e506:
-	tst.b ($124,a5)
+	tst.b (Set_GC_Flash_BG,a5)
 	bne.w loc_07ea18
 	movea.w ($36,a6),a4
 	move.b (4,a6),d0

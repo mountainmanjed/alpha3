@@ -754,7 +754,7 @@ loc_02dbc6:
 loc_02dbd0:
 	addq.b #2,(a4)
 	move.w (a3),d0
-	tst.b ($b9,a6)
+	tst.b (pl_cc_cancelflag,a6)
 	beq.b loc_02dbdc
 	moveq #6,d0
 

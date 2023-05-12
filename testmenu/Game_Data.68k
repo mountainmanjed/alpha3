@@ -56,7 +56,6 @@ loc_00eaa8:
 	jsr loc_002c08
 	jmp loc_002e5e
 
-;----------------------------------------------
 loc_00eae2:
 	bsr.w loc_010eec
 	moveq #2,d7

@@ -855,7 +855,7 @@ loc_003a5e:
 loc_003a6e:
 	tst.b ($15d,a5)
 	bne.b loc_003aac
-	cmpi.w #9,(Arcade_Match,a5)
+	cmpi.w #9,(Arcade_Match_Var,a5)
 	bne.b loc_003a86
 	cmpi.b #0,d0
 	bne.b loc_003a86
@@ -863,7 +863,7 @@ loc_003a6e:
 	bra.b loc_003aac
 
 loc_003a86:
-	cmpi.w #8,(Arcade_Match,a5)
+	cmpi.w #8,(Arcade_Match_Var,a5)
 	bne.b loc_003a9a
 	cmpi.w #Boss_Stage,(Main_stageid,a5)
 	bne.b loc_003a9a
@@ -871,7 +871,7 @@ loc_003a86:
 	bra.b loc_003aac
 
 loc_003a9a:
-	cmpi.w #8,(Arcade_Match,a5)
+	cmpi.w #8,(Arcade_Match_Var,a5)
 	bne.b loc_003aac
 	cmpi.w #Akm_Stage,(Main_stageid,a5)
 	bne.b loc_003aac

@@ -6,7 +6,7 @@
 EntryPoint:
 	move.w #$7000,$fffff0
 	move.w #0,$8040a0
-	move.w #-$7f83,$fffff2
+	move.w #$807d,$fffff2
 	move.w #$2461,$fffff4
 	move.w #0,$fffff6
 	move.w #$40,$fffff8
@@ -20,10 +20,10 @@ EntryPoint:
 loc_00096c:
 	move.w #$ffc0,$80410c
 	move.w #0,$80410e
-	move.w #gl_cps00_pnt,cps0_gpuregistera
-	move.w #gl_cps00_pnt,cps0_gpuregisterb
-	move.w #gl_cps10_pnt,cps1_gpuregister
-	move.w #gl_cps20_pnt,cps2_gpuregister
+	move.w #gl_scroll00_pnt,Scroll0_gpuregistera
+	move.w #gl_scroll00_pnt,Scroll0_gpuregisterb
+	move.w #gl_scroll10_pnt,Scroll1_gpuregister
+	move.w #gl_scroll20_pnt,Scroll2_gpuregister
 	move.w #gl_rstrb_pnt,raster_gpuregister
 	lea loc_0009ac(pc),a4
 	bra.w loc_000dd6
@@ -183,10 +183,10 @@ loc_000b54:
 	WATCHDOG
 	moveq #0,d0
 	lea $ff8000,a5
-	move.w #gl_cps00_pnt,cps0_gpuregistera
-	move.w #gl_cps00_pnt,cps0_gpuregisterb
-	move.w #gl_cps10_pnt,cps1_gpuregister
-	move.w #gl_cps20_pnt,cps2_gpuregister
+	move.w #gl_scroll00_pnt,Scroll0_gpuregistera
+	move.w #gl_scroll00_pnt,Scroll0_gpuregisterb
+	move.w #gl_scroll10_pnt,Scroll1_gpuregister
+	move.w #gl_scroll20_pnt,Scroll2_gpuregister
 	move.w #gl_rstrb_pnt,raster_gpuregister
 	move.w #Mainpalette,palette_gpuregister
 	move.w d0,$804110
@@ -224,7 +224,7 @@ loc_000b54:
 	move.w #$1b02,($32,a5)
 	move.w #$3f,($34,a5)
 	move.w #$7000,($36,a5)
-	move.w #-$7f83,($38,a5)
+	move.w #$807d,($38,a5)
 	move.w #$2461,($3a,a5)
 	move.w #$40,($3c,a5)
 	move.w #$10,($3e,a5)

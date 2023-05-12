@@ -42,7 +42,7 @@ loc_00ddea:
 
 ;sam_00ec0c
 	jsr loc_001370
-	move.w #$74,d0
+	move.w #$74,d0;ascii t
 	moveq #$1e,d1
 	jsr loc_00141a
 	lea.l (-$6024,a5),a6

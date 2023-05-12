@@ -105,7 +105,7 @@ loc_04f164:
 
 ;==============================================
 loc_04f176:
-	tst.b ($124,a5)
+	tst.b (Set_GC_Flash_BG,a5)
 	bne.w loc_051aee
 	tst.b ($11c,a5)
 	bne.w loc_051aee
@@ -566,7 +566,7 @@ loc_04f60c:
 loc_04f60e:
 	tst.b ($80,a6)
 	bne.w loc_04f744
-	clr.b ($2c8,a6)
+	clr.b (pl_crouching,a6)
 	tst.b ($81,a6)
 	bne.w loc_04f698
 	move.b (7,a6),d0
@@ -582,7 +582,7 @@ loc_04f62e:
 loc_04f632:
 	addq.b #2,(7,a6)
 	move.b ($2c9,a6),($b,a6)
-	move.b #1,($a9,a6)
+	move.b #1,(pl_attk_active,a6)
 	jsr loc_02aebc
 	move.b ($82,a6),d0
 	lsr.b #1,d0
@@ -637,7 +637,7 @@ loc_04f6a4:
 loc_04f6aa:
 	addq.b #2,(7,a6)
 	move.b ($2c9,a6),($b,a6)
-	move.b #1,($a9,a6)
+	move.b #1,(pl_attk_active,a6)
 	jsr loc_02aebc
 	move.b ($82,a6),d0
 	lsr.b #1,d0
@@ -697,7 +697,7 @@ loc_04f73a:
 ;Crouching
 ;==============================================
 loc_04f744:
-	move.b #1,($2c8,a6)
+	move.b #1,(pl_crouching,a6)
 	move.b (7,a6),d0
 	move.w loc_04f756(pc,d0.w),d1
 	jmp loc_04f756(pc,d1.w)
@@ -712,7 +712,7 @@ loc_04f756:
 loc_04f75c:
 	addq.b #2,(7,a6)
 	move.b ($2c9,a6),($b,a6)
-	move.b #1,($a9,a6)
+	move.b #1,(pl_attk_active,a6)
 	jsr loc_02aebc
 	move.b ($82,a6),d0
 	lsr.b #1,d0
@@ -760,7 +760,7 @@ loc_04f7da:
 loc_04f7e8:
 	move.b #6,(7,a6)
 	move.b #4,($80,a6)
-	move.b #1,($a9,a6)
+	move.b #1,(pl_attk_active,a6)
 	jsr loc_02b1fc
 	bsr.w loc_04f838
 	bne.w loc_04f85c
@@ -890,7 +890,7 @@ loc_04f930:
 ;----------------------------------------------
 ;Move ID writes
 loc_04f932:
-	tst.b ($b9,a6)
+	tst.b (pl_cc_cancelflag,a6)
 	bne.w loc_04f944
 	tst.b ($238,a6)
 	bne.w loc_04f8b8
@@ -907,7 +907,7 @@ loc_04f94e:
 	move.l #$2000e00,(4,a6)
 	move.b ($2c9,a6),($b,a6)
 	clr.l ($84,a6)
-	move.b #1,($a9,a6)
+	move.b #1,(pl_attk_active,a6)
 	jmp loc_02f74c
 
 ;----------------------------------------------
@@ -918,7 +918,7 @@ loc_04f97c:
 	move.l #$2000e00,(4,a6)
 	move.b ($2c9,a6),($b,a6)
 	clr.l ($84,a6)
-	move.b #$1,($a9,a6)
+	move.b #$1,(pl_attk_active,a6)
 	jmp loc_02f74c
 
 ;----------------------------------------------
@@ -929,7 +929,7 @@ loc_04f9aa:
 	move.l #$2000e00,(4,a6)
 	move.b ($2c9,a6),($b,a6)
 	clr.l ($84,a6)
-	move.b #1,($a9,a6)
+	move.b #1,(pl_attk_active,a6)
 	rts
 
 ;----------------------------------------------
@@ -954,7 +954,7 @@ loc_04fa12:
 	move.l #$2000e00,(4,a6)
 	move.b ($2c9,a6),($b,a6)
 	clr.l ($84,a6)
-	clr.b ($a9,a6)
+	clr.b (pl_attk_active,a6)
 	rts
 
 ;----------------------------------------------
@@ -991,12 +991,12 @@ loc_04fa80:
 	move.l #$2000e00,(4,a6)
 	move.b ($2c9,a6),($b,a6)
 	clr.l ($84,a6)
-	move.b #1,($a9,a6)
+	move.b #1,(pl_attk_active,a6)
 	rts
 
 ;----------------------------------------------
 loc_04faa0:
-	tst.b ($b9,a6)
+	tst.b (pl_cc_cancelflag,a6)
 	bne.b loc_04faae
 	tst.b ($23e,a6)
 	bne.w loc_04f918
@@ -1008,7 +1008,7 @@ loc_04faae:
 	move.l #$2000e00,(4,a6)
 	move.b ($2c9,a6),($b,a6)
 	clr.l ($84,a6)
-	clr.b ($a9,a6)
+	clr.b (pl_attk_active,a6)
 	move.b #$ff,($3c,a6)
 	btst.b #0,($371,a6)
 	bne.b loc_04fae8
@@ -1029,7 +1029,7 @@ loc_04faea:
 	move.l #$02001000,(4,a6)
 	move.b ($2c9,a6),($b,a6)
 	clr.l ($84,a6)
-	move.b #1,($a9,a6)
+	move.b #1,(pl_attk_active,a6)
 	jmp loc_02f4bc
 
 ;----------------------------------------------
@@ -1044,7 +1044,7 @@ loc_04fb2a:
 	move.l #$2001000,(4,a6)
 	move.b ($2c9,a6),($b,a6)
 	clr.l ($84,a6)
-	move.b #1,($a9,a6)
+	move.b #1,(pl_attk_active,a6)
 	jmp loc_02f4bc
 
 ;----------------------------------------------
@@ -1059,7 +1059,7 @@ loc_04fb6c:
 	move.l #$2001000,(4,a6)
 	move.b ($2c9,a6),($b,a6)
 	clr.l ($84,a6)
-	move.b #1,($a9,a6)
+	move.b #1,(pl_attk_active,a6)
 	jmp loc_02f4dc
 
 ;----------------------------------------------
@@ -1070,7 +1070,7 @@ loc_04fbac:
 	move.l #$2000e00,(4,a6)
 	move.b ($2c9,a6),($b,a6)
 	clr.l ($84,a6)
-	move.b #1,($a9,a6)
+	move.b #1,(pl_attk_active,a6)
 	jmp loc_02f728
 
 ;----------------------------------------------
@@ -1081,7 +1081,7 @@ loc_04fbda:
 	move.l #$2000e00,(4,a6)
 	move.b ($2c9,a6),($b,a6)
 	clr.l ($84,a6)
-	move.b #1,($a9,a6)
+	move.b #1,(pl_attk_active,a6)
 	jmp loc_02f728
 
 ;----------------------------------------------
@@ -1097,13 +1097,13 @@ loc_04fc12:
 	bne.w loc_04fc4e
 	move.b #$12,($aa,a6)
 	move.l #$2000e00,(4,a6)
-	move.b #1,($a9,a6)
+	move.b #1,(pl_attk_active,a6)
 	move.b ($2c9,a6),($b,a6)
 	clr.l ($84,a6)
-	clr.b ($5f,a6)
+	clr.b (pl_hitfreeze,a6)
 	movea.w ($38,a6),a4
 	move.b #$18,($5f,a4)
-	move.b #$1c,($25d,a6)
+	move.b #$1c,(pl_invinciblity_timer,a6)
 	rts
 
 ;##############################################
@@ -1112,20 +1112,20 @@ loc_04fc12:
 loc_04fc4e:
 	move.b #$14,($aa,a6)
 	move.l #$02000e00,(4,a6)
-	clr.b ($a9,a6)
+	clr.b (pl_attk_active,a6)
 	move.b ($2c9,a6),($b,a6)
 	clr.l ($84,a6)
-	clr.b ($5f,a6)
+	clr.b (pl_hitfreeze,a6)
 	movea.w ($38,a6),a4
 	move.b #$17,($5f,a4)
-	move.b #$1b,($25d,a6)
+	move.b #$1b,(pl_invinciblity_timer,a6)
 	rts
 
 ;----------------------------------------------
 loc_04fc80:
 	tst.b ($132,a6)
 	bmi.w loc_04f930
-	tst.b ($b9,a6)
+	tst.b (pl_cc_cancelflag,a6)
 	bne.b loc_04fc96
 	tst.b (pl_taunt_count,a6)
 	beq.w loc_04f930
@@ -1137,7 +1137,7 @@ loc_04fc96:
 	move.l #$02000e00,(4,a6)
 	move.b ($2c9,a6),($b,a6)
 	clr.l ($84,a6)
-	clr.b ($a9,a6)
+	clr.b (pl_attk_active,a6)
 	rts
 
 ;----------------------------------------------
@@ -1156,7 +1156,7 @@ loc_04fcbe:
 	jmp loc_02f980
 
 loc_04fcfa:
-	tst.b ($b9,a6)
+	tst.b (pl_cc_cancelflag,a6)
 	bne.w loc_04f880
 	jsr loc_02ed28
 	beq.w loc_04f880
@@ -1205,7 +1205,7 @@ loc_04fd56:
 loc_04fd5a:
 	tst.b ($132,a6)
 	bmi.b loc_04fdd8
-	tst.b ($b9,a6)
+	tst.b (pl_cc_cancelflag,a6)
 	bne.b loc_04fd6e
 	tst.b ($23e,a6)
 	bne.w loc_04fdd8
@@ -1245,7 +1245,7 @@ loc_04fd9e:
 loc_04fdb4:
 	tst.b ($132,a6)
 	bmi.b loc_04fdd8
-	tst.b ($b9,a6)
+	tst.b (pl_cc_cancelflag,a6)
 	bne.w loc_04fdd4
 	tst.b (pl_taunt_count,a6)
 	beq.w loc_04fdd8
@@ -1411,7 +1411,7 @@ loc_04fefe:
 	move.w a4,($a4,a6)
 	addq.b #1,($238,a6)
 	bsr.w loc_050022
-	tst.b ($b9,a6)
+	tst.b (pl_cc_cancelflag,a6)
 	beq.w loc_05000e
 	move.w ($e4,a6),d0
 	cmp.w ($2a6,a6),d0
@@ -1766,7 +1766,7 @@ loc_050338:
 	move.w ($64,a6),($14,a6)
 	move.w d0,($16,a6)
 	move.b d0,($31,a6)
-	move.b d0,($a9,a6)
+	move.b d0,(pl_attk_active,a6)
 	move.w ($64,a6),($14,a6)
 	moveq #2,d0
 	jmp loc_02a758
@@ -1822,7 +1822,7 @@ loc_0503e8:
 	move.w ($64,a6),($14,a6)
 	move.w d0,($16,a6)
 	move.b d0,($31,a6)
-	move.b d0,($a9,a6)
+	move.b d0,(pl_attk_active,a6)
 	move.w ($64,a6),($14,a6)
 	move.b d0,($ce,a6)
 	jsr loc_00369c
@@ -1867,7 +1867,7 @@ loc_050464:
 	bpl.w loc_051aee
 	move.l #$2000602,(4,a6)
 	move.b #1,($31,a6)
-	clr.b ($2c8,a6)
+	clr.b (pl_crouching,a6)
 	clr.b ($ce,a6)
 	move.l #$fff88000,($40,a6)
 	move.l #$70000,($44,a6)
@@ -1930,7 +1930,7 @@ loc_050510:
 	lsr.b #1,d0
 
 loc_05053c:
-	move.b loc_050576(pc,d0.w),($25d,a6)
+	move.b loc_050576(pc,d0.w),(pl_invinciblity_timer,a6)
 	moveq #$3f,d0
 	jmp loc_02a758
 
@@ -2084,7 +2084,7 @@ loc_050692:
 	lsr.b #1,d0
 
 loc_0506d2:
-	move.b loc_05068e(pc,d0.w),($25d,a6)
+	move.b loc_05068e(pc,d0.w),(pl_invinciblity_timer,a6)
 	tst.b ($b,a6)
 	beq.b loc_0506e6
 	neg.l ($40,a6)
@@ -2220,7 +2220,7 @@ loc_050824:
 	lsr.b #1,d0
 
 loc_050850:
-	move.b loc_050820(pc,d0.w),($25d,a6)
+	move.b loc_050820(pc,d0.w),(pl_invinciblity_timer,a6)
 	moveq #0,d0
 	move.b ($82,a6),d0
 	add.w d0,d0
@@ -2279,7 +2279,7 @@ loc_0508b0:
 	bmi.w loc_050954
 	addq.b #2,(7,a6)
 	clr.b ($84,a6)
-	move.b #$ff,($25d,a6)
+	move.b #$ff,(pl_invinciblity_timer,a6)
 	movea.w ($38,a6),a4
 	clr.b ($263,a4)
 	movea.l #loc_2040d8,a0
@@ -2385,7 +2385,7 @@ loc_050a00:
 	bpl.b loc_050a18
 	addq.b #2,($84,a6)
 	moveq #0,d0
-	move.b d0,($25d,a6)
+	move.b d0,(pl_invinciblity_timer,a6)
 	moveq #$33,d0
 	jmp loc_02a758
 
@@ -2840,7 +2840,7 @@ loc_050f0e:
 ;----------------------------------------------
 loc_050f14:
 	addq.b #2,(7,a6)
-	clr.b ($2c8,a6)
+	clr.b (pl_crouching,a6)
 	move.b #1,($ce,a6)
 	tst.b ($3e,a6)
 	bne.b loc_050f2c
@@ -2920,7 +2920,7 @@ loc_05101a:
 ;----------------------------------------------
 loc_05101e:
 	addq.b #2,(7,a6)
-	clr.b ($2c8,a6)
+	clr.b (pl_crouching,a6)
 	jsr loc_080e8e
 	moveq #$2c,d0
 	jmp loc_02a758
@@ -2952,7 +2952,7 @@ loc_051056:
 ;----------------------------------------------
 loc_05105c:
 	addq.b #2,(7,a6)
-	clr.b ($2c8,a6)
+	clr.b (pl_crouching,a6)
 	jsr loc_080e8e
 	moveq #$2d,d0
 	jmp loc_02a758
@@ -3466,7 +3466,7 @@ loc_05163a:
 	move.w ($64,a6),($14,a6)
 	move.w d0,($16,a6)
 	move.b d0,($31,a6)
-	move.b d0,($a9,a6)
+	move.b d0,(pl_attk_active,a6)
 	move.w ($64,a6),($14,a6)
 	moveq #2,d0
 	jmp loc_02a758
@@ -3477,7 +3477,7 @@ loc_05166a:
 	bpl.w loc_051aee
 	addq.b #2,(7,a6)
 	move.b #1,($31,a6)
-	clr.b ($2c8,a6)
+	clr.b (pl_crouching,a6)
 	move.l #$50000,($44,a6)
 	move.l #$ffffb000,($4c,a6)
 	moveq #3,d0
@@ -3553,7 +3553,7 @@ loc_051764:
 	clr.b (7,a6)
 	move.b ($2c9,a6),($b,a6)
 	clr.l ($84,a6)
-	move.b #1,($a9,a6)
+	move.b #1,(pl_attk_active,a6)
 
 loc_051778:
 	rts
@@ -3930,7 +3930,7 @@ loc_051b12:
 
 loc_051b26:
 	move.b #4,($aa,a6)
-	clr.b ($a9,a6)
+	clr.b (pl_attk_active,a6)
 	move.l #$02000e00,(4,a6)
 	move.b ($2c9,a6),($b,a6)
 	clr.l ($84,a6)

@@ -1508,9 +1508,9 @@ loc_0810a8:
 	move.b ($148,a5),($31,a4)
 	move.b ($b,a6),($3c,a4)
 	st.b ($162,a5)
-	move.b #$90,($124,a5)
+	move.b #$90,(Set_GC_Flash_BG,a5)
 	moveq #0,d0
-	move.b d0,($170,a5)
+	move.b d0,(Reset_GaurdTag,a5)
 	move.b d0,($66e,a5)
 	move.b d0,($a6e,a5)
 	move.b d0,($e6e,a5)
@@ -1536,9 +1536,9 @@ loc_0810fc:
 	move.b ($148,a5),($31,a4)
 	move.b ($b,a3),($3c,a4)
 	st.b ($162,a5)
-	move.b #$90,($124,a5)
+	move.b #$90,(Set_GC_Flash_BG,a5)
 	moveq #0,d0
-	move.b d0,($170,a5)
+	move.b d0,(Reset_GaurdTag,a5)
 	move.b d0,($66e,a5)
 	move.b d0,($a6e,a5)
 	move.b d0,($e6e,a5)
@@ -1561,7 +1561,7 @@ loc_081156:
 
 ;----------------------------------------------
 loc_08115e:
-	tst.b ($124,a5)
+	tst.b (Set_GC_Flash_BG,a5)
 	beq.w loc_082a58
 	addq.b #2,(4,a6)
 	moveq #0,d0
@@ -1623,7 +1623,7 @@ loc_0811ea:
 
 ;----------------------------------------------
 loc_081246:
-	tst.b ($124,a5)
+	tst.b (Set_GC_Flash_BG,a5)
 	beq.w loc_082a58
 	move.b (3,a6),d0
 	add.w d0,d0
@@ -6353,7 +6353,7 @@ loc_084c2e:
 	bne.b loc_084c58
 	moveq #2,d1
 	add.b d3,d1
-	btst #0,($ac,a5)
+	btst #0,(Active_Player_01,a5)
 	bne.b loc_084c58
 	moveq #5,d1
 	sub.b d3,d1
@@ -6369,7 +6369,7 @@ loc_084c5a:
 	move.b loc_084c80(pc,d0.w),d0
 	cmpi.w #6,(Dramatic_Mode_Type,a5)
 	bne.b loc_084c7c
-	btst #0,($ac,a5)
+	btst #0,(Active_Player_01,a5)
 	bne.b loc_084c7c
 	eori.b #1,d0
 
@@ -7717,7 +7717,7 @@ loc_085c58:
 	addq.b #2,(5,a6)
 	moveq #0,d0
 	moveq #0,d1
-	cmpi.b #3,($ac,a5)
+	cmpi.b #3,(Active_Player_01,a5)
 	beq.b loc_085c82
 	move.w #$fd00,d0
 	move.w #$c0,d1
@@ -7783,7 +7783,7 @@ loc_085cfe:
 
 ;----------------------------------------------
 loc_085d0c:
-	move.b ($ac,a5),d0
+	move.b (Active_Player_01,a5),d0
 	or.b ($8d,a5),d0
 	move.b ($101,a4),d1
 	btst d1,d0
@@ -7859,7 +7859,7 @@ loc_085dc4:
 	clr.b ($3a,a6)
 
 loc_085dd6:
-	move.b ($ac,a5),d0
+	move.b (Active_Player_01,a5),d0
 	or.b ($8d,a5),d0
 	move.b ($101,a4),d1
 	btst d1,d0
@@ -8015,7 +8015,7 @@ loc_085f24:
 	addq.b #2,(4,a6)
 
 loc_085f28:
-	move.b ($ac,a5),d0
+	move.b (Active_Player_01,a5),d0
 	or.b ($8d,a5),d0
 	move.b ($101,a4),d1
 	btst d1,d0
@@ -8448,7 +8448,7 @@ loc_08634e:
 	addq.b #2,(4,a6)
 
 loc_086352:
-	move.b ($ac,a5),d0
+	move.b (Active_Player_01,a5),d0
 	or.b ($8d,a5),d0
 	move.b ($101,a4),d1
 	btst d1,d0
@@ -8910,7 +8910,7 @@ loc_0867f6:
 	addq.b #2,(4,a6)
 
 loc_0867fa:
-	move.b ($ac,a5),d0
+	move.b (Active_Player_01,a5),d0
 	or.b ($8d,a5),d0
 	move.b ($101,a4),d1
 	btst d1,d0
@@ -9539,7 +9539,7 @@ loc_086e10:
 	move.b ($101,a4),($59,a6)
 
 loc_086e1a:
-	move.b ($ac,a5),d0
+	move.b (Active_Player_01,a5),d0
 	or.b ($8d,a5),d0
 	move.b ($101,a4),d1
 	btst d1,d0
@@ -14725,7 +14725,7 @@ loc_08bc8a:
 	move.w #3,($44,a4)
 	move.w #$20,($4a,a4)
 	lea.l (p1memory,a5),a1
-	btst #0,($ac,a5)
+	btst #0,(Active_Player_01,a5)
 	bne.b loc_08bd04
 	lea.l (p2memory,a5),a1
 
@@ -14762,7 +14762,7 @@ loc_08bd36:
 	jsr loc_01b7c0
 
 loc_08bd6a:
-	move.w ($176,a5),d0
+	move.w (Char_Sel_PalID,a5),d0
 	add.w d0,d0
 	movea.l #loc_35fb34,a0
 	adda.w loc_08bd88(pc,d0.w),a0
@@ -17101,7 +17101,7 @@ loc_08e74e:
 ;-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 loc_08e750:
 	lea.l (p1memory,a5),a0
-	btst #0,($ac,a5)
+	btst #0,(Active_Player_01,a5)
 	bne.b loc_08e760
 	lea.l (p2memory,a5),a0
 
@@ -17110,7 +17110,7 @@ loc_08e760:
 	moveq #0,d5
 	move.l ($140,a0),d6
 	move.w ($14c,a5),d7
-	lea.l (-$707e,a5),a0
+	lea.l (Arcade_Opp_List0,a5),a0
 	lea.l ($68,a6),a1
 
 loc_08e774:
@@ -17194,7 +17194,7 @@ loc_08e84c:
 	move.w d0,($26,a6)
 	move.w d0,($12,a6)
 	bsr.w loc_08ec76
-	move.w (Arcade_Match,a5),d1
+	move.w (Arcade_Match_Var,a5),d1
 	lsl.w #4,d1
 	add.w d1,d0
 	move.w d0,($14,a6)
@@ -17316,7 +17316,7 @@ loc_08e9dc:
 
 ;-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 loc_08e9de:
-	move.w (Arcade_Match,a5),d1
+	move.w (Arcade_Match_Var,a5),d1
 	add.w d1,d1
 	jsr loc_084c5a
 	beq.b loc_08e9f0
@@ -17423,7 +17423,7 @@ loc_08eb28:
 	cmpi.w #6,(Dramatic_Mode_Type,a5)
 	bne.b loc_08eb7e
 	move.b ($101,a4),d1
-	add.b ($ac,a5),d1
+	add.b (Active_Player_01,a5),d1
 	btst #0,d1
 	bne.b loc_08eb7e
 	addq.b #2,d0
@@ -17579,7 +17579,7 @@ loc_08ecf6:
 	rts
 
 loc_08ecfe:
-	move.w ($176,a5),d2
+	move.w (Char_Sel_PalID,a5),d2
 	lsl.w #2,d2
 	add.w d0,d2
 	add.w d2,d2

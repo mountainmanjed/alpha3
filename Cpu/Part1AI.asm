@@ -85,7 +85,7 @@ loc_0307cc:
 
 ;==============================================
 loc_0307d0:
-	tst.b ($b9,a6)
+	tst.b (pl_cc_cancelflag,a6)
 	bne.w loc_030924
 	tst.b ($24e,a6)
 	bne.w loc_030924
@@ -276,7 +276,7 @@ loc_030990:
 	moveq #$18,d0
 
 loc_03099a:
-	move.b d2,($2c8,a6)
+	move.b d2,(pl_crouching,a6)
 	move.l d1,(pl_overall_state,a6)
 	move.l #$2020c00,($200,a6)
 	jmp loc_02a708
@@ -336,7 +336,7 @@ loc_030a26:
 loc_030a2a:
 	tst.b ($217,a6)
 	bne.w loc_030a62
-	tst.b ($b9,a6)
+	tst.b (pl_cc_cancelflag,a6)
 	bne.w loc_030a62
 	jsr RNGFunction
 	andi.w #$1f,d0
@@ -613,7 +613,7 @@ loc_030c1e:
 
 ;----------------------------------------------
 loc_030c32:
-	tst.b ($2c8,a6)
+	tst.b (pl_crouching,a6)
 	bne.w loc_0321ac
 	move.w #2,($202,a6)
 	move.l #$2000200,(pl_overall_state,a6)
@@ -621,7 +621,7 @@ loc_030c32:
 
 ;----------------------------------------------
 loc_030c4a:
-	tst.b ($2c8,a6)
+	tst.b (pl_crouching,a6)
 	beq.w loc_0321ac
 	move.w #4,($202,a6)
 	move.l #$2000204,(pl_overall_state,a6)
@@ -1004,7 +1004,7 @@ loc_0310be:
 	clr.b ($a9,a6)
 	move.b (pl_sidecheck,a6),(PL_Flip,a6)
 	clr.b ($5b,a6)
-	clr.b ($2c8,a6)
+	clr.b (pl_crouching,a6)
 	move.b ($20c,a6),($211,a6)
 	move.b ($20d,a6),($210,a6)
 	move.b ($20d,a6),d0
@@ -1037,7 +1037,7 @@ loc_03110e:
 	move.w (a0)+,($20a,a6)
 	move.w (a0)+,($20c,a6)
 	move.w (a0)+,($20e,a6)
-	tst.b ($b9,a6)
+	tst.b (pl_cc_cancelflag,a6)
 	bne.w loc_031166
 	cmpi.w #$48,(PL_meter,a6)
 	bcs.w loc_031166
@@ -1186,7 +1186,7 @@ loc_0312a4:
 	move.b #1,($ce,a6)
 	move.b (pl_sidecheck,a6),(PL_Flip,a6)
 	clr.b ($5b,a6)
-	clr.b ($2c8,a6)
+	clr.b (pl_crouching,a6)
 	rts
 
 
@@ -1236,7 +1236,7 @@ loc_03133e:
 	move.b #1,($a9,a6)
 	move.b (pl_sidecheck,a6),(PL_Flip,a6)
 	clr.b ($5b,a6)
-	clr.b ($2c8,a6)
+	clr.b (pl_crouching,a6)
 	rts
 
 loc_031362:
@@ -1252,7 +1252,7 @@ loc_031372:
 	bne.w loc_0321ac
 	cmpi.w #$48,(PL_meter,a6)
 	bcs.w loc_0321ac
-	tst.b ($b9,a6)
+	tst.b (pl_cc_cancelflag,a6)
 	bne.w loc_0321ac
 	bsr.w loc_03289c
 	beq.w loc_0321ac
@@ -1263,7 +1263,7 @@ loc_03139c:
 	move.b #1,($a9,a6)
 	move.b (pl_sidecheck,a6),(PL_Flip,a6)
 	clr.b ($5b,a6)
-	clr.b ($2c8,a6)
+	clr.b (pl_crouching,a6)
 	clr.b ($2c5,a6)
 	move.b ($20b,a6),($aa,a6)
 	clr.b ($20d,a6)
@@ -1726,7 +1726,7 @@ loc_0317ea:
 
 ;----------------------------------------------
 loc_0317f8:
-	tst.b ($b9,a6)
+	tst.b (pl_cc_cancelflag,a6)
 	bne.w loc_0321ac
 	bra.w loc_031a38
 
@@ -1917,7 +1917,7 @@ loc_031b2a:
 
 ;==============================================
 loc_031b34:
-	addq.b #1,($255,a6)
+	addq.b #1,(PL_byte255,a6)
 
 loc_031b38:
 	move.w (a0)+,d0
@@ -2290,18 +2290,18 @@ loc_031e8e:
 
 ;==============================================
 loc_031e92:
-	subq.b #1,($255,a6)
+	subq.b #1,(PL_byte255,a6)
 	bra.w loc_0321ac
 
 ;==============================================
 loc_031e9a:
-	move.b ($255,a6),d6
+	move.b (PL_byte255,a6),d6
 	bsr.w loc_031eb2
 	bra.w loc_0321ac
 
 ;==============================================
 loc_031ea6:
-	move.b ($255,a6),d6
+	move.b (PL_byte255,a6),d6
 	bsr.w loc_032040
 	bra.w loc_0321ac
 
@@ -2477,7 +2477,7 @@ loc_031fba:
 
 ;----------------------------------------------
 loc_031fc4:
-	addq.b #1,($255,a6)
+	addq.b #1,(PL_byte255,a6)
 
 loc_031fc8:
 	move.w (a0)+,d0
@@ -2521,12 +2521,12 @@ loc_031fd6:
 
 ;----------------------------------------------
 loc_032014:
-	cmp.b ($255,a6),d6
+	cmp.b (PL_byte255,a6),d6
 	beq.b loc_032024
 	bra.b loc_031fc8
 
 loc_03201c:
-	cmp.b ($255,a6),d6
+	cmp.b (PL_byte255,a6),d6
 	bne.w loc_031eb2
 
 loc_032024:
@@ -2537,9 +2537,9 @@ loc_032028:
 	bra.w loc_031eb2
 
 loc_03202c:
-	subq.b #1,($255,a6)
+	subq.b #1,(PL_byte255,a6)
 	move.b d6,d5
-	sub.b ($255,a6),d5
+	sub.b (PL_byte255,a6),d5
 	cmpi.b #1,d5
 	bne.w loc_031eb2
 	rts
@@ -2645,7 +2645,7 @@ loc_0320d6:
 
 ;----------------------------------------------
 loc_0320dc:
-	addq.b #1,($255,a6)
+	addq.b #1,(PL_byte255,a6)
 
 loc_0320e0:
 	move.w (a0)+,d0
@@ -2722,9 +2722,9 @@ loc_032156:
 	bra.w loc_032040
 
 loc_03215a:
-	subq.b #1,($255,a6)
+	subq.b #1,(PL_byte255,a6)
 	move.b d6,d5
-	sub.b ($255,a6),d5
+	sub.b (PL_byte255,a6),d5
 	cmpi.b #1,d5
 	bne.w loc_032040
 	rts
@@ -2747,7 +2747,7 @@ loc_03217c:
 	move.l #$2040000,(4,a6)
 	move.b (pl_sidecheck,a6),(PL_Flip,a6)
 	clr.b ($5b,a6)
-	clr.b ($2c8,a6)
+	clr.b (pl_crouching,a6)
 	move.b ($20a,a6),(PL_Attacktype,a6)
 	move.b ($20b,a6),($80,a6)
 	rts
@@ -2842,7 +2842,7 @@ loc_03226a:
 loc_03226e:
 	clr.b ($204,a6)
 	clr.b ($215,a6)
-	clr.b ($255,a6)
+	clr.b (PL_byte255,a6)
 	move.w ($218,a6),($206,a6)
 	bra.b loc_032220
 
@@ -2910,7 +2910,7 @@ loc_0322f0:
 	bne.w loc_03299c
 	tst.b (6,a6)
 	beq.w loc_032710
-	tst.b ($2c8,a6)
+	tst.b (pl_crouching,a6)
 	bne.w loc_032710
 	rts
 
@@ -2920,7 +2920,7 @@ loc_03230a:
 	bne.w loc_03299c
 	tst.b (6,a6)
 	beq.w loc_032710
-	tst.b ($2c8,a6)
+	tst.b (pl_crouching,a6)
 	beq.w loc_032710
 	rts
  
@@ -3361,7 +3361,7 @@ loc_03271a:
 	move.l a0,($220,a6)
 	move.l a0,($234,a6)
 	clr.b ($215,a6)
-	clr.b ($255,a6)
+	clr.b (PL_byte255,a6)
 	rts
 
 ;==============================================
@@ -3388,7 +3388,7 @@ loc_032756:
 	move.w (a0)+,($206,a6)
 	move.l a0,($224,a6)
 	clr.b ($215,a6)
-	clr.b ($255,a6)
+	clr.b (PL_byte255,a6)
 	rts
 
 ;==============================================
@@ -3418,7 +3418,7 @@ loc_0327b0:
 	move.w (a0)+,($206,a6)
 	move.l a0,($228,a6)
 	clr.b ($215,a6)
-	clr.b ($255,a6)
+	clr.b (PL_byte255,a6)
 	rts
 
 ;==============================================
@@ -3438,7 +3438,7 @@ loc_032812:
 	move.w (a0)+,($206,a6)
 	move.l a0,($22c,a6)
 	clr.b ($215,a6)
-	clr.b ($255,a6)
+	clr.b (PL_byte255,a6)
 	rts
 
 ;==============================================
@@ -3960,7 +3960,7 @@ loc_032c9a:
 
 ;==============================================
 loc_032cd6:
-	tst.b ($b9,a6)
+	tst.b (pl_cc_cancelflag,a6)
 	beq.b loc_032d00
 	tst.b ($ce,a6)
 	bne.b loc_032d00

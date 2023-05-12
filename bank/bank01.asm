@@ -1920,7 +1920,7 @@ loc_017f98:
 	jsr loc_018000(pc,d1.w)
 	move.w ($20,a6),($28,a6)
 	move.w ($24,a6),($2c,a6)
-	tst.b ($124,a5)
+	tst.b (Set_GC_Flash_BG,a5)
 	beq.b loc_017fce
 	moveq #0,d0
 	move.b ($12b,a5),d0
@@ -2999,7 +2999,7 @@ loc_01884a:
 	add.w d1,d1
 	move.w loc_018876(pc,d1.w),d0
 	move.w loc_018876+2(pc,d1.w),d1
-	tst.b ($124,a5)
+	tst.b (Set_GC_Flash_BG,a5)
 	beq.b loc_018866
 	move.w #$3900,d0
 	move.w #$1111,d1
@@ -5857,7 +5857,7 @@ loc_01b5e8:
 
 ;==============================================
 loc_01b5f8:
-	tst.b ($124,a5)
+	tst.b (Set_GC_Flash_BG,a5)
 	beq.b loc_01b604
 	tst.b ($30,a6)
 	beq.b loc_01b610
@@ -5911,7 +5911,7 @@ loc_01b64a:
 
 ;==============================================
 loc_01b65a:
-	tst.b ($124,a5)
+	tst.b (Set_GC_Flash_BG,a5)
 	bne.b loc_01b66c
 	move.b (9,a6),d0
 	move.w loc_01b66e(pc,d0.w),d1
@@ -6999,7 +6999,7 @@ loc_01c140:
 loc_01c15c:
 	moveq #0,d1
 	lea.l ($6f9e,a5),a0
-	lea.l ($5000,a5),a6
+	lea.l (Hud_start,a5),a6
 	move.b #7,($6ebc,a5)
 	move.w #6,d0
 
@@ -7435,10 +7435,10 @@ loc_01c5ea:
 
 ;==============================================
 loc_01c6aa:
-	moveq #$44,d0
+	moveq #$44,d0;ascii D
 	moveq #$1b,d1
 	jsr loc_00141a
-	tst.b ($85,a5)
+	tst.b (Dip_Debug_mode,a5)
 	beq.b loc_01c6f2
 	moveq #0,d0
 	lea.l (-$5d1e,a5),a6
@@ -8400,7 +8400,7 @@ loc_01e1f2:
 
 ;==============================================
 loc_01e1f4:
-	move.w ($176,a5),d0
+	move.w (Char_Sel_PalID,a5),d0
 	move.w d0,d4
 	move.w d0,d1
 	lsl.w #3,d0
@@ -8579,7 +8579,7 @@ loc_01e47a:
 	lea.l (p1memory,a5),a4
 	lea.l (p2memory,a5),a6
 	bsr.w loc_01e56e
-	move.b ($ac,a5),d0
+	move.b (Active_Player_01,a5),d0
 	or.b ($8d,a5),d0
 	cmp.b ($15,a5),d0
 	bne.b loc_01e4b8
@@ -8665,7 +8665,7 @@ loc_01e56c:
 loc_01e56e:
 	moveq #0,d0
 	move.b ($101,a6),d0
-	move.b ($ac,a5),d1
+	move.b (Active_Player_01,a5),d1
 	or.b ($8d,a5),d1
 	btst.l d0,d1
 	beq.b loc_01e58c
@@ -9366,12 +9366,11 @@ loc_01ebfe:
 	btst d0,($15,a5)
 	bne.b loc_01ec30
 	bset.b d0,($15,a5)
-	btst d0,($ac,a5)
+	btst d0,(Active_Player_01,a5)
 	bne.b loc_01ec30
-	bset.b d0,($ac,a5)
+	bset.b d0,(Active_Player_01,a5)
 	moveq #0,d0
 
-;Versus Stage Select
 	move.b (PL_charid,a6),d0
 	add.w d0,d0
 	move.w d0,(Main_stageid,a5)
@@ -9497,7 +9496,7 @@ loc_01ed98:
 	move.w d0,($16,a5)
 	lea.l (p1memory,a5),a1
 	lea.l (p2memory,a5),a2
-	btst.b #0,($ac,a5)
+	btst.b #0,(Active_Player_01,a5)
 	bne.b loc_01edce
 	exg.l a1,a2
 
@@ -9725,7 +9724,7 @@ loc_01f078:
 
 ;==============================================
 loc_01f07a:
-	move.w ($176,a5),d0
+	move.w (Char_Sel_PalID,a5),d0
 	move.w d0,d4
 	lsl.w #8,d0
 	lea.l loc_35e354,a0
@@ -9857,7 +9856,7 @@ loc_01f232:
 	lea.l (p1memory,a5),a1
 	lea.l (p2memory,a5),a3
 	lea.l (p3memory,a5),a2
-	btst.b #0,($ac,a5)
+	btst.b #0,(Active_Player_01,a5)
 	bne.b loc_01f250
 	exg.l a1,a3
 
@@ -9977,7 +9976,7 @@ loc_01f3c4:
 
 ;==============================================
 loc_01f3c6:
-	move.w ($176,a5),d0
+	move.w (Char_Sel_PalID,a5),d0
 	move.w d0,d4
 	move.w d0,d1
 	lsl.w #3,d0
@@ -10027,7 +10026,7 @@ loc_01f438:
 	tst.b ($141,a5)
 	bne.w loc_01f688
 	lea.l (p1memory,a5),a6
-	btst.b #0,($ac,a5)
+	btst.b #0,(Active_Player_01,a5)
 	bne.b loc_01f468
 	lea.l (p2memory,a5),a6
 
@@ -10115,7 +10114,7 @@ loc_01f574:
 	move.b d0,($145,a5)
 	move.b #$7f,($112,a5)
 	lea.l (p1memory,a5),a0
-	btst.b #0,($ac,a5)
+	btst.b #0,(Active_Player_01,a5)
 	bne.b loc_01f5a2
 	lea.l (p2memory,a5),a0
 

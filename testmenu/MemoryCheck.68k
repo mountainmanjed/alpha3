@@ -64,12 +64,12 @@ loc_010944:
 	bsr.w loc_010aa0
 
 	clr.b ($15,a5)
-	lea.l $708000,a0
+	lea.l ObjectRam,a0
 	lea.l $70a000,a1
 	moveq #2,d6
 	bsr.w loc_010aa0
 	eori.w #1,OBJram_Bank0
-	lea.l $708000,a0
+	lea.l ObjectRam,a0
 	lea.l $70a000,a1
 	moveq #2,d6
 	bsr.w loc_010aa0

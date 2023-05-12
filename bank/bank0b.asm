@@ -2524,7 +2524,7 @@ loc_0b2114:
 	move.b ($102,a4),d0
 	cmp.b (3,a6),d0
 	bne.b loc_0b2140
-	tst.b ($124,a5)
+	tst.b (Set_GC_Flash_BG,a5)
 	bne.w loc_0b2144
 	tst.b ($1a8,a4)
 	bne.b loc_0b2136
@@ -4514,7 +4514,7 @@ loc_0b3dbc:
 	lea.l ($10e,a6),a0
 	moveq #0,d0
 	move.l d0,d1
-	move.w (Arcade_Match,a5),d0
+	move.w (Arcade_Match_Var,a5),d0
 	addq.w #1,d0
 	move.w d0,d1
 	move.w #$60e,(a0)
@@ -6004,7 +6004,7 @@ loc_0b4fce:
 
 ;----------------------------------------------
 loc_0b4fea:
-	move.b ($ac,a5),d0
+	move.b (Active_Player_01,a5),d0
 	btst #0,d0
 	beq.b loc_0b5010
 	lea.l (p1memory,a5),a3
@@ -6123,7 +6123,7 @@ loc_0b513c:
 
 ;+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-
 loc_0b5158:
-	move.b ($ac,a5),d0
+	move.b (Active_Player_01,a5),d0
 	btst #0,d0
 	beq.b loc_0b517e
 	lea.l (p1memory,a5),a3
@@ -6381,7 +6381,7 @@ loc_0b548e:
 
 ;+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-
 loc_0b54aa:
-	move.b ($ac,a5),d0
+	move.b (Active_Player_01,a5),d0
 	btst #0,d0
 	beq.b loc_0b54d0
 	lea.l (p1memory,a5),a3
@@ -6569,7 +6569,7 @@ loc_0b5704:
 	bra.w loc_0b579e
 
 loc_0b5720:
-	move.b ($ac,a5),d0
+	move.b (Active_Player_01,a5),d0
 	btst #0,d0
 	bne.b loc_0b5746
 	lea.l (p1memory,a5),a3
@@ -6683,7 +6683,7 @@ loc_0b5868:
 
 ;+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-
 loc_0b5884:
-	move.b ($ac,a5),d0
+	move.b (Active_Player_01,a5),d0
 	btst #0,d0
 	bne.b loc_0b58aa
 	lea.l (p1memory,a5),a3
@@ -6932,7 +6932,7 @@ loc_0b5b9e:
 
 ;+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-
 loc_0b5bba:
-	move.b ($ac,a5),d0
+	move.b (Active_Player_01,a5),d0
 	btst #0,d0
 	bne.b loc_0b5be0
 	lea.l (p1memory,a5),a3
@@ -7989,7 +7989,7 @@ loc_0b8ed8:
 	move.w #$4,($40,a6)
 	move.w #$3e,($42,a6)
 	move.w #$2f,($44,a6)
-	move.b ($ac,a5),($31,a6)
+	move.b (Active_Player_01,a5),($31,a6)
 	lea.l (p1memory,a5),a1
 	move.w a1,($34,a6)
 	bsr.w loc_0b93d8
@@ -8684,7 +8684,7 @@ loc_0b9646:
 
 ;+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-
 loc_0b9668:
-	move.b ($ac,a5),d0
+	move.b (Active_Player_01,a5),d0
 	subq.b #2,d0
 	btst #0,d0
 	beq.b loc_0b9694
@@ -9292,13 +9292,13 @@ loc_0bb44e:
 	movea.w (right_hud_pointer,a5),a3
 	tst.b ($2c7,a3)
 	bne.w loc_0bb62e
-	tst.b ($170,a5)
+	tst.b (Reset_GaurdTag,a5)
 	bne.w loc_0bb4ae
 	tst.b (7,a6)
 	beq.w loc_0bb6c2
 	moveq #0,d0
 	moveq #0,d1
-	move.b ($170,a5),d0
+	move.b (Reset_GaurdTag,a5),d0
 	cmp.b (7,a6),d0
 	bne.w loc_0bb59a
 
@@ -9307,7 +9307,7 @@ loc_0bb4ae:
 	move.b ($24c,a3),d0
 	cmpi.b #$11,d0
 	bcs.w loc_0bb526
-	move.b ($170,a5),d0
+	move.b (Reset_GaurdTag,a5),d0
 	andi.b #1,d0
 	beq.w loc_0bb526
 	movea.l #$90c3a0,a0
@@ -9342,7 +9342,7 @@ loc_0bb526:
 	move.b ($24c,a3),d0
 	cmpi.b #$11,d0
 	bcs.w loc_0bb6c2
-	move.b ($170,a5),d0
+	move.b (Reset_GaurdTag,a5),d0
 	andi.b #2,d0
 	beq.w loc_0bb6c2
 	movea.l #$90c3a0,a0
@@ -9454,7 +9454,7 @@ loc_0bb6b0:
 	bsr.w loc_0bba96
 
 loc_0bb6c2:
-	move.b ($170,a5),(7,a6)
+	move.b (Reset_GaurdTag,a5),(7,a6)
 
 loc_0bb6c8:
 	movea.w (left_hud_pointer,a5),a3

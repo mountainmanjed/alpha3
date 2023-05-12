@@ -3275,7 +3275,7 @@ loc_075eee:
 	move.w a4,($a4,a6)
 	addq.b #1,($238,a6)
 	bsr.w loc_075ff8
-	tst.b ($b9,a6)
+	tst.b (pl_cc_cancelflag,a6)
 	beq.w loc_075ff6
 	move.w ($e4,a6),d0
 	cmp.w ($2a6,a6),d0
@@ -6401,7 +6401,7 @@ loc_0793be:
 	move.b d0,($5b,a6)
 	move.b d0,($54,a6)
 	move.b d0,($6d,a6)
-	move.b d0,($5f,a6)
+	move.b d0,(pl_hitfreeze,a6)
 	move.b #$20,($6c,a6)
 	move.b ($d,a6),($74,a6)
 	move.w #$ff,($16,a6)
@@ -8274,7 +8274,7 @@ loc_07afe6:
 	bcs.b loc_07b012
 	move.l #$4000000,(4,a6)
 	move.w d0,($14,a6)
-	move.b #2,($5f,a6)
+	move.b #2,(pl_hitfreeze,a6)
 
 loc_07b012:
 	jmp loc_033210
@@ -8404,7 +8404,7 @@ loc_07b158:
 	move.l d0,($4c,a6)
 	move.b d0,($31,a6)
 	move.b #2,(a6)
-	move.b #2,($5f,a6)
+	move.b #2,(pl_hitfreeze,a6)
 	move.l #loc_07b574,($60,a6)
 	move.l #loc_07b562,($88,a6)
 	jsr loc_03323a
@@ -9069,7 +9069,7 @@ loc_07babc:
 	move.w #$fff,($50,a6)
 	move.b d0,($5b,a6)
 	move.b d0,($54,a6)
-	move.b d0,($5f,a6)
+	move.b d0,(pl_hitfreeze,a6)
 	st.b ($70,a6)
 	move.b #1,($3e,a6)
 	movea.w ($36,a6),a4
