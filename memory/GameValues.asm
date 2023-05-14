@@ -15,38 +15,6 @@ Asia_Region = 0x08
 Europe_Region = 0x0a
 Brazil_Region = 0x0c
 
-;==============================================
-;Debug Dips
-;==============================================
-;Debug A
-;0x80 Slow Mode 2
-;0x40 Slow Mode 1
-;0x20 Limit Off
-;0x10  8x8  grid
-;0x08 16x16 grid
-;0x04 32x32 grid
-;0x02 add 1 to p2 character id when reseting fight
-;0x01 Deals with Sprite Rendering
-
-;----------------------------------------------
-;Debug B
-;0x80 Disable Timer
-;0x40 No Damage
-;0x20 Auto Block
-
-;Force Stage
-;0x1f
-
-;----------------------------------------------
-;Debug C
-;0x80 show collision and axis
-;0x40
-;0x20 Player location data
-;0x10 Graphic Data
-;0x08 Audio Log
-;0x04 Disable Hud
-;0x02
-;0x01 Debug Mode
 
 ;==============================================
 ;IDs

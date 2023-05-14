@@ -7434,6 +7434,10 @@ loc_01c5ea:
 	dc.w $024a,$024a,$024a,$024a,$024a,$024a,$02d2,$024a
 
 ;==============================================
+;Sam 22fec
+;loc 1c6aa
+;some debug code
+;unused in final
 loc_01c6aa:
 	moveq #$44,d0;ascii D
 	moveq #$1b,d1
@@ -7442,15 +7446,15 @@ loc_01c6aa:
 	beq.b loc_01c6f2
 	moveq #0,d0
 	lea.l (-$5d1e,a5),a6
-	bsr.w loc_01cb38
-	bsr.w loc_01cc4a
+	bsr.w Debug_CPSGrid
+	bsr.w Debug_8x8LayerManip
 	moveq #0,d7
 	movea.w ($71b6,a5),a0
-	bsr.w loc_01c6f4
-	bsr.w loc_01c7b0
-	bsr.w loc_01c7e4
-	bsr.w loc_01c838
-	bsr.w loc_01c86e
+	bsr.w Debug_GfxRam_Disp
+	bsr.w Debug_Audio_Log
+	bsr.w Debug_Perf_Disp
+	bsr.w Debug_Disp_BGPos
+	bsr.w Debug_CData_Disp
 	tst.w d7
 	beq.b loc_01c6f2
 	add.w d7,($71be,a5)
@@ -7461,52 +7465,61 @@ loc_01c6f2:
 	rts
 
 ;==============================================
-loc_01c6f4:
-	btst.b #4,($1c2,a5)
+;Grapic Ram Usage Display
+;==============================================
+Debug_GfxRam_Disp:
+	btst.b #4,(G_DebugDip_C,a5)
 	beq.w loc_01c7ae
-	move.l #$5053484c,d0
+
+	move.l #$5053484c,d0;PSHL
 	moveq #$48,d2
 	moveq #$38,d3
 	moveq #$c,d5
 	moveq #$c,d6
 	sub.b ($6eb6,a5),d6
 	bsr.b loc_01c788
-	move.l #$4553484c,d0
+
+	move.l #$4553484c,d0;ESHL
 	moveq #$48,d2
 	moveq #$40,d3
 	moveq #$c,d5
 	moveq #$c,d6
 	sub.b ($6eb7,a5),d6
 	bsr.b loc_01c788
-	move.l #$5349474e,d0
+
+	move.l #$5349474e,d0;SIGN
 	moveq #$48,d2
 	moveq #$48,d3
 	moveq #8,d5
 	moveq #8,d6
 	sub.b ($6eb8,a5),d6
 	bsr.b loc_01c788
-	move.l #$53455420,d0
+
+	move.l #$53455420,d0;SET
 	moveq #$48,d2
 	moveq #$50,d3
 	moveq #$20,d5
 	moveq #$20,d6
 	sub.b ($6eb9,a5),d6
 	bsr.b loc_01c788
-	move.l #$534f424a,d0
+
+	move.l #$534f424a,d0;SOBJ
 	moveq #$48,d2
 	moveq #$58,d3
 	moveq #$10,d5
 	moveq #$10,d6
 	sub.b ($6eba,a5),d6
 	bsr.b loc_01c788
-	move.l #$45464354,d0
+
+	move.l #$45464354,d0;EFCT
 	moveq #$48,d2
 	moveq #$60,d3
 	moveq #$10,d5
 	moveq #$10,d6
 	sub.b ($6ebb,a5),d6
 	bsr.b loc_01c788
-	move.l #$5652414d,d0
+
+	move.l #$5652414d,d0;VRAM
 	moveq #$48,d2
 	moveq #$68,d3
 	moveq #7,d5
@@ -7535,8 +7548,8 @@ loc_01c7ae:
 	rts
 
 ;==============================================
-loc_01c7b0:
-	btst.b #3,($1c2,a5)
+Debug_Audio_Log:
+	btst.b #3,(G_DebugDip_C,a5)
 	beq.b loc_01c7e2
 	lea.l (Sound_Buffer_Start,a5),a4
 	move.w ($6e82,a5),d5
@@ -7558,8 +7571,11 @@ loc_01c7e2:
 	rts
 
 ;==============================================
-loc_01c7e4:
-	btst.b #6,($1c2,a5)
+;Performance Display
+;loc 01c7e4
+;==============================================
+Debug_Perf_Disp:
+	btst.b #6,(G_DebugDip_C,a5)
 	beq.b loc_01c836
 	subq.b #1,(-$5d16,a5)
 	bne.b loc_01c7f6
@@ -7595,8 +7611,8 @@ loc_01c836:
 	rts
 
 ;==============================================
-loc_01c838:
-	btst.b #4,($1c2,a5)
+Debug_Disp_BGPos:
+	btst.b #4,(G_DebugDip_C,a5)
 	beq.b loc_01c86c
 	moveq #$38,d3
 	moveq #2,d6
@@ -7619,8 +7635,11 @@ loc_01c86c:
 	rts
 
 ;==============================================
-loc_01c86e:
-	btst.b #5,($1c2,a5)
+;
+;Dip C 0010 0000
+;==============================================
+Debug_CData_Disp:
+	btst.b #5,(G_DebugDip_C,a5)
 	beq.w loc_01caca
 
 loc_01c878:
@@ -7636,7 +7655,7 @@ loc_01c878:
 
 loc_01c898:
 	move.w d6,d2
-	move.w ($50,a6),d0
+	move.w (PL_HP,a6),d0
 	moveq #$16,d1
 	cmpi.w #$20,d0
 	bge.b loc_01c8ae
@@ -7648,7 +7667,7 @@ loc_01c898:
 loc_01c8ae:
 	bsr.w loc_01cd62
 	addq.w #8,d2
-	move.w ($11e,a6),d0
+	move.w (PL_meter,a6),d0
 	moveq #$1f,d1
 	cmpi.w #$30,d0
 	bcs.b loc_01c8d2
@@ -7664,33 +7683,33 @@ loc_01c8d2:
 	bsr.w loc_01cd62
 	addq.w #8,d2
 	moveq #$1f,d1
-	move.l #$4c414e44,d0
-	tst.b ($31,a6)
+	move.l #$4c414e44,d0;Land
+	tst.b (pl_in_air,a6)
 	beq.b loc_01c8ee
 	moveq #$15,d1
-	move.l #$4a554d50,d0
+	move.l #$4a554d50,d0;Jump
 
 loc_01c8ee:
 	bsr.w loc_01ccfe
 	addq.w #8,d3
 	move.w d6,d2
-	move.b ($2cc,a6),d0
+	move.b (PL_Stun,a6),d0
 	moveq #$16,d1
 	bsr.w loc_01cd54
 	move.b #$2f,d0
 	moveq #$15,d1
 	bsr.w loc_01ccf2
-	move.b ($2cd,a6),d0
+	move.b (pl_stun_max,a6),d0
 	bsr.w loc_01cd54
 	addq.w #8,d2
-	move.b ($24c,a6),d0
-	sub.b ($24d,a6),d0
+	move.b (pl_guard_bar_max,a6),d0
+	sub.b (pl_guard_bar,a6),d0
 	moveq #$16,d1
 	bsr.w loc_01cd54
 	move.b #$2f,d0
 	moveq #$15,d1
 	bsr.w loc_01ccf2
-	move.b ($24c,a6),d0
+	move.b (pl_guard_bar_max,a6),d0
 	bsr.w loc_01cd54
 	moveq #$16,d1
 	addq.w #8,d3
@@ -7723,11 +7742,11 @@ loc_01c8ee:
 
 loc_01c990:
 	moveq #$1f,d1
-	move.l #$43414e43,d0
+	move.l #$43414e43,d0;CANC
 	bsr.w loc_01ccfe
-	move.w #$454c,d0
+	move.w #$454c,d0;EL
 	bsr.w loc_01ccf8
-	tst.b ($a9,a6)
+	tst.b (pl_attk_active,a6)
 	beq.b loc_01c9fe
 	move.l (4,a6),d0
 	andi.l #$ffffff00,d0
@@ -7745,10 +7764,10 @@ loc_01c990:
 
 loc_01c9da:
 	moveq #$15,d1
-	move.l #$5049594f,d0
+	move.l #$5049594f,d0;PIYO
 	bsr.w loc_01ccfe
 	addq.w #8,d2
-	move.l #$54494d45,d0
+	move.l #$54494d45,d0;TIME
 	bsr.w loc_01ccfe
 	addq.w #8,d2
 	move.w ($3a,a6),d0
@@ -7759,13 +7778,13 @@ loc_01c9fe:
 	addq.w #8,d3
 	move.w d6,d2
 	moveq #$1f,d1
-	move.l #$4d555445,d0
+	move.l #$4d555445,d0;MUTE
 	bsr.w loc_01ccfe
-	move.w #$4b49,d0
+	move.w #$4b49,d0;KI
 	bsr.w loc_01ccf8
 	addq.w #8,d2
 	moveq #$17,d1
-	move.b ($25d,a6),d0
+	move.b (pl_invinciblity_timer,a6),d0
 	beq.b loc_01ca22
 	moveq #$1f,d1
 
@@ -7897,7 +7916,7 @@ loc_01cb30:
 	dc.w $0016,$0017,$001f,$0015
 
 ;==============================================
-loc_01cb38:
+Debug_CPSGrid:
 	move.b ($1c0,a5),d0
 	andi.b #$18,d0
 	lsr.b #2,d0
@@ -7919,14 +7938,14 @@ loc_01cb52:
 
 ;==============================================
 loc_01cb5a:
-	lea.l $900000,a1
+	lea.l Scroll0BackG0,a1
 	move.w #$bf,d7
 	move.l #$200000,d0
 	bra.b loc_01cb7c
 
 ;==============================================
 loc_01cb6c:
-	lea.l $900000,a1
+	lea.l Scroll0BackG0,a1
 	move.w #$bf,d7
 	move.l #$148001f,d0
 
@@ -7944,7 +7963,7 @@ loc_01cb7c:
 
 ;==============================================
 loc_01cb92:
-	lea.l $900000,a0
+	lea.l Scroll0BackG0,a0
 	move.l #$148001d,d0
 	move.l #$14e001d,d1
 	move.l #$14f001d,d2
@@ -7968,7 +7987,7 @@ loc_01cbb6:
 
 ;==============================================
 loc_01cbd6:
-	lea.l $900000,a0
+	lea.l Scroll0BackG0,a0
 	move.l #$148001b,d0
 	move.l #$14e001b,d1
 	move.l #$14f001b,d2
@@ -8003,8 +8022,9 @@ loc_01cbfa:
 	rts
 
 ;==============================================
-loc_01cc4a:
-	move.b ($1c0,a5),d0
+;loc 1cc4a
+Debug_8x8LayerManip:
+	move.b (G_DebugDip_A,a5),d0
 	andi.b #$19,d0
 	beq.b loc_01ccc4
 	move.w ($32,a5),d0
@@ -8167,10 +8187,10 @@ loc_01cd90:
 
 ;==============================================
 loc_01cda4:
-	move.w #$4e47,d0
+	move.w #$4e47,d0;NG
 	tst.b d1
 	beq.b loc_01cdb0
-	move.w #$4f4b,d0
+	move.w #$4f4b,d0;OK
 
 loc_01cdb0:
 	moveq #$19,d1

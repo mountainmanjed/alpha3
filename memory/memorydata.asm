@@ -67,7 +67,7 @@ palrampointer = 0x20
 ;0x2a
 ;0x2c
 
-;0x32
+;0x32 ;BG layer
 ;0x34
 ;0x38
 ;0x3a
@@ -297,11 +297,47 @@ Char_Sel_PalID = 0x176
 ;0x183 ; byte
 ;0x184 ; long
 
+
+;==============================================
+;Debug Dips
+;==============================================
 GDebugAll = 0x1c0
 G_DebugDip_A = 0x1c0
 G_DebugDip_B = 0x1c1
 G_DebugDip_C = 0x1c2
 ;unuseddebig = 0x1c3
+
+;===============================================
+;Debug A
+;0x80 Slow Mode 2
+;0x40 Slow Mode 1
+;0x20 Limit Off
+;0x10  8x8  grid
+;0x08 16x16 grid
+;0x04 32x32 grid
+;0x02 add 1 to p2 character id when reseting fight
+;0x01 Tracking Display 
+
+;----------------------------------------------
+;Debug B
+;0x80 Disable Timer
+;0x40 No Damage
+;0x20 Auto Block
+
+;Force Stage
+;0x1f
+
+;----------------------------------------------
+;Debug C
+;0x80 show collision and axis
+;0x40 Performance display
+;0x20 Player location data and more
+;0x10 Graphic Data
+;0x08 Audio Log
+;0x04 Disable Hud
+;0x02 infinite meter
+;0x01 Debug Mode
+
 
 ;input01 1c4
 ;input01 1c5
@@ -350,6 +386,13 @@ Hud_offset = 0x200
 Sound_Buffer_Start = 0x5e80; ffde80
 ;0x6e82
 
+;PSHL = 0x6eb6
+;ESHL = 0x6eb7
+;SIGN = 0x6eb8
+;SET = 0x6eb9
+;SOBJ = 0x6eba
+;EFCT = 0x6ebb
+;VRAM = 0x6ebc
 
 
 ;==============================================
