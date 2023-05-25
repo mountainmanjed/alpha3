@@ -542,7 +542,7 @@ loc_07cab0:
 
 ;----------------------------------------------
 loc_07cabe:
-	tst.b (pause_flag,a5)
+	tst.b (m_unk15c,a5)
 	bne.b loc_07cad6
 	move.l ($40,a6),d0
 	add.l d0,($10,a6)

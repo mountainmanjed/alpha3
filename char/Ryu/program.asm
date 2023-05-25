@@ -52,7 +52,7 @@ loc_034056:
 	bne.w loc_0340e0
 	tst.b ($105,a5)
 	beq.w loc_0340e0
-	tst.w ($11e,a6)
+	tst.w (PL_meter,a6)
 	bne.w loc_0340e0
 	moveq #0,d0
 	move.b (PL_Flip,a6),d0
@@ -381,14 +381,14 @@ loc_0343bc:
 	moveq #2,d0
 	jsr loc_02ef6c
 	moveq #$21,d0
-	jmp loc_02a710
+	jmp Set_Spec_Cancel_Timers
 
 loc_034406:
 	move.b #4,(PL_Move_state,a6)
 	moveq #1,d0
 	jsr loc_02ef6c
 	moveq #$1e,d0
-	jmp loc_02a710
+	jmp Set_Spec_Cancel_Timers
 
 loc_03441c:
 	moveq #0,d0
@@ -422,7 +422,7 @@ loc_034464:
 	addq.b #1,d0
 
 loc_034466:
-	jmp loc_02a710
+	jmp Set_Spec_Cancel_Timers
 
 ;VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV
 loc_03446c:
@@ -471,7 +471,7 @@ loc_0344be:
 	jmp loc_02a7ea
 
 ;==============================================
-;
+;Kick
 ;==============================================
 loc_0344c4:
 	move.b (PL_Move_state,a6),d0
@@ -511,7 +511,7 @@ loc_034524:
 	move.l #$ffffa000,(pl_y_drag,a6)
 	clr.b ($5b,a6)
 	moveq #$1f,d0
-	jmp loc_02a710
+	jmp Set_Spec_Cancel_Timers
 
 loc_034544:
 	moveq #0,d0
@@ -540,7 +540,7 @@ loc_034580:
 	addq.b #1,d0
 
 loc_034582:
-	jmp loc_02a710
+	jmp Set_Spec_Cancel_Timers
 
 ;VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV
 loc_034588:
@@ -577,7 +577,7 @@ loc_0345a6:
 	clr.b (pl_attk_active,a6)
 	jsr loc_00369c
 	moveq #$20,d0
-	jmp loc_02a710
+	jmp Set_Spec_Cancel_Timers
 
 ;----------------------------------------------
 loc_0345f8:
@@ -617,7 +617,7 @@ loc_034622:
 loc_034654:
 	moveq #$c,d0
 	add.b d1,d0
-	jmp loc_02a710
+	jmp Set_Spec_Cancel_Timers
 
 ;----------------------------------------------
 loc_03465e:
@@ -655,7 +655,7 @@ loc_0346a4:
 	move.b (PL_ButtonStrength,a6),d1
 	lsr.b #1,d1
 	add.b d1,d0
-	jmp loc_02a710
+	jmp Set_Spec_Cancel_Timers
 
 loc_0346b4:
 	move.l #$2000e00,(pl_overall_state,a6)
@@ -666,22 +666,22 @@ loc_0346b4:
 ;##############################################
 ;Inputs
 loc_0346cc:
-	jsr loc_02e096
+	jsr SPButton_Vism_code
 	bne.w loc_034792
 
 loc_0346d6:
 	lea.l (pl_inp_slot_4,a6),a4
-	jsr loc_02d6b2
+	jsr SpInp_21421K_code
 	bne.w loc_0349f6
 
 loc_0346e4:
 	lea.l (pl_inp_slot_3,a6),a4
-	jsr loc_02d6ba
+	jsr SpInp_236236P_code
 	bne.w loc_0349ba
 
 loc_0346f2:
 	lea.l (pl_inp_slot_7,a6),a4
-	jsr loc_02d69a
+	jsr SpInp_23623K_code
 	bne.w loc_034a6a
 
 loc_034700:
@@ -689,17 +689,17 @@ loc_034700:
 	bne.b loc_034732
 
 	lea.l (pl_inp_slot_1,a6),a4
-	jsr loc_02d61a
+	jsr SpInp_623P_code
 	bne.w loc_0348aa
 
 loc_034714:
 	lea.l (pl_inp_slot_6,a6),a4
-	jsr loc_02d662
+	jsr SpInp_41236P_code
 	bne.w loc_034932
 
 loc_034722:
 	lea.l (pl_inp_slot_0,a6),a4
-	jsr loc_02d5ea
+	jsr SpInp_236P_code
 	bne.w loc_0348dc
 
 loc_034730:
@@ -707,49 +707,52 @@ loc_034730:
 
 loc_034732:
 	lea.l (pl_inp_slot_6,a6),a4
-	jsr loc_02d662
+	jsr SpInp_41236P_code
 	bne.w loc_034932
 
 loc_034740:
 	lea.l (pl_inp_slot_0,a6),a4
-	jsr loc_02d5ea
+	jsr SpInp_236P_code
 	bne.w loc_0348dc
 
 loc_03474e:
 	lea.l (pl_inp_slot_1,a6),a4
-	jsr loc_02d61a
+	jsr SpInp_623P_code
 	bne.w loc_0348aa
 
 loc_03475c:
 	lea.l (pl_inp_slot_2,a6),a4
-	jsr loc_02d612
+	jsr SpInp_214K_code
 	bne.w loc_034a28
 
 loc_03476a:
 	lea.l (pl_inp_slot_5,a6),a4
-	jsr loc_02d6ea
+	jsr SpInp_236_code
 	bne.w loc_03498c
 
 loc_034778:
-	lea.l ($300,a6),a4
-	jsr loc_02e0d6
+	lea.l (pl_inp_slot_a,a6),a4
+	jsr SPButton_AlphaCounter_code
 	bne.w loc_034820
 
 loc_034786:
-	jsr loc_02e0cc
+	jsr SPButton_Taunt_code
 	bne.w loc_0347f6
 
 loc_034790:
 	rts
 
-;==============================================
+;##############################################
 ;Move ID writes
+;##############################################
+;==============================================
+;Vism Activate ID Write
 ;==============================================
 loc_034792:
 	tst.b ($28a,a6)
 	bne.w loc_0346d6
 	tst.b (pl_in_air,a6)
-	bne.w loc_0347d0
+	bne.w Ryu_AirVism_activate
 	jsr loc_02ef54
 	beq.w loc_0346d6
 	jsr loc_02ecd8
@@ -759,7 +762,7 @@ loc_034792:
 	move.b (pl_sidecheck,a6),(PL_Flip,a6)
 	jmp loc_02f980
 
-loc_0347d0:
+Ryu_AirVism_activate:
 	tst.b (pl_cc_cancelflag,a6)
 	bne.w loc_0346d6
 	jsr loc_02ed28
@@ -956,7 +959,7 @@ loc_034a56:
 loc_034a6a:
 	tst.b (PL_ism_choice,a6)
 	bne.w loc_034700
-	cmpi.w #$90,($11e,a6)
+	cmpi.w #$90,(PL_meter,a6)
 	bcs.w loc_034700
 	jsr loc_02ecd8
 	beq.w loc_034700
@@ -1016,7 +1019,7 @@ loc_034af0:
 
 ;----------------------------------------------
 loc_034afc:
-	cmpi.w #$30,($11e,a6)
+	cmpi.w #$30,(PL_meter,a6)
 	bcs.w loc_034b4e
 	tst.b ($238,a6)
 	bne.w loc_034b4e
@@ -1026,7 +1029,7 @@ loc_034afc:
 loc_034b12:
 	tst.b (PL_ism_choice,a6)
 	bne.w loc_034b4e
-	cmpi.w #$30,($11e,a6)
+	cmpi.w #$30,(PL_meter,a6)
 	bcs.w loc_034b4e
 	bra.w loc_034b4a
 
@@ -1034,7 +1037,7 @@ loc_034b12:
 loc_034b28:
 	tst.b (PL_ism_choice,a6)
 	bne.w loc_034b4e
-	cmpi.w #$90,($11e,a6)
+	cmpi.w #$90,(PL_meter,a6)
 	bcs.w loc_034b4e
 	bra.w loc_034b4a
 
@@ -2454,53 +2457,87 @@ loc_0359b6:
 	movem.l d0-d1,(pl_inp_slot_2,a6)
 	movem.l d0-d1,(pl_inp_slot_3,a6)
 	movem.l d0-d1,(pl_inp_slot_4,a6)
-	movem.l d0-d1,($300,a6)
-	movem.l d0-d1,($308,a6)
+	movem.l d0-d1,(pl_inp_slot_a,a6)
+	movem.l d0-d1,(pl_inp_slot_b,a6)
 	rts
 
 ;VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV
-;table dcb12
+;Cancel Timers
 loc_0359e6:
-	dc.w loc_035a30-loc_0359e6
-	dc.w loc_035a30-loc_0359e6
-	dc.w loc_0359ec-loc_0359e6
+	dc.w loc_035a30-loc_0359e6;X Ism
+	dc.w loc_035a30-loc_0359e6;A Ism
+	dc.w loc_0359ec-loc_0359e6;V Ism
 
 loc_0359ec:
-	dc.b $09,$0b,$09,$0b
-	dc.b $09,$0b,$02,$02
-	dc.b $09,$0b,$02,$02
-	dc.b $02,$02,$02,$02
-	dc.b $02,$02,$02,$02
-	dc.b $02,$02,$02,$02
-	dc.b $09,$0b,$09,$0b
-	dc.b $09,$0b,$09,$0b
-	dc.b $09,$0b,$02,$02
-	dc.b $02,$02,$02,$02
-	dc.b $02,$02,$02,$02
-	dc.b $02,$02,$02,$02
-	dc.b $02,$02,$02,$02
-	dc.b $02,$02,$02,$02
-	dc.b $02,$02,$02,$02
-	dc.b $02,$02,$02,$02
-	dc.b $02,$02,$02,$02
+	dc.b $09,$0b
+	dc.b $09,$0b
+	dc.b $09,$0b
+	dc.b $02,$02
+	dc.b $09,$0b
+	dc.b $02,$02
+	dc.b $02,$02
+	dc.b $02,$02
+	dc.b $02,$02
+	dc.b $02,$02
+	dc.b $02,$02
+	dc.b $02,$02
+	dc.b $09,$0b
+	dc.b $09,$0b
+	dc.b $09,$0b
+	dc.b $09,$0b
+	dc.b $09,$0b
+	dc.b $02,$02
+	dc.b $02,$02
+	dc.b $02,$02
+	dc.b $02,$02
+	dc.b $02,$02
+	dc.b $02,$02
+	dc.b $02,$02
+	dc.b $02,$02
+	dc.b $02,$02
+	dc.b $02,$02
+	dc.b $02,$02
+	dc.b $02,$02
+	dc.b $02,$02
+	dc.b $02,$02
+	dc.b $02,$02
+	dc.b $02,$02
+	dc.b $02,$02
 
 loc_035a30:
-	dc.b $08,$0a,$08,$0a
-	dc.b $08,$0a,$02,$02
-	dc.b $07,$09,$02,$02
-	dc.b $02,$02,$02,$02
-	dc.b $02,$02,$02,$02
-	dc.b $02,$02,$02,$02
-	dc.b $08,$0a,$08,$0a
-	dc.b $07,$09,$08,$0a
-	dc.b $08,$0a,$02,$02
-	dc.b $02,$02,$02,$02
-	dc.b $02,$02,$02,$02
-	dc.b $02,$02,$02,$02
-	dc.b $02,$02,$02,$02
-	dc.b $02,$02,$02,$02
-	dc.b $02,$02,$02,$02
-	dc.b $02,$02,$02,$02
-	dc.b $02,$02,$02,$02
+	dc.b $08,$0a
+	dc.b $08,$0a
+	dc.b $08,$0a
+	dc.b $02,$02
+	dc.b $07,$09
+	dc.b $02,$02
+	dc.b $02,$02
+	dc.b $02,$02
+	dc.b $02,$02
+	dc.b $02,$02
+	dc.b $02,$02
+	dc.b $02,$02
+	dc.b $08,$0a
+	dc.b $08,$0a
+	dc.b $07,$09
+	dc.b $08,$0a
+	dc.b $08,$0a
+	dc.b $02,$02
+	dc.b $02,$02
+	dc.b $02,$02
+	dc.b $02,$02
+	dc.b $02,$02
+	dc.b $02,$02
+	dc.b $02,$02
+	dc.b $02,$02
+	dc.b $02,$02
+	dc.b $02,$02
+	dc.b $02,$02
+	dc.b $02,$02
+	dc.b $02,$02
+	dc.b $02,$02
+	dc.b $02,$02
+	dc.b $02,$02
+	dc.b $02,$02
 
 ;Ryu Programming end

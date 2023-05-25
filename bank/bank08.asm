@@ -892,7 +892,7 @@ loc_0809c0:
 
 ;----------------------------------------------
 loc_0809ea:
-	tst.b (pause_flag,a5)
+	tst.b (m_unk15c,a5)
 	bne.w loc_080aae
 	tst.b ($33,a6)
 	bmi.w loc_080a8a
@@ -922,7 +922,7 @@ loc_080a3a:
 
 ;----------------------------------------------
 loc_080a40:
-	tst.b (pause_flag,a5)
+	tst.b (m_unk15c,a5)
 	bne.w loc_080aae
 	tst.b ($33,a6)
 	bmi.w loc_080a8a
@@ -935,7 +935,7 @@ loc_080a40:
 
 ;----------------------------------------------
 loc_080a6c:
-	tst.b (pause_flag,a5)
+	tst.b (m_unk15c,a5)
 	bne.w loc_080aae
 	tst.b ($33,a6)
 	bmi.w loc_080a8a

@@ -138,16 +138,16 @@ loc_05ae7a:
 ;----------------------------------------------
 loc_05ae7e:
 	addq.b #2,(7,a6)
-	move.b ($2c9,a6),($b,a6)
+	move.b (pl_sidecheck,a6),(PL_Flip,a6)
 	move.b #1,(pl_attk_active,a6)
 	jsr loc_02aebc
 	move.b ($82,a6),d0
 	lsr.b #1,d0
 	jsr loc_02ef6c
 	moveq #1,d0
-	tst.b ($125,a6)
+	tst.b (PL_cpucontrol,a6)
 	bne.b loc_05aeba
-	cmpi.b #1,($132,a6)
+	cmpi.b #1,(PL_ism_choice,a6)
 	bne.b loc_05aeba
 	btst.b #0,($83,a6)
 	bne.b loc_05aeca
@@ -157,7 +157,7 @@ loc_05aeba:
 	moveq #0,d1
 	move.b ($82,a6),d1
 	move.w loc_05aed6(pc,d1.w),d1
-	cmp.w ($21c,a6),d1
+	cmp.w (pl_dist_away,a6),d1
 	bcs.b loc_05aecc
 
 loc_05aeca:
@@ -165,7 +165,7 @@ loc_05aeca:
 
 loc_05aecc:
 	add.b ($82,a6),d0
-	jmp loc_02a710
+	jmp Set_Spec_Cancel_Timers
 
 ;VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV
 loc_05aed6:
@@ -191,7 +191,7 @@ loc_05aeee:
 ;----------------------------------------------
 loc_05aef2:
 	addq.b #2,(7,a6)
-	move.b ($2c9,a6),($b,a6)
+	move.b (pl_sidecheck,a6),(PL_Flip,a6)
 	move.b #1,(pl_attk_active,a6)
 	jsr loc_02aebc
 	move.b ($82,a6),d0
@@ -199,9 +199,9 @@ loc_05aef2:
 	jsr loc_02ef6c
 	moveq #6,d0
 	add.b ($82,a6),d0
-	tst.b ($125,a6)
+	tst.b (PL_cpucontrol,a6)
 	bne.b loc_05af32
-	cmpi.b #1,($132,a6)
+	cmpi.b #1,(PL_ism_choice,a6)
 	bne.b loc_05af32
 	btst.b #0,($83,a6)
 	bne.b loc_05af46
@@ -211,7 +211,7 @@ loc_05af32:
 	moveq #0,d1
 	move.b ($82,a6),d1
 	move.w loc_05af4c(pc,d1.w),d1
-	move.w ($21c,a6),d2
+	move.w (pl_dist_away,a6),d2
 	cmp.w d2,d1
 	bcc.b loc_05af46
 
@@ -219,7 +219,7 @@ loc_05af44:
 	addq.b #1,d0
 
 loc_05af46:
-	jmp loc_02a710
+	jmp Set_Spec_Cancel_Timers
 
 ;VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV
 loc_05af4c:
@@ -247,7 +247,7 @@ loc_05af6a:
 loc_05af6e:
 	addq.b #2,(7,a6)
 	move.b #1,(pl_attk_active,a6)
-	move.b ($2c9,a6),($b,a6)
+	move.b (pl_sidecheck,a6),(PL_Flip,a6)
 	jsr loc_02aebc
 	move.b ($82,a6),d1
 	lsr.b #1,d1
@@ -260,7 +260,7 @@ loc_05af6e:
 loc_05af9a:
 	moveq #$c,d0
 	add.b d1,d0
-	jmp loc_02a710
+	jmp Set_Spec_Cancel_Timers
 
 ;----------------------------------------------
 loc_05afa4:
@@ -292,67 +292,67 @@ loc_05afe2:
 	move.b ($82,a6),d1
 	lsr.b #1,d1
 	add.b d1,d0
-	jmp loc_02a710
+	jmp Set_Spec_Cancel_Timers
 
 ;##############################################
 ;Special Move Inputs
 ;##############################################
 loc_05aff0:
-	jsr loc_02e096
+	jsr SPButton_Vism_code
 	bne.w loc_05b0c4
 
 loc_05affa:
-	lea.l ($1b8,a6),a4
-	jsr loc_02d782
+	lea.l (pl_inp_slot_7,a6),a4
+	jsr SpChrg_1318K_code
 	bne.w loc_05b32c
 
 loc_05b008:
-	lea.l ($1b0,a6),a4
-	jsr loc_02d6b2
+	lea.l (pl_inp_slot_6,a6),a4
+	jsr SpInp_21421K_code
 	bne.w loc_05b2f0
 
 loc_05b016:
-	lea.l ($1a0,a6),a4
-	jsr loc_02d69a
+	lea.l (pl_inp_slot_4,a6),a4
+	jsr SpInp_23623K_code
 	bne.w loc_05b2b2
 
 loc_05b024:
-	lea.l ($1c0,a6),a4
-	jsr loc_02d60a
+	lea.l (pl_inp_slot_8,a6),a4
+	jsr SpInp_214P_code
 	bne.w loc_05b26a
 
 loc_05b032:
-	lea.l ($180,a6),a4
-	jsr loc_02d622
+	lea.l (pl_inp_slot_0,a6),a4
+	jsr SpInp_623K_code
 	bne.w loc_05b128
 
 loc_05b040:
-	lea.l ($188,a6),a4
-	jsr loc_02d5f2
+	lea.l (pl_inp_slot_1,a6),a4
+	jsr SpInp_236K_code
 	bne.w loc_05b1a6
 
 loc_05b04e:
-	lea.l ($198,a6),a4
-	jsr loc_02d64a
+	lea.l (pl_inp_slot_3,a6),a4
+	jsr SpInp_1239K_Code
 	bne.w loc_05b240
 
 loc_05b05c:
-	lea.l ($190,a6),a4
-	jsr loc_02d672
+	lea.l (pl_inp_slot_2,a6),a4
+	jsr SpInp_63214P_Code
 	bne.w loc_05b20c
 
 loc_05b06a:
-	lea.l ($1a8,a6),a4
-	jsr loc_02d612
+	lea.l (pl_inp_slot_5,a6),a4
+	jsr SpInp_214K_code
 	bne.w loc_05b152
 
 loc_05b078:
-	lea.l ($300,a6),a4
-	jsr loc_02e0d6
+	lea.l (pl_inp_slot_a,a6),a4
+	jsr SPButton_AlphaCounter_code
 	bne.w loc_05b370
 
 loc_05b086:
-	jsr loc_02e0cc
+	jsr SPButton_Taunt_code
 	bne.w loc_05b094
 
 loc_05b090:
@@ -372,8 +372,8 @@ loc_05b0a0:
 	jsr loc_02ed00
 	beq.b loc_05b090
 	move.l #$02000e00,(4,a6)
-	move.b #0,($aa,a6)
-	move.b ($2c9,a6),($b,a6)
+	move.b #0,(pl_move_id,a6)
+	move.b (pl_sidecheck,a6),(PL_Flip,a6)
 	move.b #1,(pl_attk_active,a6)
 	rts
 
@@ -388,8 +388,8 @@ loc_05b0c4:
 	jsr loc_02ecd8
 	beq.w loc_05affa
 	move.l #$02001000,(4,a6)
-	move.b #2,($aa,a6)
-	move.b ($2c9,a6),($b,a6)
+	move.b #2,(pl_move_id,a6)
+	move.b (pl_sidecheck,a6),(PL_Flip,a6)
 	jmp loc_02f980
 
 loc_05b102:
@@ -398,7 +398,7 @@ loc_05b102:
 	jsr loc_02ed28
 	beq.w loc_05affa
 	move.l #$02001000,(4,a6)
-	move.b #2,($aa,a6)
+	move.b #2,(pl_move_id,a6)
 	jmp loc_02f980
 
 ;----------------------------------------------
@@ -406,14 +406,14 @@ loc_05b128:
 	jsr loc_02ed00
 	beq.w loc_05b040
 	move.l #$02000e00,(4,a6)
-	move.b #4,($aa,a6)
+	move.b #4,(pl_move_id,a6)
 	move.b #1,(pl_attk_active,a6)
-	move.b ($2c9,a6),($b,a6)
+	move.b (pl_sidecheck,a6),(PL_Flip,a6)
 	jmp loc_02f74c
 
 ;----------------------------------------------
 loc_05b152:
-	cmpi.b #1,($132,a6)
+	cmpi.b #1,(PL_ism_choice,a6)
 	bne.w loc_05b078
 	tst.b ($31,a6)
 	beq.w loc_05b078
@@ -431,7 +431,7 @@ loc_05b176:
 	jsr loc_02ed28
 	beq.w loc_05b078
 	move.l #$02000e00,(4,a6)
-	move.b #$12,($aa,a6)
+	move.b #$12,(pl_move_id,a6)
 	move.b #1,(pl_attk_active,a6)
 	jmp loc_02f74c
 
@@ -440,34 +440,34 @@ loc_05b1a6:
 	jsr loc_02ed00
 	beq.w loc_05b04e
 	move.l #$02000e00,(4,a6)
-	move.b #6,($aa,a6)
+	move.b #6,(pl_move_id,a6)
 	move.b #1,(pl_attk_active,a6)
-	move.b ($2c9,a6),($b,a6)
+	move.b (pl_sidecheck,a6),(PL_Flip,a6)
 	jmp loc_02f74c
 
 loc_05b1d0:
-	cmpi.b #1,($132,a6)
+	cmpi.b #1,(PL_ism_choice,a6)
 	bne.w loc_05b04e
 	tst.w ($44,a6)
 	bmi.w loc_05b04e
 	jsr loc_02ed28
 	beq.w loc_05b04e
 	move.l #$02000e00,(4,a6)
-	move.b #6,($aa,a6)
+	move.b #6,(pl_move_id,a6)
 	move.b #1,(pl_attk_active,a6)
-	move.b ($2c9,a6),($b,a6)
+	move.b (pl_sidecheck,a6),(PL_Flip,a6)
 	jmp loc_02f74c
 
 ;----------------------------------------------
 loc_05b20c:
-	cmpi.b #1,($132,a6)
+	cmpi.b #1,(PL_ism_choice,a6)
 	beq.w loc_05b06a
 	jsr loc_02ed00
 	beq.w loc_05b06a
 	move.l #$02000e00,(4,a6)
-	move.b #8,($aa,a6)
+	move.b #8,(pl_move_id,a6)
 	move.b #1,(pl_attk_active,a6)
-	move.b ($2c9,a6),($b,a6)
+	move.b (pl_sidecheck,a6),(PL_Flip,a6)
 	jmp loc_02f728
 
 ;----------------------------------------------
@@ -475,21 +475,21 @@ loc_05b240:
 	jsr loc_02ed00
 	beq.w loc_05b05c
 	move.l #$02000e00,(4,a6)
-	move.b #$a,($aa,a6)
+	move.b #$a,(pl_move_id,a6)
 	move.b #1,(pl_attk_active,a6)
-	move.b ($2c9,a6),($b,a6)
+	move.b (pl_sidecheck,a6),(PL_Flip,a6)
 	jmp loc_02f728
 
 ;----------------------------------------------
 loc_05b26a:
-	cmpi.b #1,($132,a6)
+	cmpi.b #1,(PL_ism_choice,a6)
 	bne.w loc_05b032
 	jsr loc_02ed00
 	beq.w loc_05b032
 	move.l #$02000e00,(4,a6)
-	move.b #$18,($aa,a6)
+	move.b #$18,(pl_move_id,a6)
 	clr.b ($a9,a1)
-	move.b ($2c9,a6),($b,a6)
+	move.b (pl_sidecheck,a6),(PL_Flip,a6)
 	jmp loc_02f728
 
 ;==============================================
@@ -501,44 +501,44 @@ loc_05b29c:
 
 ;----------------------------------------------
 loc_05b2b2:
-	cmpi.b #1,($132,a6)
+	cmpi.b #1,(PL_ism_choice,a6)
 	beq.w loc_05b024
-	cmpi.w #$30,($11e,a6)
+	cmpi.w #$30,(PL_meter,a6)
 	bcs.w loc_05b024
 	jsr loc_02ecd8
 	beq.w loc_05b024
 	move.l #$02001000,(4,a6)
-	move.b #$c,($aa,a6)
+	move.b #$c,(pl_move_id,a6)
 	move.b #1,(pl_attk_active,a6)
-	move.b ($2c9,a6),($b,a6)
+	move.b (pl_sidecheck,a6),(PL_Flip,a6)
 	jmp loc_02f4dc
 
 ;----------------------------------------------
 loc_05b2f0:
-	tst.b ($132,a6)
+	tst.b (PL_ism_choice,a6)
 	bne.w loc_05b016
-	cmpi.w #$30,($11e,a6)
+	cmpi.w #$30,(PL_meter,a6)
 	bcs.w loc_05b016
 	jsr loc_02ecd8
 	beq.w loc_05b016
 	move.l #$2001000,(4,a6)
-	move.b #$10,($aa,a6)
+	move.b #$10,(pl_move_id,a6)
 	move.b #1,(pl_attk_active,a6)
-	move.b ($2c9,a6),($b,a6)
+	move.b (pl_sidecheck,a6),(PL_Flip,a6)
 	jmp loc_02f4dc
 
 ;----------------------------------------------
 loc_05b32c:
-	tst.b ($132,a6)
+	tst.b (PL_ism_choice,a6)
 	bne.w loc_05b008
-	cmpi.w #$90,($11e,a6)
+	cmpi.w #$90,(PL_meter,a6)
 	bcs.w loc_05b008
 	jsr loc_02ecd8
 	beq.w loc_05b008
 	move.l #$02001000,(4,a6)
-	move.b #$14,($aa,a6)
+	move.b #$14,(pl_move_id,a6)
 	move.b #1,(pl_attk_active,a6)
-	move.b ($2c9,a6),($b,a6)
+	move.b (pl_sidecheck,a6),(PL_Flip,a6)
 	move.b #4,($248,a6)
 	move.b #4,($82,a6)
 	rts
@@ -552,15 +552,15 @@ loc_05b370:
 ;Aism Alpha Counter write
 ;##############################################
 loc_05b37a:
-	tst.b ($132,a6)
+	tst.b (PL_ism_choice,a6)
 	bne.w loc_05b3c2
 	move.l #$02000e00,(4,a6)
-	move.b #$e,($aa,a6)
+	move.b #$e,(pl_move_id,a6)
 	clr.b (pl_crouching,a6)
 	move.b #1,(pl_attk_active,a6)
 	move.b #4,($82,a6)
 	clr.b (pl_hitfreeze,a6)
-	move.b ($2c9,a6),($b,a6)
+	move.b (pl_sidecheck,a6),(PL_Flip,a6)
 	movea.w ($38,a6),a4
 	move.b #$14,($5f,a4)
 	move.b #$18,(pl_invinciblity_timer,a6)
@@ -572,12 +572,12 @@ loc_05b37a:
 ;##############################################
 loc_05b3c2:
 	move.l #$02000e0c,(4,a6)
-	move.b #4,($aa,a6)
+	move.b #4,(pl_move_id,a6)
 	clr.b (pl_crouching,a6)
 	move.b #1,(pl_attk_active,a6)
 	move.b #4,($82,a6)
 	clr.b (pl_hitfreeze,a6)
-	move.b ($2c9,a6),($b,a6)
+	move.b (pl_sidecheck,a6),(PL_Flip,a6)
 	movea.w ($38,a6),a4
 	move.b #$15,($5f,a4)
 	move.b #$19,(pl_invinciblity_timer,a6)
@@ -588,7 +588,7 @@ loc_05b3c2:
 ;AI Move Checks
 ;##############################################
 loc_05b402:
-	move.b ($aa,a6),d0
+	move.b (pl_move_id,a6),d0
 	move.w loc_05b40e(pc,d0.w),d1
 	jmp loc_05b40e(pc,d1.w)
 
@@ -623,12 +623,12 @@ loc_05b43c:
 
 ;==============================================
 loc_05b440:
-	tst.b ($132,a6)
+	tst.b (PL_ism_choice,a6)
 	bne.w loc_05b4a4
 
 ;==============================================
 loc_05b448:
-	cmpi.w #$30,($11e,a6)
+	cmpi.w #$30,(PL_meter,a6)
 	bcs.b loc_05b4a4
 	bra.w loc_05b4a0
 
@@ -659,7 +659,7 @@ loc_05b482:
 
 ;==============================================
 loc_05b492:
-	cmpi.b #1,($132,a6)
+	cmpi.b #1,(PL_ism_choice,a6)
 	bne.w loc_05b4a4
 	bra.w loc_05b4a0
 
@@ -677,7 +677,7 @@ loc_05b4a4:
 ;Cammy Special Moves
 ;##############################################
 loc_05b4a8:
-	move.b ($aa,a6),d0
+	move.b (pl_move_id,a6),d0
 	move.w loc_05b4b4(pc,d0.w),d1
 	jmp loc_05b4b4(pc,d1.w)
 
@@ -703,7 +703,7 @@ loc_05b4b4:
 ;AI Special Moves
 ;##############################################
 loc_05b4ce:
-	move.b ($aa,a6),d0
+	move.b (pl_move_id,a6),d0
 	move.w loc_05b4da(pc,d0.w),d1
 	jmp loc_05b4da(pc,d1.w)
 
@@ -987,10 +987,10 @@ loc_05b788:
 ;==============================================
 loc_05b78e:
 	move.b #8,(7,a6)
-	cmpi.b #4,($aa,a6)
+	cmpi.b #4,(pl_move_id,a6)
 	beq.b loc_05b7b0
 	move.b #$e,(7,a6)
-	cmpi.b #$18,($aa,a6)
+	cmpi.b #$18,(pl_move_id,a6)
 	beq.b loc_05b7b0
 	move.b #$10,(7,a6)
 
@@ -1058,7 +1058,7 @@ loc_05b838:
 	move.l loc_05b88a+4(pc,d0.w),($44,a6)
 	move.l loc_05b88a+8(pc,d0.w),($48,a6)
 	move.l loc_05b88a+$c(pc,d0.w),($4c,a6)
-	tst.b ($b,a6)
+	tst.b (PL_Flip,a6)
 	bne.b loc_05b882
 	neg.l ($40,a6)
 	neg.l ($48,a6)
@@ -1257,7 +1257,7 @@ loc_05bad8:
 	move.l d0,($48,a6)
 	move.l d0,($4c,a6)
 	move.w #$18,d0
-	tst.b ($b,a6)
+	tst.b (PL_Flip,a6)
 	bne.b loc_05bb1a
 	neg.w d0
 
@@ -1386,7 +1386,7 @@ loc_05bc72:
 loc_05bca6:
 	bsr.w loc_05bd32
 	beq.w loc_05daac
-	tst.b ($125,a6)
+	tst.b (PL_cpucontrol,a6)
 	beq.b loc_05bcc4
 	moveq #$59,d0
 	jsr loc_02e714
@@ -1755,7 +1755,7 @@ loc_05c0be:
 ;==============================================
 loc_05c0ca:
 	move.l ($40,a6),d0
-	tst.b ($b,a6)
+	tst.b (PL_Flip,a6)
 	bne.b loc_05c0d6
 	neg.l d0
 
@@ -2164,7 +2164,7 @@ loc_05c57a:
 	bsr.w loc_05dadc
 	cmpi.w #1,($44,a6)
 	bcs.b loc_05c5b0
-	tst.b ($125,a6)
+	tst.b (PL_cpucontrol,a6)
 	beq.b loc_05c59a
 	lea.l loc_05dcb4(pc),a1
 	jsr loc_030a66
@@ -2282,7 +2282,7 @@ loc_05c6e6:
 	tst.b ($35,a6)
 	bne.b loc_05c704
 	addq.b #2,(7,a6)
-	tst.b ($b,a6)
+	tst.b (PL_Flip,a6)
 	bne.b loc_05c704
 	neg.l ($40,a6)
 	neg.l ($48,a6)
@@ -2526,7 +2526,7 @@ loc_05c9a4:
 	move.w d0,($12,a6)
 	move.b d0,($31,a6)
 	move.b d0,(pl_attk_active,a6)
-	move.b ($2c9,a6),($b,a6)
+	move.b (pl_sidecheck,a6),(PL_Flip,a6)
 	jsr loc_00369c
 	moveq #0,d0
 	move.b ($82,a6),d0
@@ -2557,7 +2557,7 @@ loc_05ca04:
 	move.l loc_05ca5a+4(pc,d0.w),($48,a6)
 	move.l loc_05ca5a+8(pc,d0.w),($44,a6)
 	move.l loc_05ca5a+$c(pc,d0.w),($4c,a6)
-	tst.b ($b,a6)
+	tst.b (PL_Flip,a6)
 	bne.b loc_05ca58
 	neg.l ($40,a6)
 	neg.l ($48,a6)
@@ -2566,7 +2566,7 @@ loc_05ca48:
 	tst.b ($34,a6)
 	beq.b loc_05ca58
 	clr.b ($34,a6)
-	move.b ($2c9,a6),($b,a6)
+	move.b (pl_sidecheck,a6),(PL_Flip,a6)
 
 loc_05ca58:
 	rts
@@ -2579,7 +2579,7 @@ loc_05ca5a:
 
 ;----------------------------------------------
 loc_05ca8a:
-	move.b ($b,a6),d0
+	move.b (PL_Flip,a6),d0
 	btst d0,($ac,a6)
 	bne.b loc_05caa2
 	jsr loc_02aa08
@@ -2623,7 +2623,7 @@ loc_05caf2:
 	bmi.b loc_05cb2a
 	cmpi.b #4,($82,a6)
 	bcs.b loc_05cb2a
-	tst.b ($125,a6)
+	tst.b (PL_cpucontrol,a6)
 	bne.b loc_05cb1e
 	btst.b #3,($11b,a6)
 	beq.b loc_05cb2a
@@ -2651,7 +2651,7 @@ loc_05cb3a:
 	move.l ($10,a4),d0
 	sub.l ($10,a6),d0
 	asr.l #4,d0
-	move.b ($2c9,a6),($b,a6)
+	move.b (pl_sidecheck,a6),(PL_Flip,a6)
 	bne.b loc_05cb68
 	neg.l d0
 
@@ -2883,7 +2883,7 @@ loc_05cdd4:
 
 loc_05cdfe:
 	move.b loc_05ce18(pc,d0.w),(pl_invinciblity_timer,a6)
-	move.b ($2c9,a6),($b,a6)
+	move.b (pl_sidecheck,a6),(PL_Flip,a6)
 	addi.w #$20,($14,a6)
 	moveq #$4f,d0
 	jmp loc_02a758
@@ -3112,7 +3112,7 @@ loc_05d0ac:
 	cmpi.w #$c0,d0
 	sgt.b d0
 	addq.b #1,d0
-	move.b d0,($b,a6)
+	move.b d0,(PL_Flip,a6)
 	jsr loc_080668
 	moveq #$4d,d0
 	jsr loc_02a758
@@ -3218,7 +3218,7 @@ loc_05d1b8:
 	tst.w d1
 	sne.b d0
 	addq.b #1,d0
-	move.b d0,($b,a6)
+	move.b d0,(PL_Flip,a6)
 	jsr loc_01bd5c
 	add.w ($10,a3),d1
 	move.w d1,($10,a6)
@@ -3257,7 +3257,7 @@ loc_05d236:
 	tst.w ($40,a6)
 	smi.b d0
 	addq.b #1,d0
-	move.b d0,($b,a6)
+	move.b d0,(PL_Flip,a6)
 	rts
 
 ;==============================================
@@ -3514,21 +3514,21 @@ loc_05d4dc:
 loc_05d4ee:
 	jsr loc_02e3fe
 	beq.b loc_05d552
-	tst.b ($125,a6)
+	tst.b (PL_cpucontrol,a6)
 	beq.b loc_05d51c
-	clr.b ($b,a6)
+	clr.b (PL_Flip,a6)
 	jsr loc_01bd5c
 	move.w ($10,a3),d0
 	addi.w #$c0,d0
 	cmp.w ($10,a6),d0
 	bcs.b loc_05d52a
-	move.b #1,($b,a6)
+	move.b #1,(PL_Flip,a6)
 	bra.b loc_05d52a
 
 loc_05d51c:
 	btst.b #0,($371,a6)
 	beq.b loc_05d52a
-	eori.b #1,($b,a6)
+	eori.b #1,(PL_Flip,a6)
 
 loc_05d52a:
 	move.b #6,(7,a6)
@@ -3536,7 +3536,7 @@ loc_05d52a:
 	tst.b ($81,a6)
 	beq.b loc_05d546
 	move.b #$e,(7,a6)
-	eori.b #1,($b,a6)
+	eori.b #1,(PL_Flip,a6)
 	moveq #$1d,d0
 
 loc_05d546:
@@ -3715,21 +3715,21 @@ loc_05d728:
 loc_05d73a:
 	jsr loc_02e636
 	beq.w loc_05d7dc
-	tst.b ($125,a6)
+	tst.b (PL_cpucontrol,a6)
 	beq.b loc_05d76a
-	clr.b ($b,a6)
+	clr.b (PL_Flip,a6)
 	jsr loc_01bd5c
 	move.w ($10,a3),d0
 	addi.w #$c0,d0
 	cmp.w ($10,a6),d0
 	bcs.b loc_05d778
-	move.b #1,($b,a6)
+	move.b #1,(PL_Flip,a6)
 	bra.b loc_05d778
 
 loc_05d76a:
 	btst.b #0,($371,a6)
 	beq.b loc_05d778
-	eori.b #1,($b,a6)
+	eori.b #1,(PL_Flip,a6)
 
 loc_05d778:
 	tst.b ($81,a6)
@@ -3743,7 +3743,7 @@ loc_05d778:
 
 loc_05d79c:
 	move.b #$e,(7,a6)
-	eori.b #1,($b,a6)
+	eori.b #1,(PL_Flip,a6)
 	move.l #0,($40,a6)
 	move.l #0,($44,a6)
 	move.l #0,($48,a6)
@@ -3935,7 +3935,7 @@ loc_05d9ba:
 loc_05d9c2:
 	addq.b #2,(7,a6)
 	move.b #$3c,($3a,a6)
-	move.b ($2c9,a6),($b,a6)
+	move.b (pl_sidecheck,a6),(PL_Flip,a6)
 	cmpi.w #6,(Dramatic_Mode_Type,a5)
 	bne.b loc_05d9ee
 	cmpi.b #4,($2c4,a6)
@@ -3992,7 +3992,7 @@ loc_05da5e:
 ;==============================================
 loc_05da64:
 	moveq #0,d0
-	lea.l ($180,a6),a0
+	lea.l (pl_inp_slot_0,a6),a0
 	move.l d0,(a0)+
 	move.l d0,(a0)+
 	move.l d0,(a0)+
@@ -4011,7 +4011,7 @@ loc_05da64:
 	move.l d0,(a0)+
 	move.l d0,(a0)+
 	move.l d0,(a0)+
-	lea.l ($300,a6),a0
+	lea.l (pl_inp_slot_a,a6),a0
 	move.l d0,(a0)+
 	move.l d0,(a0)+
 	move.l d0,(a0)+
@@ -4047,7 +4047,7 @@ loc_05daba:
 ;==============================================
 loc_05dac0:
 	move.l ($40,a6),d0
-	tst.b ($b,a6)
+	tst.b (PL_Flip,a6)
 	bne.b loc_05dacc
 	neg.l d0
 

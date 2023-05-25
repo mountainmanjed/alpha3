@@ -166,7 +166,7 @@ loc_06b8a0:
 
 loc_06b8d6:
 	add.b (PL_ButtonStrength,a6),d0
-	jmp loc_02a710
+	jmp Set_Spec_Cancel_Timers
 
 ;VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV
 JuliPunchDist:
@@ -203,7 +203,7 @@ loc_06b8fe:
 	moveq #1,d0
 	jsr loc_02ef6c
 	moveq #$1e,d0
-	jmp loc_02a710
+	jmp Set_Spec_Cancel_Timers
 
 loc_06b934:
 	jsr loc_02aebc
@@ -221,7 +221,7 @@ loc_06b934:
 	addq.b #1,d0
 
 loc_06b960:
-	jmp loc_02a710
+	jmp Set_Spec_Cancel_Timers
 
 ;VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV
 JuliKickDist:
@@ -281,7 +281,7 @@ loc_06b9b0:
 loc_06b9dc:
 	moveq #$c,d0
 	add.b d1,d0
-	jmp loc_02a710
+	jmp Set_Spec_Cancel_Timers
 
 ;----------------------------------------------
 loc_06b9e6:
@@ -313,61 +313,61 @@ loc_06ba24:
 	move.b (PL_ButtonStrength,a6),d1
 	lsr.b #1,d1
 	add.b d1,d0
-	jmp loc_02a710
+	jmp Set_Spec_Cancel_Timers
 
 ;##############################################
 ;Special Move Inputs
 ;##############################################
 loc_06ba32:
-	jsr loc_02e096
+	jsr SPButton_Vism_code
 	bne.w loc_06baf2
 
 loc_06ba3c:
 	lea.l ($1d0,a6),a4
-	jsr loc_02d6e2
+	jsr SpInp_LPLP6LKHP_code
 	bne.w loc_06bde6
 
 loc_06ba4a:
 	lea.l ($1d8,a6),a4
-	jsr loc_02d6b2
+	jsr SpInp_21421K_code
 	bne.w loc_06be2c
 
 loc_06ba58:
-	lea.l ($1a0,a6),a4
-	jsr loc_02d69a
+	lea.l (pl_inp_slot_4,a6),a4
+	jsr SpInp_23623K_code
 	bne.w loc_06bdaa
 
 loc_06ba66:
 	lea.l ($1e8,a6),a4
-	jsr loc_02d692
+	jsr SpInp_23623P_Code
 	bne.w loc_06bea6
 
 loc_06ba74:
 	lea.l (pl_inp_slot_0,a6),a4
-	jsr loc_02d622
+	jsr SpInp_623K_code
 	bne.w loc_06bb8a
 
 loc_06ba82:
 	lea.l (pl_inp_slot_2,a6),a4
-	jsr loc_02d672
+	jsr SpInp_63214P_Code
 	bne.w loc_06bc66
 
 loc_06ba90:
 	lea.l (pl_inp_slot_8,a6),a4
-	jsr loc_02d5f2
+	jsr SpInp_236K_code
 	bne.w loc_06bd80
 
 loc_06ba9e:
-	lea.l ($300,a6),a4
-	jsr loc_02e0d6
+	lea.l (pl_inp_slot_a,a6),a4
+	jsr SPButton_AlphaCounter_code
 	bne.w loc_06bf58
 
 loc_06baac:
-	jsr loc_02e004
+	jsr SPButton_AllP_code
 	bne.w loc_06bb56
 
 loc_06bab6:
-	jsr loc_02e0cc
+	jsr SPButton_Taunt_code
 	bne.w loc_06bac4
 
 loc_06bac0:
@@ -919,7 +919,7 @@ loc_06c1b8:
 	cmpi.b #$5f,($3a,a6)
 	bge.b loc_06c1de
 	clr.b ($ce,a6)
-	tst.b ($125,a6)
+	tst.b (PL_cpucontrol,a6)
 	bne.b loc_06c1de
 	move.b ($370,a6),d0
 	andi.b #$77,d0
@@ -1550,7 +1550,7 @@ loc_06c918:
 loc_06c94c:
 	bsr.w loc_06c9a2
 	beq.w loc_06eff2
-	tst.b ($125,a6)
+	tst.b (PL_cpucontrol,a6)
 	bne.w loc_06c96e
 	move.b ($378,a6),d0
 	andi.w #$70,d0
@@ -2520,7 +2520,7 @@ loc_06d496:
 	bmi.b loc_06d4c0
 	subq.b #1,($3a,a6)
 	bpl.w loc_06eff2
-	tst.b ($125,a6)
+	tst.b (PL_cpucontrol,a6)
 	bne.w loc_06eff2
 	btst #0,(PL_Directioninput,a6)
 	beq.w loc_06eff2
@@ -3291,7 +3291,7 @@ loc_06dd84:
 	bsr.w loc_06f076
 	cmpi.w #1,(pl_y_velocity,a6)
 	bcs.b loc_06ddbc
-	tst.b ($125,a6)
+	tst.b (PL_cpucontrol,a6)
 	beq.b loc_06dda6
 	movea.l #loc_05dcb4,a1
 	jsr loc_030a66
@@ -3648,7 +3648,7 @@ loc_06e1a4:
 	bmi.b loc_06e1dc
 	cmpi.b #4,(PL_ButtonStrength,a6)
 	bcs.b loc_06e1dc
-	tst.b ($125,a6)
+	tst.b (PL_cpucontrol,a6)
 	bne.b loc_06e1d0
 	btst #3,($11b,a6)
 	beq.b loc_06e1dc
@@ -4278,7 +4278,7 @@ loc_06e838:
 loc_06e84a:
 	jsr loc_02e3fe
 	beq.b loc_06e8ae
-	tst.b ($125,a6)
+	tst.b (PL_cpucontrol,a6)
 	beq.b loc_06e878
 	clr.b (PL_Flip,a6)
 	jsr loc_01bd5c
@@ -4479,7 +4479,7 @@ loc_06ea84:
 loc_06ea96:
 	jsr loc_02e636
 	beq.w loc_06eb34
-	tst.b ($125,a6)
+	tst.b (PL_cpucontrol,a6)
 	beq.b loc_06eac6
 	clr.b (PL_Flip,a6)
 	jsr loc_01bd5c

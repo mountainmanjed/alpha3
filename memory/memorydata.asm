@@ -36,14 +36,13 @@ gl_plbk3_pnt = 0x92c0
 ;==============================================
 ;A5 Offsets
 ;==============================================
-;state_0 = 0x00
-;state_1 = 0x02
-;state_2 = 0x04
-;state_3 = 0x06
-;state_4 = 0x08
-
+Main_state_0 = 0x00
+;0x02
+Main_state_1 = 0x04
+;0x06
+Main_state_2 = 0x08
 ;0x0a
-;0x0c
+Main_state_3 = 0x0C
 ;0x0e
 ;0x10
 ;0x12
@@ -131,6 +130,8 @@ NetworkEnabled = 0x86
 Dip_SFAlpha = 0x89; sets names and voices to sf alpha and a-ism
 ;0x8a
 ;0x8b
+
+;0x8f
 
 Region = 0x90
 
@@ -224,6 +225,7 @@ clock_frames = 0x10a
 ;0x10b
 ;0x10d
 ;0x10e
+M_Pause_Battle = 0x10f
 
 Arcade_Match_Var = 0x114
 Dev_Turbo = 0x116
@@ -238,9 +240,7 @@ Dev_Turbo = 0x116
 Arc_Rng_Chr_Offset = 0x121
 Arc_Rng_Ism_Offset = 0x122
 ; = 0x123
-
 Set_GC_Flash_BG = 0x124
-
 ; = 0x125
 ; = 0x126
 ; = 0x127 ;unused
@@ -263,19 +263,24 @@ Dramatic_Mode_Type = 0x138 ; word
     ;04 p2 vs p3&p4
     ;06 p1&p2 vs p3
 
+; = 0x13a
 ; = 0x13c
-
+; = 0x13e
+; = 0x13f
+; = 0x140
 ; = 0x141
 
 ; = 0x143
 
 ; = 0x146
+; = 0x149
 
 left_hud_pointer = 0x156
 right_hud_pointer = 0x158
-pause_flag = 0x15c
+m_unk15c = 0x15c
 ; = 0x15d event mode gameover?
 
+; = 0x162
 ; = 0x163
 Dramatic_Mode_flag = 0x168
 ;unused 0x169

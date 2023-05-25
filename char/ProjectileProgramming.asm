@@ -117,7 +117,7 @@ loc_072ce0:
 ;----------------------------------------------
 loc_072ce6:
 	move.b ($125,a5),d0
-	or.b (pause_flag,a5),d0
+	or.b (m_unk15c,a5),d0
 	bne.b loc_072cfc
 	move.b (6,a6),d0
 	move.w loc_072d02(pc,d0.w),d1
@@ -769,7 +769,7 @@ loc_07388a:
 ;----------------------------------------------
 loc_073894:
 	move.b ($125,a5),d0
-	or.b (pause_flag,a5),d0
+	or.b (m_unk15c,a5),d0
 	bne.b loc_0738b6
 	move.b (3,a6),d0
 	move.w loc_0738bc(pc,d0.w),d1
@@ -831,7 +831,7 @@ loc_07391e:
 ;----------------------------------------------
 loc_073924:
 	move.b ($125,a5),d0
-	or.b (pause_flag,a5),d0
+	or.b (m_unk15c,a5),d0
 	bne.b loc_07393a
 	move.b (6,a6),d0
 	move.w loc_073940(pc,d0.w),d1
@@ -881,7 +881,7 @@ loc_07399c:
 ;----------------------------------------------
 loc_0739a2:
 	move.b ($125,a5),d0
-	or.b (pause_flag,a5),d0
+	or.b (m_unk15c,a5),d0
 	bne.b loc_0739b8
 	move.b (6,a6),d0
 	move.w loc_0739be(pc,d0.w),d1
@@ -1933,7 +1933,7 @@ loc_074e26:
 
 loc_074e3e:
 	move.b ($125,a5),d0
-	or.b (pause_flag,a5),d0
+	or.b (m_unk15c,a5),d0
 	bne.b loc_074e58
 	tst.b ($33,a6)
 	bmi.b loc_074e52
@@ -2111,7 +2111,7 @@ loc_075174:
 ;----------------------------------------------
 loc_07517e:
 	move.b ($125,a5),d0
-	or.b (pause_flag,a5),d0
+	or.b (m_unk15c,a5),d0
 	bne.b loc_075198
 	subq.b #1,($3b,a6)
 	bne.b loc_075198
@@ -2440,7 +2440,7 @@ loc_075556:
 ;----------------------------------------------
 loc_07555c:
 	move.b ($125,a5),d0
-	or.b (pause_flag,a5),d0
+	or.b (m_unk15c,a5),d0
 	bne.b loc_075572
 	move.b (6,a6),d0
 	move.w loc_075578(pc,d0.w),d1
@@ -2891,7 +2891,7 @@ loc_075b92:
 ;----------------------------------------------
 loc_075b9c:
 	move.b ($125,a5),d0
-	or.b (pause_flag,a5),d0
+	or.b (m_unk15c,a5),d0
 	bne.b loc_075bb2
 	move.b (6,a6),d0
 	move.w loc_075bb8(pc,d0.w),d1
@@ -2966,7 +2966,7 @@ loc_075c32:
 ;----------------------------------------------
 loc_075c52:
 	move.b ($125,a5),d0
-	or.b (pause_flag,a5),d0
+	or.b (m_unk15c,a5),d0
 	bne.b loc_075c68
 	move.b (6,a6),d0
 	move.w loc_075c6e(pc,d0.w),d1
@@ -3004,7 +3004,7 @@ loc_075c9c:
 ;----------------------------------------------
 loc_075ca2:
 	move.b ($125,a5),d0
-	or.b (pause_flag,a5),d0
+	or.b (m_unk15c,a5),d0
 	bne.b loc_075cb8
 	move.b (6,a6),d0
 	move.w loc_075cbe(pc,d0.w),d1
@@ -3058,7 +3058,7 @@ loc_075d26:
 ;----------------------------------------------
 loc_075d2c:
 	move.b ($125,a5),d0
-	or.b (pause_flag,a5),d0
+	or.b (m_unk15c,a5),d0
 	bne.b loc_075d42
 	move.b (6,a6),d0
 	move.w loc_075d48(pc,d0.w),d1
@@ -3921,7 +3921,7 @@ loc_076a0e:
 ;----------------------------------------------
 loc_076a18:
 	move.b ($125,a5),d0
-	or.b (pause_flag,a5),d0
+	or.b (m_unk15c,a5),d0
 	bne.b loc_076a3e
 	move.l ($40,a6),d0
 	add.l d0,($10,a6)
@@ -3936,7 +3936,7 @@ loc_076a3e:
 ;----------------------------------------------
 loc_076a44:
 	move.b ($125,a5),d0
-	or.b (pause_flag,a5),d0
+	or.b (m_unk15c,a5),d0
 	bne.b loc_076a5a
 	move.b (6,a6),d0
 	move.w loc_076a60(pc,d0.w),d1
@@ -3978,7 +3978,7 @@ loc_076a92:
 ;----------------------------------------------
 loc_076a98:
 	move.b ($125,a5),d0
-	or.b (pause_flag,a5),d0
+	or.b (m_unk15c,a5),d0
 	bne.b loc_076aae
 	move.b (6,a6),d0
 	move.w loc_076ab4(pc,d0.w),d1
@@ -4469,7 +4469,7 @@ loc_077488:
 ;----------------------------------------------
 loc_077492:
 	move.b ($125,a5),d0
-	or.b (pause_flag,a5),d0
+	or.b (m_unk15c,a5),d0
 	bne.b loc_0774ac
 	subq.b #1,($3b,a6)
 	bne.b loc_0774ac
@@ -4482,7 +4482,7 @@ loc_0774ac:
 ;----------------------------------------------
 loc_0774b2:
 	move.b ($125,a5),d0
-	or.b (pause_flag,a5),d0
+	or.b (m_unk15c,a5),d0
 	bne.b loc_0774c8
 	move.b (6,a6),d0
 	move.w loc_0774ce(pc,d0.w),d1
@@ -4913,7 +4913,7 @@ loc_077c82:
 ;----------------------------------------------
 loc_077c8c:
 	move.b ($125,a5),d0
-	or.b (pause_flag,a5),d0
+	or.b (m_unk15c,a5),d0
 	bne.b loc_077cb4
 	tst.b (3,a6)
 	beq.b loc_077ca4
@@ -4935,7 +4935,7 @@ loc_077cb4:
 ;----------------------------------------------
 loc_077cba:
 	move.b ($125,a5),d0
-	or.b (pause_flag,a5),d0
+	or.b (m_unk15c,a5),d0
 	bne.b loc_077cd0
 	move.b (6,a6),d0
 	move.w loc_077cd6(pc,d0.w),d1
@@ -5420,7 +5420,7 @@ loc_07878a:
 ;----------------------------------------------
 loc_078794:
 	move.b ($125,a5),d0
-	or.b (pause_flag,a5),d0
+	or.b (m_unk15c,a5),d0
 	bne.w loc_078806
 	jsr loc_0251a8
 	bne.w loc_0787b8
@@ -5466,7 +5466,7 @@ loc_078812:
 ;----------------------------------------------
 loc_078818:
 	move.b ($125,a5),d0
-	or.b (pause_flag,a5),d0
+	or.b (m_unk15c,a5),d0
 	bne.b loc_07882e
 	move.b (6,a6),d0
 	move.w loc_078834(pc,d0.w),d1
@@ -5528,7 +5528,7 @@ loc_0788ac:
 ;----------------------------------------------
 loc_0788b2:
 	move.b ($125,a5),d0
-	or.b (pause_flag,a5),d0
+	or.b (m_unk15c,a5),d0
 	bne.b loc_0788c8
 	move.b (6,a6),d0
 	move.w loc_0788ce(pc,d0.w),d1
@@ -5777,7 +5777,7 @@ loc_078c7a:
 ;----------------------------------------------
 loc_078c84:
 	move.b ($125,a5),d0
-	or.b (pause_flag,a5),d0
+	or.b (m_unk15c,a5),d0
 	bne.b loc_078cdc
 	jsr loc_033210
 	tst.b ($35,a6)
@@ -5818,7 +5818,7 @@ loc_078ce8:
 ;----------------------------------------------
 loc_078cee:
 	move.b ($125,a5),d0
-	or.b (pause_flag,a5),d0
+	or.b (m_unk15c,a5),d0
 	bne.b loc_078d04
 	move.b (6,a6),d0
 	move.w loc_078d0a(pc,d0.w),d1
@@ -5858,7 +5858,7 @@ loc_078d52:
 ;----------------------------------------------
 loc_078d58:
 	move.b ($125,a5),d0
-	or.b (pause_flag,a5),d0
+	or.b (m_unk15c,a5),d0
 	bne.b loc_078d6e
 	move.b (6,a6),d0
 	move.w loc_078d74(pc,d0.w),d1
@@ -6252,7 +6252,7 @@ loc_0791f8:
 ;==============================================
 loc_079258:
 	move.b ($125,a5),d0
-	or.b (pause_flag,a5),d0
+	or.b (m_unk15c,a5),d0
 	bne.b loc_079294
 	movea.w ($36,a6),a4
 	move.l (4,a4),d1
@@ -6662,7 +6662,7 @@ loc_0796e6:
 ;----------------------------------------------
 loc_0796f0:
 	move.b ($125,a5),d0
-	or.b (pause_flag,a5),d0
+	or.b (m_unk15c,a5),d0
 	bne.b loc_07970c
 	move.b (6,a6),d0
 	move.w loc_079712(pc,d0.w),d1
@@ -6884,7 +6884,7 @@ loc_0799aa:
 ;----------------------------------------------
 loc_0799b4:
 	move.b ($125,a5),d0
-	or.b (pause_flag,a5),d0
+	or.b (m_unk15c,a5),d0
 	bne.b loc_0799f4
 	movea.w ($36,a6),a4
 	cmpi.w #$200,(4,a4)
@@ -7095,7 +7095,7 @@ loc_079ca0:
 ;==============================================
 loc_079cee:
 	move.b ($125,a5),d0
-	or.b (pause_flag,a5),d0
+	or.b (m_unk15c,a5),d0
 	bne.b loc_079d04
 	move.b (5,a6),d0
 	move.w loc_079d0a(pc,d0.w),d1
@@ -7580,7 +7580,7 @@ loc_07a2fe:
 ;----------------------------------------------
 loc_07a308:
 	move.b ($125,a5),d0
-	or.b (pause_flag,a5),d0
+	or.b (m_unk15c,a5),d0
 	bne.b loc_07a334
 	jsr loc_033210
 	bsr.w loc_07a3e8
@@ -7601,7 +7601,7 @@ loc_07a334:
 ;----------------------------------------------
 loc_07a33a:
 	move.b ($125,a5),d0
-	or.b (pause_flag,a5),d0
+	or.b (m_unk15c,a5),d0
 	bne.b loc_07a350
 	move.b (6,a6),d0
 	move.w loc_07a358(pc,d0.w),d1
@@ -8071,7 +8071,7 @@ loc_07ada0:
 	move.w ($10,a0),($10,a6)
 	move.w ($14,a0),($14,a6)
 	move.b ($125,a5),d0
-	or.b (pause_flag,a5),d0
+	or.b (m_unk15c,a5),d0
 	bne.b loc_07adce
 	tst.b ($33,a6)
 	bmi.b loc_07add6
@@ -8226,7 +8226,7 @@ loc_07af6a:
 ;----------------------------------------------
 loc_07af9a:
 	move.b ($125,a5),d0
-	or.b (pause_flag,a5),d0
+	or.b (m_unk15c,a5),d0
 	bne.w loc_07b528
 	moveq #0,d0
 	move.b (5,a6),d0
@@ -8351,7 +8351,7 @@ loc_07b0fe:
 ;----------------------------------------------
 loc_07b10e:
 	move.b ($125,a5),d0
-	or.b (pause_flag,a5),d0
+	or.b (m_unk15c,a5),d0
 	bne.w loc_07b528
 	moveq #0,d0
 	move.b (5,a6),d0
@@ -8880,7 +8880,7 @@ loc_07b83e:
 ;----------------------------------------------
 loc_07b848:
 	move.b ($125,a5),d0
-	or.b (pause_flag,a5),d0
+	or.b (m_unk15c,a5),d0
 	bne.b loc_07b896
 	jsr loc_0251a8
 	bne.b loc_07b884
@@ -9257,7 +9257,7 @@ loc_07bcc0:
 ;----------------------------------------------
 loc_07bcc6:
 	move.b ($125,a5),d0
-	or.b (pause_flag,a5),d0
+	or.b (m_unk15c,a5),d0
 	bne.b loc_07bcdc
 	move.b (6,a6),d0
 	move.w loc_07bce2(pc,d0.w),d1
@@ -9385,7 +9385,7 @@ loc_07bdcc:
 	move.b ($8ab,a5),d0
 	or.b ($cab,a5),d0
 	or.b ($10ab,a5),d0
-	or.b (pause_flag,a5),d0
+	or.b (m_unk15c,a5),d0
 	beq.b loc_07bde6
 	tst.b ($4ab,a5)
 	bne.b loc_07bde8
@@ -9403,7 +9403,7 @@ loc_07bdec:
 	move.b ($4ab,a5),d0
 	or.b ($cab,a5),d0
 	or.b ($10ab,a5),d0
-	or.b (pause_flag,a5),d0
+	or.b (m_unk15c,a5),d0
 	beq.b loc_07be06
 	tst.b ($8ab,a5)
 	bne.b loc_07bde8
@@ -9417,7 +9417,7 @@ loc_07be08:
 	move.b ($4ab,a5),d0
 	or.b ($8ab,a5),d0
 	or.b ($10ab,a5),d0
-	or.b (pause_flag,a5),d0
+	or.b (m_unk15c,a5),d0
 	beq.b loc_07be22
 	tst.b ($cab,a5)
 	bne.b loc_07bde8
@@ -9431,7 +9431,7 @@ loc_07be24:
 	move.b ($4ab,a5),d0
 	or.b ($8ab,a5),d0
 	or.b ($cab,a5),d0
-	or.b (pause_flag,a5),d0
+	or.b (m_unk15c,a5),d0
 	beq.b loc_07be3e
 	tst.b ($10ab,a5)
 	bne.b loc_07bde8
@@ -9566,7 +9566,7 @@ loc_07bfe8:
 ;----------------------------------------------
 loc_07bff2:
 	move.b ($125,a5),d0
-	or.b (pause_flag,a5),d0
+	or.b (m_unk15c,a5),d0
 	bne.b loc_07c020
 	movea.w ($36,a6),a4
 	tst.b ($23b,a4)
@@ -9589,7 +9589,7 @@ loc_07c020:
 ;----------------------------------------------
 loc_07c026:
 	move.b ($125,a5),d0
-	or.b (pause_flag,a5),d0
+	or.b (m_unk15c,a5),d0
 	bne.b loc_07c03c
 	move.b (6,a6),d0
 	move.w loc_07c042(pc,d0.w),d1

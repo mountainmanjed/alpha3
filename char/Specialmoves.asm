@@ -1,336 +1,336 @@
 ;==============================================
 ;Special Move Input Programming
 ;==============================================
-loc_02d5e2:
-	lea.l loc_02e0fe(pc),a3
-	bra.w loc_02d7e6
+SpInput46P_Code:
+	lea.l Inp_46P_Dat(pc),a3
+	bra.w SP_MOTION_INPUT
 
 ;===============================================
-loc_02d5ea:
-	lea.l loc_02e104(pc),a3
-	bra.w loc_02d7e6
+SpInp_236P_code:
+	lea.l Inp_236P_Dat(pc),a3
+	bra.w SP_MOTION_INPUT
 
 ;===============================================
-loc_02d5f2:
-	lea.l loc_02e10c(pc),a3
-	bra.w loc_02d7e6
+SpInp_236K_code:
+	lea.l Inp_236K_Dat(pc),a3
+	bra.w SP_MOTION_INPUT
 
 ;===============================================
-loc_02d5fa:
-	lea.l loc_02e134(pc),a3
-	bra.w loc_02d7e6
+SpInp_421P_code:
+	lea.l Inp_421P_Dat(pc),a3
+	bra.w SP_MOTION_INPUT
 
 ;===============================================
-loc_02d602:
-	lea.l loc_02e13c(pc),a3
-	bra.w loc_02d7e6
+SpInp_421K_code:
+	lea.l Inp_421K_Dat(pc),a3
+	bra.w SP_MOTION_INPUT
 
 ;===============================================
-loc_02d60a:
-	lea.l loc_02e114(pc),a3
-	bra.w loc_02d7e6
+SpInp_214P_code:
+	lea.l Inp_214P_Dat(pc),a3
+	bra.w SP_MOTION_INPUT
 
 ;===============================================
-loc_02d612:
-	lea.l loc_02e11c(pc),a3
-	bra.w loc_02d7e6
+SpInp_214K_code:
+	lea.l Inp_214K_Dat(pc),a3
+	bra.w SP_MOTION_INPUT
 
 ;===============================================
-loc_02d61a:
-	lea.l loc_02e124(pc),a3
-	bra.w loc_02d7e6
+SpInp_623P_code:
+	lea.l Inp_623P_Dat(pc),a3
+	bra.w SP_MOTION_INPUT
 
 ;===============================================
-loc_02d622:
-	lea.l loc_02e12c(pc),a3
-	bra.w loc_02d7e6
+SpInp_623K_code:
+	lea.l Inp_623K_Dat(pc),a3
+	bra.w SP_MOTION_INPUT
 
 ;===============================================
-loc_02d62a:
-	lea.l loc_02e14c(pc),a3
-	bra.w loc_02d7e6
+SpInp_412P_code:
+	lea.l Inp_412P_Dat(pc),a3
+	bra.w SP_MOTION_INPUT
 
 ;===============================================
-loc_02d632:
-	lea.l loc_02e154(pc),a3
-	bra.w loc_02d7e6
+SpInp_412K_code:
+	lea.l Inp_412K_Dat(pc),a3
+	bra.w SP_MOTION_INPUT
 
 ;===============================================
-loc_02d63a:
-	lea.l loc_02e144(pc),a3
-	bra.w loc_02d7e6
+SpInp_632P_code:
+	lea.l Inp_632P_Dat(pc),a3
+	bra.w SP_MOTION_INPUT
 
 ;===============================================
-loc_02d642:
-	lea.l loc_02e164(pc),a3
-	bra.w loc_02d7e6
+SpInp_1236P_Code:
+	lea.l Inp_1236P_Dat(pc),a3
+	bra.w SP_MOTION_INPUT
 
 ;===============================================
-loc_02d64a:
-	lea.l loc_02e16e(pc),a3
-	bra.w loc_02d7e6
+SpInp_1239K_Code:
+	lea.l Inp_1239K_Dat(pc),a3
+	bra.w SP_MOTION_INPUT
 
 ;===============================================
-loc_02d652:
-	lea.l loc_02e178(pc),a3
-	bra.w loc_02d7e6
+SpInp_2369K_Code:
+	lea.l Inp_2369K_Dat(pc),a3
+	bra.w SP_MOTION_INPUT
 
 ;===============================================
-loc_02d65a:
-	lea.l loc_02e182(pc),a3
-	bra.w loc_02d7e6
+SpInp_2369P_Code:
+	lea.l Inp_2369P_Dat(pc),a3
+	bra.w SP_MOTION_INPUT
 
 ;===============================================
-loc_02d662:
-	lea.l loc_02e18c(pc),a3
-	bra.w loc_02d7e6
+SpInp_41236P_code:
+	lea.l Inp_41236P_Dat(pc),a3
+	bra.w SP_MOTION_INPUT
 
 ;===============================================
-loc_02d66a:
-	lea.l loc_02e198(pc),a3
-	bra.w loc_02d7e6
+SpInp_41236K_Code:
+	lea.l Inp_41236K_Dat(pc),a3
+	bra.w SP_MOTION_INPUT
 
 ;===============================================
-loc_02d672:
-	lea.l loc_02e1a4(pc),a3
-	bra.w loc_02d7e6
+SpInp_63214P_Code:
+	lea.l Inp_63214P_Dat(pc),a3
+	bra.w SP_MOTION_INPUT
 
 ;===============================================
-loc_02d67a:
-	lea.l loc_02e1b0(pc),a3
-	bra.w loc_02d7e6
+SpInp_63214K_Code:
+	lea.l Inp_63214K_Dat(pc),a3
+	bra.w SP_MOTION_INPUT
 
 ;===============================================
-loc_02d682:
-	lea.l loc_02e1bc(pc),a3
-	bra.w loc_02d7e6
+SpInp_632A_Code:
+	lea.l Inp_623A_Dat(pc),a3
+	bra.w SP_MOTION_INPUT
 
 ;===============================================
-loc_02d68a:
-	lea.l loc_02e1c4(pc),a3
-	bra.w loc_02d7e6
+SpInp_421A_Code:
+	lea.l Inp_421A_Dat(pc),a3
+	bra.w SP_MOTION_INPUT
 
 ;===============================================
-loc_02d692:
-	lea.l loc_02e1cc(pc),a3
-	bra.w loc_02d7e6
+SpInp_23623P_Code:
+	lea.l Inp_23623P_Dat(pc),a3
+	bra.w SP_MOTION_INPUT
 
 ;===============================================
-loc_02d69a:
-	lea.l loc_02e1d8(pc),a3
-	bra.w loc_02d7e6
+SpInp_23623K_code:
+	lea.l Inp_23623K_Dat(pc),a3
+	bra.w SP_MOTION_INPUT
 
 ;===============================================
-loc_02d6a2:
-	lea.l loc_02e1e4(pc),a3
-	bra.w loc_02d7e6
+SpInp_23623A_code:
+	lea.l Inp_23623A_Dat(pc),a3
+	bra.w SP_MOTION_INPUT
 
 ;===============================================
-loc_02d6aa:
-	lea.l loc_02e1f0(pc),a3
-	bra.w loc_02d7e6
+SpInp_21421P_code:
+	lea.l Inp_21421P_Dat(pc),a3
+	bra.w SP_MOTION_INPUT
 
 ;===============================================
-loc_02d6b2:
-	lea.l loc_02e1fc(pc),a3
-	bra.w loc_02d7e6
+SpInp_21421K_code:
+	lea.l Inp_21421K_Dat(pc),a3
+	bra.w SP_MOTION_INPUT
 
 ;===============================================
-loc_02d6ba:
-	lea.l loc_02e208(pc),a3
-	bra.w loc_02d7e6
+SpInp_236236P_code:
+	lea.l Inp_236236P_Dat(pc),a3
+	bra.w SP_MOTION_INPUT
 
 ;===============================================
-loc_02d6c2:
-	lea.l loc_02e216(pc),a3
-	bra.w loc_02d7e6
+SpInp_214214P_Code:
+	lea.l Inp_214214P_Dat(pc),a3
+	bra.w SP_MOTION_INPUT
 
 ;===============================================
-loc_02d6ca:
-	lea.l loc_02e224(pc),a3
-	bra.w loc_02d7e6
+SpInp_632143214P_Code:
+	lea.l Inp_632143214P_Dat(pc),a3
+	bra.w SP_MOTION_INPUT
 
 ;===============================================
-loc_02d6d2:
-	lea.l loc_02e238(pc),a3
-	bra.w loc_02d7e6
+SpInp_412361236P_Code:
+	lea.l Inp_412361236P_Dat(pc),a3
+	bra.w SP_MOTION_INPUT
 
 ;===============================================
-loc_02d6da:
-	lea.l loc_02e24c(pc),a3
-	bra.w loc_02d900
+SpInp_28N_Code:
+	lea.l Inp_28N_Dat(pc),a3
+	bra.w SP_SJ_INPUT
 
 ;===============================================
-loc_02d6e2:
-	lea.l loc_02e250(pc),a3
-	bra.w loc_02d998
+SpInp_LPLP6LKHP_code:
+	lea.l Inp_LPLP6LKHP_Dat(pc),a3
+	bra.w SP_BUTTON_INPUT
 
 ;===============================================
-loc_02d6ea:
-	lea.l loc_02e25a(pc),a3
-	bra.w loc_02d9f8
+SpInp_236_code:
+	lea.l Inp_236_Dat(pc),a3
+	bra.w SP_MOTTAUNT_INPUT
 
 ;===============================================
-loc_02d6f2:
-	lea.l loc_02e260(pc),a3
-	bra.w loc_02d9f8
+SpInp_214_Code:
+	lea.l Inp_214_Dat(pc),a3
+	bra.w SP_MOTTAUNT_INPUT
 
 ;===============================================
-loc_02d6fa:
-	lea.l loc_02e266(pc),a3
-	bra.w loc_02d9f8
+SpInp_236236_code:
+	lea.l Inp_236236_Dat(pc),a3
+	bra.w SP_MOTTAUNT_INPUT
 
 ;===============================================
-loc_02d702:
-	lea.l loc_02e272(pc),a3
-	bra.w loc_02d9f8
+SpInp_214214_code:
+	lea.l Inp_214214_Dat(pc),a3
+	bra.w SP_MOTTAUNT_INPUT
 
 ;===============================================
-loc_02d70a:
-	lea.l loc_02e27e(pc),a3
-	bra.w loc_02da84
+SpInp_360RotP_code:
+	lea.l Inp_360RotP_Dat(pc),a3
+	bra.w SP_ROTATE_INPUT
 
 ;===============================================
-loc_02d712:
-	lea.l loc_02e286(pc),a3
-	bra.w loc_02da84
+SpInp_360RotK_code:
+	lea.l Inp_360RotK_Dat(pc),a3
+	bra.w SP_ROTATE_INPUT
 
 ;===============================================
-loc_02d71a:
-	lea.l loc_02e28a(pc),a3
-	bra.w loc_02da84
+SpInp_360RotA_code:
+	lea.l Inp_360RotA_Dat(pc),a3
+	bra.w SP_ROTATE_INPUT
 
 ;===============================================
-loc_02d722:
-	lea.l loc_02e282(pc),a3
-	bra.w loc_02da84
+SpInp_720RotP_code:
+	lea.l Inp_720RotP_Dat(pc),a3
+	bra.w SP_ROTATE_INPUT
 
 ;===============================================
-loc_02d72a:
-	lea.l loc_02e29e(pc),a3
-	bra.w loc_02dbba
+SpChrg_46P_code:
+	lea.l Chrg_46P_Dat(pc),a3
+	bra.w SP_CHARGE_INPUT
 
 ;===============================================
-loc_02d732:
-	lea.l loc_02e2a6(pc),a3
-	bra.w loc_02dbba
+SpChrg_46K_code:
+	lea.l Chrg_46K_Dat(pc),a3
+	bra.w SP_CHARGE_INPUT
 
 ;===============================================
-loc_02d73a:
-	lea.l loc_02e28e(pc),a3
-	bra.w loc_02dbba
+SpChrg_28P_code:
+	lea.l Chrg_28P_Dat(pc),a3
+	bra.w SP_CHARGE_INPUT
 
 ;===============================================
-loc_02d742:
-	lea.l loc_02e296(pc),a3
-	bra.w loc_02dbba
+SpChrg_28K_code:
+	lea.l Chrg_28K_Dat(pc),a3
+	bra.w SP_CHARGE_INPUT
 
 ;===============================================
-loc_02d74a:
-	lea.l loc_02e2ae(pc),a3
-	bra.w loc_02dbba
+SpChrg_43P_code:
+	lea.l Chrg_43P_Dat(pc),a3
+	bra.w SP_CHARGE_INPUT
 
 ;===============================================
-loc_02d752:
-	lea.l loc_02e2b6(pc),a3
-	bra.w loc_02dbba
+SpChrg_43K_code:
+	lea.l Chrg_43K_Dat(pc),a3
+	bra.w SP_CHARGE_INPUT
 
 ;===============================================
-loc_02d75a:
-	lea.l loc_02e2be(pc),a3
-	bra.w loc_02dbba
+SpChrg_16K_code:
+	lea.l Chrg_16K_Dat(pc),a3
+	bra.w SP_CHARGE_INPUT
 
 ;===============================================
-loc_02d762:
-	lea.l loc_02e2c6(pc),a3
-	bra.w loc_02dbba
+SpChrg_4646P_code:
+	lea.l Chrg_4646P_Dat(pc),a3
+	bra.w SP_CHARGE_INPUT
 
 ;===============================================
-loc_02d76a:
-	lea.l loc_02e2d2(pc),a3
-	bra.w loc_02dbba
+SpChrg_4646K_code:
+	lea.l Chrg_4646K_Dat(pc),a3
+	bra.w SP_CHARGE_INPUT
 
 ;===============================================
-loc_02d772:
-	lea.l loc_02e2de(pc),a3
-	bra.w loc_02dbba
+SpChrg_4646A_code:
+	lea.l Chrg_4646A_Dat(pc),a3
+	bra.w SP_CHARGE_INPUT
 
 ;===============================================
-loc_02d77a:
-	lea.l loc_02e2ea(pc),a3
-	bra.w loc_02dbba
+SpChrg_1318P_code:
+	lea.l Chrg_1318P_Dat(pc),a3
+	bra.w SP_CHARGE_INPUT
 
 ;===============================================
-loc_02d782:
-	lea.l loc_02e2f6(pc),a3
-	bra.w loc_02dbba
+SpChrg_1318K_code:
+	lea.l Chrg_1318K_Dat(pc),a3
+	bra.w SP_CHARGE_INPUT
 
 ;===============================================
-loc_02d78a:
-	lea.l loc_02e302(pc),a3
-	bra.w loc_02dcfe
+SpHold_LPMP_code:
+	lea.l Hold_LPMP_Dat(pc),a3
+	bra.w SP_BUTTONHOLD_INPUT
 
 ;===============================================
-loc_02d792:
-	lea.l loc_02e304(pc),a3
-	bra.w loc_02dcfe
+SpHold_LPHP_code:
+	lea.l Hold_LPHP_Dat(pc),a3
+	bra.w SP_BUTTONHOLD_INPUT
 
 ;===============================================
-loc_02d79a:
-	lea.l loc_02e306(pc),a3
-	bra.w loc_02dcfe
+SpHold_MPHP_code:
+	lea.l Hold_MPHP_Dat(pc),a3
+	bra.w SP_BUTTONHOLD_INPUT
 
 ;===============================================
-loc_02d7a2:
-	lea.l loc_02e308(pc),a3
-	bra.w loc_02dcfe
+SpHold_AllP_code:
+	lea.l Hold_AllP_Dat(pc),a3
+	bra.w SP_BUTTONHOLD_INPUT
 
 ;===============================================
-loc_02d7aa:
-	lea.l loc_02e30a(pc),a3
-	bra.w loc_02dcfe
+SpHold_LKMK_code:
+	lea.l Hold_LKMK_Dat(pc),a3
+	bra.w SP_BUTTONHOLD_INPUT
 
 ;===============================================
-loc_02d7b2:
-	lea.l loc_02e30c(pc),a3
-	bra.w loc_02dcfe
+SpHold_LKHK_code:
+	lea.l Hold_LKHK_Dat(pc),a3
+	bra.w SP_BUTTONHOLD_INPUT
 
 ;===============================================
-loc_02d7ba:
-	lea.l loc_02e30e(pc),a3
-	bra.w loc_02dcfe
+SpHold_MKHK_code:
+	lea.l Hold_MKHK_Dat(pc),a3
+	bra.w SP_BUTTONHOLD_INPUT
 
 ;===============================================
-loc_02d7c2:
-	lea.l loc_02e310(pc),a3
-	bra.w loc_02dcfe
+SpHold_AllK_code:
+	lea.l Hold_AllK_Dat(pc),a3
+	bra.w SP_BUTTONHOLD_INPUT
 
 ;==============================================
-loc_02d7ca:
+SpInp_66N_code:
 	moveq #2,d1
-	bra.w loc_02dd80
+	bra.w SP_DOUBLE_INPUT
 
 ;==============================================
-loc_02d7d0:
+SpInp_44N_code:
 	moveq #1,d1
-	bra.w loc_02dd80
+	bra.w SP_DOUBLE_INPUT
 
 ;==============================================
-loc_02d7d6:
-	lea.l loc_02e312(pc),a3
-	bra.w loc_02dddc
+SpMash_P_code:
+	lea.l Mash_P_Dat(pc),a3
+	bra.w SP_MASH_INPUT
 
 ;==============================================
-loc_02d7de:
-	lea.l loc_02e31a(pc),a3
-	bra.w loc_02dddc
+SpMash_K_code:
+	lea.l Mash_K_Dat(pc),a3
+	bra.w SP_MASH_INPUT
 
 ;==============================================
 ;End of Setting inputs addresses
 ;==============================================
 
 ;==============================================
-loc_02d7e6:
+SP_MOTION_INPUT:
 	moveq #0,d0
 	move.b (a4),d0
 	move.w loc_02d7f2(pc,d0.w),d1
@@ -443,7 +443,7 @@ loc_02d8ea:
 	bra.w loc_02df5a
 
 ;==============================================
-loc_02d900:
+SP_SJ_INPUT:
 	moveq #0,d0
 	move.b (a4),d0
 	move.w loc_02d90c(pc,d0.w),d1
@@ -507,7 +507,7 @@ loc_02d98c:
 	bra.w loc_02dfb6
 
 ;==============================================
-loc_02d998:
+SP_BUTTON_INPUT:
 	moveq #0,d0
 	move.b (a4),d0
 	move.w loc_02d9a4(pc,d0.w),d1
@@ -548,7 +548,7 @@ loc_02d9cc:
 	bra.w loc_02dfb6
 
 ;==============================================
-loc_02d9f8:
+SP_MOTTAUNT_INPUT:
 	moveq #0,d0
 	move.b (a4),d0
 	move.w loc_02da04(pc,d0.w),d1
@@ -605,7 +605,7 @@ loc_02da68:
 	bra.w loc_02df5a
 
 ;==============================================
-loc_02da84:
+SP_ROTATE_INPUT:
 	moveq #0,d0
 	move.b (a4),d0
 	move.w loc_02da90(pc,d0.w),d1
@@ -736,7 +736,7 @@ loc_02dbb6:
 	dc.b $08,$02,$04,$01
 
 ;==============================================
-loc_02dbba:
+SP_CHARGE_INPUT:
 	moveq #0,d0
 	move.b (a4),d0
 	move.w loc_02dbc6(pc,d0.w),d1
@@ -876,7 +876,7 @@ loc_02dcf2:
 	bra.w loc_02dfb6
 
 ;==============================================
-loc_02dcfe:
+SP_BUTTONHOLD_INPUT:
 	moveq #0,d0
 	move.b (a4),d0
 	move.w loc_02dd0a(pc,d0.w),d1
@@ -933,7 +933,7 @@ loc_02dd76:
 	bra.w loc_02df5a
 
 ;==============================================
-loc_02dd80:
+SP_DOUBLE_INPUT:
 	moveq #0,d0
 	move.b (a4),d0
 	move.w loc_02dd8c(pc,d0.w),d0
@@ -975,7 +975,7 @@ loc_02ddbe:
 	bra.w loc_02df58
 
 ;==============================================
-loc_02dddc:
+SP_MASH_INPUT:
 	moveq #0,d0
 	move.b (a4),d0
 	move.w loc_02dde8(pc,d0.w),d1
@@ -1152,7 +1152,9 @@ loc_02dfba:
 	rts
 
 ;==============================================
-loc_02dfbe:
+;Any 2 Punches
+;==============================================
+SPButton_Any2P_code:
 	move.b ($378,a6),d0
 	or.b ($37a,a6),d0
 	andi.b #7,d0
@@ -1169,7 +1171,9 @@ loc_02dfdc:
 	rts
 
 ;==============================================
-loc_02dfe0:
+;Any 2 Kicks
+;==============================================
+SPButton_Any2K_code:
 	move.b ($378,a6),d0
 	or.b ($37a,a6),d0
 	lsr.b #4,d0
@@ -1187,7 +1191,9 @@ loc_02e000:
 	rts
 
 ;==============================================
-loc_02e004:
+;3 Punch input
+;==============================================
+SPButton_AllP_code:
 	move.w ($378,a6),d0
 	or.w ($37a,a6),d0
 	andi.w #$700,d0
@@ -1201,7 +1207,9 @@ loc_02e01a:
 	rts
 
 ;==============================================
-loc_02e01e:
+;3 Kick Input
+;==============================================
+SPButton_AllK_code:
 	move.w ($378,a6),d0
 	or.w ($37a,a6),d0
 	andi.w #$7000,d0
@@ -1215,7 +1223,9 @@ loc_02e034:
 	rts
 
 ;==============================================
-loc_02e038:
+;Any 2 Punches or 2 Kicks
+;==============================================
+SPButton_Any2L_code:
 	move.b ($378,a6),d0
 	or.b ($37a,a6),d0
 	move.w d0,d1
@@ -1244,7 +1254,9 @@ loc_02e06c:
 	rts
 
 ;==============================================
-loc_02e070:
+;3 punches or 3kicks
+;==============================================
+SPButton_All3PorK_code:
 	move.w ($378,a6),d0
 	or.w ($37a,a6),d0
 	move.w d0,d1
@@ -1262,10 +1274,12 @@ loc_02e092:
 	rts
 
 ;==============================================
-loc_02e096:
-	cmpi.b #1,($132,a6)
+;Vism Input Code
+;==============================================
+SPButton_Vism_code:
+	cmpi.b #1,(PL_ism_choice,a6)
 	bne.b loc_02e0c4
-	cmpi.w #$48,($11e,a6)
+	cmpi.w #$48,(PL_meter,a6)
 	bcs.b loc_02e0c4
 	move.b ($378,a6),d0
 	or.b ($37a,a6),d0
@@ -1286,13 +1300,17 @@ loc_02e0c8:
 	rts
 
 ;==============================================
-loc_02e0cc:
+;Taunt Input
+;==============================================
+SPButton_Taunt_code:
 	move.w ($378,a6),d0
 	btst #$f,d0
 	rts
 
 ;==============================================
-loc_02e0d6:
+;Alpha Counter Input
+;==============================================
+SPButton_AlphaCounter_code:
 	move.w ($378,a6),d0
 	or.w ($37a,a6),d0
 	move.w d0,d1
@@ -1312,194 +1330,246 @@ loc_02e0fa:
 
 ;VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV
 ;INPUT MOTION DATA
-loc_02e0fe:
+;46+P
+Inp_46P_Dat:
 	dc.w $0001,$0012,$0f00
 
-loc_02e104:
+;236+P
+Inp_236P_Dat:
 	dc.w $0004,$0006,$0012,$0f00
 
-loc_02e10c:
+;236+K
+Inp_236K_Dat:
 	dc.w $0004,$0006,$0012,$f000
 
-loc_02e114:
+;214+P
+Inp_214P_Dat:
 	dc.w $0004,$0005,$0011,$0f00
 
-loc_02e11c:
+;214+K
+Inp_214K_Dat:
 	dc.w $0004,$0005,$0011,$f000
 
-loc_02e124:
+;623+P
+Inp_623P_Dat:
 	dc.w $0002,$0004,$0016,$0f00
 
-loc_02e12c:
+;623+K
+Inp_623K_Dat:
 	dc.w $0002,$0004,$0016,$f000
 
-loc_02e134:
+;421+P
+Inp_421P_Dat:
 	dc.w $0001,$0004,$0015,$0f00
 
-loc_02e13c:
+;421+K
+Inp_421K_Dat:
 	dc.w $0001,$0004,$0015,$f000
 
-loc_02e144:
+;632+P
+Inp_632P_Dat:
 	dc.w $0002,$0006,$0014,$0f00
 
-loc_02e14c:
+;412+P
+Inp_412P_Dat:
 	dc.w $0001,$0005,$0014,$0f00
 
-loc_02e154:
+;412+K
+Inp_412K_Dat:
 	dc.w $0001,$0005,$0014,$f000
 
+;412+?
 loc_02e15c:
 	dc.w $0001,$0005,$0014,$0060
 
-loc_02e164:
+;1236+P
+Inp_1236P_Dat:
 	dc.w $0005,$0004,$0006,$0012,$0f00
 
-loc_02e16e:
+;1239+K
+Inp_1239K_Dat:
 	dc.w $0005,$0004,$0006,$001a,$0f00
 
-loc_02e178:
+;2369+K
+Inp_2369K_Dat:
 	dc.w $0004,$0006,$0002,$001a,$0f00
 
-loc_02e182:
+;2369+P
+Inp_2369P_Dat:
 	dc.w $0004,$0006,$0002,$001a,$f000
 
-loc_02e18c:
+;41236+P
+Inp_41236P_Dat:
 	dc.w $0001,$0005,$0004,$0006,$0012,$0f00
 
-loc_02e198:
+;41236+K
+Inp_41236K_Dat:
 	dc.w $0001,$0005,$0004,$0006,$0012,$f000
 
-loc_02e1a4:
+;63214+P
+Inp_63214P_Dat:
 	dc.w $0002,$0006,$0004,$0005,$0011,$0f00
 
-loc_02e1b0:
+Inp_63214K_Dat:
 	dc.w $0002,$0006,$0004,$0005,$0011,$f000
 
-loc_02e1bc:
+;623+Any
+Inp_623A_Dat:
 	dc.w $0002,$0004,$0016,$ff40
 
-loc_02e1c4:
+;421+Any
+Inp_421A_Dat:
 	dc.w $0001,$0004,$0015,$ff40
 
-loc_02e1cc:
+;23623+P
+Inp_23623P_Dat:
 	dc.w $0004,$0006,$0002,$0004,$0016,$0f00
 
-loc_02e1d8:
+;23623+K
+Inp_23623K_Dat:
 	dc.w $0004,$0006,$0002,$0004,$0016,$f000
 
-loc_02e1e4:
+;23623+A
+Inp_23623A_Dat:
 	dc.w $0004,$0006,$0002,$0004,$0016,$ff00
 
-loc_02e1f0:
+;21421+P
+Inp_21421P_Dat:
 	dc.w $0004,$0005,$0001,$0004,$0015,$0f00
 
-loc_02e1fc:
+;21421+K
+Inp_21421K_Dat:
 	dc.w $0004,$0005,$0001,$0004,$0015,$f000
 
-loc_02e208:
+;236236+P
+Inp_236236P_Dat:
 	dc.w $0004,$0006,$0002,$0004,$0006,$0012,$0f00
 
-loc_02e216:
+;214214+P
+Inp_214214P_Dat:
 	dc.w $0004,$0005,$0001,$0004,$0005,$0011,$0f00
 
-loc_02e224:
+;632143214+P
+Inp_632143214P_Dat:
 	dc.w $0002,$0006,$0004,$0005,$0001,$0006,$0004,$0005,$0011,$0f00
 
-loc_02e238:
+;412361236+P
+Inp_412361236P_Dat:
 	dc.w $0001,$0005,$0004,$0006,$0002,$0005,$0004,$0006,$0012,$0f00
 
-loc_02e24c:
+;28 Input neutral
+Inp_28N_Dat:
 	dc.w $0084,$0098
 
-loc_02e250:
+;lp lp 6 lk hp
+Inp_LPLP6LKHP_Dat:
 	dc.w $0100,$0100,$0002,$1000,$0410
 
-loc_02e25a:
+;236
+Inp_236_Dat:
 	dc.w $0004,$0006,$0012
 
-loc_02e260:
+;214
+Inp_214_Dat:
 	dc.w $0004,$0005,$0011
 
-loc_02e266:
+;236236
+Inp_236236_Dat:
 	dc.w $0004,$0006,$0002,$0004,$0006,$0012
 
-loc_02e272:
+;214214
+Inp_214214_Dat:
 	dc.w $0004,$0005,$0001,$0004,$0005,$0011
 
-loc_02e27e:
+;360+P
+Inp_360RotP_Dat:
 	dc.w $0002,$0f00
 
-loc_02e282:
+Inp_720RotP_Dat:
 	dc.w $0006,$0f00
 
-loc_02e286:
+Inp_360RotK_Dat:
 	dc.w $0002,$f000
 
-loc_02e28a:
+Inp_360RotA_Dat:
 	dc.w $0002,$ff00
 
-loc_02e28e:
+;Charge motion input data
+;first word charge time
+
+;28+P
+Chrg_28P_Dat:
 	dc.w $003c,$0084,$0098,$0f00
 
-loc_02e296:
+;28+K
+Chrg_28K_Dat:
 	dc.w $003c,$0084,$0098,$f000
 
-loc_02e29e:
+;46+P
+Chrg_46P_Dat:
 	dc.w $003c,$0081,$0012,$0f00
 
-loc_02e2a6:
+;46+K
+Chrg_46K_Dat:
 	dc.w $003c,$0081,$0012,$f000
 
-loc_02e2ae:
+;43+P
+Chrg_43P_Dat:
 	dc.w $003c,$0081,$0016,$0f00
 
-loc_02e2b6:
+;43+K
+Chrg_43K_Dat:
 	dc.w $003c,$0081,$0016,$f000
 
-loc_02e2be:
+;16+K
+Chrg_16K_Dat:
 	dc.w $003c,$0005,$0012,$f000
 
-loc_02e2c6:
+;4646+P
+Chrg_4646P_Dat:
 	dc.w $003c,$0081,$0082,$0081,$0012,$0f00
 
-loc_02e2d2:
+;4646+K
+Chrg_4646K_Dat:
 	dc.w $003c,$0081,$0082,$0081,$0012,$f000
 
-loc_02e2de:
+;4646+A
+Chrg_4646A_Dat:
 	dc.w $003c,$0081,$0082,$0081,$0012,$ff00
 
-loc_02e2ea:
+;1318+P
+Chrg_1318P_Dat:
 	dc.w $003c,$0005,$0006,$0005,$0098,$0f00
 
-loc_02e2f6:
+Chrg_1318K_Dat:
 	dc.w $003c,$0005,$0006,$0005,$0098,$f000
 
-loc_02e302:
+Hold_LPMP_Dat:
 	dc.w $0300
 
-loc_02e304:
+Hold_LPHP_Dat:
 	dc.w $0500
 
-loc_02e306:
+Hold_MPHP_Dat:
 	dc.w $0600
 
-loc_02e308:
+Hold_AllP_Dat:
 	dc.w $0700
 
-loc_02e30a:
+Hold_LKMK_Dat:
 	dc.w $3000
 
-loc_02e30c:
+Hold_LKHK_Dat:
 	dc.w $5000
 
-loc_02e30e:
+Hold_MKHK_Dat:
 	dc.w $6000
 
-loc_02e310:
+Hold_AllK_Dat:
 	dc.w $7000
 
-loc_02e312:
+Mash_P_Dat:
 	dc.w $0f00,$0f05,$0c05,$0905
 
-loc_02e31a:
+Mash_K_Dat:
 	dc.w $f000,$0f05,$0c05,$0905

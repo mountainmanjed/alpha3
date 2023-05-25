@@ -4338,7 +4338,7 @@ loc_09337c:
 	cmp.b ($5f,a6),d0
 	bne.w loc_09372a
 	move.b ($125,a5),d0
-	or.b (pause_flag,a5),d0
+	or.b (m_unk15c,a5),d0
 	bne.b loc_0933a0
 	tst.b ($33,a6)
 	bmi.w loc_09372a

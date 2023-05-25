@@ -167,51 +167,149 @@ loc_0dcad2:
 	dc.w $0018;Juni
 
 ;VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV
-loc_0dcb12:
-	dc.l loc_0359e6,loc_0375f0,loc_03a2dc,loc_03bd1e
-	dc.l loc_03da4c,loc_03f246,loc_0411f2,loc_043128
-	dc.l loc_044be4,loc_046d74,loc_048e80,loc_04acce
-	dc.l loc_04d282,loc_04efe2,loc_051d60,loc_054034
-	dc.l loc_0569a2,loc_059790,loc_0359e6,loc_05984a
-	dc.l loc_0359e6,loc_05ace2,loc_05dd34,loc_0359e6
-	dc.l loc_05f7a0,loc_061a1e,loc_064ddc,loc_06769e
-	dc.l loc_069a7e,loc_06b6de,loc_06f0da,loc_072b1e
+;loc 0dcb12
+;Cancel Timers
+Cancel_Timer_PNT_Table:
+	dc.l loc_0359e6	;00 Ryu
+	dc.l loc_0375f0	;01 Ken
+	dc.l loc_03a2dc	;02 Akuma
+	dc.l loc_03bd1e	;03 Charlie
+	dc.l loc_03da4c	;04 Chun
+	dc.l loc_03f246	;05 Adon
+	dc.l loc_0411f2	;06 Sodom
+	dc.l loc_043128	;07 Guy
+	dc.l loc_044be4	;08 Birdie
+	dc.l loc_046d74	;09 Rose
+	dc.l loc_048e80	;0a Dic
+	dc.l loc_04acce	;0b Sagat
+	dc.l loc_04d282	;0c Dan
+	dc.l loc_04efe2	;0d Sakura
+	dc.l loc_051d60	;0e Rolento
+	dc.l loc_054034	;0f Dhalsim
+	dc.l loc_0569a2	;10 Zangief
+	dc.l loc_059790	;11 Gen
+	dc.l loc_0359e6	;
+	dc.l loc_05984a	;13 Gen Stance
+	dc.l loc_0359e6	;
+	dc.l loc_05ace2	;15 Boxer
+	dc.l loc_05dd34	;16 Cammy
+	dc.l loc_0359e6	;
+	dc.l loc_05f7a0	;18 E Honda
+	dc.l loc_061a1e	;19 Blanka
+	dc.l loc_064ddc	;1a RMika
+	dc.l loc_06769e	;1b Cody
+	dc.l loc_069a7e	;1c Claw
+	dc.l loc_06b6de	;1d Karin
+	dc.l loc_06f0da	;1e Juli
+	dc.l loc_072b1e	;1f Juni
 
 ;VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV
 ;Jump Table for programming of normals
 loc_0dcb92:
-	dc.l loc_034394,loc_035cf8,loc_0378de,loc_03a38e
-	dc.l loc_03bf1c,loc_03dd1a,loc_03f324,loc_041652
-	dc.l loc_04326c,loc_044f3a,loc_0472c2,loc_048f76
-	dc.l loc_04afc6,loc_04d468,loc_04f60e,loc_051e88
-	dc.l loc_054124,loc_056d86,loc_034394,loc_056f34
-	dc.l loc_034394,loc_059b8c,loc_05ae5a,loc_034394
-	dc.l loc_05de4c,loc_05ff52,loc_061f20,loc_0653d8
-	dc.l loc_06795e,loc_069e56,loc_06b87c,loc_06f2b8
+	dc.l loc_034394
+	dc.l loc_035cf8
+	dc.l loc_0378de
+	dc.l loc_03a38e
+	dc.l loc_03bf1c
+	dc.l loc_03dd1a
+	dc.l loc_03f324
+	dc.l loc_041652
+	dc.l loc_04326c
+	dc.l loc_044f3a
+	dc.l loc_0472c2
+	dc.l loc_048f76
+	dc.l loc_04afc6
+	dc.l loc_04d468
+	dc.l loc_04f60e
+	dc.l loc_051e88
+	dc.l loc_054124
+	dc.l loc_056d86
+	dc.l loc_034394
+	dc.l loc_056f34
+	dc.l loc_034394
+	dc.l loc_059b8c
+	dc.l loc_05ae5a
+	dc.l loc_034394
+	dc.l loc_05de4c
+	dc.l loc_05ff52
+	dc.l loc_061f20
+	dc.l loc_0653d8
+	dc.l loc_06795e
+	dc.l loc_069e56
+	dc.l loc_06b87c
+	dc.l loc_06f2b8
 
 ;VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV
 ;AI Special Moves Programming
 loc_0dcc12:
-	dc.l loc_034b52,loc_0363ae,loc_0382b8,loc_03aaaa
-	dc.l loc_03c79e,loc_03e304,loc_03fa28,loc_041ec2
-	dc.l loc_043a6a,loc_0455e4,loc_047984,loc_04957c
-	dc.l loc_04b5e0,loc_04da52,loc_04fddc,loc_052c1a
-	dc.l loc_054972,loc_057778,loc_034b52,loc_057778
-	dc.l loc_034b52,loc_05a160,loc_05b4a8,loc_034b52
-	dc.l loc_05e4c8,loc_0604f0,loc_0627aa,loc_065cf2
-	dc.l loc_068124,loc_06a4a8,loc_06c0d8,loc_06fb1e
+	dc.l loc_034b52
+	dc.l loc_0363ae
+	dc.l loc_0382b8
+	dc.l loc_03aaaa
+	dc.l loc_03c79e
+	dc.l loc_03e304
+	dc.l loc_03fa28
+	dc.l loc_041ec2
+	dc.l loc_043a6a
+	dc.l loc_0455e4
+	dc.l loc_047984
+	dc.l loc_04957c
+	dc.l loc_04b5e0
+	dc.l loc_04da52
+	dc.l loc_04fddc
+	dc.l loc_052c1a
+	dc.l loc_054972
+	dc.l loc_057778
+	dc.l loc_034b52
+	dc.l loc_057778
+	dc.l loc_034b52
+	dc.l loc_05a160
+	dc.l loc_05b4a8
+	dc.l loc_034b52
+	dc.l loc_05e4c8
+	dc.l loc_0604f0
+	dc.l loc_0627aa
+	dc.l loc_065cf2
+	dc.l loc_068124
+	dc.l loc_06a4a8
+	dc.l loc_06c0d8
+	dc.l loc_06fb1e
 
 ;VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV
 ;Player Special moves
 loc_0dcc92:
-	dc.l loc_034b52,loc_0363ae,loc_0382e4,loc_03aaca
-	dc.l loc_03c79e,loc_03e304,loc_03fa28,loc_041ec2
-	dc.l loc_043a6a,loc_0455e4,loc_0479a8,loc_04957c
-	dc.l loc_04b5e0,loc_04da76,loc_04fddc,loc_052c1a
-	dc.l loc_054972,loc_057778,loc_034b52,loc_057778
-	dc.l loc_034b52,loc_05a160,loc_05b4ce,loc_034b52
-	dc.l loc_05e4c8,loc_0604f0,loc_0627aa,loc_065cc6
-	dc.l loc_068124,loc_06a4a8,loc_06c0d8,loc_06fb1e
+	dc.l loc_034b52
+	dc.l loc_0363ae
+	dc.l loc_0382e4
+	dc.l loc_03aaca
+	dc.l loc_03c79e
+	dc.l loc_03e304
+	dc.l loc_03fa28
+	dc.l loc_041ec2
+	dc.l loc_043a6a
+	dc.l loc_0455e4
+	dc.l loc_0479a8
+	dc.l loc_04957c
+	dc.l loc_04b5e0
+	dc.l loc_04da76
+	dc.l loc_04fddc
+	dc.l loc_052c1a
+	dc.l loc_054972
+	dc.l loc_057778
+	dc.l loc_034b52
+	dc.l loc_057778
+	dc.l loc_034b52
+	dc.l loc_05a160
+	dc.l loc_05b4ce
+	dc.l loc_034b52
+	dc.l loc_05e4c8
+	dc.l loc_0604f0
+	dc.l loc_0627aa
+	dc.l loc_065cc6
+	dc.l loc_068124
+	dc.l loc_06a4a8
+	dc.l loc_06c0d8
+	dc.l loc_06fb1e
 
 ;VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV
 ;Throw Table 1

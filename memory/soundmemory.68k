@@ -1,0 +1,39 @@
+;==============================================
+;Sound Ram locations on the 68000 side
+;no even bytes
+;cause interfacing with ram z80 uses as well
+;==============================================
+Soundram = 0x618000;used in inital ram test still NO EVEN BYTES
+
+S68_ID_Top = 0x618001
+S68_ID_Bottom = 0x618003
+;S68_ = 0x618005
+;S68_ = 0x618007
+;S68_ = 0x618009
+S68_Pan_Postion = 0x61800b
+;S68_ = 0x61800d
+;S68_ = 0x61800f
+S68_Distance = 0x618011
+S68_Speed1_Top = 0x618013
+S68_Speed1_Bottom = 0x618015
+S68_Speed2_Top = 0x618017
+S68_Speed2_Bottom = 0x618019
+S68_Play = 0x61801f
+
+;S68_ = 0x618021
+;S68_ = 0x618023
+
+
+;==============================================
+;Volume meter data
+;these are the start each one add 2 for each
+S68_VolumeMeter_Vol = 0x619e81
+S68_VolumeMeter_Pan = 0x619ea1
+
+;==============================================
+;System stuff
+Sound_Test_end = 0x619ff9
+
+;S68_ = 0x619ffb
+S68_Set_Mono = 0x619ffd;0 = stereo
+Sound_END = 0x619fff

@@ -7635,7 +7635,7 @@ loc_01c86c:
 	rts
 
 ;==============================================
-;
+;Character Data Display
 ;Dip C 0010 0000
 ;==============================================
 Debug_CData_Disp:
@@ -7716,23 +7716,30 @@ loc_01c8ee:
 	move.w d6,d2
 	move.b #$2d,d0
 	bsr.w loc_01ccf2
+
+;???
 	move.w ($330,a6),d0
 	bsr.w loc_01cd54
+
 	addq.w #8,d2
 	move.b #$2b,d0
 	bsr.w loc_01ccf2
+
 	move.b ($334,a6),d0
 	bsr.w loc_01cd54
 	addq.w #8,d2
 	move.b #$2b,d0
 	bsr.w loc_01ccf2
+
 	move.b ($332,a6),d0
 	bsr.w loc_01cd54
 	addq.w #8,d2
 	move.b #$2d,d0
 	bsr.w loc_01ccf2
+
 	move.b ($333,a6),d0
 	bsr.w loc_01cd54
+
 	addq.w #8,d3
 	move.w d6,d2
 	tst.b ($2ce,a6)
@@ -7740,6 +7747,7 @@ loc_01c8ee:
 	tst.b ($2cf,a6)
 	bne.b loc_01c9da
 
+;Cancel Display
 loc_01c990:
 	moveq #$1f,d1
 	move.l #$43414e43,d0;CANC
@@ -7748,17 +7756,17 @@ loc_01c990:
 	bsr.w loc_01ccf8
 	tst.b (pl_attk_active,a6)
 	beq.b loc_01c9fe
-	move.l (4,a6),d0
+	move.l (pl_overall_state,a6),d0
 	andi.l #$ffffff00,d0
 	cmpi.l #$2000a00,d0
 	bne.b loc_01c9fe
 	cmpi.b #2,($80,a6)
 	bhi.b loc_01c9fe
 	addq.w #8,d2
-	move.b ($23e,a6),d1
+	move.b (PL_Special_Cancel_Timer,a6),d1
 	bsr.w loc_01cda4
 	addq.w #8,d2
-	move.b ($293,a6),d1
+	move.b (PL_Super_Cancel_Timer,a6),d1
 	bsr.w loc_01cda4
 	bra.b loc_01c9fe
 

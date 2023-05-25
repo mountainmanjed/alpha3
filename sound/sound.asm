@@ -7,27 +7,27 @@ Sound_Transfer:
 	moveq #-1,d0
 
 loc_0030ce:
-	move.b d0,$619ffd
+	move.b d0,S68_Set_Mono
 	move.w ($6e82,a5),d0
 	cmp.w ($6e80,a5),d0
 	beq.w loc_003166
-	cmpi.b #$ff,$61801f
+	cmpi.b #$ff,S68_Play
 	bne.b loc_003166
 	lea (Sound_Buffer_Start,a5),a4
 	move.w ($6e82,a5),d0
 	move.b (a4,d0.w),$618007
 	move.b (1,a4,d0.w),$618009
-	move.b (2,a4,d0.w),$618001
-	move.b (3,a4,d0.w),$618003
+	move.b (2,a4,d0.w),S68_ID_Top
+	move.b (3,a4,d0.w),S68_ID_Bottom
 	move.b (4,a4,d0.w),$618005
 	move.b (5,a4,d0.w),$61800d
 	move.b (6,a4,d0.w),$61800f
-	move.b (7,a4,d0.w),$618011
-	move.b (8,a4,d0.w),$618017
-	move.b (9,a4,d0.w),$618019
-	move.b ($a,a4,d0.w),$618013
-	move.b ($b,a4,d0.w),$618015
-	move.b #0,$61801f
+	move.b (7,a4,d0.w),S68_Distance
+	move.b (8,a4,d0.w),S68_Speed2_Top
+	move.b (9,a4,d0.w),S68_Speed2_Bottom
+	move.b ($a,a4,d0.w),S68_Speed1_Top
+	move.b ($b,a4,d0.w),S68_Speed1_Bottom
+	move.b #0,S68_Play
 	addi.w #$10,d0
 	andi.w #$ff0,d0
 	move.w d0,($6e82,a5)

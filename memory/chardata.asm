@@ -2,11 +2,12 @@ PL_Enable = 0x00 ;byte
 PL_Render = 0x01 ;byte
 
 pl_overall_state = 0x04
-
 ; = 0x04 ;byte
 ; = 0x05 ;byte
 ; = 0x06 ;byte
 PL_Move_state = 0x07 ;byte
+
+
 ;= 0x08
 
 ;= 0x0a ;byte
@@ -78,6 +79,7 @@ pl_attk_active = 0xa9 ; byte attk_active
 pl_move_id = 0xaa ; byte
 ; = 0xab ; byte
 ; = 0xac
+; = ae
 
 ; = 0xb8
 
@@ -116,6 +118,7 @@ PL_charid = 0x102
 ; = 0x10a
 ; 0x10b
 
+; = 0x110
 ; = 0x114
 PL_Buttons = 0x11a
 ; = 0x11b
@@ -123,7 +126,7 @@ PL_Buttons = 0x11a
 PL_meter = 0x11e
 
 ; = 0x123 ;
-;0x124 ;byte
+; = 0x124 ;byte
 PL_cpucontrol = 0x125
 ; = 0x126
 ; = 0x127
@@ -136,8 +139,11 @@ Pl_Sakiyo_mode = 0x131
 PL_ism_choice = 0x132
 
 ;134
+; 0x13c ; Long
 
 pl_arcade_progress = 0x140
+
+; = 0x149
 
 ;pl_survival_mode = 0x149
 ;pl_survival_mode = 0x14b
@@ -228,9 +234,8 @@ pl_dist_away = 0x21c
 ;21f
 
 ;0x238
-
-PL_Cancel = 0x23e
-PL_Cancel = 0x293
+;0x80
+PL_Special_Cancel_Timer = 0x23e
 
 ;0x246
 ;0x248
@@ -240,6 +245,7 @@ PL_Cancel = 0x293
 pl_guard_bar_max = 0x24c
 pl_guard_bar = 0x24d
 
+;PL_ = 0x254
 PL_byte255 = 0x255
 PL_Reversal_Window = 0x256
 
@@ -252,7 +258,11 @@ pl_crushed_guard = 0x26e
 pl_collsion_counter = 0x280
 
 ;= 0x28a;
-;= 0x28d;
+
+; = 0x28d;
+; = 0x28e;
+
+PL_Super_Cancel_Timer = 0x293
 
 pl_blockstring_counter = 0x297
 
@@ -261,14 +271,16 @@ pl_blockstring_counter = 0x297
 plflash_timer = 0x2ad
 plflash_status = 0x2ae
 
+;_PNT = 0x2bc
 ;0x2c0
 
 pl_crouching = 0x2c8
 pl_sidecheck = 0x2c9
 PL_Stun = 0x2cc
 pl_stun_max = 0x2cd
-;2ce
-;2cf 
+; = 0x2ce; check
+
+;stunflag = 0x2cf;  
 
 Pl_WalkSpeed_pnt = 0x2d0
 Pl_JumpData_pnt = 0x2d4;0x28692,0x2a98c
@@ -281,17 +293,16 @@ pl_combo_copy = 0x329; you're comboing
 ; = 0x32c ;byte
 pl_throw_id = 0x32f
 
-;0x330
-;0x331
-;0x332
-;0x333
-;0x334
+;0x330;word
+;0x332;byte
+;0x333;byte
+;0x334;byte
 
 
 ; = 0x371
-; = 0x378
+;PL_Input_Button_Press = 0x378
 ; = 0x379
-; = 0x37a
+;PL_Input_ = 0x37a
 
 ;==============================================
 ;Direct calls

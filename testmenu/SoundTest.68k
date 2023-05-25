@@ -439,8 +439,8 @@ loc_00e600:
 
 ;==============================================
 loc_00e632:
-	lea.l $619e81,a0
-	lea.l $619ea1,a1
+	lea.l S68_VolumeMeter_Vol,a0
+	lea.l S68_VolumeMeter_Pan,a1
 	lea.l (-$5fc4,a5),a2
 	lea.l (-$5fb4,a5),a3
 	moveq #$f,d7

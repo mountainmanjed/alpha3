@@ -4,6 +4,7 @@
 
 	include "memory/memorydata.asm"
 	include "memory/GameValues.asm"
+	include "memory/soundmemory.68k"
 	include "memory/cps2constants.asm"
 	include "memory/chardata.asm"
 	include "memory/stagememory.68k"
@@ -86,7 +87,7 @@ loc_000ffa:
 loc_00103c:
 	WATCHDOG
 	move.b #-$78,$619ffb
-	move.b #0,$619ffd
+	move.b #0,S68_Set_Mono
 	move.b #-1,$619fff
 	WATCHDOG
 	clr.b (NetworkEnabled,a5)
@@ -8741,7 +8742,7 @@ loc_008ff6:
 	move.l d0,($10,a5)
 	move.l d0,($14,a5)
 	st.b ($10e,a5)
-	move.b d0,($10f,a5)
+	move.b d0,(M_Pause_Battle,a5)
 	move.b #1,($8f,a5)
 	st.b ($bd,a5)
 	move.b d0,($12d,a5)
@@ -9146,13 +9147,16 @@ loc_0094f0:
 	dc.w loc_00a436-loc_0094f0
 
 ;==============================================
+;In Battle State Start
+;loc 9500
+;===============================================
 loc_009500:
 	move.w ($c,a5),d0
 	move.w loc_0094f0(pc,d0.w),d1
 	jsr loc_0094f0(pc,d1.w)
 
 loc_00950c:
-	tst.b ($10f,a5)
+	tst.b (M_Pause_Battle,a5)
 	bne.w loc_00959e
 	moveq #0,d0
 	tst.b ($11c,a5)
@@ -9165,7 +9169,7 @@ loc_00950c:
 	moveq #0,d0
 
 loc_009530:
-	move.b d0,(pause_flag,a5)
+	move.b d0,(m_unk15c,a5)
 	tst.b ($134,a5)
 	bne.b loc_00953e
 	addq.b #1,($b4,a5)
@@ -9175,18 +9179,18 @@ loc_00953e:
 	jsr loc_033696;Controls
 	jsr GCrush_Flash_Function
 	jsr loc_0276e2;set up characters
-	jsr loc_02f64a
+	jsr loc_02f64a;
 	jsr loc_00b220;Super Shadow Animation
 	jsr loc_00b34e;Super Freeze Darken
 	jsr loc_017462;Camera
 	jsr loc_032e9c;Projectile
 	jsr loc_0249cc;Push Box
 	jsr loc_03330e;Hit Effects
-	jsr loc_033522
+	jsr loc_033522;
 	jsr loc_0336d6;Lifebar And Meter
-	jsr loc_0335e0
-	jsr loc_022dae
-	jmp loc_020c4a
+	jsr loc_0335e0;Stage Sprites
+	jsr loc_022dae;Collision
+	jmp loc_020c4a;
 
 ;Sample
 ;	jsr loc_020c4a
@@ -9202,7 +9206,7 @@ loc_0095a0:
 	move.l d0,($10,a5)
 	move.l d0,($14,a5)
 	st.b ($10e,a5)
-	move.b #1,($10f,a5)
+	move.b #1,(M_Pause_Battle,a5)
 	move.b #1,($8f,a5)
 	move.b d0,($bd,a5)
 	move.b d0,($10c,a5)
@@ -9235,7 +9239,7 @@ loc_0095a0:
 	move.b #$ff,($133,a5)
 	ori.w #$e,($32,a5)
 	move.w #Mainpalette,(palrampointer,a5)
-	move.w #$90c0,(sub_palram,a5)
+	move.w #gl_plbk0_pnt,(sub_palram,a5)
 	move.l #MainpaletteDirect,($e0,a5)
 	move.b #1,(p1_render,a5)
 	move.b #1,(p2_render,a5)
@@ -9254,9 +9258,9 @@ loc_0095a0:
 	bsr.w loc_009e94
 	move.b ($108,a5),d0
 	move.w d0,d1
-	tst.b ($125,a0)
+	tst.b (PL_cpucontrol,a0)
 	bne.b loc_0096b8
-	tst.b ($15a,a0)
+	tst.b (pl_serious_mode,a0)
 	beq.b loc_0096b8
 	moveq #1,d0
 	tst.w ($102,a5)
@@ -9304,7 +9308,7 @@ loc_00971a:
 	st.b ($8a,a5)
 	st.b ($10e,a5)
 	st.b ($bd,a5)
-	clr.b ($10f,a5)
+	clr.b (M_Pause_Battle,a5)
 	jmp loc_01bdc0
 
 ;----------------------------------------------
@@ -9337,7 +9341,7 @@ loc_00975c:
 	moveq #0,d0
 	move.l d0,($10,a5)
 	move.l d0,($14,a5)
-	move.b d0,($10f,a5)
+	move.b d0,(M_Pause_Battle,a5)
 	move.b d0,($8f,a5)
 	move.b d0,($bd,a5)
 	ori.w #$e,($32,a5)
@@ -9361,7 +9365,7 @@ loc_009798:
 loc_00979e:
 	addq.w #2,($10,a5)
 	moveq #0,d0
-	move.b d0,($10f,a5)
+	move.b d0,(M_Pause_Battle,a5)
 	move.b d0,($8f,a5)
 	move.b d0,($bd,a5)
 	ori.w #$e,($32,a5)
@@ -9419,7 +9423,7 @@ loc_009854:
 loc_00985c:
 	addq.w #2,($10,a5)
 	moveq #0,d0
-	move.b d0,($10f,a5)
+	move.b d0,(M_Pause_Battle,a5)
 	move.b d0,($8f,a5)
 	move.b d0,($bd,a5)
 	ori.w #$e,($32,a5)
@@ -9435,8 +9439,8 @@ loc_009894:
 	btst.b #5,($149,a0)
 	bne.w loc_00975c
 	bset.b #5,($149,a0)
-	move.b #$15,($102,a1)
-	move.b #0,($132,a1)
+	move.b #Boxer_id,(PL_charid,a1)
+	move.b #Aism_ID,(PL_ism_choice,a1)
 	st.b ($159,a0)
 	st.b ($159,a1)
 	moveq #0,d0
@@ -9508,7 +9512,7 @@ loc_009944:
 	st.b ($959,a5)
 	addq.w #2,($10,a5)
 	moveq #0,d0
-	move.b d0,($10f,a5)
+	move.b d0,(M_Pause_Battle,a5)
 	move.b d0,($8f,a5)
 	move.b d0,($bd,a5)
 	ori.w #$e,($32,a5)
@@ -9567,7 +9571,7 @@ loc_0099e8:
 loc_0099ec:
 	addq.w #2,($10,a5)
 	moveq #0,d0
-	move.b d0,($10f,a5)
+	move.b d0,(M_Pause_Battle,a5)
 	move.b d0,($8f,a5)
 	move.b d0,($bd,a5)
 	ori.w #$e,($32,a5)
@@ -9622,7 +9626,7 @@ loc_009a6e:
 	beq.b loc_009ad4
 	addq.w #2,($10,a5)
 	moveq #0,d0
-	move.b d0,($10f,a5)
+	move.b d0,(M_Pause_Battle,a5)
 	move.b d0,($8f,a5)
 	move.b d0,($bd,a5)
 	move.b d0,($12c,a5)
@@ -9725,7 +9729,7 @@ loc_009bbe:
 	st.b ($8a,a5)
 	st.b ($10e,a5)
 	st.b ($bd,a5)
-	clr.b ($10f,a5)
+	clr.b (M_Pause_Battle,a5)
 	moveq #0,d0
 	move.b d0,($12d,a5)
 	jmp loc_01bdc0
@@ -10498,7 +10502,7 @@ loc_00a35c:
 	move.l d0,($10,a5)
 	move.l d0,($14,a5)
 	move.b #1,($12a,a5)
-	move.b #1,($10f,a5)
+	move.b #1,(M_Pause_Battle,a5)
 	jmp loc_01bdc0
 
 ;==============================================
@@ -10534,7 +10538,7 @@ loc_00a3b2
 	bset.b d1,($149,a6)
 	addq.w #2,($10,a5)
 	moveq #0,d0
-	move.b d0,($10f,a5)
+	move.b d0,(M_Pause_Battle,a5)
 	move.b d0,($8f,a5)
 	move.b d0,($bd,a5)
 	ori.w #$e,($32,a5)
@@ -10578,16 +10582,16 @@ loc_00a436:
 	move.l d0,($c,a5)
 	move.l d0,($10,a5)
 	move.l d0,($14,a5)
-	move.b #1,($10f,a5)
+	move.b #1,(M_Pause_Battle,a5)
 	move.b #1,($8f,a5)
 	move.b d0,($10e,a5)
 	move.b d0,($10b,a5)
-	move.b d0,(pause_flag,a5)
+	move.b d0,(m_unk15c,a5)
 	move.b d0,(p1_render,a5)
 	move.b d0,(p2_render,a5)
 	move.b d0,(p3_render,a5)
 	move.b d0,(p4_render,a5)
-	move.b #$63,(clock_counter,a5)
+	move.b #99,(clock_counter,a5)
 	bsr.w Set_TimerSpeed
 	bsr.w loc_00aaa6
 	lea.l (p1memory,a5),a0
@@ -10613,8 +10617,8 @@ loc_00a436:
 	jmp loc_020c4a
 
 loc_00a4dc:
-	addq.w #2,(8,a5)
-	move.b #1,($10f,a5)
+	addq.w #2,(Main_state_2,a5)
+	move.b #1,(M_Pause_Battle,a5)
 	movea.w ($13a,a5),a0
 	movea.w ($13c,a5),a1
 	bsr.w loc_00ab80
@@ -10636,7 +10640,7 @@ loc_00a522:
 	move.l d1,($c,a5)
 	move.l d1,($10,a5)
 	move.l d1,($14,a5)
-	move.b #1,($10f,a5)
+	move.b #1,(M_Pause_Battle,a5)
 	move.b d1,($137,a5)
 	move.b #1,($525,a5)
 	move.b #1,($925,a5)
@@ -10654,7 +10658,7 @@ loc_00a55e:
 	move.l d1,($c,a5)
 	move.l d1,($10,a5)
 	move.l d1,($14,a5)
-	move.b #1,($10f,a5)
+	move.b #1,(M_Pause_Battle,a5)
 	move.b d1,($137,a5)
 	move.w d1,(Dramatic_Mode_Type,a5)
 	move.b #1,($525,a5)
@@ -10711,7 +10715,7 @@ loc_00a60c:
 	addq.w #2,($c,a5)
 	move.w #$3c,($e,a5)
 	moveq #0,d0
-	move.b d0,($10f,a5)
+	move.b d0,(M_Pause_Battle,a5)
 	move.b d0,($15f,a5)
 	move.b d0,(p1_render,a5)
 	move.b d0,(p2_render,a5)
@@ -10874,7 +10878,7 @@ loc_00a7ce:
 	move.l d0,($c,a5)
 	move.l d0,($10,a5)
 	move.l d0,($14,a5)
-	move.b #1,($10f,a5)
+	move.b #1,(M_Pause_Battle,a5)
 	move.b #1,($8f,a5)
 	move.b d0,($bd,a5)
 	rts
@@ -10983,7 +10987,7 @@ loc_00a8e6:
 	move.l d0,($c,a5)
 	move.l d0,($10,a5)
 	move.l d0,($14,a5)
-	move.b #1,($10f,a5)
+	move.b #1,(M_Pause_Battle,a5)
 	move.b #1,($8f,a5)
 	move.b d0,($bd,a5)
 	move.b d0,(Active_Player_01,a5)
@@ -11072,7 +11076,7 @@ loc_00a9c2:
 	move.b d0,($107,a5)
 	move.b d0,($10d,a5)
 	move.b d0,($10b,a5)
-	move.b d0,($10f,a5)
+	move.b d0,(M_Pause_Battle,a5)
 	move.b d0,($12a,a5)
 	move.b d0,($12c,a5)
 	move.b d0,(Set_GC_Flash_BG,a5)
@@ -11310,7 +11314,7 @@ loc_00ac40:
 	move.l d0,($10,a5)
 	move.l d0,($14,a5)
 	move.b d0,($15f,a5)
-	move.b d0,($10f,a5)
+	move.b d0,(M_Pause_Battle,a5)
 	move.w #whiteflash,(palrampointer,a5)
 	move.w #whiteflash,(sub_palram,a5)
 	tst.b ($ce,a5)
@@ -11384,7 +11388,7 @@ loc_00ad0c:
 	move.b d0,($15f,a5)
 	move.b d0,($b8,a5)
 	move.b d0,($bd,a5)
-	move.b d0,($10f,a5)
+	move.b d0,(M_Pause_Battle,a5)
 	move.b #1,($8f,a5)
 	jmp loc_01bdd0
 
@@ -11435,7 +11439,7 @@ loc_00ad92
 	move.b d0,($bd,a5)
 	move.b #1,($125,a5)
 	move.b #1,($15f,a5)
-	move.b d0,($10f,a5)
+	move.b d0,(M_Pause_Battle,a5)
 	move.b #1,($8f,a5)
 	move.b d0,($106,a5)
 	move.b #1,($104,a5)
@@ -11482,7 +11486,7 @@ loc_00ae48:
 	move.w #$1f,($a,a5)
 	moveq #0,d0
 	move.b d0,($15f,a5)
-	move.b d0,($10f,a5)
+	move.b d0,(M_Pause_Battle,a5)
 	move.b #1,($125,a5)
 	move.w #Mainpalette,(palrampointer,a5)
 	jsr loc_01bdc0
@@ -17711,7 +17715,7 @@ loc_0229ae:
 
 ;==============================================
 loc_022dae:
-	tst.b (pause_flag,a5)
+	tst.b (m_unk15c,a5)
 	bne.w loc_022e36
 	moveq #0,d0
 	move.l d0,($4d8,a5)
@@ -24211,7 +24215,7 @@ loc_02765e:
 loc_0276e2:
 	tst.b ($8b,a5)
 	bne.w loc_0277dc
-	tst.b (pause_flag,a5)
+	tst.b (m_unk15c,a5)
 	bne.w loc_0277dc
 	move.w ($774,a5),($776,a5)
 	move.w ($b74,a5),($b76,a5)
@@ -25786,23 +25790,25 @@ loc_02879e:
 	bra.w loc_02a7ea
 
 ;==============================================
+;Timer
+;==============================================
 loc_0287b0:
 	tst.b ($28e,a6)
 	beq.b loc_0287ba
 	subq.b #1,($28e,a6)
 
 loc_0287ba:
-	tst.b ($293,a6)
+	tst.b (PL_Super_Cancel_Timer,a6)
 	beq.b loc_0287c4
-	subq.b #1,($293,a6)
+	subq.b #1,(PL_Super_Cancel_Timer,a6)
 
 loc_0287c4:
-	tst.b ($23e,a6)
+	tst.b (PL_Special_Cancel_Timer,a6)
 	beq.b loc_0287ce
-	subq.b #1,($23e,a6)
+	subq.b #1,(PL_Special_Cancel_Timer,a6)
 
 loc_0287ce:
-	move.b ($102,a6),d0
+	move.b (PL_charid,a6),d0
 	lsl.w #2,d0
 	movea.l #loc_0dcb92,a0
 	movea.l (a0,d0.w),a0
@@ -27399,7 +27405,7 @@ loc_0298de:
 	cmpi.b #6,($102,a6)
 	bne.b loc_02990e
 	lea.l ($320,a6),a4
-	jsr loc_02d63a
+	jsr SpInp_632P_code
 	beq.b loc_02990e
 	jsr loc_02eea6
 	beq.b loc_02990e
@@ -28826,14 +28832,18 @@ loc_02a708:
 	bra.w loc_02a762
 
 ;==============================================
-loc_02a710:
-	tst.b ($eb,a6)
+;Load Special and Super Cancel Timers
+;
+;loc 2a710
+;==============================================
+Set_Spec_Cancel_Timers:
+	tst.b (pl_sakiyo_game,a6)
 	bne.w loc_02a74e
 	moveq #0,d1
-	move.b ($102,a6),d1
+	move.b (PL_charid,a6),d1
 	ext.w d1
 	lsl.w #2,d1
-	movea.l #loc_0dcb12,a0
+	movea.l #Cancel_Timer_PNT_Table,a0
 	movea.l (a0,d1.w),a0
 	move.b (PL_ism_choice,a6),d1
 	addq.b #1,d1
@@ -28843,8 +28853,8 @@ loc_02a710:
 	moveq #0,d1
 	move.b d0,d1
 	add.w d1,d1
-	move.b (a0,d1.w),($23e,a6)
-	move.b (1,a0,d1.w),($293,a6)
+	move.b (a0,d1.w),(PL_Special_Cancel_Timer,a6)
+	move.b (1,a0,d1.w),(PL_Super_Cancel_Timer,a6)
 
 loc_02a74e:
 	movea.l ($2bc,a6),a0
@@ -32456,7 +32466,7 @@ loc_02e8be:
 	rts
 
 ;==============================================
-loc_02e8c0
+loc_02e8c0:
 	movea.w (left_hud_pointer,a5),a0
 	tst.b ($59,a6)
 	beq.b loc_02e8ce
@@ -32912,38 +32922,45 @@ ReversalCheck:
 	bra.w loc_02edf4
 
 ;==============================================
+;Cancel Check
+;==============================================
+;Super Cancel Check
 loc_02ecd8:
-	moveq #$30,d0
+	moveq #$30,d0;if Aism
 	tst.b (PL_ism_choice,a6)
 	beq.b loc_02ecec
-	move.w #$90,d0
+
+	move.w #$90,d0;if Xism
 	tst.b (PL_ism_choice,a6)
 	bmi.b loc_02ecec
-	moveq #$48,d0
+
+	moveq #$48,d0 ;if Vism
 
 loc_02ecec:
-	cmp.w ($11e,a6),d0
+	cmp.w (PL_meter,a6),d0
 	bhi.w loc_02edf4
-	tst.b ($b9,a6)
+	tst.b (pl_cc_cancelflag,a6)
 	bne.w loc_02edf4
 	moveq #1,d2
 	bra.b loc_02ed02
 
+;------------------------------------
+;Special Cancel Starts here
 loc_02ed00:
 	moveq #0,d2
 
 loc_02ed02:
 	moveq #0,d1
-	cmpi.l #$2020400,(4,a6)
+	cmpi.l #$2020400,(pl_overall_state,a6)
 	beq.w loc_02eda0
 	moveq #1,d1
-	tst.b ($31,a6)
+	tst.b (pl_in_air,a6)
 	bne.w loc_02edf4
 	bra.b loc_02ed38
 
 loc_02ed1c:
 	moveq #1,d2
-	tst.b ($b9,a6)
+	tst.b (pl_cc_cancelflag,a6)
 	bne.w loc_02edf4
 	bra.b loc_02ed2a
 
@@ -32952,13 +32969,13 @@ loc_02ed28:
 
 loc_02ed2a:
 	moveq #1,d1
-	cmpi.l #$2000606,(4,a6)
+	cmpi.l #$2000606,(pl_overall_state,a6)
 	beq.w loc_02edf4
 
 loc_02ed38:
-	cmpi.w #$200,(4,a6)
+	cmpi.w #$200,(pl_overall_state,a6)
 	bne.w loc_02edf4
-	tst.b ($b9,a6)
+	tst.b (pl_cc_cancelflag,a6)
 	beq.b loc_02ed5a
 	tst.b ($ce,a6)
 	bne.w loc_02edf4
@@ -32979,11 +32996,12 @@ loc_02ed64:
 	bne.w loc_02ed9a
 	tst.w d2
 	beq.w loc_02ed8e
-	tst.b ($293,a6)
+
+	tst.b (PL_Super_Cancel_Timer,a6)
 	bne.b loc_02ed9a
 
 loc_02ed8e:
-	tst.b ($23e,a6)
+	tst.b (PL_Special_Cancel_Timer,a6)
 	bne.b loc_02ed9a
 	tst.b ($3e,a6)
 	beq.b loc_02edf4
@@ -33003,7 +33021,7 @@ loc_02eda0:
 	beq.b loc_02edc2
 
 loc_02edbc:
-	tst.b ($b9,a6)
+	tst.b (pl_cc_cancelflag,a6)
 	bne.b loc_02edd0
 
 loc_02edc2:
@@ -34744,7 +34762,7 @@ loc_033004:
 ;==============================================
 loc_033006:
 	move.b ($125,a5),d0
-	or.b (pause_flag,a5),d0
+	or.b (m_unk15c,a5),d0
 	bne.b loc_03302a
 	move.l ($40,a6),d0
 	add.l d0,($10,a6)
@@ -34760,7 +34778,7 @@ loc_03302a:
 loc_033030:
 	moveq #0,d0
 	move.b ($125,a5),d0
-	or.b (pause_flag,a5),d0
+	or.b (m_unk15c,a5),d0
 	bne.b loc_033048
 	move.b (6,a6),d0
 	move.w loc_03304e(pc,d0.w),d1
@@ -34793,7 +34811,7 @@ loc_033072:
 ;==============================================
 loc_033074:
 	move.b ($125,a5),d0
-	or.b (pause_flag,a5),d0
+	or.b (m_unk15c,a5),d0
 	bne.b loc_03308a
 	move.b (6,a6),d0
 	move.w loc_0330a0(pc,d0.w),d1
@@ -34832,7 +34850,7 @@ loc_0330c0:
 ;==============================================
 loc_0330c4:
 	move.b ($125,a5),d0
-	or.b (pause_flag,a5),d0
+	or.b (m_unk15c,a5),d0
 	bne.b loc_0330da
 	move.b (6,a6),d0
 	move.w loc_0330e0(pc,d0.w),d1
@@ -34870,7 +34888,7 @@ loc_03311c:
 ;==============================================
 loc_033120:
 	move.b ($125,a5),d0
-	or.b (pause_flag,a5),d0
+	or.b (m_unk15c,a5),d0
 	bne.b loc_033136
 	move.b (6,a6),d0
 	move.w loc_03313c(pc,d0.w),d1
@@ -36022,7 +36040,7 @@ loc_033ee8:
 loc_033ef6:
 	addq.b #2,(4,a6)
 	st.b ($8b,a5)
-	move.b #1,($10f,a5)
+	move.b #1,(M_Pause_Battle,a5)
 
 loc_033f04:
 	rts

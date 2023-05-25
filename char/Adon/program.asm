@@ -56,7 +56,7 @@ loc_03db48:
 	movea.w ($38,a6),a4
 	cmpi.b #$b,($102,a4)
 	bne.b loc_03db66
-	tst.b ($125,a6)
+	tst.b (PL_cpucontrol,a6)
 	sne.b d0
 	tst.b ($125,a4)
 	sne.b d1
@@ -269,7 +269,7 @@ loc_03dd4a:
 	moveq #$1e,d0
 
 loc_03dd9a:
-	jmp loc_02a710
+	jmp Set_Spec_Cancel_Timers
 
 ;----------------------------------------------
 loc_03dda0:
@@ -319,7 +319,7 @@ loc_03ddf2:
 	lsr.b #1,d0
 	jsr loc_02ef6c
 	moveq #6,d0
-	tst.b ($125,a6)
+	tst.b (PL_cpucontrol,a6)
 	bne.b loc_03de2e
 	cmpi.b #1,(PL_ism_choice,a6)
 	bne.b loc_03de2e
@@ -331,7 +331,7 @@ loc_03de2e:
 	moveq #0,d1
 	move.b (PL_ButtonStrength,a6),d1
 	move.w loc_03de4a(pc,d1.w),d1
-	cmp.w ($21c,a6),d1
+	cmp.w (pl_dist_away,a6),d1
 	bcc.b loc_03de40
 
 loc_03de3e:
@@ -339,7 +339,7 @@ loc_03de3e:
 
 loc_03de40:
 	add.b (PL_ButtonStrength,a6),d0
-	jmp loc_02a710
+	jmp Set_Spec_Cancel_Timers
 
 ;VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV
 loc_03de4a:
@@ -379,7 +379,7 @@ loc_03de6e:
 	addq.b #3,d0
 
 loc_03de9e:
-	jmp loc_02a710
+	jmp Set_Spec_Cancel_Timers
 
 ;----------------------------------------------
 loc_03dea4:
@@ -418,7 +418,7 @@ loc_03def0:
 	move.b (PL_ButtonStrength,a6),d1
 	lsr.b #1,d1
 	add.b d1,d0
-	jsr loc_02a710
+	jsr Set_Spec_Cancel_Timers
 	tst.b (PL_ism_choice,a6)
 	bpl.b loc_03df26
 	tst.b (PL_Attacktype,a6)
@@ -512,41 +512,41 @@ loc_03dff2:
 ;Special Move Inputs
 ;##############################################
 loc_03e006:
-	jsr loc_02e096
+	jsr SPButton_Vism_code
 	bne.w loc_03e228
 
 loc_03e010:
-	lea.l ($1a0,a6),a4
-	jsr loc_02d692
+	lea.l (pl_inp_slot_4,a6),a4
+	jsr SpInp_23623P_Code
 	bne.w loc_03e156
 
 loc_03e01e:
-	lea.l ($198,a6),a4
-	jsr loc_02d69a
+	lea.l (pl_inp_slot_3,a6),a4
+	jsr SpInp_23623K_code
 	bne.w loc_03e11a
 
 loc_03e02c:
-	lea.l ($188,a6),a4
-	jsr loc_02d622
+	lea.l (pl_inp_slot_1,a6),a4
+	jsr SpInp_623K_code
 	bne.w loc_03e09a
 
 loc_03e03a:
-	lea.l ($180,a6),a4
-	jsr loc_02d602
+	lea.l (pl_inp_slot_0,a6),a4
+	jsr SpInp_421K_code
 	bne.w loc_03e0c2
 
 loc_03e048:
-	lea.l ($190,a6),a4
-	jsr loc_02d67a
+	lea.l (pl_inp_slot_2,a6),a4
+	jsr SpInp_63214K_Code
 	bne.w loc_03e0f0
 
 loc_03e056:
-	lea.l ($300,a6),a4
-	jsr loc_02e0d6
+	lea.l (pl_inp_slot_a,a6),a4
+	jsr SPButton_AlphaCounter_code
 	bne.w loc_03e1d6
 
 loc_03e064:
-	jsr loc_02e0cc
+	jsr SPButton_Taunt_code
 	bne.w loc_03e070
 
 loc_03e06e:
@@ -601,7 +601,7 @@ loc_03e0f0:
 loc_03e11a:
 	tst.b (PL_ism_choice,a6)
 	bne.w loc_03e02c
-	cmpi.w #$30,($11e,a6)
+	cmpi.w #$30,(PL_meter,a6)
 	bcs.w loc_03e02c
 	jsr loc_02ecd8
 	beq.w loc_03e02c
@@ -614,7 +614,7 @@ loc_03e11a:
 loc_03e156:
 	cmpi.b #1,(PL_ism_choice,a6)
 	beq.w loc_03e01e
-	cmpi.w #$30,($11e,a6)
+	cmpi.w #$30,(PL_meter,a6)
 	bcs.w loc_03e01e
 	jsr loc_02ecd8
 	beq.w loc_03e01e
@@ -727,13 +727,13 @@ loc_03e2b8:
 loc_03e2bc:
 	tst.b (PL_ism_choice,a6)
 	bne.w loc_03e300
-	cmpi.w #$30,($11e,a6)
+	cmpi.w #$30,(PL_meter,a6)
 	bcs.w loc_03e300
 	bra.w loc_03e2fc
 
 ;==============================================
 loc_03e2d2:
-	cmpi.w #$30,($11e,a6)
+	cmpi.w #$30,(PL_meter,a6)
 	bcs.w loc_03e300
 	move.b (PL_Directioninput,a6),(PL_Attacktype,a6)
 	bra.w loc_03e2fc
@@ -746,7 +746,7 @@ loc_03e2e6:
 
 ;==============================================
 loc_03e2f2:
-	cmpi.w #$48,($11e,a6)
+	cmpi.w #$48,(PL_meter,a6)
 	bcs.w loc_03e300
 
 ;----------------------------------------------
@@ -1504,7 +1504,7 @@ loc_03ea74:
 	jmp loc_02a758
 
 loc_03eaa8:
-	tst.b ($125,a6)
+	tst.b (PL_cpucontrol,a6)
 	bne.b loc_03eac2
 	move.b ($378,a6),d0
 	andi.b #$77,d0
@@ -1697,7 +1697,7 @@ loc_03ec54:
 loc_03ec66:
 	jsr loc_02e3fe
 	beq.w loc_03ece4
-	tst.b ($125,a6)
+	tst.b (PL_cpucontrol,a6)
 	beq.b loc_03ec9a
 	jsr loc_01bd5c
 	clr.b (PL_Flip,a6)
@@ -1883,7 +1883,7 @@ loc_03ee5c:
 loc_03ee6e:
 	jsr loc_02e636
 	beq.b loc_03eedc
-	tst.b ($125,a6)
+	tst.b (PL_cpucontrol,a6)
 	beq.b loc_03ee96
 	jsr loc_01bd5c
 	clr.b (PL_Flip,a6)
@@ -2213,7 +2213,7 @@ loc_03f19c:
 
 ;==============================================
 loc_03f19e:
-	tst.b ($125,a6)
+	tst.b (PL_cpucontrol,a6)
 	bne.b loc_03f19c
 	move.b ($378,a6),d0
 	andi.b #7,d0
@@ -2270,15 +2270,15 @@ loc_03f206:
 loc_03f20a:
 	moveq #0,d0
 	moveq #0,d1
-	movem.l d0-d1,($180,a6)
-	movem.l d0-d1,($188,a6)
-	movem.l d0-d1,($190,a6)
-	movem.l d0-d1,($198,a6)
-	movem.l d0-d1,($1a0,a6)
-	movem.l d0-d1,($1a8,a6)
-	movem.l d0-d1,($1b0,a6)
-	movem.l d0-d1,($300,a6)
-	movem.l d0-d1,($308,a6)
+	movem.l d0-d1,(pl_inp_slot_0,a6)
+	movem.l d0-d1,(pl_inp_slot_1,a6)
+	movem.l d0-d1,(pl_inp_slot_2,a6)
+	movem.l d0-d1,(pl_inp_slot_3,a6)
+	movem.l d0-d1,(pl_inp_slot_4,a6)
+	movem.l d0-d1,(pl_inp_slot_5,a6)
+	movem.l d0-d1,(pl_inp_slot_6,a6)
+	movem.l d0-d1,(pl_inp_slot_a,a6)
+	movem.l d0-d1,(pl_inp_slot_b,a6)
 	rts
 
 ;##############################################
