@@ -1,0 +1,8 @@
+Tmode_Loc = 0
+TM_Pause = Tmode_Loc ;Byte
+TMode_PauseCounter = Tmode_Loc+1 ;Byte
+
+
+;
+;
+;

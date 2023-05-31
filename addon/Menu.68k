@@ -1,0 +1,17 @@
+;==============================================
+TMo_Pause_Menu:
+
+;==============================================
+TMo_Menu_Render:
+	moveq #0,d0
+	movea.w($71b6,a0)
+	jsr Debug_Perf_Disp
+	tst.w d7
+	beq.b Tmo_MenuRender_end
+	add.w d7,($71be,a5)
+	add.w d7,($71ba,a5)
+	move.w a0,($71b6,a5)
+
+Tmo_MenuRender_end:
+    rts
+;18 Palette Text

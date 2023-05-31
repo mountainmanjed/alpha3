@@ -1041,7 +1041,7 @@ loc_03110e:
 	bne.w loc_031166
 	cmpi.w #$48,(PL_meter,a6)
 	bcs.w loc_031166
-	cmpi.b #Vism_ID,(PL_ism_choice,a6)
+	cmpi.b #Vism_Val,(PL_ism_choice,a6)
 	bne.w loc_031166
 	move.b #1,($2c5,a6)
 	move.b ($20c,a6),($211,a6)
@@ -1140,7 +1140,7 @@ loc_03121c:
 	move.b #1,($212,a6)
 	move.b (pl_sidecheck,a6),(PL_Flip,a6)
 	clr.b ($5b,a6)
-	cmpi.b #Xism_ID,(PL_ism_choice,a6)
+	cmpi.b #Xism_Val,(PL_ism_choice,a6)
 	bne.b loc_03125c
 	cmpi.b #$11,(PL_charid,a6)
 	beq.b loc_031258
@@ -1206,7 +1206,7 @@ loc_0312de:
 	move.w (a0)+,d1
 	move.w d1,($20a,a6)
 	bsr.w loc_0328b0
-	cmpi.b #Vism_ID,(PL_ism_choice,a6)
+	cmpi.b #Vism_Val,(PL_ism_choice,a6)
 	beq.w loc_031362
 	tst.b ($123,a6)
 	bne.b loc_031308
@@ -1248,7 +1248,7 @@ loc_031362:
 loc_031372:
 	move.w (a0)+,d1
 	move.w d1,($20a,a6)
-	cmpi.b #Vism_ID,(PL_ism_choice,a6)
+	cmpi.b #Vism_Val,(PL_ism_choice,a6)
 	bne.w loc_0321ac
 	cmpi.w #$48,(PL_meter,a6)
 	bcs.w loc_0321ac
@@ -1696,25 +1696,25 @@ loc_0317a6:
 
 ;----------------------------------------------
 loc_0317b2:
-	cmpi.b #Xism_ID,(PL_ism_choice,a6)
+	cmpi.b #Xism_Val,(PL_ism_choice,a6)
 	beq.w loc_0321ac
 	bra.w loc_031a38
 
 ;----------------------------------------------
 loc_0317c0:
-	cmpi.b #Xism_ID,(PL_ism_choice,a6)
+	cmpi.b #Xism_Val,(PL_ism_choice,a6)
 	bne.w loc_0321ac
 	bra.w loc_031a38
 
 ;----------------------------------------------
 loc_0317ce:
-	cmpi.b #Vism_ID,(PL_ism_choice,a6)
+	cmpi.b #Vism_Val,(PL_ism_choice,a6)
 	beq.w loc_0321ac
 	bra.w loc_031a38
 
 ;----------------------------------------------
 loc_0317dc:
-	cmpi.b #Vism_ID,(PL_ism_choice,a6)
+	cmpi.b #Vism_Val,(PL_ism_choice,a6)
 	bne.w loc_0321ac
 	bra.w loc_031a38
 
@@ -3993,7 +3993,7 @@ loc_032d08:
 	beq.b loc_032d46
 	cmpi.b #8,d0
 	beq.b loc_032d4e
-	cmpi.b #Vism_ID,(PL_ism_choice,a6)
+	cmpi.b #Vism_Val,(PL_ism_choice,a6)
 	beq.b loc_032d4a
 	cmpi.b #$a,d0
 	bne.b loc_032d4a

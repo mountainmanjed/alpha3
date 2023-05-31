@@ -1083,7 +1083,7 @@ loc_06258a:
 	move.b #$20,(pl_invinciblity_timer,a6)
 	move.b #0,($81,a6)
 	moveq #$1e,d0
-	jmp loc_02a758
+	jmp Set_Char_Special_Ani
 
 ;##############################################
 ;V-ism Alpha Counter Write
@@ -1100,7 +1100,7 @@ loc_0625d2:
 	move.b #$1c,(pl_invinciblity_timer,a6)
 	move.b #$2,($81,a6)
 	moveq #$1e,d0
-	jmp loc_02a758
+	jmp Set_Char_Special_Ani
 
 ;----------------------------------------------
 loc_062612:
@@ -1372,7 +1372,7 @@ loc_0628c6:
 	move.b ($82,a6),d0
 	lsr.b #1,d0
 	addi.b #$d,d0
-	jmp loc_02a758
+	jmp Set_Char_Special_Ani
 
 ;VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV
 loc_0628dc:
@@ -1405,7 +1405,7 @@ loc_062934:
 	move.b ($82,a6),d0
 	lsr.b #1,d0
 	addi.b #$10,d0
-	jmp loc_02a758
+	jmp Set_Char_Special_Ani
 
 ;VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV
 loc_06294a:
@@ -1430,7 +1430,7 @@ loc_062962:
 	move.b ($82,a6),d0
 	lsr.b #1,d0
 	addi.b #$13,d0
-	jmp loc_02a758
+	jmp Set_Char_Special_Ani
 
 ;----------------------------------------------
 loc_0629a8:
@@ -1464,7 +1464,7 @@ loc_0629e0:
 	clr.b (pl_attk_active,a6)
 	clr.b (pl_crouching,a6)
 	moveq #$1f,d0
-	jmp loc_02a758
+	jmp Set_Char_Special_Ani
 
 ;----------------------------------------------
 loc_0629f0:
@@ -1503,7 +1503,7 @@ loc_062a12:
 
 loc_062a3e:
 	move.b d1,(7,a6)
-	jmp loc_02a758
+	jmp Set_Char_Special_Ani
 
 loc_062a48:
 	tst.b ($35,a6)
@@ -1577,7 +1577,7 @@ loc_062ac2:
 	move.b ($82,a6),d0
 	move.w loc_062b02(pc,d0.w),($3a,a6)
 	moveq #$20,d0
-	jmp loc_02a758
+	jmp Set_Char_Special_Ani
 
 ;VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV
 loc_062b02:
@@ -1666,12 +1666,12 @@ loc_062bcc:
 
 loc_062bdc:
 	moveq #4,d0
-	jmp loc_02a758
+	jmp Set_Char_Special_Ani
 
 loc_062be4:
 	move.b #$a,(7,a6)
 	moveq #3,d0
-	jmp loc_02a758
+	jmp Set_Char_Special_Ani
 
 loc_062bf2:
 	clr.b (7,a6)
@@ -1704,7 +1704,7 @@ loc_062c24:
 loc_062c4c:
 	move.l d0,($40,a6)
 	moveq #5,d0
-	jmp loc_02a758
+	jmp Set_Char_Special_Ani
 
 loc_062c58:
 	tst.b (PL_cpucontrol,a6)
@@ -1767,7 +1767,7 @@ loc_062cd6:
 	move.b #6,(7,a6)
 	eori.b #1,(PL_Flip,a6)
 	moveq #2,d0
-	jmp loc_02a758
+	jmp Set_Char_Special_Ani
 
 ;----------------------------------------------
 loc_062cf2:
@@ -1796,7 +1796,7 @@ loc_062d22:
 	move.b #6,(7,a6)
 	clr.b ($de,a6)
 	moveq #2,d0
-	jmp loc_02a758
+	jmp Set_Char_Special_Ani
 
 ;==============================================
 ;Ocean Drop Kick
@@ -1822,7 +1822,7 @@ loc_062d4c:
 	move.w loc_062d76(pc,d0.w),d1
 	move.b d1,($cc,a6)
 	moveq #$21,d0
-	jmp loc_02a758
+	jmp Set_Char_Special_Ani
 
 ;VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV
 loc_062d76:
@@ -1877,7 +1877,7 @@ loc_062dc6:
 	move.w loc_062df0(pc,d0.w),d1
 	move.b d1,($cc,a6)
 	moveq #$22,d0
-	jmp loc_02a758
+	jmp Set_Char_Special_Ani
 
 ;VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV
 loc_062df0:
@@ -1932,7 +1932,7 @@ loc_062e3a:
 	move.w loc_062e6c(pc,d0.w),d1
 	move.b d1,($cc,a6)
 	moveq #$23,d0
-	jmp loc_02a758
+	jmp Set_Char_Special_Ani
 
 ;VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV
 loc_062e6c:
@@ -2010,7 +2010,7 @@ loc_062f06:
 	move.w ($14,a4),($14,a6)
 	addi.w #$5e,($14,a6)
 	moveq #$29,d0
-	jmp loc_02a758
+	jmp Set_Char_Special_Ani
 
 ;----------------------------------------------
 loc_062f24:
@@ -2078,7 +2078,7 @@ loc_062fcc:
 	move.w loc_062fee(pc,d0.w),d1
 	move.b d1,($cc,a6)
 	moveq #$24,d0
-	jmp loc_02a758
+	jmp Set_Char_Special_Ani
 
 ;VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV
 loc_062fee:
@@ -2125,7 +2125,7 @@ loc_063038:
 	clr.b ($de,a6)
 	move.b #1,($31,a6)
 	moveq #$47,d0
-	jmp loc_02a758
+	jmp Set_Char_Special_Ani
 
 loc_063080:
 	tst.b ($5b,a6)
@@ -2152,7 +2152,7 @@ loc_06309c:
 
 loc_0630c6:
 	move.b d1,(7,a6)
-	jsr loc_02a758
+	jsr Set_Char_Special_Ani
 	jmp loc_02fa36
 
 ;----------------------------------------------
@@ -2289,7 +2289,7 @@ loc_063256:
 	bne.w loc_06326c
 	move.b #$a,(7,a6)
 	moveq #$1d,d0
-	jmp loc_02a758
+	jmp Set_Char_Special_Ani
 
 loc_06326c:
 	rts
@@ -2305,7 +2305,7 @@ loc_06326e:
 	move.w ($64,a6),($14,a6)
 	clr.w ($16,a6)
 	moveq #$48,d0
-	jmp loc_02a758
+	jmp Set_Char_Special_Ani
 
 ;----------------------------------------------
 loc_06329a:
@@ -2396,7 +2396,7 @@ loc_063346:
 loc_063348:
 	move.b #4,(7,a6)
 	moveq #$28,d0
-	jmp loc_02a758
+	jmp Set_Char_Special_Ani
 
 ;----------------------------------------------
 loc_063356:
@@ -2424,7 +2424,7 @@ loc_063394:
 	move.w ($64,a6),($14,a6)
 	clr.w ($16,a6)
 	moveq #6,d0
-	jmp loc_02a758
+	jmp Set_Char_Special_Ani
 
 ;----------------------------------------------
 loc_0633b6:
@@ -2452,7 +2452,7 @@ loc_0633fc:
 	beq.w loc_064980
 	move.b #$a,(7,a6)
 	moveq #7,d0
-	jmp loc_02a758
+	jmp Set_Char_Special_Ani
 
 ;----------------------------------------------
 loc_06341a:
@@ -2489,7 +2489,7 @@ loc_06346e:
 	clr.w ($16,a6)
 	clr.b ($31,a6)
 	moveq #8,d0
-	jmp loc_02a758
+	jmp Set_Char_Special_Ani
 
 ;----------------------------------------------
 loc_063492:
@@ -2532,7 +2532,7 @@ loc_0634ea:
 	move.w loc_06351c(pc,d0.w),d1
 	move.b d1,($cc,a6)
 	moveq #$25,d0
-	jmp loc_02a758
+	jmp Set_Char_Special_Ani
 
 ;VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV
 loc_06351c:
@@ -2551,7 +2551,7 @@ loc_063522:
 	move.w loc_06355c(pc,d0.w),d1
 	move.b d1,($cc,a6)
 	moveq #$26,d0
-	jmp loc_02a758
+	jmp Set_Char_Special_Ani
 
 ;VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV
 loc_06355c:
@@ -2565,7 +2565,7 @@ loc_063562:
 	move.b #$18,(7,a6)
 	eori.b #1,(PL_Flip,a6)
 	moveq #$27,d0
-	jsr loc_02a758
+	jsr Set_Char_Special_Ani
 	jmp loc_02f9be
 
 loc_063586
@@ -2575,14 +2575,14 @@ loc_063586
 	move.b #$1a,(7,a6)
 	eori.b #1,(PL_Flip,a6)
 	moveq #$19,d0
-	jsr loc_02a758
+	jsr Set_Char_Special_Ani
 	jmp loc_02f9be
 	
 
 loc_0635aa:
 	move.b #$16,(7,a6)
 	moveq #1,d0
-	jmp loc_02a758
+	jmp Set_Char_Special_Ani
 
 ;----------------------------------------------
 loc_0635b8:
@@ -2702,7 +2702,7 @@ loc_0636f2:
 	moveq #$5b,d0
 	jsr loc_080b70
 	moveq #$1a,d0
-	jsr loc_02a758
+	jsr Set_Char_Special_Ani
 	jmp loc_02f9be
 
 ;----------------------------------------------
@@ -2751,13 +2751,13 @@ loc_06377c:
 	beq.b loc_0637a8
 	move.b #4,(7,a6)
 	moveq #$2a,d0
-	jsr loc_02a758
+	jsr Set_Char_Special_Ani
 	jmp loc_02fa36
 
 loc_0637a8:
 	addq.b #2,(7,a6)
 	moveq #$2c,d0
-	jmp loc_02a758
+	jmp Set_Char_Special_Ani
 
 ;----------------------------------------------
 loc_0637b4:
@@ -2836,7 +2836,7 @@ loc_06387a:
 	beq.w loc_064986
 	addq.b #2,(7,a6)
 	moveq #$19,d0
-	jsr loc_02a758
+	jsr Set_Char_Special_Ani
 	jmp loc_02f9be
 
 ;----------------------------------------------
@@ -2894,7 +2894,7 @@ loc_063928:
 	jsr loc_064ab0(pc)
 	nop
 	moveq #$2e,d0
-	jsr loc_02a758
+	jsr Set_Char_Special_Ani
 	jmp loc_02f9be
 
 loc_063956:
@@ -2986,7 +2986,7 @@ loc_063a2c:
 	moveq #$33,d0
 	jsr loc_080b70
 	moveq #$2f,d0
-	jsr loc_02a758
+	jsr Set_Char_Special_Ani
 	jmp loc_02f9be
 
 ;----------------------------------------------
@@ -3050,7 +3050,7 @@ loc_063af0:
 	move.b ($82,a6),d0
 	lsr.b #1,d0
 	addi.b #$30,d0
-	jmp loc_02a758
+	jmp Set_Char_Special_Ani
 
 ;VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV
 loc_063b06:
@@ -3075,7 +3075,7 @@ loc_063b1e:
 	move.b ($82,a6),d0
 	lsr.b #1,d0
 	addi.b #$33,d0
-	jsr loc_02a758
+	jsr Set_Char_Special_Ani
 	move.b ($82,a6),d0
 	lsr.b #1,d0
 	subq.b #1,d0
@@ -3131,7 +3131,7 @@ loc_063ba4:
 loc_063bec:
 	move.l d0,($40,a6)
 	moveq #$36,d0
-	jmp loc_02a758
+	jmp Set_Char_Special_Ani
 
 ;VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV
 loc_063bf8:
@@ -3201,7 +3201,7 @@ loc_063ca0:
 	move.w ($64,a6),($14,a6)
 	clr.w ($16,a6)
 	moveq #$37,d0
-	jmp loc_02a758
+	jmp Set_Char_Special_Ani
 
 ;----------------------------------------------
 loc_063cc4:
@@ -3227,7 +3227,7 @@ loc_063cf2:
 	jsr loc_080b70
 	move.b #$1e,($123,a5)
 	moveq #$38,d0
-	jsr loc_02a758
+	jsr Set_Char_Special_Ani
 	jmp loc_02f9be
 
 ;----------------------------------------------
@@ -3321,7 +3321,7 @@ loc_063de0:
 	move.b ($82,a6),d0
 	lsr.b #1,d0
 	addi.b #$39,d0
-	jmp loc_02a758
+	jmp Set_Char_Special_Ani
 
 ;----------------------------------------------
 loc_063e08:
@@ -3396,7 +3396,7 @@ loc_063ea4:
 	move.b ($82,a6),d0
 	lsr.b #1,d0
 	addi.b #$3c,d0
-	jmp loc_02a758
+	jmp Set_Char_Special_Ani
 
 ;----------------------------------------------
 loc_063eba:
@@ -3445,7 +3445,7 @@ loc_063f2c:
 	move.w ($64,a6),($14,a6)
 	clr.w ($16,a6)
 	moveq #$3f,d0
-	jmp loc_02a758
+	jmp Set_Char_Special_Ani
 
 ;----------------------------------------------
 loc_063f50:
@@ -3485,7 +3485,7 @@ loc_063f84:
 	jsr loc_02f53c
 	jsr loc_02068c
 	moveq #$40,d0
-	jmp loc_02a758
+	jmp Set_Char_Special_Ani
 
 ;----------------------------------------------
 loc_063fa2:
@@ -3520,7 +3520,7 @@ loc_063fcc:
 	move.b ($82,a6),d0
 	move.w loc_06400a(pc,d0.w),($ae,a6)
 	moveq #$41,d0
-	jmp loc_02a758
+	jmp Set_Char_Special_Ani
 
 loc_064008:
 	rts
@@ -3557,13 +3557,13 @@ loc_064040:
 	bcc.b loc_06406e
 	move.b #$c,(7,a6)
 	moveq #$43,d0
-	jsr loc_02a758
+	jsr Set_Char_Special_Ani
 	jmp loc_02f9be
 
 loc_06406e:
 	addq.b #2,(7,a6)
 	moveq #$42,d0
-	jsr loc_02a758
+	jsr Set_Char_Special_Ani
 
 loc_06407a:
 	jmp loc_02f9be
@@ -3621,13 +3621,13 @@ loc_0640ee:
 	bcs.b loc_064128
 	move.b #$18,(7,a6)
 	moveq #$44,d0
-	jsr loc_02a758
+	jsr Set_Char_Special_Ani
 	jmp loc_02fa36
 
 loc_064128:
 	move.b #$10,(7,a6)
 	moveq #$45,d0
-	jsr loc_02a758
+	jsr Set_Char_Special_Ani
 	jsr loc_02fa36
 	move.w ($64,a6),($14,a6)
 	clr.w ($16,a6)
@@ -3641,7 +3641,7 @@ loc_064148:
 	movea.w ($38,a6),a4
 	move.b #1,($2af,a4)
 	moveq #$18,d0
-	jsr loc_02a758
+	jsr Set_Char_Special_Ani
 	jmp loc_02fa36
 
 loc_064176:
@@ -3705,7 +3705,7 @@ loc_06421c:
 	moveq #$37,d0
 	jsr loc_080b70
 	moveq #$46,d0
-	jsr loc_02a758
+	jsr Set_Char_Special_Ani
 	jmp loc_02f9be
 
 ;----------------------------------------------
@@ -3755,7 +3755,7 @@ loc_0642b4:
 	moveq #3,d0
 	jsr loc_02ef6c
 	moveq #0,d0
-	jmp loc_02a758
+	jmp Set_Char_Special_Ani
 
 ;----------------------------------------------
 loc_0642ce:
@@ -3766,7 +3766,7 @@ loc_0642ce:
 	bne.b loc_0642ec
 	addq.b #2,(7,a6)
 	moveq #1,d0
-	jmp loc_02a758
+	jmp Set_Char_Special_Ani
 
 loc_0642ec:
 	move.b #6,(7,a6)
@@ -3774,7 +3774,7 @@ loc_0642ec:
 	move.b ($82,a6),d0
 	move.w loc_06430c(pc,d0.w),($ae,a6)
 	moveq #$18,d0
-	jsr loc_02a758
+	jsr Set_Char_Special_Ani
 	jmp loc_02fa36
 
 ;VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV
@@ -3801,7 +3801,7 @@ loc_06433a:
 	beq.w loc_064986
 	addq.b #2,(7,a6)
 	moveq #$19,d0
-	jsr loc_02a758
+	jsr Set_Char_Special_Ani
 	jmp loc_02f9be
 
 ;----------------------------------------------
@@ -3868,7 +3868,7 @@ loc_0643fe:
 	moveq #$5b,d0
 	jsr loc_02e970
 	moveq #$1a,d0
-	jsr loc_02a758
+	jsr Set_Char_Special_Ani
 	jmp loc_02f9be
 
 ;----------------------------------------------
@@ -3889,7 +3889,7 @@ loc_06445e:
 	move.l #$60000,($40,a6)
 	move.l #$ffff8000,($48,a6)
 	moveq #2,d0
-	jmp loc_02a758
+	jmp Set_Char_Special_Ani
 
 ;==============================================
 loc_064482:
@@ -3963,7 +3963,7 @@ loc_064530:
 	moveq #1,d0
 	jsr loc_02ef6c
 	moveq #0,d0
-	jmp loc_02a758
+	jmp Set_Char_Special_Ani
 
 ;----------------------------------------------
 loc_064544:
@@ -3974,13 +3974,13 @@ loc_064544:
 	bne.b loc_064562
 	addq.b #2,(7,a6)
 	moveq #1,d0
-	jmp loc_02a758
+	jmp Set_Char_Special_Ani
 
 loc_064562:
 	move.b #6,(7,a6)
 	move.b #3,($3a,a6)
 	moveq #$1c,d0
-	jmp loc_02a758
+	jmp Set_Char_Special_Ani
 
 ;----------------------------------------------
 loc_064576:
@@ -4028,7 +4028,7 @@ loc_0645d4:
 	moveq #3,d0
 	jsr loc_02ef6c
 	moveq #0,d0
-	jmp loc_02a758
+	jmp Set_Char_Special_Ani
 
 ;----------------------------------------------
 loc_0645e8:
@@ -4039,13 +4039,13 @@ loc_0645e8:
 	bne.b loc_064606
 	addq.b #2,(7,a6)
 	moveq #1,d0
-	jmp loc_02a758
+	jmp Set_Char_Special_Ani
 
 loc_064606:
 	move.b #6,(7,a6)
 	move.b #3,($3a,a6)
 	moveq #$1b,d0
-	jmp loc_02a758
+	jmp Set_Char_Special_Ani
 
 ;----------------------------------------------
 loc_06461a:
@@ -4092,7 +4092,7 @@ loc_064678:
 	moveq #3,d0
 	jsr loc_02ef6c
 	moveq #0,d0
-	jmp loc_02a758
+	jmp Set_Char_Special_Ani
 
 ;----------------------------------------------
 loc_06468c:
@@ -4105,12 +4105,12 @@ loc_06468c:
 	move.w #$78,($ae,a6)
 	clr.w ($3a,a6)
 	moveq #$16,d0
-	jmp loc_02a758
+	jmp Set_Char_Special_Ani
 
 loc_0646b6:
 	addq.b #2,(7,a6)
 	moveq #1,d0
-	jmp loc_02a758
+	jmp Set_Char_Special_Ani
 
 ;----------------------------------------------
 loc_0646c2:
@@ -4151,7 +4151,7 @@ loc_06471c:
 	bne.b loc_064738
 	addq.b #2,(7,a6)
 	moveq #$17,d0
-	jmp loc_02a758
+	jmp Set_Char_Special_Ani
 
 loc_064738:
 	tst.b ($35,a6)
@@ -4186,7 +4186,7 @@ loc_06478e:
 	bpl.w loc_064980
 	move.b #4,(7,a6)
 	moveq #$1d,d0
-	jmp loc_02a758
+	jmp Set_Char_Special_Ani
 
 ;==============================================
 ;Air Grabs
@@ -4225,13 +4225,13 @@ loc_0647e6:
 
 loc_0647ea:
 	moveq #$2d,d0
-	jsr loc_02a758
+	jsr Set_Char_Special_Ani
 	jmp loc_02fa36
 
 loc_0647f8:
 	addq.b #2,(7,a6)
 	moveq #$2c,d0
-	jmp loc_02a758
+	jmp Set_Char_Special_Ani
 
 ;----------------------------------------------
 loc_064804:
@@ -4318,13 +4318,13 @@ loc_0648de:
 
 loc_0648e2:
 	moveq #$2b,d0
-	jsr loc_02a758
+	jsr Set_Char_Special_Ani
 	jmp loc_02f9be
 
 loc_0648f0:
 	addq.b #2,(7,a6)
 	moveq #$2c,d0
-	jmp loc_02a758
+	jmp Set_Char_Special_Ani
 
 ;----------------------------------------------
 loc_0648fc:
@@ -4346,7 +4346,7 @@ loc_06490c:
 	moveq #$5b,d0
 	jsr loc_080b70
 	moveq #$1a,d0
-	jsr loc_02a758
+	jsr Set_Char_Special_Ani
 	jmp loc_02f9be
 
 ;----------------------------------------------

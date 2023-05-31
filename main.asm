@@ -8659,16 +8659,19 @@ loc_008f38:
 	beq.b loc_008f7e
 	move.b d7,($147,a5)
 	move.b d7,($15d,a5)
-	move.b d7,($531,a5)
-	move.b d7,($55a,a5)
+
+	move.b d7,(p1_Sakiyo_mode,a5)
+	move.b d7,(p1_serious_mode,a5)
 	move.b d7,($55e,a5)
 	move.b d7,($54b,a5)
 	move.b d7,($55f,a5)
-	move.b d7,($931,a5)
-	move.b d7,($95a,a5)
+
+	move.b d7,(p2_Sakiyo_mode,a5)
+	move.b d7,(p2_serious_mode,a5)
 	move.b d7,($95e,a5)
 	move.b d7,($94b,a5)
 	move.b d7,($95f,a5)
+
 	move.w #5,($14c,a5)
 
 loc_008f7e:
@@ -8683,7 +8686,7 @@ loc_008f80:
 ;VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV
 loc_008f8c:
 	dc.w loc_008f9a-loc_008f8c;00
-	dc.w loc_008fc8-loc_008f8c;02
+	dc.w loc_008fc8-loc_008f8c;02 Character Select
 	dc.w loc_008fe0-loc_008f8c;04 Intro
 	dc.w loc_008fce-loc_008f8c;06 Game Over Start
 	dc.w loc_008fd4-loc_008f8c;08 Game Over
@@ -9175,6 +9178,8 @@ loc_009530:
 	addq.b #1,($b4,a5)
 
 loc_00953e:
+	;tst.b (TM_Pause,a5)
+	;bne.b Training_Menu
 	jsr loc_02040a
 	jsr loc_033696;Controls
 	jsr GCrush_Flash_Function
@@ -9191,10 +9196,14 @@ loc_00953e:
 	jsr loc_0335e0;Stage Sprites
 	jsr loc_022dae;Collision
 	jmp loc_020c4a;
+	;jsr TMo_Pause_FF
+	;jsr TMo_Stat_Display
+	;rts
 
-;Sample
-;	jsr loc_020c4a
-;	jsr loc_01c6aa; A Debug Display
+;Training_Menu
+	;jsr TMo_Pause_FF
+	;TMo_Pause_Menu
+	;TMo_Menu_Render
 
 loc_00959e:
 	rts
@@ -9384,8 +9393,8 @@ loc_0097d6:
 	clr.b (1,a1)
 	move.b #Juli_id,(p3_charid,a5)
 	move.b #Juni_id,(p4_charid,a5)
-	move.b #Aism_ID,(p3_ism_choice,a5)
-	move.b #Aism_ID,(p4_ism_choice,a5)
+	move.b #Aism_Val,(p3_ism_choice,a5)
+	move.b #Aism_Val,(p4_ism_choice,a5)
 	st.b ($159,a0)
 	st.b ($d59,a5)
 	st.b ($1159,a5)
@@ -9440,7 +9449,7 @@ loc_009894:
 	bne.w loc_00975c
 	bset.b #5,($149,a0)
 	move.b #Boxer_id,(PL_charid,a1)
-	move.b #Aism_ID,(PL_ism_choice,a1)
+	move.b #Aism_Val,(PL_ism_choice,a1)
 	st.b ($159,a0)
 	st.b ($159,a1)
 	moveq #0,d0
@@ -13773,8 +13782,8 @@ Set_Doll_IDs:
 	clr.b ($178,a5)
 	move.b #Juli_id,(p3_charid,a5)
 	move.b #Juni_id,(p4_charid,a5)
-	move.b #Aism_ID,(p3_ism_choice,a5)
-	move.b #Aism_ID,(p4_ism_choice,a5)
+	move.b #Aism_Val,(p3_ism_choice,a5)
+	move.b #Aism_Val,(p4_ism_choice,a5)
 	move.w #Hid_Stage,(Main_stageid,a5)
 	move.w #Hid_Stage,(StageID_02,a5)
 	rts
@@ -15025,7 +15034,7 @@ loc_020c4a:
 	movem.l d0-d3,($10,a2)
 	lea.l ($20,a2),a2
 	move.w #$380,d7
-	move.w d7,($11a,a5)
+	move.w d7,(Remaining_Sprites,a5)
 	bsr.w loc_020ebe
 	bsr.w loc_022490
 	bsr.w loc_020e52
@@ -15050,7 +15059,7 @@ loc_020c4a:
 	bsr.w loc_021aec
 	bsr.w loc_021b14
 	bsr.w loc_021b3c
-	sub.w d7,($11a,a5)
+	sub.w d7,(Remaining_Sprites,a5)
 	move.l #$8000,(a2)+
 	eori.b #1,($94,a5)
 	st.b ($95,a5)
@@ -15073,7 +15082,7 @@ loc_020d02:
 	movem.l d0-d3,($10,a2)
 	lea.l ($20,a2),a2
 	move.w #$380,d7
-	move.w d7,($11a,a5)
+	move.w d7,(Remaining_Sprites,a5)
 	bsr.w loc_020ee8
 	bsr.w loc_022490
 	bsr.w loc_020e52
@@ -15098,7 +15107,7 @@ loc_020d02:
 	bsr.w loc_021aec
 	bsr.w loc_021b14
 	bsr.w loc_021b3c
-	sub.w d7,($11a,a5)
+	sub.w d7,(Remaining_Sprites,a5)
 	move.l #$00008000,(a2)+
 	eori.b #1,($94,a5)
 	st.b ($95,a5)
@@ -19051,7 +19060,7 @@ loc_023b3a:
 	move.b (a0,d0.w),d0
 	cmpi.b #Cody_id,(PL_Charid,a1)
 	bne.b loc_023b5e
-	cmpi.b #Vism_ID,(PL_ism_choice,a1)
+	cmpi.b #Vism_Val,(PL_ism_choice,a1)
 	bne.b loc_023b5e
 	subi.b #$10,d0
 
@@ -19802,6 +19811,11 @@ loc_024248:
 	rts
 
 ;==============================================
+;
+;
+;loc 2424a
+;a1 getting hit
+;==============================================
 loc_02424a:
 	tst.b d2
 	beq.w loc_024370
@@ -19813,7 +19827,7 @@ loc_02424a:
 	add.b ($127,a1),d0
 	movea.l #loc_0c4f3a,a0
 	move.b (a0,d0.w),d3
-	cmpi.b #$ff,($132,a1)
+	cmpi.b #$ff,(PL_ism_choice,a1)
 	bne.b loc_024276
 	subq.b #4,d3
 
@@ -20588,19 +20602,25 @@ loc_024934:
 	rts
 
 ;==============================================
+;
+;
+;loc 24936
+;a1 Getting Grabbed
+;a6 Grabbing
+;==============================================
 loc_024936:
 	move.w (a3),d0
-	tst.b ($b,a6)
+	tst.b (PL_Flip,a6)
 	beq.w loc_024792
 	neg.w d0
 	move.w (a2),d1
-	tst.b ($b,a1)
+	tst.b (PL_Flip,a1)
 	beq.w loc_02494e
 	neg.w d1
 
 loc_02494e:
-	add.w ($10,a6),d0
-	add.w ($10,a1),d1
+	add.w (PL_X,a6),d0
+	add.w (PL_X,a1),d1
 	sub.w d0,d1
 	bpl.w loc_02495e
 	neg.w d1
@@ -20608,7 +20628,7 @@ loc_02494e:
 loc_02495e:
 	move.w (4,a3),d0
 	add.w (4,a2),d0
-	cmpi.b #$ff,($132,a1)
+	cmpi.b #$ff,(PL_ism_choice,a1)
 	bne.b loc_024970
 	addq.w #4,d0
 
@@ -20617,8 +20637,8 @@ loc_024970:
 	bhi.w loc_0249a2
 	move.w (2,a3),d0
 	move.w (2,a2),d1
-	add.w ($14,a6),d0
-	add.w ($14,a1),d1
+	add.w (PL_Y,a6),d0
+	add.w (PL_Y,a1),d1
 	sub.w d0,d1
 	bpl.w loc_02498e
 	neg.w d1
@@ -20626,7 +20646,7 @@ loc_024970:
 loc_02498e:
 	move.w (6,a3),d0
 	add.w (6,a2),d0
-	cmpi.b #$ff,($132,a1)
+	cmpi.b #Xism_Val,(PL_ism_choice,a1)
 	bne.b loc_0249a0
 	addq.w #4,d0
 
@@ -20636,6 +20656,11 @@ loc_0249a0:
 loc_0249a2:
 	rts
 
+;==============================================
+;
+;
+;loc 249a4
+;a1 player
 ;==============================================
 loc_0249a4:
 	moveq #-1,d0
@@ -24683,9 +24708,9 @@ loc_027ba2:
 	move.b #$1e,($278,a6)
 	tst.b (PL_cpucontrol,a6)
 	bne.b loc_027bf6
-	move.b ($15e,a6),($f0,a6)
-	move.b ($15a,a6),($ec,a6)
-	move.b ($131,a6),($eb,a6)
+	move.b ($15e,a6),(pl_classic_game,a6)
+	move.b ($15a,a6),(pl_serious_game,a6)
+	move.b ($131,a6),(pl_sakiyo_game,a6)
 	tst.b ($15d,a5)
 	beq.b loc_027bf6
 	tst.b ($14b,a6)
@@ -24716,7 +24741,7 @@ loc_027c3c:
 Set_Taunts:
 	tst.b (pl_serious_game,a6)
 	bne.b loc_027c54
-	cmpi.b #Xism_ID,(PL_ism_choice,a6)
+	cmpi.b #Xism_Val,(PL_ism_choice,a6)
 	beq.b loc_027c54
 	move.b #1,(pl_taunt_count,a6)
 
@@ -24754,8 +24779,8 @@ loc_027c94:
 	bra.b loc_027cb2
 
 loc_027caa:
-	bsr.w loc_02b148
-	bsr.w loc_029884
+	bsr.w loc_02b148;
+	bsr.w loc_029884;
 
 loc_027cb2:
 	bsr.w loc_027cda
@@ -24769,16 +24794,16 @@ loc_027cba:
 
 ;VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV
 loc_027cc8:
-	dc.w loc_027fe2-loc_027cc8
-	dc.w loc_028afe-loc_027cc8
-	dc.w loc_029c20-loc_027cc8
-	dc.w loc_029c48-loc_027cc8
-	dc.w loc_029d5a-loc_027cc8
-	dc.w loc_029d88-loc_027cc8
-	dc.w loc_029e18-loc_027cc8
-	dc.w loc_02a070-loc_027cc8
+	dc.w loc_027fe2-loc_027cc8;00 Move
+	dc.w loc_028afe-loc_027cc8;02 Hurtstun and block
+	dc.w loc_029c20-loc_027cc8;04 Throws
+	dc.w loc_029c48-loc_027cc8;06 Grabbed
+	dc.w loc_029d5a-loc_027cc8;08 Winpose
+	dc.w loc_029d88-loc_027cc8;0a Losepose
+	dc.w loc_029e18-loc_027cc8;0c Defeated
+	dc.w loc_02a070-loc_027cc8;0e Intro
 
-	dc.w loc_02a518-loc_027cc8
+	dc.w loc_02a518-loc_027cc8;10 Tech Roll
 
 ;==============================================
 loc_027cda:
@@ -26040,7 +26065,7 @@ loc_028a12:
 	move.b (a0,d0.w),d0
 	addq.b #1,($27e,a6)
 	andi.b #7,($27e,a6)
-	bra.w loc_02a758
+	bra.w Set_Char_Special_Ani
 
 ;VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV
 loc_028a2a:
@@ -26278,7 +26303,7 @@ loc_028c56:
 	addq.b #1,d0
 
 loc_028c84:
-	bsr.w loc_02a75e
+	bsr.w Set_Char_Normals_Ani
 	bsr.w loc_02b11c
 	moveq #0,d0
 	tst.b ($5f,a6)
@@ -26335,7 +26360,7 @@ loc_028d1c:
 	moveq #0,d0
 	move.b ($29f,a6),d0
 	move.b loc_028d2a(pc,d0.w),d0
-	bra.w loc_02a75e
+	bra.w Set_Char_Normals_Ani
 
 ;VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV
 loc_028d2a:
@@ -26459,7 +26484,7 @@ loc_028e82:
 
 loc_028ea6:
 	moveq #6,d0
-	bra.w loc_02a75e
+	bra.w Set_Char_Normals_Ani
 
 loc_028eac:
 	move.b #4,(7,a6)
@@ -26487,7 +26512,7 @@ loc_028eea:
 	moveq #$f,d0
 
 loc_028efe:
-	bra.w loc_02a75e
+	bra.w Set_Char_Normals_Ani
 
 loc_028f02:
 	move.b #4,($54,a6)
@@ -26497,7 +26522,7 @@ loc_028f02:
 	cmp.b ($24d,a6),d0
 	bcs.b loc_028f78
 	moveq #$12,d0
-	bsr.w loc_02a75e
+	bsr.w Set_Char_Normals_Ani
 	moveq #0,d0
 	tst.b ($5f,a6)
 	beq.w loc_029140
@@ -26519,7 +26544,7 @@ loc_028f4c:
 	moveq #$f,d0
 
 loc_028f52:
-	bsr.w loc_02a75e
+	bsr.w Set_Char_Normals_Ani
 	moveq #0,d0
 	tst.b ($5f,a6)
 	beq.w loc_029140
@@ -26616,7 +26641,7 @@ loc_029038:
 	moveq #$f,d0
 
 loc_02904a:
-	bra.w loc_02a75e
+	bra.w Set_Char_Normals_Ani
 
 ;VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV
 loc_02904e:
@@ -26734,7 +26759,7 @@ loc_02918e:
 	move.b ($55,a6),d0
 	lea.l loc_02d5b2(pc),a0
 	move.b (a0,d0.w),d0
-	bra.w loc_02a75e
+	bra.w Set_Char_Normals_Ani
 
 loc_0291a0:
 	subq.b #1,($5f,a6)
@@ -26782,7 +26807,7 @@ loc_02920c:
 	beq.b loc_029224
 	cmpi.b #Dan_id,(PL_charid,a6)
 	bne.b loc_029282
-	cmpi.b #Vism_ID,(PL_ism_choice,a6)
+	cmpi.b #Vism_Val,(PL_ism_choice,a6)
 	bne.b loc_029282
 
 loc_029224:
@@ -26878,7 +26903,7 @@ loc_0292e0:
 	bcs.w loc_02a7ea
 	move.b #6,(7,a6)
 	moveq #$1b,d0
-	bra.w loc_02a75e
+	bra.w Set_Char_Normals_Ani
 
 loc_0292fe:
 	tst.w ($50,a6)
@@ -26946,7 +26971,7 @@ loc_029376:
 	moveq #$2c,d0
 
 loc_029398:
-	bsr.w loc_02a75e
+	bsr.w Set_Char_Normals_Ani
 	bra.w loc_029456
 
 ;----------------------------------------------
@@ -26980,7 +27005,7 @@ loc_0293d6:
 	moveq #$f,d0
 
 loc_0293f4:
-	bra.w loc_02a75e
+	bra.w Set_Char_Normals_Ani
 
 loc_0293f8:
 	cmpi.w #$90,($11e,a6)
@@ -27008,7 +27033,7 @@ loc_029432:
 	moveq #$f,d0
 
 loc_029438:
-	bra.w loc_02a75e
+	bra.w Set_Char_Normals_Ani
 
 ;----------------------------------------------
 loc_02943c:
@@ -27086,7 +27111,7 @@ loc_029506:
 	move.l d0,($40,a6)
 	jsr loc_003db8
 	moveq #$2d,d0
-	bra.w loc_02a75e
+	bra.w Set_Char_Normals_Ani
 
 ;----------------------------------------------
 loc_029516:
@@ -27133,7 +27158,7 @@ loc_02957a:
 	move.w ($64,a6),($14,a6)
 	clr.w ($16,a6)
 	moveq #$2c,d0
-	bsr.w loc_02a75e
+	bsr.w Set_Char_Normals_Ani
 	jmp loc_003630
 
 loc_0295a6:
@@ -27276,7 +27301,7 @@ loc_029738:
 	bsr.w loc_029b86
 	bne.w loc_029bec
 	moveq #$14,d0
-	bra.w loc_02a75e
+	bra.w Set_Char_Normals_Ani
 
 loc_029750:
 	movea.w ($38,a6),a4
@@ -27295,7 +27320,7 @@ loc_029766:
 	move.b #$ff,($31,a6)
 	bsr.w loc_02aece
 	moveq #$15,d0
-	bra.w loc_02a75e
+	bra.w Set_Char_Normals_Ani
 
 loc_029780:
 	bsr.w loc_02aa08
@@ -27309,7 +27334,7 @@ loc_029780:
 	move.w ($64,a6),($14,a6)
 	clr.w ($16,a6)
 	moveq #$16,d0
-	bsr.w loc_02a75e
+	bsr.w Set_Char_Normals_Ani
 	jmp loc_003630
 
 loc_0297b6:
@@ -27320,7 +27345,7 @@ loc_0297b6:
 	addq.b #2,(7,a6)
 	clr.b ($279,a6)
 	moveq #$19,d0
-	bra.w loc_02a75e
+	bra.w Set_Char_Normals_Ani
 
 loc_0297d4:
 	tst.b ($33,a6)
@@ -27350,7 +27375,7 @@ loc_029826:
 	andi.w #$1e,d0
 	move.w loc_029864(pc,d0.w),($3a,a6)
 	moveq #$1a,d0
-	bra.w loc_02a75e
+	bra.w Set_Char_Normals_Ani
 
 loc_02983c:
 	move.l #$2020400,(4,a6)
@@ -27452,7 +27477,7 @@ loc_029964:
 	move.b d0,($b,a6)
 	move.l d2,($40,a6)
 	moveq #$1f,d0
-	bra.w loc_02a75e
+	bra.w Set_Char_Normals_Ani
 
 loc_029972:
 	tst.w ($44,a6)
@@ -27484,7 +27509,7 @@ loc_0299ca:
 	move.b #$a,(7,a6)
 	clr.b ($ad,a6)
 	moveq #$19,d0
-	bra.w loc_02a75e
+	bra.w Set_Char_Normals_Ani
 
 ;==============================================
 loc_0299e0:
@@ -27565,13 +27590,13 @@ loc_029a7a:
 	move.w ($64,a6),($14,a6)
 	clr.w ($16,a6)
 	moveq #$1b,d0
-	bra.w loc_02a75e
+	bra.w Set_Char_Normals_Ani
 
 loc_029ab2:
 	move.b #8,($54,a6)
 	move.b #$a,(7,a6)
 	moveq #$19,d0
-	bra.w loc_02a75e
+	bra.w Set_Char_Normals_Ani
 
 ;==============================================
 loc_029ac4:
@@ -27956,7 +27981,7 @@ loc_029e68:
 	beq.b loc_029e88
 	move.w #$1e,($12,a5)
 	moveq #$19,d0
-	bra.w loc_02a75e
+	bra.w Set_Char_Normals_Ani
 
 loc_029e88:
 	move.b #4,(7,a6)
@@ -28043,14 +28068,14 @@ loc_029f2a:
 	beq.b loc_029f4a
 	move.w #$1e,($12,a5)
 	moveq #$19,d0
-	bra.w loc_02a75e
+	bra.w Set_Char_Normals_Ani
 
 loc_029f4a:
 	move.b #4,(7,a6)
 	move.b ($2c9,a6),($b,a6)
 	jsr loc_0836f4
 	moveq #$1a,d0
-	bra.w loc_02a75e
+	bra.w Set_Char_Normals_Ani
 
 ;----------------------------------------------
 loc_029f62:
@@ -28060,7 +28085,7 @@ loc_029f62:
 	move.b ($2c9,a6),($b,a6)
 	jsr loc_0836f4
 	moveq #$1a,d0
-	bra.w loc_02a75e
+	bra.w Set_Char_Normals_Ani
 
 ;----------------------------------------------
 loc_029f80:
@@ -28088,7 +28113,7 @@ loc_029f98:
 	beq.b loc_029fb8
 	move.w #$1e,($12,a5)
 	moveq #$19,d0
-	bra.w loc_02a75e
+	bra.w Set_Char_Normals_Ani
 
 loc_029fb8:
 	move.b #4,(7,a6)
@@ -28254,7 +28279,7 @@ loc_02a11e:
 	addq.b #2,(7,a6)
 	move.b #$1e,($3a,a6)
 	moveq #$1b,d0
-	bra.w loc_02a75e
+	bra.w Set_Char_Normals_Ani
 
 ;----------------------------------------------
 loc_02a12e:
@@ -28262,7 +28287,7 @@ loc_02a12e:
 	bne.w loc_02a7ea
 	addq.b #2,(7,a6)
 	moveq #$19,d0
-	bra.w loc_02a75e
+	bra.w Set_Char_Normals_Ani
 
 ;----------------------------------------------
 loc_02a140:
@@ -28313,7 +28338,7 @@ loc_02a19c:
 	bcs.w loc_02a7ea
 	addq.b #2,(7,a6)
 	moveq #0,d0
-	bra.w loc_02a758
+	bra.w Set_Char_Special_Ani
 
 ;----------------------------------------------
 loc_02a1b6:
@@ -28347,7 +28372,7 @@ loc_02a1ec:
 	addq.b #2,(7,a6)
 	move.b #$1e,($3a,a6)
 	moveq #$1a,d0
-	bra.w loc_02a75e
+	bra.w Set_Char_Normals_Ani
 
 ;----------------------------------------------
 loc_02a1fc:
@@ -28385,7 +28410,7 @@ loc_02a234:
 	jsr loc_0a51cc
 	move.b #$56,($2a0,a6)
 	moveq #$1b,d0
-	bra.w loc_02a75e
+	bra.w Set_Char_Normals_Ani
 
 ;----------------------------------------------
 loc_02a252:
@@ -28393,7 +28418,7 @@ loc_02a252:
 	bne.w loc_02a7ea
 	addq.b #2,(7,a6)
 	moveq #$19,d0
-	bra.w loc_02a75e
+	bra.w Set_Char_Normals_Ani
 
 ;----------------------------------------------
 loc_02a264:
@@ -28402,7 +28427,7 @@ loc_02a264:
 	addq.b #2,(7,a6)
 	clr.b ($124,a6)
 	moveq #$1a,d0
-	bra.w loc_02a75e
+	bra.w Set_Char_Normals_Ani
 
 ;----------------------------------------------
 loc_02a27a:
@@ -28440,7 +28465,7 @@ loc_02a2b4:
 	jsr loc_0a51cc
 	move.b #$56,($2a0,a6)
 	moveq #$1b,d0
-	bra.w loc_02a75e
+	bra.w Set_Char_Normals_Ani
  
 ;----------------------------------------------
 loc_02a2d2:
@@ -28456,7 +28481,7 @@ loc_02a2e6:
 	bne.w loc_02a7ea
 	addq.b #2,(7,a6)
 	moveq #$19,d0
-	bra.w loc_02a75e
+	bra.w Set_Char_Normals_Ani
 
 ;----------------------------------------------
 loc_02a2fa:
@@ -28693,6 +28718,11 @@ loc_02a506:
 	rts
 
 ;==============================================
+;Tech Roll State Code
+;loc 2a518
+;
+;A6 char mem
+;==============================================
 loc_02a518:
 	move.b (6,a6),d0
 	move.w loc_02a528(pc,d0.w),d1
@@ -28828,7 +28858,7 @@ loc_02a702:
 
 ;==============================================
 loc_02a708:
-	movea.l ($2b0,a6),a0
+	movea.l (pl_AniGrp_Move_PNT,a6),a0
 	bra.w loc_02a762
 
 ;==============================================
@@ -28865,12 +28895,16 @@ loc_02a754:
 	dc.w $0100,$ff00
 
 ;==============================================
-loc_02a758:
-	movea.l ($2b4,a6),a0
+;Set Attack Animations
+;
+;loc 2a758
+;==============================================
+Set_Char_Special_Ani:
+	movea.l (pl_AniGrp_Special_PNT,a6),a0
 	bra.b loc_02a762
 
-loc_02a75e:
-	movea.l ($2b8,a6),a0
+Set_Char_Normals_Ani:
+	movea.l (pl_AniGrp_Normals_PNT,a6),a0
 
 loc_02a762:
 	andi.w #$ff,d0
@@ -29687,7 +29721,7 @@ loc_02af50:
 
 loc_02af70:
 	moveq #$1b,d0
-	bsr.w loc_02a75e
+	bsr.w Set_Char_Normals_Ani
 	bra.w loc_02b9a2
 
 ;==============================================
@@ -29909,11 +29943,13 @@ loc_02b146:
 	rts
 
 ;==============================================
+;Load Jump to Special Move Inputs
+;==============================================
 loc_02b148:
 	jsr loc_02e336
 	clr.b ($254,a6)
 	moveq #0,d0
-	move.b ($102,a6),d0
+	move.b (PL_charid,a6),d0
 	ext.w d0
 	lsl.w #2,d0
 	movea.l #loc_0dd292,a0
@@ -30251,7 +30287,7 @@ loc_02b508:
 	move.b d4,($3a,a6)
 	jsr loc_003e2a
 	moveq #$18,d0
-	bra.w loc_02a75e
+	bra.w Set_Char_Normals_Ani
 
 loc_02b520:
 	jsr loc_032c9a
@@ -31159,7 +31195,7 @@ loc_02be14:
 	movea.l #Guard_meter_table,a0
 	move.b (a0,d0.w),(pl_guard_bar_max,a6)
 	moveq #8,d1
-	cmpi.b #Xism_ID,(PL_ism_choice,a6)
+	cmpi.b #Xism_Val,(PL_ism_choice,a6)
 	beq.b loc_02be3c
 	moveq #-8,d1
 	tst.b (PL_ism_choice,a6)
@@ -31190,7 +31226,7 @@ loc_02be50:
 	beq.w loc_02be9e
 	movea.l #XismWalkSpeed,a0
 	movea.l #loc_0de792,a1
-	cmpi.b #Xism_ID,(PL_ism_choice,a6)
+	cmpi.b #Xism_Val,(PL_ism_choice,a6)
 	beq.b loc_02be9e
 	movea.l #VismWalkSpeed,a0
 	movea.l #loc_0ddf92,a1
@@ -32716,7 +32752,7 @@ loc_02eb06:
 	bne.b loc_02eb88
 	jsr loc_02af7a
 	bne.b loc_02eb88
-	cmpi.b #Xism_ID,(PL_ism_choice,a6)
+	cmpi.b #Xism_Val,(PL_ism_choice,a6)
 	bne.b loc_02eb30
 	cmpi.b #Gen_id,(PL_charid,a6)
 	beq.b loc_02eb88

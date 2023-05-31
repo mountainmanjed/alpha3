@@ -8630,10 +8630,10 @@ loc_0b95d0:
 
 loc_0b95e2:
 	moveq #0,d0
-	move.b ($102,a4),d0
+	move.b (PL_charid,a4),d0
 	cmpi.b #4,d0
 	bne.w loc_0b95fa
-	tst.b ($132,a4)
+	tst.b (PL_ism_choice,a4)
 	bpl.b loc_0b95fa
 	move.b #$20,d0
 
@@ -8709,10 +8709,10 @@ loc_0b9694:
 
 loc_0b96b4:
 	moveq #0,d0
-	move.b ($102,a4),d0
+	move.b (PL_charid,a4),d0
 	cmpi.b #4,d0
 	bne.w loc_0b96cc
-	tst.b ($132,a4)
+	tst.b (PL_ism_choice,a4)
 	bpl.b loc_0b96cc
 	move.b #$20,d0
 

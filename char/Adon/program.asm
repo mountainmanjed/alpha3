@@ -429,7 +429,7 @@ loc_03def0:
 	move.b (PL_ButtonStrength,a6),d1
 	lsr.b #1,d1
 	add.b d1,d0
-	jmp loc_02a758
+	jmp Set_Char_Special_Ani
 
 loc_03df26:
 	rts
@@ -640,7 +640,7 @@ loc_03e194:
 	move.b #$1b,($5f,a4)
 	move.b #$1f,(pl_invinciblity_timer,a6)
 	moveq #1,d0
-	jmp loc_02a758
+	jmp Set_Char_Special_Ani
 
 ;==============================================
 loc_03e1d6:
@@ -665,7 +665,7 @@ loc_03e1e0:
 	move.b #$11,($5f,a4)
 	move.b #$15,(pl_invinciblity_timer,a6)
 	moveq #0,d0
-	jmp loc_02a758
+	jmp Set_Char_Special_Ani
 
 ;==============================================
 loc_03e228:
@@ -814,7 +814,7 @@ loc_03e33a:
 	moveq #4,d0
 	add.b (PL_ButtonStrength,a6),d0
 	asr.w #1,d0
-	jmp loc_02a758
+	jmp Set_Char_Special_Ani
 
 ;VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV
 loc_03e37e:
@@ -906,7 +906,7 @@ loc_03e448:
 	moveq #$18,d0
 	add.b (PL_ButtonStrength,a6),d0
 	asr.w #1,d0
-	jmp loc_02a758
+	jmp Set_Char_Special_Ani
 
 ;VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV
 loc_03e48c:
@@ -1019,7 +1019,7 @@ loc_03e5b8:
 	move.l #$ffffa000,(pl_y_drag,a6)
 	moveq #5,d0
 	add.b (PL_ButtonStrength,a6),d0
-	jmp loc_02a758
+	jmp Set_Char_Special_Ani
 
 ;----------------------------------------------
 loc_03e5e4:
@@ -1054,7 +1054,7 @@ loc_03e63e:
 	addq.b #2,(PL_Move_state,a6)
 	moveq #6,d0
 	add.b (PL_ButtonStrength,a6),d0
-	jmp loc_02a758
+	jmp Set_Char_Special_Ani
 
 loc_03e654:
 	tst.b ($35,a6)
@@ -1108,7 +1108,7 @@ loc_03e6d8:
 	move.b d0,($ce,a6)
 	jsr loc_00369c
 	moveq #$b,d0
-	jmp loc_02a758
+	jmp Set_Char_Special_Ani
 
 ;----------------------------------------------
 loc_03e700:
@@ -1210,7 +1210,7 @@ loc_03e788:
 	moveq #$1e,d0
 	add.b (PL_ButtonStrength,a6),d0
 	asr.w #1,d0
-	jmp loc_02a758
+	jmp Set_Char_Special_Ani
 
 ;----------------------------------------------
 loc_03e7d2:
@@ -1369,7 +1369,7 @@ loc_03e8fe:
 	move.l loc_03e93a+4(pc,d0.w),(pl_x_drag,a6)
 	moveq #$12,d0
 	add.b (PL_ButtonStrength,a6),d0
-	jmp loc_02a758
+	jmp Set_Char_Special_Ani
 
 ;VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV
 loc_03e93a:
@@ -1483,7 +1483,7 @@ loc_03ea4e:
 	bne.w loc_03f18a
 	addq.b #2,(PL_Move_state,a6)
 	moveq #$19,d0
-	jmp loc_02a758
+	jmp Set_Char_Special_Ani
 
 ;----------------------------------------------
 loc_03ea66:
@@ -1501,7 +1501,7 @@ loc_03ea74:
 	move.l #$ffff9000,(pl_y_drag,a6)
 	moveq #$13,d0
 	add.b (PL_ButtonStrength,a6),d0
-	jmp loc_02a758
+	jmp Set_Char_Special_Ani
 
 loc_03eaa8:
 	tst.b (PL_cpucontrol,a6)
@@ -1522,7 +1522,7 @@ loc_03eac2:
 loc_03ead0:
 	move.b #$c,(PL_Move_state,a6)
 	moveq #$18,d0
-	jmp loc_02a758
+	jmp Set_Char_Special_Ani
 
 loc_03eade:
 	move.l #$2001002,(4,a6)
@@ -1533,7 +1533,7 @@ loc_03eade:
 	move.l #$80000,(pl_y_velocity,a6)
 	move.l #$ffffa000,(pl_y_drag,a6)
 	moveq #$1a,d0
-	jmp loc_02a758
+	jmp Set_Char_Special_Ani
 
 ;----------------------------------------------
 ;Super Ending
@@ -1570,7 +1570,7 @@ loc_03eb52:
 	move.b d0,(pl_attk_active,a6)
 	move.b d0,(pl_crouching,a6)
 	moveq #$1b,d0
-	jmp loc_02a758
+	jmp Set_Char_Special_Ani
 
 ;==============================================
 ;Alpha Counter Kick
@@ -1683,7 +1683,7 @@ loc_03ec40:
 	moveq #3,d0
 	jsr loc_02ef6c
 	moveq #$1e,d0
-	jmp loc_02a758
+	jmp Set_Char_Special_Ani
 
 ;==============================================
 loc_03ec54:
@@ -1722,7 +1722,7 @@ loc_03ec9a:
 loc_03ecae:
 	move.b #6,(PL_Move_state,a6)
 	moveq #$1c,d0
-	jsr loc_02a758
+	jsr Set_Char_Special_Ani
 	jmp loc_02fa36
 
 loc_03ecc2:
@@ -1733,13 +1733,13 @@ loc_03ecc2:
 loc_03ecd0:
 	move.b #$c,(PL_Move_state,a6)
 	moveq #$1d,d0
-	jsr loc_02a758
+	jsr Set_Char_Special_Ani
 	jmp loc_02f9be
 
 loc_03ece4:
 	addq.b #2,(PL_Move_state,a6)
 	moveq #$1f,d0
-	jmp loc_02a758
+	jmp Set_Char_Special_Ani
 
 ;==============================================
 loc_03ecf0:
@@ -1909,19 +1909,19 @@ loc_03eeae:
 	bne.b loc_03eec8
 	move.b #4,(PL_Move_state,a6)
 	moveq #$22,d0
-	jsr loc_02a758
+	jsr Set_Char_Special_Ani
 	jmp loc_02f9be
 
 loc_03eec8:
 	move.b #$c,(PL_Move_state,a6)
 	moveq #$23,d0
-	jsr loc_02a758
+	jsr Set_Char_Special_Ani
 	jmp loc_02fa36
 
 loc_03eedc:
 	addq.b #2,(PL_Move_state,a6)
 	moveq #$21,d0
-	jmp loc_02a758
+	jmp Set_Char_Special_Ani
 
 ;==============================================
 loc_03eee8:

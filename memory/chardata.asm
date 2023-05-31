@@ -265,13 +265,20 @@ pl_collsion_counter = 0x280
 PL_Super_Cancel_Timer = 0x293
 
 pl_blockstring_counter = 0x297
+;298
+
+;29d
 
 ;0x2a6
 
 plflash_timer = 0x2ad
 plflash_status = 0x2ae
 
-;_PNT = 0x2bc
+pl_AniGrp_Move_PNT = 0x2b0
+pl_AniGrp_Special_PNT = 0x2b4
+pl_AniGrp_Normals_PNT = 0x2b8
+pl_AniGrp_Hurt_PNT = 0x2bc
+
 ;0x2c0
 
 pl_crouching = 0x2c8
@@ -284,6 +291,18 @@ pl_stun_max = 0x2cd
 
 Pl_WalkSpeed_pnt = 0x2d0
 Pl_JumpData_pnt = 0x2d4;0x28692,0x2a98c
+
+; 0x2e0
+; 0x2e2
+; 0x2e4
+; 0x2e6
+; 0x2e8
+; 0x2ec
+; 0x2f0
+; 0x2f4
+; 0x2f8
+; 0x2fc
+
 
 pl_inp_slot_a = 0x300
 pl_inp_slot_b = 0x308
@@ -318,7 +337,12 @@ p1_x = PL_X+p1memory
 p1_combo = pl_combo+p1memory
 p1_charid = PL_charid+p1memory
 P1_Palnum = PL_Palnum+p1memory
+
+p1_Sakiyo_mode=Pl_Sakiyo_mode+p1memory
 p1_ism_choice = PL_ism_choice+p1memory
+
+p1_serious_mode = pl_serious_mode+p1memory
+
 p1_arcade_progress = pl_arcade_progress+p1memory
 p1_crushed_guard = pl_crushed_guard+p1memory
 
@@ -334,7 +358,10 @@ p2_x = PL_X+p2memory
 p2_combo = pl_combo+p2memory
 p2_charid = PL_charid+p2memory
 P2_Palnum = PL_Palnum+p2memory
+p2_Sakiyo_mode=Pl_Sakiyo_mode+p2memory
 p2_ism_choice = PL_ism_choice+p2memory
+p2_serious_mode = pl_serious_mode+p2memory
+
 p2_arcade_progress = pl_arcade_progress+p2memory
 p2_crushed_guard = pl_crushed_guard+p2memory
 
@@ -350,7 +377,12 @@ p3_x = PL_X+p3memory
 p3_combo = pl_combo+p3memory
 p3_charid = PL_charid+p3memory
 P3_Palnum = PL_Palnum+p3memory
+
+p3_Sakiyo_mode=Pl_Sakiyo_mode+p3memory
 p3_ism_choice = PL_ism_choice+p3memory
+
+p3_serious_mode = pl_serious_mode+p3memory
+
 p3_arcade_progress = pl_arcade_progress+p3memory
 p3_crushed_guard = pl_crushed_guard+p3memory
 
@@ -361,10 +393,16 @@ p4memory = 0x1000
 p4_render = PL_Render+p4memory
 p4_x = PL_X+p4memory
 
+
 p4_combo = pl_combo+p4memory
 p4_charid = PL_charid+p4memory
 P4_Palnum = PL_Palnum+p4memory
+
+p4_Sakiyo_mode=Pl_Sakiyo_mode+p4memory
 p4_ism_choice = PL_ism_choice+p4memory
+
+p4_serious_mode = pl_serious_mode+p4memory
+
 p4_arcade_progress = pl_arcade_progress+p4memory
 p4_crushed_guard = pl_crushed_guard+p4memory
 

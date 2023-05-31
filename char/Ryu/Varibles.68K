@@ -1,0 +1,14 @@
+
+;Move Ids
+Ryu_Shoryu = 0x00
+Ryu_Hadou_ID = 0x02
+Ryu_Tastu_ID = 0x04
+Ryu_AirTatsu_ID = 0x06
+Ryu_Shin_Hadou_ID = 0x08
+Ryu_Shin_Tatsu_ID = 0x0a
+Ryu_Taunt_ID = 0x0c
+Ryu_AC_Sweep_ID = 0x0e
+Ryu_Vism_Val = 0x10
+Ryu_Fake_Hadou_ID = 0x12
+Ryu_Hadou2_ID = 0x14
+Ryu_Shin_Shoryu_id = 0x16

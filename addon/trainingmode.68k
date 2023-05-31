@@ -1,0 +1,129 @@
+;==============================================
+;A3 Training Mode Code
+	include "TModeVar.68k"
+
+;==============================================
+TMo_Pause_FF:
+    btst #0,($60,a5)
+    bne.b Pause_Hold_Counter
+    clr.b (TMode_PauseCounter,a5)
+    bra.b Pause_End
+
+Pause_Hold_Counter:
+    addq.b #1,(TMode_PauseCounter,a5)
+    cmpi.b #$60,(TMode_PauseCounter,a5)
+    ble.b Pause_End
+    not.b (TM_Pause,a5)
+    bsr.b TMo_Screen_Darken
+
+Pause_End:
+	rts
+
+;==============================================
+TMo_Screen_Darken:
+    tst.b (TM_Pause,a5)
+    beq.w TMo_Screen_Bright
+    move.l #$3fff3fff,d6 
+	lea.l $90c000,a1
+    moveq #$17,d7
+    bsr.b darken
+    lea.l $90c320,a1
+    moveq #6,d7
+    bsr.b darken
+	lea.l $90c400,a1
+	bsr.b darken32
+	lea.l $90c800,a1
+	bsr.b darken32
+	lea.l $90cc00,a1
+	moveq #$1e,d7
+	bra.b darken
+
+darken32:
+    moveq #$1f,d7
+
+darken:
+	movem.l (a1),d0-d3
+	and.l d6,d0
+	and.l d6,d1
+	and.l d6,d2
+	and.l d6,d3
+	movem.l d0-d3,(a1)
+	lea.l ($10,a1),a1
+	movem.l (a1),d0-d3
+	and.l d6,d0
+	and.l d6,d1
+	and.l d6,d2
+	and.l d6,d3
+	movem.l d0-d3,(a1)
+	lea.l ($10,a1),a1
+	dbra d7,darken
+
+Darken_End:
+    rts
+
+;==============================================
+TMo_Screen_Bright:
+    move.l #$f000f000,d6
+	move.l #$0fff0fff,d5
+	lea.l $90c000,a1
+    moveq #$17,d7
+    bsr.b bright
+    lea.l $90c320,a1
+    moveq #6,d7
+    bsr.b bright
+	lea.l $90c400,a1
+	bsr.b bright32
+	lea.l $90c800,a1
+	bsr.b bright32
+	lea.l $90cc00,a1
+	moveq #$1e,d7
+	bra.b bright
+
+bright32:
+    moveq #$1f,d7
+
+bright:
+	movem.l (a1),d0-d3
+	and.l d5,d0
+	and.l d5,d1
+	and.l d5,d2
+	and.l d5,d3
+	or.l d6,d0
+	or.l d6,d1
+	or.l d6,d2
+	or.l d6,d3
+	movem.l d0-d3,(a1)
+	lea.l ($10,a1),a1
+	movem.l (a1),d0-d3
+	and.l d5,d0
+	and.l d5,d1
+	and.l d5,d2
+	and.l d5,d3
+	or.l d6,d0
+	or.l d6,d1
+	or.l d6,d2
+	or.l d6,d3
+	movem.l d0-d3,(a1)
+	lea.l ($10,a1),a1
+	dbra d7,bright
+    rts
+
+;==============================================
+;Display stuff
+;==============================================
+Tmo_Display:
+	moveq #0,d0
+	movea.w($71b6,a0)
+	jsr Debug_Perf_Disp
+	tst.w d7
+	beq.b Tmo_Display_end
+	add.w d7,($71be,a5)
+	add.w d7,($71ba,a5)
+	move.w a0,($71b6,a5)
+
+Tmo_Display_end:
+    rts
+
+;==============================================
+;Files
+	include "addon/Menu.68k"

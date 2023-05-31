@@ -7582,7 +7582,7 @@ Debug_Perf_Disp:
 	clr.w (-$5d18,a5)
 
 loc_01c7f6:
-	move.w ($11a,a5),d1
+	move.w (Remaining_Sprites,a5),d1
 	move.w d1,(-$5d1a,a5)
 	cmp.w (-$5d18,a5),d1
 	bls.b loc_01c80c
@@ -8227,6 +8227,8 @@ loc_01df34:
 	dc.w $0020,$0020,$0020,$0020,$0020,$0020,$0020,$0020
 
 ;==============================================
+;Character select State reads
+;==============================================
 loc_01df54:
 	move.w (8,a5),d0
 	move.w loc_01df60(pc,d0.w),d1
@@ -8234,10 +8236,10 @@ loc_01df54:
 
 ;VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV
 loc_01df60:
-	dc.w loc_01df68-loc_01df60
-	dc.w loc_01e09c-loc_01df60
-	dc.w loc_01e446-loc_01df60
-	dc.w loc_01e4ba-loc_01df60
+	dc.w loc_01df68-loc_01df60;00 Fade in
+	dc.w loc_01e09c-loc_01df60;02
+	dc.w loc_01e446-loc_01df60;04 Select Character
+	dc.w loc_01e4ba-loc_01df60;06 Fully Selected
 
 ;==============================================
 loc_01df68:

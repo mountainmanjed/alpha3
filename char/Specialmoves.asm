@@ -744,11 +744,11 @@ SP_CHARGE_INPUT:
 
 ;VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV
 loc_02dbc6:
-	dc.w loc_02dbd0-loc_02dbc6
-	dc.w loc_02dbe0-loc_02dbc6
-	dc.w loc_02dc1a-loc_02dbc6
-	dc.w loc_02dc48-loc_02dbc6
-	dc.w loc_02dc96-loc_02dbc6
+	dc.w loc_02dbd0-loc_02dbc6;0
+	dc.w loc_02dbe0-loc_02dbc6;2
+	dc.w loc_02dc1a-loc_02dbc6;4
+	dc.w loc_02dc48-loc_02dbc6;6
+	dc.w loc_02dc96-loc_02dbc6;8
 
 ;----------------------------------------------
 loc_02dbd0:
@@ -804,7 +804,7 @@ loc_02dc3a:
 
 loc_02dc40:
 	addq.b #2,(a4)
-	bsr.w loc_02de7a
+	bsr.w loc_02de7a;write neutral buffer
 	bra.b loc_02dc50
 
 ;----------------------------------------------
@@ -1052,7 +1052,7 @@ loc_02de7a:
 	addq.b #2,(1,a4)
 
 loc_02de7e:
-	jsr RNGFunction;RNG FUNCTION
+	jsr RNGFunction
 	andi.w #$1f,d0
 	moveq #1,d1
 	add.b ($132,a6),d1

@@ -1,3 +1,5 @@
+	include "char/Ryu/Varibles.68K"
+
 ;##############################################
 ;Winpose
 ;##############################################
@@ -273,7 +275,7 @@ loc_034272:
 	move.b #1,($67,a6)
 	move.b #1,($67,a4)
 	moveq #0,d0
-	jsr loc_02a758
+	jsr Set_Char_Special_Ani
 	jmp loc_02f9be
 
 loc_0342b2:
@@ -471,7 +473,7 @@ loc_0344be:
 	jmp loc_02a7ea
 
 ;==============================================
-;Kick
+;Kick Programming
 ;==============================================
 loc_0344c4:
 	move.b (PL_Move_state,a6),d0
@@ -659,12 +661,14 @@ loc_0346a4:
 
 loc_0346b4:
 	move.l #$2000e00,(pl_overall_state,a6)
-	move.b #6,(pl_move_id,a6)
+	move.b #Ryu_AirTatsu_ID,(pl_move_id,a6)
 	move.b #1,(pl_attk_active,a6)
 	bra.w loc_034b52
 
 ;##############################################
-;Inputs
+;Special Move Inputs and ID Writes
+;loc 346cc
+;##############################################
 loc_0346cc:
 	jsr SPButton_Vism_code
 	bne.w loc_034792
@@ -686,7 +690,7 @@ loc_0346f2:
 
 loc_034700:
 	tst.b (pl_cc_cancelflag,a6)
-	bne.b loc_034732
+	bne.b Ryu_CC_Priority_Shuffle
 
 	lea.l (pl_inp_slot_1,a6),a4
 	jsr SpInp_623P_code
@@ -695,7 +699,7 @@ loc_034700:
 loc_034714:
 	lea.l (pl_inp_slot_6,a6),a4
 	jsr SpInp_41236P_code
-	bne.w loc_034932
+	bne.w Ryu_RedFireball_Write
 
 loc_034722:
 	lea.l (pl_inp_slot_0,a6),a4
@@ -705,10 +709,10 @@ loc_034722:
 loc_034730:
 	bra.b loc_03475c
 
-loc_034732:
+Ryu_CC_Priority_Shuffle:
 	lea.l (pl_inp_slot_6,a6),a4
 	jsr SpInp_41236P_code
-	bne.w loc_034932
+	bne.w Ryu_RedFireball_Write
 
 loc_034740:
 	lea.l (pl_inp_slot_0,a6),a4
@@ -742,11 +746,9 @@ loc_034786:
 loc_034790:
 	rts
 
-;##############################################
-;Move ID writes
-;##############################################
 ;==============================================
 ;Vism Activate ID Write
+;loc 34792
 ;==============================================
 loc_034792:
 	tst.b ($28a,a6)
@@ -758,7 +760,7 @@ loc_034792:
 	jsr loc_02ecd8
 	beq.w loc_0346d6
 	move.l #$2001000,(pl_overall_state,a6)
-	move.b #$10,(pl_move_id,a6)
+	move.b #Ryu_Vism_Val,(pl_move_id,a6)
 	move.b (pl_sidecheck,a6),(PL_Flip,a6)
 	jmp loc_02f980
 
@@ -768,7 +770,7 @@ Ryu_AirVism_activate:
 	jsr loc_02ed28
 	beq.w loc_0346d6
 	move.l #$2001000,(pl_overall_state,a6)
-	move.b #$10,(pl_move_id,a6)
+	move.b #Ryu_Vism_Val,(pl_move_id,a6)
 	jmp loc_02f980
 
 ;==============================================
@@ -782,12 +784,13 @@ loc_034802:
 	jsr loc_02ed00
 	beq.b loc_034790
 	move.l #$2000e00,(pl_overall_state,a6)
-	move.b #$c,(pl_move_id,a6)
+	move.b #Ryu_Taunt_ID,(pl_move_id,a6)
 	move.b (pl_sidecheck,a6),(PL_Flip,a6)
 	rts
 
 ;==============================================
-;Alpha Counter
+;Alpha Counter Writes
+;loc 34820
 ;==============================================
 loc_034820:
 	jsr loc_02edf8
@@ -807,11 +810,11 @@ loc_03482a:
 	move.b #$15,($5f,a4)
 	move.b #$19,(pl_invinciblity_timer,a6)
 	moveq #$16,d0
-	jmp loc_02a758
+	jmp Set_Char_Special_Ani
 
 loc_034870:
 	move.l #$2000e00,(pl_overall_state,a6)
-	move.b #$e,(pl_move_id,a6);AC Sweep
+	move.b #Ryu_AC_Sweep_ID,(pl_move_id,a6)
 	clr.b (pl_crouching,a6)
 	move.b #1,(pl_attk_active,a6)
 	clr.b (pl_hitfreeze,a6)
@@ -820,10 +823,11 @@ loc_034870:
 	move.b #$16,(pl_hitfreeze,a4)
 	move.b #$1a,(pl_invinciblity_timer,a6)
 	moveq #$16,d0
-	jmp loc_02a758
+	jmp Set_Char_Special_Ani
 
 ;==============================================
-;Shoryuken
+;Shoryken Write
+;loc 348aa
 ;==============================================
 loc_0348aa:
 	jsr loc_02ed00
@@ -834,11 +838,14 @@ loc_0348aa:
 
 loc_0348be:
 	move.l #$2000e00,(pl_overall_state,a6)
-	clr.b (pl_move_id,a6)
+	clr.b (pl_move_id,a6);Write Shoryuken
 	move.b #1,(pl_attk_active,a6)
 	move.b (pl_sidecheck,a6),(PL_Flip,a6)
 	jmp loc_02f728
 
+;==============================================
+;Hadouken Write 
+;loc 348dc
 ;==============================================
 loc_0348dc:
 	tst.b (pl_cc_cancelflag,a6)
@@ -862,15 +869,16 @@ loc_034906:
 
 loc_034912:
 	move.l #$2000e00,(pl_overall_state,a6)
-	move.b #2,(pl_move_id,a6)
+	move.b #Ryu_Hadou_ID,(pl_move_id,a6)
 	move.b (pl_sidecheck,a6),(PL_Flip,a6)
 	move.b #1,(pl_attk_active,a6)
 	jmp loc_02f728
 
 ;==============================================
-;Hadou
+;Red Fireball
+;loc 34932
 ;==============================================
-loc_034932:
+Ryu_RedFireball_Write:
 	tst.b (pl_cc_cancelflag,a6)
 	bne.b loc_03494e
 	tst.b ($238,a6)
@@ -892,11 +900,15 @@ loc_034960:
 
 loc_03496c:
 	move.l #$2000e00,(pl_overall_state,a6)
-	move.b #$14,(pl_move_id,a6)
+	move.b #Ryu_Hadou2_ID,(pl_move_id,a6)
 	move.b (pl_sidecheck,a6),(PL_Flip,a6)
 	move.b #1,(pl_attk_active,a6)
 	jmp loc_02f728
 
+
+;==============================================
+;
+;loc 3498c
 ;==============================================
 loc_03498c:
 	cmpi.b #-1,(PL_ism_choice,a6)
@@ -904,11 +916,14 @@ loc_03498c:
 	jsr loc_02ed00
 	beq.w loc_034778
 	move.l #$2000e00,(pl_overall_state,a6)
-	move.b #$12,(pl_move_id,a6)
+	move.b #Ryu_Fake_Hadou_ID,(pl_move_id,a6)
 	move.b (pl_sidecheck,a6),(PL_Flip,a6)
 	clr.b (pl_attk_active,a6)
 	rts
 
+;==============================================
+;
+;loc 349ba
 ;==============================================
 loc_0349ba:
 	cmpi.b #1,(PL_ism_choice,a6)
@@ -918,11 +933,14 @@ loc_0349ba:
 	jsr loc_02ecd8
 	beq.w loc_0346f2
 	move.l #$2001000,(pl_overall_state,a6)
-	move.b #8,(pl_move_id,a6)
+	move.b #Ryu_Shin_Hadou_ID,(pl_move_id,a6)
 	move.b (pl_sidecheck,a6),(PL_Flip,a6)
 	move.b #1,(pl_attk_active,a6)
 	jmp loc_02f4bc
 
+;==============================================
+;
+;loc 349f6
 ;==============================================
 loc_0349f6:
 	tst.b (PL_ism_choice,a6)
@@ -930,24 +948,27 @@ loc_0349f6:
 	jsr loc_02ecd8
 	beq.w loc_0346e4
 	move.l #$2001000,(pl_overall_state,a6)
-	move.b #$a,(pl_move_id,a6)
+	move.b #Ryu_Shin_Tatsu_ID,(pl_move_id,a6)
 	move.b (pl_sidecheck,a6),(PL_Flip,a6)
 	move.b #1,(pl_attk_active,a6)
 	jmp loc_02f4dc
 
+;==============================================
+;
+;loc 34a28
 ;==============================================
 loc_034a28:
 	tst.b (pl_in_air,a6)
 	beq.b loc_034a40
 	jsr loc_02ed28
 	beq.w loc_03476a
-	move.b #6,(pl_move_id,a6)
+	move.b #Ryu_AirTatsu_ID,(pl_move_id,a6)
 	bra.b loc_034a56
 
 loc_034a40:
 	jsr loc_02ed00
 	beq.w loc_03476a
-	move.b #4,(pl_move_id,a6)
+	move.b #Ryu_Tastu_ID,(pl_move_id,a6)
 	move.b (pl_sidecheck,a6),(PL_Flip,a6)
 
 loc_034a56:
@@ -955,6 +976,9 @@ loc_034a56:
 	move.b #1,(pl_attk_active,a6)
 	jmp loc_02f74c
 
+;==============================================
+;
+;loc 34a6a
 ;==============================================
 loc_034a6a:
 	tst.b (PL_ism_choice,a6)
@@ -964,7 +988,7 @@ loc_034a6a:
 	jsr loc_02ecd8
 	beq.w loc_034700
 	move.l #$2001000,(pl_overall_state,a6)
-	move.b #$16,(pl_move_id,a6)
+	move.b #Ryu_Shin_Shoryu_id,(pl_move_id,a6)
 	move.b (pl_sidecheck,a6),(PL_Flip,a6)
 	move.b #1,(pl_attk_active,a6)
 	move.b #4,(PL_ButtonStrength,a6)
@@ -1118,7 +1142,7 @@ loc_034b8e:
 	move.b (PL_ButtonStrength,a6),d0
 	lsr.b #1,d0
 	addq.b #4,d0
-	jmp loc_02a758
+	jmp Set_Char_Special_Ani
 
 ;VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV
 loc_034be2:
@@ -1197,7 +1221,7 @@ loc_034c96:
 	move.l #$90000,(pl_y_velocity,a6)
 	move.l #$ffffa000,(pl_y_drag,a6)
 	moveq #$17,d0
-	jmp loc_02a758
+	jmp Set_Char_Special_Ani
 
 loc_034cca:
 	tst.b ($35,a6)
@@ -1241,7 +1265,7 @@ loc_034d04:
 	jsr loc_02ef6c
 	jsr loc_020674
 	moveq #$11,d0
-	cmpi.b #$14,(pl_move_id,a6)
+	cmpi.b #Ryu_Hadou2_ID,(pl_move_id,a6)
 	beq.b loc_034d30
 	moveq #$10,d0
 
@@ -1250,7 +1274,7 @@ loc_034d30:
 	move.b (PL_ButtonStrength,a6),d1
 	lsr.b #1,d1
 	add.b d1,d0
-	jmp loc_02a758
+	jmp Set_Char_Special_Ani
 
 ;----------------------------------------------
 loc_034d40:
@@ -1278,7 +1302,7 @@ loc_034d40:
 	move.w #0,($50,a4)
 	move.w a6,($36,a4)
 	bsr.w loc_034e6e
-	cmpi.b #$14,(pl_move_id,a6)
+	cmpi.b #Ryu_Hadou2_ID,(pl_move_id,a6)
 	bne.b loc_034dce
 	addi.b #$16,($72,a4)
 
@@ -1312,7 +1336,7 @@ loc_034dce:
 	move.w a6,($36,a4)
 	bsr.w loc_034e6e
 	move.b ($2a7,a6),($dc,a4)
-	cmpi.b #$14,(pl_move_id,a6)
+	cmpi.b #Ryu_Hadou2_ID,(pl_move_id,a6)
 	bne.b loc_034e64
 	addi.b #$16,($72,a4)
 
@@ -1393,7 +1417,7 @@ loc_034ec8:
 loc_034f16:
 	move.l d0,(pl_x_velocity,a6)
 	moveq #7,d0
-	jmp loc_02a758
+	jmp Set_Char_Special_Ani
 
 ;VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV
 loc_034f22:
@@ -1415,7 +1439,7 @@ loc_034f2e:
 	move.b d1,($1fe,a6)
 	moveq #9,d0
 	add.b d1,d0
-	jmp loc_02a758
+	jmp Set_Char_Special_Ani
 
 ;----------------------------------------------
 loc_034f64:
@@ -1425,7 +1449,7 @@ loc_034f64:
 	bpl.b loc_034f7c
 	addq.b #2,(PL_Move_state,a6)
 	moveq #8,d0
-	jmp loc_02a758
+	jmp Set_Char_Special_Ani
 
 loc_034f7c:
 	move.l (pl_x_velocity,a6),d0
@@ -1534,7 +1558,7 @@ loc_035088:
 	add.l d1,(pl_x_velocity,a6)
 	move.b #2,($1fe,a6)
 	moveq #$d,d0
-	jmp loc_02a758
+	jmp Set_Char_Special_Ani
 
 ;----------------------------------------------
 loc_03509a:
@@ -1546,7 +1570,7 @@ loc_03509a:
 	bne.w loc_035986
 	addq.b #2,(PL_Move_state,a6)
 	moveq #$f,d0
-	jmp loc_02a758
+	jmp Set_Char_Special_Ani
 
 ;----------------------------------------------
 loc_0350bc:
@@ -1617,7 +1641,7 @@ loc_03514e:
 	move.b (PL_ButtonStrength,a6),d0
 	lsr.b #1,d0
 	addi.b #$27,d0
-	jmp loc_02a758
+	jmp Set_Char_Special_Ani
 
 ;----------------------------------------------
 loc_035176:
@@ -1738,7 +1762,7 @@ loc_03529c:
 	jsr loc_02068c
 	jsr loc_0804da
 	moveq #$1c,d0
-	jmp loc_02a758
+	jmp Set_Char_Special_Ani
 
 ;----------------------------------------------
 loc_0352ce:
@@ -1801,7 +1825,7 @@ loc_03532e:
 	add.b d0,($1fe,a6)
 	lsr.b #1,d0
 	addi.w #$1d,d0
-	jmp loc_02a758
+	jmp Set_Char_Special_Ani
 
 ;----------------------------------------------
 loc_035370:
@@ -1814,7 +1838,7 @@ loc_035370:
 	move.b (PL_ButtonStrength,a6),d0
 	lsr.b #1,d0
 	addi.b #$20,d0
-	jmp loc_02a758
+	jmp Set_Char_Special_Ani
 
 loc_035392:
 	addi.l #$ffffe000,(PL_Y,a6)
@@ -1830,7 +1854,7 @@ loc_0353a0:
 	move.b (PL_ButtonStrength,a6),d0
 	lsr.b #1,d0
 	addi.b #$2e,d0
-	jmp loc_02a758
+	jmp Set_Char_Special_Ani
 
 ;----------------------------------------------
 loc_0353c4:
@@ -1869,7 +1893,7 @@ loc_0353fc:
 	addq.b #1,d0
 
 loc_035410:
-	jmp loc_02a758
+	jmp Set_Char_Special_Ani
 
 ;----------------------------------------------
 loc_035416:
@@ -1896,7 +1920,7 @@ loc_035434:
 	bpl.b loc_035446
 	addq.b #2,(PL_Move_state,a6)
 	moveq #$18,d0
-	jmp loc_02a758
+	jmp Set_Char_Special_Ani
 
 loc_035446:
 	tst.b ($35,a6)
@@ -1991,7 +2015,7 @@ loc_0354fc:
 	move.b #1,($ce,a6)
 	move.b #2,($294,a6)
 	moveq #$26,d0
-	jmp loc_02a758
+	jmp Set_Char_Special_Ani
 
 ;----------------------------------------------
 loc_035514:
@@ -2029,7 +2053,7 @@ loc_035540:
 	jsr loc_02068c
 	jsr loc_0804da
 	moveq #$2a,d0
-	jmp loc_02a758
+	jmp Set_Char_Special_Ani
 
 ;----------------------------------------------
 loc_035562:
@@ -2097,7 +2121,7 @@ loc_035624:
 	add.w d0,(PL_X,a6)
 	jsr loc_0834a2
 	moveq #$2c,d0
-	jmp loc_02a758
+	jmp Set_Char_Special_Ani
 
 loc_035636:
 	clr.b ($cc,a6)
@@ -2110,7 +2134,7 @@ loc_035644:
 	add.w d0,(PL_X,a6)
 	jsr loc_0834a2
 	moveq #$2b,d0
-	jmp loc_02a758
+	jmp Set_Char_Special_Ani
 
 loc_035656:
 	movea.l (PL_Anim_Pnt,a6),a0
@@ -2293,7 +2317,7 @@ loc_035832:
 	moveq #1,d0
 	jsr loc_02ef6c
 	moveq #2,d0
-	jmp loc_02a758
+	jmp Set_Char_Special_Ani
 
 ;----------------------------------------------
 loc_035846:
@@ -2336,12 +2360,12 @@ loc_03589e:
 	moveq #1,d0
 
 loc_0358a8:
-	jmp loc_02a758
+	jmp Set_Char_Special_Ani
 
 loc_0358ae:
 	addq.b #2,(PL_Move_state,a6)
 	moveq #3,d0
-	jmp loc_02a758
+	jmp Set_Char_Special_Ani
 
 ;----------------------------------------------
 loc_0358ba:
@@ -2396,12 +2420,12 @@ loc_035914:
 	beq.b loc_035934
 	move.b #4,(PL_Move_state,a6)
 	moveq #0,d0
-	jmp loc_02a758
+	jmp Set_Char_Special_Ani
 
 loc_035934:
 	addq.b #2,(PL_Move_state,a6)
 	moveq #$1a,d0
-	jmp loc_02a758
+	jmp Set_Char_Special_Ani
 
 ;----------------------------------------------
 loc_035940:
