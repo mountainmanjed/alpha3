@@ -247,7 +247,7 @@ loc_0b05c6:
 	dc.w loc_0b05ca-loc_0b05c6
 	dc.w loc_0b0636-loc_0b05c6
 
-;xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+;xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 loc_0b05ca:
 	move.w #$2000,($1a,a6)
 	jsr RNGFunction
@@ -283,7 +283,7 @@ loc_0b05f6:
 	dc.b $38,$39,$3a,$32
 	dc.b $33,$34,$3a,$39
 
-;xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+;xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 loc_0b0636:
 	move.w #$6000,($1a,a6)
 	jsr RNGFunction
@@ -9287,10 +9287,10 @@ loc_0bb44e:
 	tst.w ($50,a3)
 	bmi.w loc_0bb6c8
 	movea.w (left_hud_pointer,a5),a3
-	tst.b ($2c7,a3)
+	tst.b (pl_DoneAlphaCounter,a3)
 	bne.w loc_0bb59a
 	movea.w (right_hud_pointer,a5),a3
-	tst.b ($2c7,a3)
+	tst.b (pl_DoneAlphaCounter,a3)
 	bne.w loc_0bb62e
 	tst.b (Reset_GaurdTag,a5)
 	bne.w loc_0bb4ae
@@ -9381,7 +9381,7 @@ loc_0bb59a:
 	moveq #1,d7
 	bsr.w loc_0bbcd0
 	movea.w (left_hud_pointer,a5),a3
-	tst.b ($2c7,a3)
+	tst.b (pl_DoneAlphaCounter,a3)
 	bne.w loc_0bb5d4
 	move.b (7,a6),d0
 	andi.b #1,d0
@@ -9422,7 +9422,7 @@ loc_0bb62e:
 	moveq #1,d7
 	bsr.w loc_0bbcd0
 	movea.w (right_hud_pointer,a5),a3
-	tst.b ($2c7,a3)
+	tst.b (pl_DoneAlphaCounter,a3)
 	bne.w loc_0bb668
 	move.b (7,a6),d0
 	andi.b #2,d0
@@ -9458,9 +9458,9 @@ loc_0bb6c2:
 
 loc_0bb6c8:
 	movea.w (left_hud_pointer,a5),a3
-	clr.b ($2c7,a3)
+	clr.b (pl_DoneAlphaCounter,a3)
 	movea.w (right_hud_pointer,a5),a3
-	clr.b ($2c7,a3)
+	clr.b (pl_DoneAlphaCounter,a3)
 	movea.w (left_hud_pointer,a5),a3
 	move.b ($24c,a3),($28,a6)
 	move.b ($24d,a3),($29,a6)

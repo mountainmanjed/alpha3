@@ -1463,7 +1463,7 @@ loc_05bd5a:
 	dc.w loc_05be48-loc_05bd5a
 	dc.w loc_05be7e-loc_05bd5a
 
-;xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+;xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 loc_05bd66:
 	jsr loc_02a7ea
 	tst.b ($35,a6)
@@ -1473,7 +1473,7 @@ loc_05bd66:
 	jsr loc_02ef6c
 	jmp loc_02f9be
 
-;xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+;xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 loc_05bd86:
 	jsr loc_02a7ea
 	tst.b ($35,a6)
@@ -1491,7 +1491,7 @@ loc_05bdae:
 loc_05bdb4:
 	dc.l $00010000,$00040000,$00000000,$ffff9000
 
-;xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+;xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 loc_05bdc4:
 	cmpi.b #2,($35,a6)
 	beq.b loc_05bdd2
@@ -1514,7 +1514,7 @@ loc_05bdd2:
 loc_05be02:
 	jmp loc_02f9be
 
-;xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+;xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 loc_05be08:
 	addq.b #2,($84,a6)
 	movea.w ($38,a6),a4
@@ -1531,7 +1531,7 @@ loc_05be08:
 loc_05be38:
 	dc.l $00013000,$00080000,$00000000,$ffff5000
 
-;xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+;xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 loc_05be48:
 	tst.b ($35,a6)
 	bne.b loc_05be5a
@@ -1548,7 +1548,7 @@ loc_05be5a:
 	move.b #1,($32,a6)
 	jmp loc_02a7ea
 
-;xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+;xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 loc_05be7e:
 	tst.b ($33,a6)
 	bpl.w loc_05daac
@@ -1568,7 +1568,7 @@ loc_05be98:
 	dc.w loc_05bf68-loc_05be98
 	dc.w loc_05bfb0-loc_05be98
 
-;xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+;xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 loc_05bea2:
 	jsr loc_02a7ea
 	tst.b ($35,a6)
@@ -1591,7 +1591,7 @@ loc_05bede:
 loc_05beea:
 	dc.l $00040000,$00048000,$fffff800,$ffffc800
 
-;xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+;xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 loc_05befa:
 	tst.w ($44,a6)
 	bpl.b loc_05bf2e
@@ -1616,7 +1616,7 @@ loc_05bf2e:
 loc_05bf3e:
 	jmp loc_02f9be
 
-;xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+;xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 loc_05bf44:
 	addq.b #2,($84,a6)
 	move.b #$16,($123,a5)
@@ -1626,7 +1626,7 @@ loc_05bf44:
 	jsr loc_02e970
 	jmp loc_02f9be
 
-;xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+;xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 loc_05bf68:
 	subq.b #1,($3b,a6)
 	bne.w loc_05dab4
@@ -1645,7 +1645,7 @@ loc_05bf68:
 loc_05bfa0:
 	dc.l $fffe0000,$00050000,$00000000,$ffffc400
 
-;xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+;xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 loc_05bfb0:
 	tst.b ($35,a6)
 	beq.b loc_05bfc2
@@ -1672,7 +1672,7 @@ loc_05bfe8:
 	dc.w loc_05c028-loc_05bfe8
 	dc.w loc_05c04c-loc_05bfe8
 
-;xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+;xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 loc_05bfee:
 	addq.b #2,($84,a6)
 	move.b #1,(pl_crouching,a6)
@@ -1690,7 +1690,7 @@ loc_05bfee:
 loc_05c01c:
 	dc.l $ffffc800,$ffffb800,$ffffa800
 
-;xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+;xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 loc_05c028:
 	bsr.w loc_05c0ca
 	bne.b loc_05c03e
@@ -1703,7 +1703,7 @@ loc_05c03e:
 	bne.w loc_05dab2
 	jmp loc_02a7ea
 
-;xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+;xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 loc_05c04c:
 	tst.b ($33,a6)
 	bpl.b loc_05c062
@@ -1726,7 +1726,7 @@ loc_05c07a:
 	dc.w loc_05c07e-loc_05c07a
 	dc.w loc_05c0a8-loc_05c07a
 
-;xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+;xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 loc_05c07e:
 	bsr.w loc_05dada
 	move.w ($64,a6),d0
@@ -1740,7 +1740,7 @@ loc_05c07e:
 	moveq #$1c,d0
 	jmp Set_Char_Special_Ani
 
-;xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+;xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 loc_05c0a8:
 	tst.b ($33,a6)
 	bpl.b loc_05c0be

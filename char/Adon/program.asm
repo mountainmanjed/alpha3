@@ -3,7 +3,7 @@ loc_03dad6:
 	rts
 
 ;##############################################
-;
+;Init Adon
 ;##############################################
 loc_03dad8:
 	jsr loc_01c368
@@ -14,7 +14,7 @@ loc_03dad8:
 	move.w a4,($28,a6)
 	move.l ($10,a6),($10,a4)
 	move.l ($14,a6),($14,a4)
-	move.b (PL_Flip,a6),($b,a4)
+	move.b (PL_Flip,a6),(PL_Flip,a4)
 	move.b ($e,a6),($e,a4)
 	move.b ($c,a6),($c,a4)
 	move.b ($d,a6),($d,a4)

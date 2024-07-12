@@ -1,0 +1,140 @@
+;VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV
+;Ryu Taiki/Neutral Script
+loc_2ba5b6:
+    dc.w loc_2ba5be-loc_2ba5b6
+    dc.w loc_2ba600-loc_2ba5b6
+    dc.w loc_2ba63c-loc_2ba5b6
+    dc.w loc_2ba684-loc_2ba5b6
+
+;##############################################
+loc_2ba5be:
+    dc.w $0000
+    dc.b $12,$00
+    dc.b $00,$14
+    dc.b $ff,$ff
+    dc.b $00,$10
+    dc.b $02,$04
+    dc.b $00,$c0
+    dc.b $00,$10
+    dc.b $02,$04
+    dc.b $00,$b0
+    dc.b $00,$10
+    dc.b $0e,$02
+    dc.b $00,$10
+    dc.b $02,$04
+    dc.b $00,$a0
+    dc.b $00,$10
+    dc.b $02,$04
+    dc.b $00,$c0
+    dc.b $02,$04
+    dc.b $00,$a0
+    dc.b $00,$10
+    dc.b $0e,$02
+    dc.b $00,$10
+    dc.b $02,$04
+    dc.b $00,$a0
+    dc.b $00,$10
+    dc.b $02,$04
+    dc.b $00,$b0
+    dc.b $02,$04
+    dc.b $00,$a0
+    dc.b $00,$10
+    dc.b $0e,$02
+    dc.b $ff,$00
+
+;##############################################
+loc_2ba600:
+    dc.w $0000
+    dc.b $12,$00
+    dc.b $00,$12
+    dc.b $ff,$ff
+    dc.b $00,$10
+    dc.b $02,$04
+    dc.b $00,$a0
+    dc.b $00,$10
+    dc.b $0e,$02
+    dc.b $02,$04
+    dc.b $00,$80
+    dc.b $00,$10
+    dc.b $0e,$02
+    dc.b $00,$10
+    dc.b $02,$04
+    dc.b $00,$80
+    dc.b $00,$10
+    dc.b $02,$04
+    dc.b $00,$90
+    dc.b $00,$10
+    dc.b $0e,$02
+    dc.b $00,$10
+    dc.b $02,$04
+    dc.b $00,$90
+    dc.b $00,$10
+    dc.b $0e,$02
+    dc.b $02,$04
+    dc.b $00,$80
+    dc.b $00,$10
+    dc.b $ff,$00
+
+;##############################################
+loc_2ba63c:
+    dc.w $0000
+    dc.b $12,$00
+    dc.b $00,$10
+    dc.b $ff,$ff
+    dc.b $00,$10
+    dc.b $02,$04
+    dc.b $00,$80
+    dc.b $00,$10
+    dc.b $02,$04
+    dc.b $00,$60
+    dc.b $00,$10
+    dc.b $0e,$02
+    dc.b $00,$10
+    dc.b $02,$04
+    dc.b $00,$60
+    dc.b $00,$10
+    dc.b $02,$04
+    dc.b $00,$70
+    dc.b $00,$10
+    dc.b $0e,$02
+    dc.b $00,$10
+    dc.b $02,$04
+    dc.b $00,$70
+    dc.b $00,$10
+    dc.b $02,$04
+    dc.b $00,$50
+    dc.b $00,$10
+    dc.b $0e,$02
+    dc.b $00,$10
+    dc.b $04,$00
+    dc.b $00,$00
+    dc.b $ff,$00
+    dc.b $00,$00
+    dc.b $00,$10
+    dc.b $0e,$02
+    dc.b $ff,$00
+
+;##############################################
+loc_2ba684:
+    dc.w $0000
+    dc.b $12,$00
+    dc.b $00,$0e
+    dc.b $ff,$ff
+    dc.b $00,$10
+    dc.b $02,$04
+    dc.b $00,$40
+    dc.b $00,$10
+    dc.b $02,$04
+    dc.b $00,$60
+    dc.b $00,$10
+    dc.b $0e,$02
+    dc.b $00,$10
+    dc.b $0e,$02
+    dc.b $00,$10
+    dc.b $02,$04
+    dc.b $00,$c0
+    dc.b $00,$10
+    dc.b $02,$04
+    dc.b $00,$40
+    dc.b $00,$10
+    dc.b $ff,$00

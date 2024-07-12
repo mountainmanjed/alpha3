@@ -473,7 +473,7 @@ loc_03a816:
 loc_03a840:
 	tst.b (PL_ism_choice,a6)
 	bmi.w loc_03a73a
-	tst.b ($23e,a6)
+	tst.b (PL_Special_Cancel_Timer,a6)
 	bne.w loc_03a73a
 	jsr loc_02ed00
 	beq.w loc_03a73a
@@ -622,7 +622,7 @@ loc_03aa2c:
 loc_03aa30:
 	tst.b (PL_ism_choice,a6)
 	bmi.w loc_03aaa6
-	tst.b ($23e,a6)
+	tst.b (PL_Special_Cancel_Timer,a6)
 	bne.w loc_03aaa6
 	bra.w loc_03aaa2
 
@@ -2091,9 +2091,9 @@ loc_03b93e:
 	bpl.w loc_03bcc4
 	bra.w loc_03bcb2
 
-;xXxxXxxXxxXxxXxxXxxXxxXxxXxxXxxXxxXxxXxxXxxXxxXxxXxxXxxXxxXxxXxxXxxXxxXxxXxxXx
+;xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 ;Air Throws
-;xXxxXxxXxxXxxXxxXxxXxxXxxXxxXxxXxxXxxXxxXxxXxxXxxXxxXxxXxxXxxXxxXxxXxxXxxXxxXx
+;xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 loc_03b94a:
 	move.b (7,a6),d0
 	move.w loc_03b95c(pc,d0.w),d1

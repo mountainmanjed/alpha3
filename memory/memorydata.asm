@@ -121,7 +121,7 @@ frame_count_game = 0x81
 ;
 ;==============================================
 ;0x82
-;0x83
+;0x83 render
 ;0x84
 Dip_Debug_mode = 0x85
 NetworkEnabled = 0x86
@@ -231,9 +231,11 @@ Arcade_Match_Var = 0x114
 Dev_Turbo = 0x116
 ; = 0x118
 ;unused 0x119
-; = 0x11a
-; = 0x11c
-; = 0x11d
+Remaining_Sprites = 0x11a
+
+;FauxSlowDown = 0x11c
+;FauxSlowDown_Timer = 0x11d
+
 ; = 0x11e
 ; = 0x11f
 ; = 0x120
@@ -277,7 +279,7 @@ Dramatic_Mode_Type = 0x138 ; word
 
 left_hud_pointer = 0x156
 right_hud_pointer = 0x158
-m_unk15c = 0x15c
+pause_check = 0x15c
 ; = 0x15d event mode gameover?
 
 ; = 0x162
@@ -302,6 +304,10 @@ Char_Sel_PalID = 0x176
 ;0x183 ; byte
 ;0x184 ; long
 
+;==============================================
+;
+;==============================================
+;0x1af
 
 ;==============================================
 ;Debug Dips
@@ -310,7 +316,7 @@ GDebugAll = 0x1c0
 G_DebugDip_A = 0x1c0
 G_DebugDip_B = 0x1c1
 G_DebugDip_C = 0x1c2
-;unuseddebig = 0x1c3
+;unused = 0x1c3
 
 ;===============================================
 ;Debug A
@@ -335,7 +341,7 @@ G_DebugDip_C = 0x1c2
 ;----------------------------------------------
 ;Debug C
 ;0x80 show collision and axis
-;0x40 Performance display
+;0x40 Sprite Counter
 ;0x20 Player location data and more
 ;0x10 Graphic Data
 ;0x08 Audio Log
@@ -367,7 +373,46 @@ G_DebugDip_C = 0x1c2
 ;0x1000 ff9000 Player 4
 
 ;==============================================
-;0x1400 ff9400 Projectile
+Projectile_start = 0x1400; ff9400 Projectile
+
+
+
+;----------------------------------------------
+;??? ffa000
+;size 0x100
+;slots C
+; = 0x2000
+
+;==============================================
+;Extra Sprites
+;slot size 0x80
+;last slot used first then work back
+;==============================================
+
+;----------------------------------------------
+;Round Opening sprites ffac00
+;slots 8
+;----------------------------------------------
+Round_Op_Spr_Start = 0x2c00
+
+;----------------------------------------------
+;Hitsparks Sprites ffb000
+;slots 16
+;----------------------------------------------
+HitSp_Spr_Start = 0x3000
+
+;----------------------------------------------
+;Stage Sprites ffc000
+;slots 16
+;----------------------------------------------
+Stage_Spr_Start = 0x4000
+
+;----------------------------------------------
+;Super/Vism Trail ffc800
+;slots 16
+;----------------------------------------------
+STrail_Spr_start = 0x4800
+
 
 ;==============================================
 ;Hud stuff
@@ -388,6 +433,7 @@ Hud_offset = 0x200
 ;ffdc00 Lifebar Front
 
 ;==============================================
+;= 0x5e00
 Sound_Buffer_Start = 0x5e80; ffde80
 ;0x6e82
 
@@ -398,6 +444,11 @@ Sound_Buffer_Start = 0x5e80; ffde80
 ;SOBJ = 0x6eba
 ;EFCT = 0x6ebb
 ;VRAM = 0x6ebc
+
+;==============================================
+; = 0x7000
+
+
 
 
 ;==============================================
@@ -422,10 +473,6 @@ Arcade_ism_List2 = -0x7056
 
 ;-0x7ba0
 ;-0x7da4
-
-;==============================================
-;Player Data
-;==============================================
 
 ;==============================================
 ;unknown direct

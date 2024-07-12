@@ -55,8 +55,16 @@ PL_HP_copy = 0x52;word
 pl_combo = 0x5e; getting comboed
 pl_hitfreeze = 0x5f
 
+Pl_collison_data_pnt = 0x60
+
 ; = 0x64 ;Deals with Y Word
 ; = 0x68
+
+; = 0x70
+
+; = 0x72 ;helps with y_vel on some hurtstun thing also projectile id?
+; = 0x73
+; = 0x74
 
 ;NeutralState? = 0x80
 PL_Attacktype = 0x81 ;0 = Punches , 2 = Kicks
@@ -64,7 +72,8 @@ PL_ButtonStrength = 0x82 ;0 = L,2 = M,4 = H
 PL_Directioninput = 0x83 ;1 = Back, 2 = Forward , 4 = Down , 8 = up
 ; = 0x84
 ; = 0x85
-
+PL_HurtBoxset_pnt = 0x88
+PL_col_unk_PNT = 0x8c
 pl_col_head_pnt = 0x90
 pl_col_body_pnt = 0x94
 pl_col_legs_pnt = 0x98
@@ -89,12 +98,16 @@ pl_cc_cancelflag = 0xb9; side note it's 142 in sfa2
 ;= 0xba ;word
 pl_taunt_count = 0xbc
 
+PL_var_Pnt = 0xc0 sound_pointer and cpu react
+
+PL_Yoke_TableID = 0xc7
+;0xc8
 ;0xcc
 ;0xcd
 ;0xce special
 
 ;0xe4
-
+;0xe6
 pl_sakiyo_game = 0xeb
 pl_serious_game = 0xec
 ;unk = 0xee
@@ -118,6 +131,9 @@ PL_charid = 0x102
 ; = 0x10a
 ; 0x10b
 
+; = 0x10d
+; = 0x10e
+; = 0x10f
 ; = 0x110
 ; = 0x114
 PL_Buttons = 0x11a
@@ -129,7 +145,7 @@ PL_meter = 0x11e
 ; = 0x124 ;byte
 PL_cpucontrol = 0x125
 ; = 0x126
-; = 0x127
+PL_CpuRank = 0x127
 
 PL_Palnum = 0x128
 ; = 0x12a;long
@@ -205,12 +221,13 @@ PL_rose_groundthrow = 0x1e4 ;word extra sprite for the throw
 ;= 0x201
 ;= 0x202
 ;= 0x203
-;= 0x204
+Pl_AIScript_Type = 0x204;value by 2
 ;= 0x205
 ;= 0x206
 ;= 0x207
-;= 0x208
-;= 0x209
+
+Pl_cpuOpcode_Main = 0x208
+Pl_cpuOpcode_Sub = 0x209
 ;= 0x20a
 ;= 0x20b 
 ;= 0x20c
@@ -220,7 +237,7 @@ PL_rose_groundthrow = 0x1e4 ;word extra sprite for the throw
 ;= 0x210 ; 20d manip
 ;= 0x211 ; 20c manip
 ;= 0x212
-;= 0x213
+;= 0x213 ; Nml Maj Oni 
 ;= 0x214
 ;= 0x215
 
@@ -231,19 +248,23 @@ PL_rose_groundthrow = 0x1e4 ;word extra sprite for the throw
 
 pl_dist_away = 0x21c
 
-;21f
+Pl_AIscript_num = 0x21f
+
+Pl_AIscript_pos = 0x230
 
 ;0x238
 ;0x80
 PL_Special_Cancel_Timer = 0x23e
+;0x240
 
 ;0x246
 ;0x248
 ;0x249
 ;0x24a
-
+pl_guard_bar_recover_timer = 0x24b
 pl_guard_bar_max = 0x24c
 pl_guard_bar = 0x24d
+; = 0x24e
 
 ;PL_ = 0x254
 PL_byte255 = 0x255
@@ -252,6 +273,7 @@ PL_Reversal_Window = 0x256
 pl_invinciblity_timer = 0x25d
 
 pl_crushed_guard = 0x26e
+
 ;0x27a
 
 
@@ -264,11 +286,14 @@ pl_collsion_counter = 0x280
 
 PL_Super_Cancel_Timer = 0x293
 
+pl_previous_gaurd_val = 0x296
 pl_blockstring_counter = 0x297
-;298
+;0x298
+;0x299
+;0x29a
+;0x29d
 
-;29d
-
+;0x2a0
 ;0x2a6
 
 plflash_timer = 0x2ad
@@ -281,8 +306,14 @@ pl_AniGrp_Hurt_PNT = 0x2bc
 
 ;0x2c0
 
+;0x2c4
+;0x2c5
+;0x2c6
+pl_DoneAlphaCounter = 0x2c7
 pl_crouching = 0x2c8
 pl_sidecheck = 0x2c9
+;0x2ca
+;0x2cb
 PL_Stun = 0x2cc
 pl_stun_max = 0x2cd
 ; = 0x2ce; check
@@ -338,7 +369,7 @@ p1_combo = pl_combo+p1memory
 p1_charid = PL_charid+p1memory
 P1_Palnum = PL_Palnum+p1memory
 
-p1_Sakiyo_mode=Pl_Sakiyo_mode+p1memory
+p1_Sakiyo_mode = Pl_Sakiyo_mode+p1memory
 p1_ism_choice = PL_ism_choice+p1memory
 
 p1_serious_mode = pl_serious_mode+p1memory
@@ -358,7 +389,7 @@ p2_x = PL_X+p2memory
 p2_combo = pl_combo+p2memory
 p2_charid = PL_charid+p2memory
 P2_Palnum = PL_Palnum+p2memory
-p2_Sakiyo_mode=Pl_Sakiyo_mode+p2memory
+p2_Sakiyo_mode = Pl_Sakiyo_mode+p2memory
 p2_ism_choice = PL_ism_choice+p2memory
 p2_serious_mode = pl_serious_mode+p2memory
 
@@ -378,7 +409,7 @@ p3_combo = pl_combo+p3memory
 p3_charid = PL_charid+p3memory
 P3_Palnum = PL_Palnum+p3memory
 
-p3_Sakiyo_mode=Pl_Sakiyo_mode+p3memory
+p3_Sakiyo_mode = Pl_Sakiyo_mode+p3memory
 p3_ism_choice = PL_ism_choice+p3memory
 
 p3_serious_mode = pl_serious_mode+p3memory
@@ -398,7 +429,7 @@ p4_combo = pl_combo+p4memory
 p4_charid = PL_charid+p4memory
 P4_Palnum = PL_Palnum+p4memory
 
-p4_Sakiyo_mode=Pl_Sakiyo_mode+p4memory
+p4_Sakiyo_mode = Pl_Sakiyo_mode+p4memory
 p4_ism_choice = PL_ism_choice+p4memory
 
 p4_serious_mode = pl_serious_mode+p4memory
@@ -413,18 +444,19 @@ p4_crushed_guard = pl_crushed_guard+p4memory
 ;slots 0x14
 ;==============================================
 
+Prjtl_Id = 0x02
 
 ;==============================================
 ;Animation
 ;==============================================
-;FrameCount = 0x00
+Ani_FrameCount = 0x00
 ;0x01
 ;0x02
 ;0x03
-;SpriteTileMap = 0x04
+Ani_SpriteTileMap = 0x04
 ;0x08
-;0x09
-;0x0a
+Ani_AttackboxID = 0x09
+Ani_0a = 0x0a
 ;0x0b
 ;0x0c
 ;0x0d
@@ -442,7 +474,37 @@ p4_crushed_guard = pl_crushed_guard+p4memory
 ;0x19
 ;0x1a
 ;0x1b
+Anim1c_PNT = 0x1c
+
+
+;==============================================
+;AttackData
+;==============================================
+Atk_BoxX = 0x00
+Atk_BoxY = 0x02
+Atk_BoxW = 0x04
+Atk_BoxH = 0x06
+Atk_Damage = 0x08
+;0x09
+;0x0a
+;0x0b
+Atk_Stun = 0x0c
+Atk_Dam_ani = 0x0d
+;0x0e
+;0x0f
+;0x10
+;0x11
+;0x12
+;0x13
+;0x14
+;0x15
+;0x16
+;0x17
+;0x18
+;0x19
+;0x1a
+;0x1b
 ;0x1c
-;0x1d
-;0x1e
-;0x1f
+;0x1d ;unused?
+;0x1e ;unused?
+;0x1f ;unused?

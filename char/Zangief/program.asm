@@ -3317,12 +3317,12 @@ loc_056640:
 	dc.w loc_056656-loc_056640
 	dc.w loc_05670e-loc_056640
 
-;xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+;xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 loc_05664c:
 	bsr.w loc_0567c6
 	jmp loc_02a7ea
 
-;xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+;xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 loc_056656:
 	cmpi.b #1,($34,a6)
 	bne.b loc_0566d4
@@ -3366,7 +3366,7 @@ loc_056704:
 	bsr.w loc_0567c6
 	jmp loc_02a7ea
 
-;xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+;xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 loc_05670e:
 	cmpi.b #1,($34,a6)
 	bne.b loc_05678c

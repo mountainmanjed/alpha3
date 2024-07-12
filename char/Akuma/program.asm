@@ -738,7 +738,7 @@ loc_037e18:
 	beq.w loc_037d6c
 	tst.b (pl_cc_cancelflag,a6)
 	bne.b loc_037e30
-	tst.b ($23e,a6)
+	tst.b (PL_Special_Cancel_Timer,a6)
 	bne.w loc_037d6c
 
 loc_037e30:
@@ -1028,7 +1028,7 @@ loc_0381d8:
 	beq.w loc_0382b4
 	tst.b (pl_cc_cancelflag,a6)
 	bne.b loc_0381f0
-	tst.b ($23e,a6)
+	tst.b (PL_Special_Cancel_Timer,a6)
 	bne.w loc_0382b4
 
 loc_0381f0:

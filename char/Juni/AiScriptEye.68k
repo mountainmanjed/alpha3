@@ -1,0 +1,77 @@
+;##############################################
+loc_2e4fdc:
+    dc.w loc_2e4fec-loc_2e4fdc
+    dc.w loc_2e4fec-loc_2e4fdc
+    dc.w loc_2e5036-loc_2e4fdc
+    dc.w loc_2e5048-loc_2e4fdc
+    dc.w loc_2e4fec-loc_2e4fdc
+    dc.w loc_2e4fec-loc_2e4fdc
+    dc.w loc_2e4fec-loc_2e4fdc
+    dc.w loc_2e4fec-loc_2e4fdc
+
+;##############################################
+loc_2e4fec:
+    dc.w $0002
+    dc.b $00,$10
+    dc.b $0c,$00
+    dc.b $00,$04
+    dc.b $06,$00
+    dc.b $40,$00
+    dc.b $0c,$02
+    dc.b $0c,$00
+    dc.b $00,$04
+    dc.b $06,$00
+    dc.b $05,$00
+    dc.b $0c,$02
+    dc.b $0c,$00
+    dc.b $00,$04
+    dc.b $16,$00
+    dc.b $00,$00
+    dc.b $0c,$02
+    dc.b $0c,$00
+    dc.b $00,$04
+    dc.b $0c,$00
+    dc.b $00,$06
+    dc.b $00,$30
+    dc.b $0a,$00
+    dc.b $09,$30
+    dc.b $0c,$02
+    dc.b $08,$00
+    dc.b $08,$20
+    dc.b $0c,$04
+    dc.b $0c,$02
+    dc.b $10,$00
+    dc.b $06,$00
+    dc.b $45,$00
+    dc.b $0c,$04
+    dc.b $0c,$04
+    dc.b $0c,$04
+    dc.b $0c,$04
+    dc.b $ff,$02
+
+;##############################################
+loc_2e5036:
+    dc.w $0002
+    dc.b $00,$10
+    dc.b $02,$04
+    dc.b $00,$30
+    dc.b $04,$00
+    dc.b $26,$00
+    dc.b $01,$04
+    dc.b $00,$1e
+    dc.b $ff,$02
+
+;##############################################
+loc_2e5048:
+    dc.w $0002
+    dc.b $00,$10
+    dc.b $02,$04
+    dc.b $00,$30
+    dc.b $00,$14
+    dc.b $00,$10
+    dc.b $04,$00
+    dc.b $42,$00
+    dc.b $01,$04
+    dc.b $00,$26
+    dc.b $00,$10
+    dc.b $ff,$02

@@ -1,0 +1,110 @@
+;VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV
+;Sakura Attack Script
+loc_2ccb4c:
+	dc.w loc_2ccb54-loc_2ccb4c;X-ism?
+	dc.w loc_2ccb54-loc_2ccb4c;A-ism?
+	dc.w loc_2ccb54-loc_2ccb4c;V-ism?
+	dc.w loc_2ccb54-loc_2ccb4c;Boss-ism?
+
+;Sakura Attack Table 2ccb54
+loc_2ccb54:
+	dc.b $00,$00,$00,$00,$00,$00,$00,$00
+	dc.b $00,$00,$00,$00,$00,$00,$00,$00
+	dc.b $01,$01,$01,$01,$01,$01,$01,$01
+	dc.b $02,$02,$02,$02,$02,$02,$02,$03
+	dc.b $00,$00,$00,$00,$00,$00,$00,$00
+	dc.b $01,$01,$01,$01,$01,$01,$01,$01
+	dc.b $01,$01,$01,$01,$02,$02,$02,$02
+	dc.b $02,$02,$02,$02,$02,$02,$03,$03
+	dc.b $00,$00,$00,$00,$00,$00,$00,$00
+	dc.b $01,$01,$01,$01,$01,$01,$01,$01
+	dc.b $02,$02,$02,$02,$02,$02,$02,$02
+	dc.b $02,$02,$02,$02,$03,$03,$03,$03
+
+	dc.w loc_2ccbbc-loc_2ccb54;Hadouken
+	dc.w loc_2ccbe0-loc_2ccb54;Jump in
+	dc.w loc_2ccc12-loc_2ccb54;Tatsu
+	dc.w loc_2ccc3e-loc_2ccb54;Super Aggressive
+
+;##############################################
+;A3 Sakura Hadouken Cpu Script
+;attack 00
+loc_2ccbbc:
+	AIOC_ChSt2020
+	AIOC_0016
+	AIOC_DistBLS $0070
+	AIOC_OppInAirChk
+	AIOC_SpMv $2840 ;DP
+	AIOC_0c02
+	AIOC_nrm0 $4500 ;2hk
+	AIOC_0C04
+	AIOC_0c02
+	AIOC_SpMv $0800 ;Hadouken
+	AIOC_0C04
+	AIOC_ff02
+
+;##############################################
+;Jump In Script
+loc_2ccbe0:
+	AIOC_ChSt2020
+	AIOC_0016
+	AIOC_OppInAirChk
+	AIOC_0400 $2200,$0002,$0070
+	AIOC_0c02
+	AIOC_0400 $4200,$0104,$001c
+	AIOC_DistBLS $0090
+	AIOC_nrm1 $2100
+	AIOC_SpMv $2850
+	AIOC_0c02
+	AIOC_0016
+	AIOC_0C04
+	AIOC_0C04
+	AIOC_ff02
+
+;##############################################
+;Tatsu
+;attack 02
+loc_2ccc12:
+	AIOC_ChSt2020
+	AIOC_0016
+	AIOC_DistBLS $0060
+	AIOC_OppInAirChk
+	AIOC_0400 $2200,$0004,$0004
+	AIOC_0c02
+	AIOC_nrm0 $2500
+	AIOC_SpMv $4840
+	AIOC_0C04
+	AIOC_0c02
+	AIOC_SpMv $4850
+	AIOC_0C04
+	AIOC_ff02
+
+;##############################################
+;Super Aggressive
+loc_2ccc3e:
+	AIOC_ChSt2020
+	AIOC_0010
+	AIOC_Meter_Check $0030
+	AIOC_RNG5050
+	AI_SuperMV $4870
+	AIOC_0c02
+	AIOC_DistBLS $0060
+	AI_SuperMV $4880
+	AIOC_0c02
+	AI_SuperMV $4860
+	AIOC_0C04
+	AIOC_0C04
+	AIOC_0c02
+	AIOC_0400 $2600,$0104,$0012
+	AIOC_RNG5050
+	AIOC_000a
+	AIOC_0c02
+	AIOC_Meter_Check $0030
+	AI_SuperMV $4880
+	AIOC_0c02
+	AIOC_SpMv $0850
+	AIOC_SpMv $0840
+	AIOC_0C04
+	AIOC_0C04
+	AIOC_0C04
+	AIOC_ff02

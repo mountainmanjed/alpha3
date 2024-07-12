@@ -87,7 +87,7 @@ loc_06780c:
 	dc.w loc_067848-loc_06780c
 	dc.w loc_067848-loc_06780c
 
-;xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+;xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 loc_067818:
 	addq.b #2,($84,a6)
 	jsr loc_01c2c8
@@ -103,7 +103,7 @@ loc_067818:
 loc_067848:
 	jmp loc_02a7ea
 
-;xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+;xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 loc_06784e:
 	move.b (7,a6),d0
 	move.w loc_06785a(pc,d0.w),d1
@@ -873,7 +873,7 @@ loc_06804c:
 
 ;----------------------------------------------
 loc_06806c:
-	move.b ($127,a6),d0
+	move.b (PL_CpuRank,a6),d0
 	cmpi.b #$10,d0
 	bcc.w loc_06811c
 	cmpi.w #$38,(Main_stageid,a5)
@@ -888,7 +888,7 @@ loc_068090:
 	beq.w loc_068120
 	cmpi.w #$30,(PL_meter,a6)
 	bcs.w loc_068120
-	move.b ($127,a6),d0
+	move.b (PL_CpuRank,a6),d0
 	cmpi.b #$10,d0
 	bcc.w loc_06811c
 	cmpi.w #$38,(Main_stageid,a5)

@@ -220,8 +220,10 @@ loc_00df68:
 	rts
 
 ;==============================================
-ExitService_Main:
+;Code to Exit from Menus 
+;loc df
 ;==============================================
+ExitService_Main:
 	moveq #0,d0
 	move.w d0,(0,a5)
 	move.w d0,(4,a5)
@@ -515,6 +517,8 @@ loc_010ea4:
 	move.l d0,(-$5f08,a5)
 	rts
 
+;==============================================
+;Exit Input Check
 ;==============================================
 loc_010eec:
 	move.w (INP_P1_repeat,a5),d0

@@ -674,7 +674,7 @@ loc_05ffc2:
 loc_05ffde:
 	dc.w $0050,$0050,$0050
 
-;xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+;xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 loc_05ffe4:
 	add.b ($82,a6),d0
 	jmp Set_Spec_Cancel_Timers
@@ -975,7 +975,7 @@ loc_06030e:
 loc_060336:
 	tst.b (pl_cc_cancelflag,a6)
 	bne.b loc_060344
-	tst.b ($23e,a6)
+	tst.b (PL_Special_Cancel_Timer,a6)
 	bne.w loc_0601c4
 
 loc_060344:
@@ -1093,7 +1093,7 @@ loc_06048e:
 loc_0604a6:
 	tst.b (pl_cc_cancelflag,a6)
 	bne.b loc_0604b4
-	tst.b ($23e,a6)
+	tst.b (PL_Special_Cancel_Timer,a6)
 	bne.w loc_0604ec
 
 loc_0604b4:
@@ -1477,7 +1477,7 @@ loc_060862:
 loc_060878:
 	dc.w $0000,$0003,$0006
 
-;xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+;xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 loc_06087e:
 	tst.b ($33,a6)
 	beq.b loc_0608b4
@@ -1515,7 +1515,7 @@ loc_0608ce:
 	jmp loc_02a7ea
 
 
-;xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+;xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 loc_0608da:
 	move.b #6,(7,a6)
 	move.b #0,($2a0,a6)
@@ -2005,7 +2005,7 @@ loc_060e9e:
 loc_060ee8:
 	dc.w $0001,$0002,$0003
 
-;xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+;xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 loc_060eee:
 	move.b #$a,(7,a6)
 	move.l #$fffe0000,($40,a6)
@@ -2339,13 +2339,13 @@ loc_0612e6:
 	dc.b $7f,$7f,$7f,$7f,$7f,$7f
 	dc.b $08,$05,$02,$00,$7f,$7f
 
-;xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+;xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 loc_0612fe:
 	addq.b #2,(7,a6)
 	moveq #$25,d0
 	jmp Set_Char_Special_Ani
 
-;xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+;xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 loc_06130a:
 	tst.b (PL_cpucontrol,a6)
 	bne.b loc_06131e
@@ -2357,7 +2357,7 @@ loc_06130a:
 loc_06131e:
 	rts
 
-;xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+;xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 loc_061320:
 	tst.b (PL_cpucontrol,a6)
 	bne.b loc_061334

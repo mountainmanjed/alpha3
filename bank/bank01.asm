@@ -6933,7 +6933,7 @@ loc_01c098:
 loc_01c0ba:
 	moveq #0,d1
 	lea.l ($6f50,a5),a0
-	lea.l ($3000,a5),a6
+	lea.l (HitSp_Spr_Start,a5),a6
 	move.b #$20,($6eb9,a5)
 	move.w #$1f,d0
 
@@ -6955,7 +6955,7 @@ loc_01c0d4:
 loc_01c0f0:
 	moveq #0,d1
 	lea.l ($6f70,a5),a0
-	lea.l ($4000,a5),a6
+	lea.l (Stage_Spr_Start,a5),a6
 	move.b #$10,($6eba,a5)
 	move.w #$f,d0
 
@@ -6977,7 +6977,7 @@ loc_01c10a:
 loc_01c126:
 	moveq #0,d1
 	lea.l ($6f90,a5),a0
-	lea.l ($4800,a5),a6
+	lea.l (STrail_Spr_start,a5),a6
 	move.b #$10,($6ebb,a5)
 	move.w #$f,d0
 
@@ -7021,7 +7021,7 @@ loc_01c176:
 loc_01c192:
 	moveq #0,d1
 	lea.l ($6f10,a5),a0
-	lea.l ($2c00,a5),a6
+	lea.l (Round_Op_Spr_Start,a5),a6
 	move.b #8,($6eb8,a5)
 	move.w #7,d0
 
@@ -7635,6 +7635,7 @@ loc_01c86c:
 	rts
 
 ;==============================================
+;loc_1c86e
 ;Character Data Display
 ;Dip C 0010 0000
 ;==============================================
@@ -7801,22 +7802,22 @@ loc_01ca22:
 	addq.w #8,d3
 	move.w d6,d2
 	moveq #$16,d1
-	move.w ($10,a6),d0
+	move.w (PL_X,a6),d0
 	bsr.w loc_01cd62
 	addq.w #8,d2
-	move.w ($14,a6),d0
+	move.w (PL_Y,a6),d0
 	bsr.w loc_01cd62
 	addq.w #8,d2
-	move.w ($21c,a6),d0
+	move.w (pl_dist_away,a6),d0
 	bsr.w loc_01cd62
-	tst.b ($125,a6)
+	tst.b (PL_cpucontrol,a6)
 	beq.b loc_01caca
 	bsr.w loc_01cb1a
 	move.w d6,d2
 	addq.w #8,d3
 	move.w #$656d,d0
 	bsr.w loc_01ccf8
-	move.b ($102,a6),d0
+	move.b (PL_charid,a6),d0
 	bsr.w loc_01cd54
 	move.b #$5f,d0
 	bsr.w loc_01ccf2
@@ -7832,7 +7833,7 @@ loc_01ca7c:
 	bsr.b loc_01cacc
 	move.w d6,d2
 	addq.w #8,d3
-	move.b ($127,a6),d0
+	move.b (PL_CpuRank,a6),d0
 	moveq #$1f,d1
 	cmpi.b #$10,d0
 	bcs.b loc_01ca98
@@ -7868,16 +7869,16 @@ loc_01caca:
 ;==============================================
 loc_01cacc:
 	moveq #0,d0
-	move.b ($204,a6),d0
+	move.b (Pl_AIScript_Type,a6),d0
 	move.w loc_01cada(pc,d0.w),d0
 	jmp loc_01cada(pc,d0.w)
 
 ;VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV
 loc_01cada:
-	dc.w loc_01cae2-loc_01cada
-	dc.w loc_01caec-loc_01cada
-	dc.w loc_01cafe-loc_01cada
-	dc.w loc_01cb12-loc_01cada
+	dc.w loc_01cae2-loc_01cada;Taiki
+	dc.w loc_01caec-loc_01cada;Attack
+	dc.w loc_01cafe-loc_01cada;Yoke
+	dc.w loc_01cb12-loc_01cada;Eye
 
 ;==============================================
 loc_01cae2:
@@ -7890,15 +7891,15 @@ loc_01caec:
 	move.b ($205,a6),d0
 	lsr.b #1,d0
 	bsr.w loc_01cd4e
-	move.b ($21f,a6),d0
+	move.b (Pl_AIscript_num,a6),d0
 	bra.w loc_01cd4e
 
 ;==============================================
 loc_01cafe:
-	move.b ($c7,a4),d0
+	move.b (PL_Yoke_TableID,a4),d0
 	bmi.b loc_01cb10
 	bsr.w loc_01cd4e
-	move.b ($21f,a6),d0
+	move.b (Pl_AIscript_num,a6),d0
 	bra.w loc_01cd4e
 
 loc_01cb10:
@@ -7913,17 +7914,19 @@ loc_01cb12:
 loc_01cb1a:
 	moveq #0,d0
 	move.b ($204,a6),d0
-	move.w loc_01cb30(pc,d0.w),d1
+	move.w ScriptTypeColors(pc,d0.w),d1
 	lsl.w #2,d0
-	lea.l loc_01ccc6(pc),a2
+	lea.l ScriptTypeNames(pc),a2
 	lea.l (a2,d0.w),a2
 	rts
 
 ;VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV
-loc_01cb30:
+;loc_01cb30
+ScriptTypeColors:
 	dc.w $0016,$0017,$001f,$0015
 
 ;==============================================
+;loc_01cb38
 Debug_CPSGrid:
 	move.b ($1c0,a5),d0
 	andi.b #$18,d0
@@ -8082,11 +8085,12 @@ loc_01ccc4:
 	rts
 
 ;VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV
-loc_01ccc6:
-	dc.b 'taiki   '
-	dc.b 'atck    '
-	dc.b 'yoke    '
-	dc.b 'eye     '
+;loc_01ccc6
+ScriptTypeNames:
+	dc.b 'taiki   ';Neutral
+	dc.b 'atck    ';Attacking
+	dc.b 'yoke    ';Defensive
+	dc.b 'eye     ';Special Case
 
 loc_01cce6:
 	dc.b $1f,'NML'

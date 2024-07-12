@@ -998,7 +998,7 @@ loc_04fa80:
 loc_04faa0:
 	tst.b (pl_cc_cancelflag,a6)
 	bne.b loc_04faae
-	tst.b ($23e,a6)
+	tst.b (PL_Special_Cancel_Timer,a6)
 	bne.w loc_04f918
 
 loc_04faae:
@@ -1207,7 +1207,7 @@ loc_04fd5a:
 	bmi.b loc_04fdd8
 	tst.b (pl_cc_cancelflag,a6)
 	bne.b loc_04fd6e
-	tst.b ($23e,a6)
+	tst.b (PL_Special_Cancel_Timer,a6)
 	bne.w loc_04fdd8
 
 loc_04fd6e:
@@ -4121,7 +4121,7 @@ loc_051cc6:
 	jsr RNGFunction
 	andi.w #$1f,d0
 	moveq #0,d1
-	move.b ($127,a6),d1
+	move.b (PL_CpuRank,a6),d1
 	add.w d1,d1
 	move.w loc_051ce4(pc,d1.w),d1
 	add.w d1,d0

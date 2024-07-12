@@ -457,6 +457,7 @@ loc_003688:
 	moveq #0,d3
 	bra.w loc_003938
 
+;==============================================
 loc_00369c:
 	jsr loc_0032a4
 	move.l #$230,d1
@@ -471,6 +472,7 @@ loc_0036b8:
 	moveq #0,d3
 	bra.w loc_003938
 
+;==============================================
 loc_0036c0:
 	jsr loc_0032a4
 	move.l #$22e,d1
@@ -491,6 +493,7 @@ loc_0036ee:
 	moveq #0,d3
 	bra.w loc_003938
 
+;==============================================
 loc_0036f6:
 	jsr loc_0032a4
 	move.l #$20d,d1
@@ -504,6 +507,7 @@ loc_003710:
 	moveq #0,d3
 	bra.w loc_003938
 
+;==============================================
 loc_003718:
 	jsr loc_0032a4
 	move.l #$20e,d1
@@ -923,7 +927,7 @@ Stage_Songids:
 	dc.b $27;Juni
 
 	dc.b $1d;
-	dc.b $20;
+	dc.b $20;Boss
 	dc.b $28;Evil Ryu
 	dc.b $29;Final Round
 	dc.b $1b;Shin Akuma

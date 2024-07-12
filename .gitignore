@@ -36,3 +36,12 @@ sfa3us.bin
 TrainingModeHack
 swapped.bin
 z80
+nvram/hsf2/eeprom
+nvram/mvsc/eeprom
+nvram/sfz3ugd/main_eeprom
+nvram/sfz3ugd/mie_eeprom
+nvram/sfz3ugd/naomibd_eeprom
+nvram/sfz3ugd/rom_board_eeprom
+nvram/sfz3ugd/rom_board_i2c_0
+nvram/sfz3ugd/rom_board_i2c_1
+nvram/sfz3ugd/sram

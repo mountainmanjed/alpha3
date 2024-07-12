@@ -640,7 +640,7 @@ loc_0360ac:
 	bmi.w loc_035fe6
 	tst.b (pl_cc_cancelflag,a6)
 	bne.b loc_0360c2
-	tst.b ($23e,a6)
+	tst.b (PL_Special_Cancel_Timer,a6)
 	bne.w loc_035fe6
 
 loc_0360c2:
@@ -826,7 +826,7 @@ loc_036338:
 	beq.w loc_0363aa
 	tst.b (pl_cc_cancelflag,a6)
 	bne.b loc_036350
-	tst.b ($23e,a6)
+	tst.b (PL_Special_Cancel_Timer,a6)
 	bne.w loc_0363aa
 
 loc_036350:

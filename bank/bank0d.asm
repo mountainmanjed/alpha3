@@ -278,38 +278,38 @@ loc_0dcc12:
 ;VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV
 ;Player Special moves
 loc_0dcc92:
-	dc.l loc_034b52
-	dc.l loc_0363ae
-	dc.l loc_0382e4
-	dc.l loc_03aaca
-	dc.l loc_03c79e
-	dc.l loc_03e304
-	dc.l loc_03fa28
-	dc.l loc_041ec2
-	dc.l loc_043a6a
-	dc.l loc_0455e4
-	dc.l loc_0479a8
-	dc.l loc_04957c
-	dc.l loc_04b5e0
-	dc.l loc_04da76
-	dc.l loc_04fddc
-	dc.l loc_052c1a
-	dc.l loc_054972
-	dc.l loc_057778
-	dc.l loc_034b52
-	dc.l loc_057778
-	dc.l loc_034b52
-	dc.l loc_05a160
-	dc.l loc_05b4ce
-	dc.l loc_034b52
-	dc.l loc_05e4c8
-	dc.l loc_0604f0
-	dc.l loc_0627aa
-	dc.l loc_065cc6
-	dc.l loc_068124
-	dc.l loc_06a4a8
-	dc.l loc_06c0d8
-	dc.l loc_06fb1e
+	dc.l loc_034b52;00 Ryu
+	dc.l loc_0363ae;01 Ken
+	dc.l loc_0382e4;02 Akuma
+	dc.l loc_03aaca;03 Nash
+	dc.l loc_03c79e;04 Chun
+	dc.l loc_03e304;05 Adon
+	dc.l loc_03fa28;06 Sodom
+	dc.l loc_041ec2;07 Guy
+	dc.l loc_043a6a;08 Birdie
+	dc.l loc_0455e4;09 Rose
+	dc.l loc_0479a8;0a Dictator
+	dc.l loc_04957c;0b Sagat
+	dc.l loc_04b5e0;0c Dan
+	dc.l loc_04da76;0d Sakura
+	dc.l loc_04fddc;0e Rolento
+	dc.l loc_052c1a;0f Dhalsim
+	dc.l loc_054972;10 Zangief
+	dc.l loc_057778;11 Gen
+	dc.l loc_034b52;12
+	dc.l loc_057778;13 Gen Crane
+	dc.l loc_034b52;14
+	dc.l loc_05a160;15 Boxer
+	dc.l loc_05b4ce;16 Cammy
+	dc.l loc_034b52;17
+	dc.l loc_05e4c8;18 Ehonda
+	dc.l loc_0604f0;19 Blanka
+	dc.l loc_0627aa;1a Rainbow Mika
+	dc.l loc_065cc6;1b Cody
+	dc.l loc_068124;1c Claw
+	dc.l loc_06a4a8;1d Karin
+	dc.l loc_06c0d8;1e Juli
+	dc.l loc_06fb1e;1f Juni
 
 ;VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV
 ;Throw Table 1
@@ -384,6 +384,7 @@ loc_0dcf92:
 	dc.l loc_067c80,loc_069ff6,loc_06b9ec,loc_06f428
 
 ;VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV
+;Collsion Boxes
 loc_0dd012:
 	dc.l loc_100240,loc_102ff8,loc_104a9e,loc_1060b8
 	dc.l loc_108458,loc_10b7f8,loc_10d698,loc_10fe42
@@ -395,6 +396,7 @@ loc_0dd012:
 	dc.l loc_13e17a,loc_141acc,loc_12ed0e,loc_12ed0e
 
 ;VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV
+;Hurtbox ID tables
 loc_0dd092:
 	dc.l loc_100074,loc_102e3c,loc_1048ba,loc_105ef4
 	dc.l loc_1082dc,loc_10b6d0,loc_10d57c,loc_10fc82
@@ -451,7 +453,6 @@ loc_0dd292:
 	dc.l loc_0346cc,loc_059d0a,loc_05aff0,loc_0346cc
 	dc.l loc_05e16a,loc_06014a,loc_062432,loc_06581c
 	dc.l loc_067cc2,loc_06a038,loc_06ba32,loc_06f46e
-
 
 ;VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV
 ;A-ism Alpha Counter Jump Table
@@ -1375,6 +1376,7 @@ loc_0def92:
 	dc.b $03,$03,$03,$03,$03,$04,$04,$04
 
 ;VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV
+;Unused Table
 loc_0df392:
 	dc.l loc_2d3cea,loc_2d463e,loc_2d51bc,loc_2d5c58
 	dc.l loc_2d793a,loc_2d85f2,loc_2d9102,loc_2da562
@@ -1398,7 +1400,8 @@ loc_0df412:
 	dc.l loc_068040,loc_06a454,loc_06bfea,loc_06fa24
 
 ;VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV
-Char_AI_Scripts:
+;Taiki Scripts
+Char_AI_Neutral_Scripts:
 	dc.l loc_2ba5b6,loc_2bba6e,loc_2bc25c,loc_2bd64c
 	dc.l loc_2be30a,loc_2c1152,loc_2c23e2,loc_2c5914
 	dc.l loc_2c6b8e,loc_2c9d70,loc_2cabec,loc_2cb550
@@ -1409,7 +1412,7 @@ Char_AI_Scripts:
 	dc.l loc_2d1b52,loc_2d229a,loc_2d25c8,loc_2d285c
 
 ;VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV
-loc_0df512:
+Char_AI_Attack_Scripts:
 	dc.l loc_2ba6b0,loc_2bbbf4,loc_2bc316,loc_2bd720
 	dc.l loc_2be42c,loc_2c123a,loc_2c25c8,loc_2c5a1c
 	dc.l loc_2c6cf8,loc_2c9e60,loc_2cac9a,loc_2cb606
@@ -1420,6 +1423,7 @@ loc_0df512:
 	dc.l loc_2d1c6e,loc_2d2394,loc_2d26c2,loc_2d29ae
 
 ;VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV
+;Yoke Scripts
 loc_0df592:
 	dc.l loc_2d2a56,loc_2d3d2a,loc_2d467e,loc_2d51fc
 	dc.l loc_2d5c98,loc_2d797a,loc_2d8632,loc_2d9142
@@ -1431,6 +1435,7 @@ loc_0df592:
 	dc.l loc_2e4730,loc_2e4932,loc_2e4c7e,loc_2e4e74
 
 ;VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV
+;Eye Scripts
 loc_0df612:
 	dc.l loc_2d3b30,loc_2d44a0,loc_2d4f9c,loc_2d5abe
 	dc.l loc_2d76f8,loc_2d8432,loc_2d8ee8,loc_2da390
@@ -1443,27 +1448,77 @@ loc_0df612:
 
 ;VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV
 loc_0df692:
-	dc.l loc_102b86,loc_102b86,loc_102b86,loc_108006
-	dc.l loc_10b368,loc_10d2ce,loc_10f9c6,loc_1126d0
-	dc.l loc_115c06,loc_11831c,loc_119aca,loc_11c276
-	dc.l loc_102b86,loc_11efa6,loc_121814,loc_124042
-	dc.l loc_1290fc,loc_12d106,loc_10b368,loc_12d106
-	dc.l loc_10f9c6,loc_12e7d4,loc_132d74,loc_102b86
-	dc.l loc_135328,loc_137218,loc_13b984,loc_13dd58
-	dc.l loc_141552,loc_1442fa,loc_132d74,loc_132d74
+	dc.l loc_102b86				;Ryu
+	dc.l loc_102b86				;Ken
+	dc.l loc_102b86				;Akuma
+	dc.l loc_108006				;Charlie
+	dc.l loc_10b368				;Chun
+	dc.l loc_10d2ce				;Adon
+	dc.l loc_10f9c6				;Sodom
+	dc.l loc_1126d0				;Guy
+	dc.l loc_115c06				;Birdie
+	dc.l loc_11831c				;Rose
+	dc.l loc_119aca				;Dict
+	dc.l loc_11c276				;Sagat
+	dc.l loc_102b86				;Dan
+	dc.l loc_11efa6				;Sakura
+	dc.l loc_121814				;Rolento
+	dc.l loc_124042				;Dhalsim
+	dc.l loc_1290fc				;Zangief
+	dc.l loc_12d106				;Gen
+	dc.l loc_10b368				;0x12
+	dc.l loc_12d106				;Gen
+	dc.l loc_10f9c6				;0x14
+	dc.l loc_12e7d4				;Boxer
+	dc.l loc_132d74				;Cammy
+	dc.l loc_102b86				;0x17
+	dc.l loc_135328				;E.Honda
+	dc.l loc_137218				;Blanka
+	dc.l loc_13b984				;R.Mika
+	dc.l loc_13dd58				;Cody
+	dc.l loc_141552				;Vega
+	dc.l loc_1442fa				;Karin
+	dc.l loc_132d74				;Juli
+	dc.l loc_132d74				;Juni
 
 ;VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV
+;Fire Hurtstun Fire Placement
 loc_0df712:
-	dc.l loc_102ba0,loc_102ba0,loc_102ba0,loc_108020
-	dc.l loc_10b384,loc_10d2e8,loc_10f9ea,loc_1126ec
-	dc.l loc_115c20,loc_118338,loc_119ae4,loc_11c28e
-	dc.l loc_102ba0,loc_11efc2,loc_121830,loc_12405e
-	dc.l loc_12911c,loc_12d122,loc_10b384,loc_12d122
-	dc.l loc_10f9ea,loc_12e7ee,loc_132d92,loc_102ba0
-	dc.l loc_135342,loc_137232,loc_13b99e,loc_13dd72
-	dc.l loc_14156c,loc_144316,loc_132d92,loc_132d92
+	dc.l Shoto_FireHS_Fire_Placement		;Ryu
+	dc.l Shoto_FireHS_Fire_Placement		;Ken
+	dc.l Shoto_FireHS_Fire_Placement		;Akuma
+	dc.l loc_108020							;Charlie
+	dc.l Chun_FireHS_Fire_Placement			;Chun
+	dc.l loc_10d2e8							;Adon
+	dc.l Sodom_FireHS_Fire_Placement		;Sodom
+	dc.l loc_1126ec							;Guy
+	dc.l loc_115c20							;Birdie
+	dc.l loc_118338							;Rose
+	dc.l loc_119ae4							;Dict
+	dc.l loc_11c28e							;Sagat
+	dc.l Shoto_FireHS_Fire_Placement		;Dan
+	dc.l loc_11efc2							;Sakura
+	dc.l loc_121830							;Rolento
+	dc.l loc_12405e							;Dhalsim
+	dc.l loc_12911c							;Zangief
+	dc.l loc_12d122							;Gen
+	dc.l Chun_FireHS_Fire_Placement			;0x12
+	dc.l loc_12d122							;Gen
+	dc.l Sodom_FireHS_Fire_Placement		;0x14
+	dc.l loc_12e7ee							;Boxer
+	dc.l Cammy_FireHS_Fire_Placement		;Cammy
+	dc.l Shoto_FireHS_Fire_Placement		;0x17
+	dc.l loc_135342							;E.Honda
+	dc.l loc_137232							;Blanka
+	dc.l loc_13b99e							;R.Mika
+	dc.l loc_13dd72							;Cody
+	dc.l loc_14156c							;Vega
+	dc.l loc_144316							;Karin
+	dc.l Cammy_FireHS_Fire_Placement		;Juli
+	dc.l Cammy_FireHS_Fire_Placement		;Juni
 
 ;VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV
+;Alpha Counter Spin
 loc_0df792:
 	dc.l loc_102c80,loc_102c80,loc_102c80,loc_108100
 	dc.l loc_10b474,loc_10d3c8,loc_10faca,loc_1127dc
@@ -1568,17 +1623,74 @@ Guard_meter_table:
 	dc.b $40;Juli
 	dc.b $40;Juni
 
+;Guard Crush stun mashing addition
 loc_0df952:
-	dc.b $01,$01,$01,$00,$00,$02,$02,$01
-	dc.b $04,$01,$02,$01,$01,$03,$01,$01
-	dc.b $04,$02,$00,$02,$02,$03,$00,$02
-	dc.b $02,$01,$02,$02,$00,$03,$00,$00
+	dc.b $01;Ryu
+	dc.b $01;Ken
+	dc.b $01;Akuma
+	dc.b $00;Charlie
+	dc.b $00;Chun
+	dc.b $02;Adon
+	dc.b $02;Sodom
+	dc.b $01;Guy
+	dc.b $04;Birdie
+	dc.b $01;Rose
+	dc.b $02;Dict
+	dc.b $01;Sagat
+	dc.b $01;Dan
+	dc.b $03;Sakura
+	dc.b $01;Rolento
+	dc.b $01;Dhalsim
+	dc.b $04;Zangief
+	dc.b $02;Gen
+	dc.b $00;0x12
+	dc.b $02;Gen
+	dc.b $02;0x14
+	dc.b $03;Boxer
+	dc.b $00;Cammy
+	dc.b $02;0x17
+	dc.b $02;E.Honda
+	dc.b $01;Blanka
+	dc.b $02;R.Mika
+	dc.b $02;Cody
+	dc.b $00;Vega
+	dc.b $03;Karin
+	dc.b $00;Juli
+	dc.b $00;Juni
 
 loc_0df972:
-	dc.b $03,$03,$03,$03,$02,$02,$02,$03
-	dc.b $01,$02,$03,$03,$03,$02,$02,$03
-	dc.b $01,$02,$02,$02,$02,$03,$02,$02
-	dc.b $03,$03,$02,$03,$02,$02,$02,$02
+	dc.b $03;Ryu
+	dc.b $03;Ken
+	dc.b $03;Akuma
+	dc.b $03;Charlie
+	dc.b $02;Chun
+	dc.b $02;Adon
+	dc.b $02;Sodom
+	dc.b $03;Guy
+	dc.b $01;Birdie
+	dc.b $02;Rose
+	dc.b $03;Dict
+	dc.b $03;Sagat
+	dc.b $03;Dan
+	dc.b $02;Sakura
+	dc.b $02;Rolento
+	dc.b $03;Dhalsim
+	dc.b $01;Zangief
+	dc.b $02;Gen
+	dc.b $02;0x12
+	dc.b $02;Gen
+	dc.b $02;0x14
+	dc.b $03;Boxer
+	dc.b $02;Cammy
+	dc.b $02;0x17
+	dc.b $03;E.Honda
+	dc.b $03;Blanka
+	dc.b $02;R.Mika
+	dc.b $03;Cody
+	dc.b $02;Vega
+	dc.b $02;Karin
+	dc.b $02;Juli
+	dc.b $02;Juni
 
 loc_0df992:
 	dc.b $02;Ryu

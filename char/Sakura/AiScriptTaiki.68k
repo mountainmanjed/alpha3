@@ -1,0 +1,106 @@
+loc_2cca52:
+	dc.w loc_2cca5a-loc_2cca52;Neutral Script 0
+	dc.w loc_2cca9c-loc_2cca52;Neutral Script 1
+	dc.w loc_2ccad8-loc_2cca52;Neutral Script 2
+	dc.w loc_2ccb20-loc_2cca52;Neutral Script 3
+
+;16a to jump to Hadou script
+
+;##############################################
+;Taiki 00
+loc_2cca5a:
+	AIOC_ChSt2000
+	AIOC_1200 $0014,$ffff
+	AIOC_0010
+	AIOC_0204 $00c0
+	AIOC_0010
+	AIOC_0204 $00b0
+	AIOC_0010
+	AIOC_0e02
+	AIOC_0010
+	AIOC_0204 $00a0
+	AIOC_0010
+	AIOC_0204 $00c0
+	AIOC_0204 $00a0
+	AIOC_0010
+	AIOC_0e02
+	AIOC_0010
+	AIOC_0204 $00a0
+	AIOC_0010
+	AIOC_0204 $00b0
+	AIOC_0204 $00a0
+	AIOC_0010
+	AIOC_0e02
+	AIOC_ff00
+
+;##############################################
+loc_2cca9c:
+	AIOC_ChSt2000
+	AIOC_1200 $0012,$ffff
+	AIOC_0010
+	AIOC_0204 $00a0
+	AIOC_0010
+	AIOC_0e02
+	AIOC_0204 $0080
+	AIOC_0010
+	AIOC_0e02
+	AIOC_0010
+	AIOC_0204 $0080
+	AIOC_0010
+	AIOC_0204 $0090
+	AIOC_0010
+	AIOC_0e02
+	AIOC_0010
+	AIOC_0204 $0090
+	AIOC_0010
+	AIOC_0e02
+	AIOC_0204 $0080
+	AIOC_0010
+	AIOC_ff00
+
+;##############################################
+loc_2ccad8:
+	AIOC_ChSt2000
+	AIOC_1200 $0010,$ffff
+	AIOC_0010
+	AIOC_0204 $0080
+	AIOC_0010
+	AIOC_0204 $0060
+	AIOC_0010
+	AIOC_0e02
+	AIOC_0010
+	AIOC_0204 $0060
+	AIOC_0010
+	AIOC_0204 $0070
+	AIOC_0010
+	AIOC_0e02
+	AIOC_0010
+	AIOC_0204 $0070
+	AIOC_0010
+	AIOC_0204 $0050
+	AIOC_0010
+	AIOC_0e02
+	AIOC_0010
+	AIOC_0400 $0000,$ff00,$0000
+	AIOC_0010
+	AIOC_0e02
+	AIOC_ff00
+
+;##############################################
+loc_2ccb20:
+	AIOC_ChSt2000
+	AIOC_1200 $000e,$ffff
+	AIOC_0010
+	AIOC_0204 $0040
+	AIOC_0010
+	AIOC_0204 $0060
+	AIOC_0010
+	AIOC_0e02
+	AIOC_0010
+	AIOC_0e02
+	AIOC_0010
+	AIOC_0204 $00c0
+	AIOC_0010
+	AIOC_0204 $0040
+	AIOC_0010
+	AIOC_ff00

@@ -99,7 +99,7 @@ loc_051ec4:
 	dc.w loc_051fa0-loc_051ec4
 	dc.w loc_051fd6-loc_051ec4
 
-;xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+;xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 loc_051ece:
 	move.b (pl_sidecheck,a6),(PL_Flip,a6)
 	move.b #1,(pl_attk_active,a6)
@@ -167,15 +167,15 @@ loc_051f88:
 loc_051f90:
 	dc.w $004d,$0042,$0047
 
-;xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+;xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 loc_051f96:
 	jmp loc_02f5ac
 
-;xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+;xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 loc_051f9c:
 	bra.w loc_053f38
 
-;xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+;xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 loc_051fa0:
 	subq.b #1,($1f7,a6)
 	bpl.b loc_051fbe
@@ -193,7 +193,7 @@ loc_051fbe:
 	moveq #$18,d0
 	jmp Set_Spec_Cancel_Timers
 
-;xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+;xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 loc_051fd6:
 	cmpi.b #1,($35,a6)
 	beq.w loc_053f38
@@ -213,7 +213,7 @@ loc_051ffa:
 	dc.w loc_051f96-loc_051ffa
 	dc.w loc_051f9c-loc_051ffa
 
-;xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+;xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 loc_052000:
 	move.b (pl_sidecheck,a6),(PL_Flip,a6)
 	move.b #1,(pl_attk_active,a6)

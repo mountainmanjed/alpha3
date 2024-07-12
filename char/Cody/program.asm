@@ -64,7 +64,7 @@ loc_064fd2:
 	dc.w loc_064ff0-loc_064fd2
 	dc.w loc_06500c-loc_064fd2
 
-;xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+;xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 loc_064fd8:
 	addq.b #2,(7,a6)
 	move.b #$3c,($3a,a6)
@@ -72,7 +72,7 @@ loc_064fd8:
 	moveq #0,d0
 	jmp loc_02a708
 
-;xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+;xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 loc_064ff0:
 	tst.b (Set_GC_Flash_BG,a5)
 	bne.w loc_0674a2
@@ -82,7 +82,7 @@ loc_064ff0:
 	moveq #$26,d0
 	jmp loc_02a708
 
-;xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+;xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 loc_06500c:
 	tst.b ($3a,a6)
 	beq.b loc_065020
@@ -110,7 +110,7 @@ loc_065032:
 	dc.w loc_0650a8-loc_065032
 	dc.w loc_0650d6-loc_065032
 
-;xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+;xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 loc_06503c:
 	addq.b #2,(7,a6)
 	move.b (pl_sidecheck,a6),(PL_Flip,a6)
@@ -118,7 +118,7 @@ loc_06503c:
 	moveq #$23,d0
 	jmp loc_02a708
 
-;xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+;xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 loc_065052:
 	jsr loc_02a7ea
 	tst.b ($35,a6)
@@ -130,7 +130,7 @@ loc_065052:
 loc_06506c:
 	rts
 
-;xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+;xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 loc_06506e:
 	jsr loc_02a7ea
 	tst.b ($35,a6)
@@ -145,7 +145,7 @@ loc_06506e:
 	move.w a4,($4e,a6)
 	rts
 
-;xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+;xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 loc_0650a8:
 	bsr.w loc_0674de
 	jsr loc_01bd5c
@@ -161,7 +161,7 @@ loc_0650a8:
 loc_0650d0:
 	jmp loc_02a7ea
  
-;xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+;xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 loc_0650d6:
 	jsr loc_01bd5c
 	move.w #$ffc0,d0
@@ -196,7 +196,7 @@ loc_065104:
 	dc.w loc_0651ea-loc_065104
 	dc.w loc_0651fe-loc_065104
 
-;xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+;xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 loc_065118:
 	tst.w ($4e,a6)
 	bne.w loc_067488
@@ -213,7 +213,7 @@ loc_065148:
 	moveq #1,d1
 	jmp loc_092ed2
 
-;xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+;xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 loc_065150:
 	move.l ($40,a6),d0
 	add.l d0,($10,a6)
@@ -231,7 +231,7 @@ loc_065150:
 	moveq #$a,d0
 	jmp loc_02a708
 
-;xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+;xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 loc_06518e:
 	tst.b ($33,a6)
 	bpl.w loc_0674a2
@@ -240,7 +240,7 @@ loc_06518e:
 	moveq #$1f,d0
 	jmp Set_Spec_Cancel_Timers
 
-;xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+;xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 loc_0651a6:
 	movea.l ($1c,a6),a0
 	move.b (9,a0),d0
@@ -262,7 +262,7 @@ loc_0651d2:
 loc_0651e4:
 	jmp loc_02a7ea
 
-;xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+;xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 loc_0651ea:
 	tst.b ($33,a6)
 	bpl.w loc_0674a2
@@ -270,7 +270,7 @@ loc_0651ea:
 	moveq #$26,d0
 	jmp loc_02a708
 
-;xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+;xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 loc_0651fe:
 	jmp loc_02a7ea
 
@@ -533,7 +533,7 @@ loc_06549a:
 	dc.w loc_06554e-loc_06549a
 	dc.w loc_065580-loc_06549a
 
-;xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+;xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 loc_0654a4:
 	addq.b #2,(7,a6)
 	move.b (pl_sidecheck,a6),(PL_Flip,a6)
@@ -577,11 +577,11 @@ loc_065526:
 loc_06552c:
 	dc.w $0030,$0038,$0028
 
-;xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+;xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 loc_065532:
 	jmp loc_02f5ac
 
-;xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+;xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 loc_065538:
 	tst.b ($35,a6)
 	bne.b loc_065548
@@ -591,7 +591,7 @@ loc_065538:
 loc_065548:
 	jmp loc_02a7ea
 
-;xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+;xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 loc_06554e:
 	jsr loc_02aa08
 	bcc.b loc_06557a
@@ -2325,7 +2325,7 @@ loc_066716:
 	dc.w loc_06671c-loc_066716
 	dc.w loc_0667a8-loc_066716
 
-;xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+;xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 loc_06671c:
 	move.b ($84,a6),d0
 	move.w loc_066728(pc,d0.w),d1
@@ -2385,7 +2385,7 @@ loc_06679e:
 	bmi.w loc_06748a
 	rts
 
-;xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+;xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 loc_0667a8:
 	move.b ($84,a6),d0
 	move.w loc_0667b4(pc,d0.w),d1
@@ -2643,7 +2643,7 @@ loc_066a0e:
 	dc.w loc_066ea8-loc_066a0e
 	dc.w loc_066eaa-loc_066a0e
 
-;xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+;xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 loc_066a1a:
 	moveq #0,d0
 	move.b ($85,a6),d0
@@ -2715,7 +2715,7 @@ loc_066ac0:
 	moveq #4,d0
 	jmp loc_02a708
 
-;xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+;xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 loc_066ad8:
 	moveq #0,d0
 	move.b ($85,a6),d0
@@ -2896,7 +2896,7 @@ loc_066c8a:
 	moveq #1,d0
 	jmp loc_02a708
 
-;xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+;xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 loc_066cb8:
 	move.b ($10d,a5),d0
 	or.b ($8a,a5),d0
@@ -2929,7 +2929,7 @@ loc_066d08:
 	andi.b #3,d0
 	rts
 
-;xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+;xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 loc_066d12:
 	moveq #0,d0
 	move.b ($85,a6),d0
@@ -3050,11 +3050,11 @@ loc_066e6e:
 	moveq #$11,d0
 	jmp loc_02a708
 
-;xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+;xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 loc_066ea8:
 	rts
 
-;xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+;xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 loc_066eaa:
 	tst.b ($80,a6)
 	bne.w loc_066f2c
@@ -3125,7 +3125,7 @@ loc_066f54:
 	dc.w loc_066f58-loc_066f54
 	dc.w loc_066f6e-loc_066f54
 
-;xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+;xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 loc_066f58:
 	addq.b #2,($85,a6)
 	move.b #1,(pl_attk_active,a6)
@@ -3133,7 +3133,7 @@ loc_066f58:
 	moveq #$36,d0
 	jmp Set_Char_Special_Ani
 
-;xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+;xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 loc_066f6e:
 	tst.b ($33,a6)
 	bmi.b loc_066f92
@@ -3233,14 +3233,14 @@ loc_067048:
 	dc.w loc_067084-loc_067048
 	dc.w loc_0670a0-loc_067048
 
-;xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+;xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 loc_067050:
 	addq.b #2,($84,a6)
 	moveq #$1d,d0
 	jsr Set_Char_Special_Ani
 	jmp loc_02f9be
 
-;xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+;xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 loc_067062:
 	tst.b ($35,a6)
 	beq.b loc_067078
@@ -3253,7 +3253,7 @@ loc_067078:
 	jsr loc_02a7ea
 	jmp loc_02f9be
 
-;xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+;xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 loc_067084:
 	jsr loc_02a7ea
 	tst.b ($35,a6)
@@ -3265,7 +3265,7 @@ loc_067084:
 loc_06709e:
 	rts
 
-;xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+;xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 loc_0670a0:
 	tst.b ($33,a6)
 	bpl.b loc_0670c0
@@ -3293,7 +3293,7 @@ loc_0670d4:
 	dc.w loc_06711a-loc_0670d4
 	dc.w loc_067142-loc_0670d4
 
-;xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+;xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 loc_0670da:
 	addq.b #2,($84,a6)
 	jsr loc_0804da
@@ -3313,7 +3313,7 @@ loc_0670da:
 loc_067114:
 	dc.w $012c,$01a4,$0258
 
-;xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+;xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 loc_06711a:
 	tst.b ($34,a6)
 	beq.b loc_06713c
@@ -3332,7 +3332,7 @@ loc_06712e:
 loc_06713c:
 	jmp loc_02a7ea
 
-;xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+;xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 loc_067142:
 	jsr loc_02a7ea
 	tst.b ($34,a6)

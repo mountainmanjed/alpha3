@@ -2053,7 +2053,7 @@ loc_062f74:
 loc_062fa2:
 	dc.w $000c,$001c,$002c
 
-;xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+;xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 loc_062fa8:
 	move.b #$c,(7,a6)
 	clr.b ($dd,a6)
@@ -2084,7 +2084,7 @@ loc_062fcc:
 loc_062fee:
 	dc.w $0008,$0018,$0028
 
-;xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+;xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 loc_062ff4:
 	bsr.w loc_0632a8
 	jsr loc_02a7ea
@@ -2202,7 +2202,7 @@ loc_06314e:
 loc_063150:
 	dc.w $0018,$0028,$0038
 
-;xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+;xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 loc_063156:
 	tst.b ($33,a6)
 	bpl.w loc_064980
@@ -2538,7 +2538,7 @@ loc_0634ea:
 loc_06351c:
 	dc.w $0012,$0022,$0032
 
-;xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+;xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 loc_063522:
 	move.b #$14,(7,a6)
 	move.b #1,($31,a6)
@@ -2557,7 +2557,7 @@ loc_063522:
 loc_06355c:
 	dc.w $0012,$0022,$0032
 
-;xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+;xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 loc_063562:
 	moveq #$2f,d0
 	jsr loc_02e3fe
@@ -3180,13 +3180,13 @@ loc_063c78:
 	dc.l $00030000
 	dc.l $00040000
 
-;xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+;xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 loc_063c84:
 	move.b #8,(7,a6)
 	jsr loc_02a7ea
 	jmp loc_02fa36
 
-;xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+;xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 loc_063c96:
 	tst.b ($35,a6)
 	bpl.w loc_064980
@@ -3258,7 +3258,7 @@ loc_063d2e:
 loc_063d58:
 	dc.w $0051,$0052,$0053
 
-;xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+;xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 loc_063d5e:
 	move.l ($40,a6),d0
 	add.l d0,($10,a6)
@@ -3389,7 +3389,7 @@ loc_063e94:
 	dc.w $0000,$0000,$0000,$0014
 	dc.w $0000,$000a,$0000,$0004
 
-;xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+;xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 loc_063ea4:
 	addq.b #2,(7,a6)
 	moveq #0,d0

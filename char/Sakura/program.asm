@@ -725,22 +725,22 @@ loc_04da76:
 
 ;VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV
 loc_04da82:
-	dc.w loc_04da9a-loc_04da82
-	dc.w loc_04dd4e-loc_04da82
-	dc.w loc_04ddd0-loc_04da82
-	dc.w loc_04de96-loc_04da82
-	dc.w loc_04dedc-loc_04da82
-	dc.w loc_04e038-loc_04da82
-	dc.w loc_04e162-loc_04da82
-	dc.w loc_04e2b8-loc_04da82
+	dc.w loc_04da9a-loc_04da82; 00 Hadou
+	dc.w loc_04dd4e-loc_04da82; 02 CC Activate
+	dc.w loc_04ddd0-loc_04da82; 04 Alpha Counter DP
+	dc.w loc_04de96-loc_04da82; 06 Alpha Counter Sweep
+	dc.w loc_04dedc-loc_04da82; 08 DP
+	dc.w loc_04e038-loc_04da82; 0a Tatsu
+	dc.w loc_04e162-loc_04da82; 0c Super Fireball
+	dc.w loc_04e2b8-loc_04da82; 0e Super DP
 
-	dc.w loc_04e4c0-loc_04da82
-	dc.w loc_04e5ce-loc_04da82
-	dc.w loc_04e60c-loc_04da82
-	dc.w loc_04e8c6-loc_04da82
+	dc.w loc_04e4c0-loc_04da82; 10 Super Tatsu
+	dc.w loc_04e5ce-loc_04da82; 12 Taunt
+	dc.w loc_04e60c-loc_04da82; 14 623+K
+	dc.w loc_04e8c6-loc_04da82; 16 Air Tatsu
 
 ;==============================================
-;AI Fireball
+;Fireball
 ;==============================================
 loc_04da9a:
 	move.b (7,a6),d0

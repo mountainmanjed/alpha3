@@ -267,7 +267,7 @@ loc_05dffc:
 	dc.w loc_05e000-loc_05dffc
 	dc.w loc_05dfea-loc_05dffc
 
-;xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+;xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 loc_05e000:
 	addq.b #2,(7,a6)
 	move.b (pl_sidecheck,a6),(PL_Flip,a6)
@@ -309,7 +309,7 @@ loc_05e05e:
 	dc.w loc_05e062-loc_05e05e
 	dc.w loc_05dfea-loc_05e05e
 
-;xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+;xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 loc_05e062:
 	addq.b #2,(7,a6)
 	move.b (pl_sidecheck,a6),(PL_Flip,a6)
@@ -2000,7 +2000,7 @@ loc_05f30e:
 	dc.l $00070000,$ffff8000
 	dc.l $00080000,$ffff8000
 
-;xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+;xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 loc_05f326:
 	clr.b ($34,a6)
 	moveq #$47,d0
